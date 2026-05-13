@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: authentik
-  version: 2025.12.4
+  version: 2025.12.5
   description: Making authentication simple.
   contact:
     email: hello@goauthentik.io
@@ -5273,6 +5273,8 @@ paths:
         using this object
       tags:
       - endpoints
+      security:
+      - {}
       responses:
         '200':
           content:
@@ -5317,6 +5319,8 @@ paths:
         using this object
       tags:
       - endpoints
+      security:
+      - {}
       responses:
         '200':
           content:
@@ -5340,6 +5344,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DeviceFactsRequest'
+      security:
+      - {}
       responses:
         '204':
           description: Successfully checked in
@@ -5360,6 +5366,8 @@ paths:
             schema:
               $ref: '#/components/schemas/EnrollRequest'
         required: true
+      security:
+      - {}
       responses:
         '200':
           content:
@@ -35760,9 +35768,12 @@ components:
           properties:
             policies_buffered_access_view:
               type: boolean
+            flows_continuous_login:
+              type: boolean
             flows_refresh_others:
               type: boolean
           required:
+          - flows_continuous_login
           - flows_refresh_others
           - policies_buffered_access_view
           readOnly: true
@@ -37588,7 +37599,7 @@ components:
           readOnly: true
           title: ID
         provider:
-          $ref: '#/components/schemas/OAuth2Provider'
+          $ref: '#/components/schemas/Provider'
         user:
           $ref: '#/components/schemas/User'
         is_expired:
@@ -39329,6 +39340,8 @@ components:
           type: boolean
           default: false
         application_pre:
+          type: string
+        application_pre_launch:
           type: string
         flow_designation:
           $ref: '#/components/schemas/FlowDesignationEnum'
@@ -48896,9 +48909,12 @@ components:
           properties:
             policies_buffered_access_view:
               type: boolean
+            flows_continuous_login:
+              type: boolean
             flows_refresh_others:
               type: boolean
           required:
+          - flows_continuous_login
           - flows_refresh_others
           - policies_buffered_access_view
     PatchedSourceStageRequest:
@@ -53415,9 +53431,12 @@ components:
           properties:
             policies_buffered_access_view:
               type: boolean
+            flows_continuous_login:
+              type: boolean
             flows_refresh_others:
               type: boolean
           required:
+          - flows_continuous_login
           - flows_refresh_others
           - policies_buffered_access_view
       required:
@@ -53490,9 +53509,12 @@ components:
           properties:
             policies_buffered_access_view:
               type: boolean
+            flows_continuous_login:
+              type: boolean
             flows_refresh_others:
               type: boolean
           required:
+          - flows_continuous_login
           - flows_refresh_others
           - policies_buffered_access_view
       required:
@@ -54625,7 +54647,7 @@ components:
           readOnly: true
           title: ID
         provider:
-          $ref: '#/components/schemas/OAuth2Provider'
+          $ref: '#/components/schemas/Provider'
         user:
           $ref: '#/components/schemas/User'
         is_expired:
