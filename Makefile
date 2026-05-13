@@ -15,5 +15,6 @@ endif
 		-o local \
 		-c /local/config.yaml \
 		--additional-properties=packageVersion=$(version)
+	sed -i 's/models::models::/models::/g' "${PWD}"/src/apis/*
 	rm -f .travis.yml git_push.sh
 	cargo fmt
