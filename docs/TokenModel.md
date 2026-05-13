@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pk** | **i32** |  | [readonly]
-**provider** | [**models::Provider**](Provider.md) |  | 
+**provider** | [**models::OAuth2Provider**](OAuth2Provider.md) |  | 
 **user** | [**models::User**](User.md) |  | 
 **is_expired** | **bool** | Check if token is expired yet. | [readonly]
 **expires** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
