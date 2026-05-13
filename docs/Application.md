@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **name** | **String** | Application's display Name. | 
 **slug** | **String** | Internal application name, used in URLs. | 
 **provider** | Option<**i32**> |  | [optional]
-**provider_obj** | [**models::Provider**](Provider.md) |  | [readonly]
+**provider_obj** | Option<[**models::Provider**](Provider.md)> |  | [readonly]
 **backchannel_providers** | Option<**Vec<i32>**> |  | [optional]
 **backchannel_providers_obj** | [**Vec<models::Provider>**](Provider.md) |  | [readonly]
 **launch_url** | Option<**String**> | Allow formatting of launch URL | [readonly]

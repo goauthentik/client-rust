@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **token_uuid** | **uuid::Uuid** |  | [readonly]
 **device_group** | Option<**uuid::Uuid**> |  | [optional]
-**device_group_obj** | [**models::DeviceAccessGroup**](DeviceAccessGroup.md) |  | [readonly]
+**device_group_obj** | Option<[**models::DeviceAccessGroup**](DeviceAccessGroup.md)> |  | [readonly]
 **connector** | **uuid::Uuid** |  | 
 **name** | **String** |  | 
 **expiring** | Option<**bool**> |  | [optional]
