@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **application_name** | Option<**String**> |  | [optional]
 **application_launch_url** | Option<**String**> |  | [optional]
 **invalidation_flow_url** | Option<**String**> |  | [optional]
+**overview_url** | Option<**String**> |  | [optional]
 **brand_name** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
