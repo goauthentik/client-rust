@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pk** | **i32** |  | [readonly]
-**group** | **uuid::Uuid** |  | 
+**group** | **uuid::Uuid** |  | [readonly]
 **source** | **uuid::Uuid** |  | 
 **source_obj** | [**models::Source**](Source.md) |  | [readonly]
 **identifier** | **String** |  | 
