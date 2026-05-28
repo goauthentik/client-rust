@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**group** | **uuid::Uuid** |  | 
 **source** | **uuid::Uuid** |  | 
 **identifier** | **String** |  | 
 

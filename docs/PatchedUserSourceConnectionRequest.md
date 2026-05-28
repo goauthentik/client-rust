@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user** | Option<**i32**> |  | [optional]
 **source** | Option<**uuid::Uuid**> |  | [optional]
 **identifier** | Option<**String**> |  | [optional]
 
