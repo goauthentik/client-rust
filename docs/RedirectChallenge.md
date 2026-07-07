@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **component** | Option<**String**> |  | [optional][default to xak-flow-redirect]
 **response_errors** | Option<[**std::collections::HashMap<String, Vec<models::ErrorDetail>>**](Vec.md)> |  | [optional]
 **to** | **String** |  | 
+**final_redirect** | Option<**bool**> |  | [optional][default to false]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
