@@ -43,7 +43,7 @@ jobs:
         working-directory: client-rust
         run: |
           cp ../authentik/schema.yml .
-          git diff --exit-code -- schema.yml && exit 0
+          git diff --exit-code -- schema.yml > /dev/null && exit 0
 
           version="$(cat schema.yml | yq -r .info.version)"
           make build version="$(cat schema.yml | yq -r .info.version)"
