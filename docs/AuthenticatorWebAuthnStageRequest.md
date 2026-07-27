@@ -1,0 +1,20 @@
+# AuthenticatorWebAuthnStageRequest
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**name** | **String** |  | 
+**configure_flow** | Option<**uuid::Uuid**> | Flow used by an authenticated user to configure this Stage. If empty, user will not be able to configure this stage. | [optional]
+**friendly_name** | Option<**String**> |  | [optional]
+**user_verification** | Option<[**models::UserVerificationEnum**](UserVerificationEnum.md)> |  | [optional]
+**authenticator_attachment** | Option<[**models::AuthenticatorAttachmentEnum**](AuthenticatorAttachmentEnum.md)> |  | [optional]
+**resident_key_requirement** | Option<[**models::UserVerificationEnum**](UserVerificationEnum.md)> |  | [optional]
+**hints** | Option<[**Vec<models::WebAuthnHintEnum>**](WebAuthnHintEnum.md)> |  | [optional]
+**device_type_restrictions** | Option<**Vec<uuid::Uuid>**> |  | [optional]
+**prevent_duplicate_devices** | Option<**bool**> | When enabled, a given device can only be registered once. | [optional]
+**max_attempts** | Option<**u32**> |  | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
