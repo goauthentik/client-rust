@@ -360,6 +360,8 @@ docs/Oauth2Api.md
 docs/ObjectAttribute.md
 docs/ObjectAttributeRequest.md
 docs/ObjectAttributeTypeEnum.md
+docs/OffboardingActionEnum.md
+docs/OffboardingStatusEnum.md
 docs/OpenIdConnectConfiguration.md
 docs/OperatingSystem.md
 docs/OperatingSystemRequest.md
@@ -519,6 +521,7 @@ docs/PaginatedUserList.md
 docs/PaginatedUserLoginStageList.md
 docs/PaginatedUserLogoutStageList.md
 docs/PaginatedUserOAuthSourceConnectionList.md
+docs/PaginatedUserOffboardingList.md
 docs/PaginatedUserPlexSourceConnectionList.md
 docs/PaginatedUserSamlSourceConnectionList.md
 docs/PaginatedUserSourceConnectionList.md
@@ -880,6 +883,8 @@ docs/UserLogoutStageRequest.md
 docs/UserMatchingModeEnum.md
 docs/UserOAuthSourceConnection.md
 docs/UserOAuthSourceConnectionRequest.md
+docs/UserOffboarding.md
+docs/UserOffboardingRequest.md
 docs/UserPasswordHashSetRequest.md
 docs/UserPasswordSetRequest.md
 docs/UserPath.md
@@ -1292,6 +1297,8 @@ src/models/o_auth_source_request.rs
 src/models/object_attribute.rs
 src/models/object_attribute_request.rs
 src/models/object_attribute_type_enum.rs
+src/models/offboarding_action_enum.rs
+src/models/offboarding_status_enum.rs
 src/models/open_id_connect_configuration.rs
 src/models/operating_system.rs
 src/models/operating_system_request.rs
@@ -1450,6 +1457,7 @@ src/models/paginated_user_list.rs
 src/models/paginated_user_login_stage_list.rs
 src/models/paginated_user_logout_stage_list.rs
 src/models/paginated_user_o_auth_source_connection_list.rs
+src/models/paginated_user_offboarding_list.rs
 src/models/paginated_user_plex_source_connection_list.rs
 src/models/paginated_user_saml_source_connection_list.rs
 src/models/paginated_user_source_connection_list.rs
@@ -1798,6 +1806,8 @@ src/models/user_logout_stage_request.rs
 src/models/user_matching_mode_enum.rs
 src/models/user_o_auth_source_connection.rs
 src/models/user_o_auth_source_connection_request.rs
+src/models/user_offboarding.rs
+src/models/user_offboarding_request.rs
 src/models/user_password_hash_set_request.rs
 src/models/user_password_set_request.rs
 src/models/user_path.rs

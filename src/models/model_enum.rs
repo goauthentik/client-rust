@@ -236,6 +236,8 @@ pub enum ModelEnum {
     AuthentikLifecycleLifecycleiteration,
     #[serde(rename = "authentik_lifecycle.review")]
     AuthentikLifecycleReview,
+    #[serde(rename = "authentik_lifecycle.useroffboarding")]
+    AuthentikLifecycleUseroffboarding,
     #[serde(rename = "authentik_policies_unique_password.uniquepasswordpolicy")]
     AuthentikPoliciesUniquePasswordUniquepasswordpolicy,
     #[serde(rename = "authentik_providers_google_workspace.googleworkspaceprovider")]
@@ -462,6 +464,7 @@ impl std::fmt::Display for ModelEnum {
             Self::AuthentikLifecycleLifecyclerule => write!(f, "authentik_lifecycle.lifecyclerule"),
             Self::AuthentikLifecycleLifecycleiteration => write!(f, "authentik_lifecycle.lifecycleiteration"),
             Self::AuthentikLifecycleReview => write!(f, "authentik_lifecycle.review"),
+            Self::AuthentikLifecycleUseroffboarding => write!(f, "authentik_lifecycle.useroffboarding"),
             Self::AuthentikPoliciesUniquePasswordUniquepasswordpolicy => {
                 write!(f, "authentik_policies_unique_password.uniquepasswordpolicy")
             }
