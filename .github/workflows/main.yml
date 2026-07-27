@@ -31,7 +31,9 @@ jobs:
         working-directory: client-rust
         run: |
           cp ../authentik/schema.yml .
-          make build version=0.0.0
+          make build version="$(cat schema.yml | yq -r .info.version)"
+          git checkout README.md
+          git diff --exit-code
   ci-main-mark:
     if: always()
     needs:
