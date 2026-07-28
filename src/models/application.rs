@@ -16,6 +16,8 @@ use serde::{Deserialize, Serialize};
 pub struct Application {
     #[serde(rename = "pk")]
     pub pk: uuid::Uuid,
+    #[serde(rename = "pbm_uuid")]
+    pub pbm_uuid: uuid::Uuid,
     /// Application's display Name.
     #[serde(rename = "name")]
     pub name: String,
@@ -67,6 +69,7 @@ impl Application {
     /// Application Serializer
     pub fn new(
         pk: uuid::Uuid,
+        pbm_uuid: uuid::Uuid,
         name: String,
         slug: String,
         provider_obj: Option<models::Provider>,
@@ -77,6 +80,7 @@ impl Application {
     ) -> Application {
         Application {
             pk,
+            pbm_uuid,
             name,
             slug,
             provider: None,

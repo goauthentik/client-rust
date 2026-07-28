@@ -78,6 +78,13 @@ pub struct PatchedBrandRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub flow_lockdown: Option<Option<uuid::Uuid>>,
+    #[serde(
+        rename = "flow_request",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub flow_request: Option<Option<uuid::Uuid>>,
     /// When set, external users will be redirected to this application after authenticating.
     #[serde(
         rename = "default_application",
@@ -119,6 +126,7 @@ impl PatchedBrandRequest {
             flow_user_settings: None,
             flow_device_code: None,
             flow_lockdown: None,
+            flow_request: None,
             default_application: None,
             web_certificate: None,
             client_certificates: None,

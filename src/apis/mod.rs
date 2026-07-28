@@ -134,6 +134,7 @@ pub mod providers_api;
 pub mod rac_api;
 pub mod rbac_api;
 pub mod reports_api;
+pub mod requests_api;
 pub mod root_api;
 pub mod schema_api;
 pub mod sources_api;

@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **flow_user_settings** | Option<**String**> |  | [optional]
 **flow_device_code** | Option<**String**> |  | [optional]
 **flow_lockdown** | Option<**String**> |  | [optional]
+**flow_request** | Option<**String**> |  | [optional]
 **default_locale** | **String** |  | [readonly]
 **flags** | [**models::CurrentBrandFlags**](CurrentBrandFlags.md) |  | 
 

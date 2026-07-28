@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**core_application_entitlements_destroy**](CoreApi.md#core_application_entitlements_destroy) | **DELETE** /core/application_entitlements/{pbm_uuid}/ | 
 [**core_application_entitlements_list**](CoreApi.md#core_application_entitlements_list) | **GET** /core/application_entitlements/ | 
 [**core_application_entitlements_partial_update**](CoreApi.md#core_application_entitlements_partial_update) | **PATCH** /core/application_entitlements/{pbm_uuid}/ | 
+[**core_application_entitlements_requestable_list**](CoreApi.md#core_application_entitlements_requestable_list) | **GET** /core/application_entitlements/requestable/ | 
 [**core_application_entitlements_retrieve**](CoreApi.md#core_application_entitlements_retrieve) | **GET** /core/application_entitlements/{pbm_uuid}/ | 
 [**core_application_entitlements_update**](CoreApi.md#core_application_entitlements_update) | **PUT** /core/application_entitlements/{pbm_uuid}/ | 
 [**core_application_entitlements_used_by_list**](CoreApi.md#core_application_entitlements_used_by_list) | **GET** /core/application_entitlements/{pbm_uuid}/used_by/ | 
@@ -16,6 +17,7 @@ Method | HTTP request | Description
 [**core_applications_destroy**](CoreApi.md#core_applications_destroy) | **DELETE** /core/applications/{slug}/ | 
 [**core_applications_list**](CoreApi.md#core_applications_list) | **GET** /core/applications/ | 
 [**core_applications_partial_update**](CoreApi.md#core_applications_partial_update) | **PATCH** /core/applications/{slug}/ | 
+[**core_applications_requestable_list**](CoreApi.md#core_applications_requestable_list) | **GET** /core/applications/requestable/ | 
 [**core_applications_retrieve**](CoreApi.md#core_applications_retrieve) | **GET** /core/applications/{slug}/ | 
 [**core_applications_update**](CoreApi.md#core_applications_update) | **PUT** /core/applications/{slug}/ | 
 [**core_applications_used_by_list**](CoreApi.md#core_applications_used_by_list) | **GET** /core/applications/{slug}/used_by/ | 
@@ -204,6 +206,42 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## core_application_entitlements_requestable_list
+
+> models::PaginatedRequestableTargetList core_application_entitlements_requestable_list(app, name, ordering, page, page_size, pbm_uuid, search)
+
+
+List application entitlements which the current user can request access to
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**app** | Option<**uuid::Uuid**> |  |  |
+**name** | Option<**String**> |  |  |
+**ordering** | Option<**String**> | Which field to use when ordering the results. |  |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+**page_size** | Option<**i32**> | Number of results to return per page. |  |
+**pbm_uuid** | Option<**uuid::Uuid**> |  |  |
+**search** | Option<**String**> | A search term. |  |
+
+### Return type
+
+[**models::PaginatedRequestableTargetList**](PaginatedRequestableTargetList.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -459,6 +497,45 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## core_applications_requestable_list
+
+> models::PaginatedApplicationList core_applications_requestable_list(group, meta_description, meta_launch_url, meta_publisher, name, ordering, page, page_size, search, slug)
+
+
+List applications which the current user can request access to
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group** | Option<**String**> |  |  |
+**meta_description** | Option<**String**> |  |  |
+**meta_launch_url** | Option<**String**> |  |  |
+**meta_publisher** | Option<**String**> |  |  |
+**name** | Option<**String**> |  |  |
+**ordering** | Option<**String**> | Which field to use when ordering the results. |  |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+**page_size** | Option<**i32**> | Number of results to return per page. |  |
+**search** | Option<**String**> | A search term. |  |
+**slug** | Option<**String**> |  |  |
+
+### Return type
+
+[**models::PaginatedApplicationList**](PaginatedApplicationList.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -800,7 +877,7 @@ Name | Type | Description  | Required | Notes
 
 ## core_brands_list
 
-> models::PaginatedBrandList core_brands_list(brand_uuid, branding_default_flow_background, branding_favicon, branding_logo, branding_title, client_certificates, default, domain, flow_authentication, flow_device_code, flow_invalidation, flow_lockdown, flow_recovery, flow_unenrollment, flow_user_settings, ordering, page, page_size, search, web_certificate)
+> models::PaginatedBrandList core_brands_list(brand_uuid, branding_default_flow_background, branding_favicon, branding_logo, branding_title, client_certificates, default, domain, flow_authentication, flow_device_code, flow_invalidation, flow_lockdown, flow_recovery, flow_request, flow_unenrollment, flow_user_settings, ordering, page, page_size, search, web_certificate)
 
 
 Brand Viewset
@@ -823,6 +900,7 @@ Name | Type | Description  | Required | Notes
 **flow_invalidation** | Option<**uuid::Uuid**> |  |  |
 **flow_lockdown** | Option<**uuid::Uuid**> |  |  |
 **flow_recovery** | Option<**uuid::Uuid**> |  |  |
+**flow_request** | Option<**uuid::Uuid**> |  |  |
 **flow_unenrollment** | Option<**uuid::Uuid**> |  |  |
 **flow_user_settings** | Option<**uuid::Uuid**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |

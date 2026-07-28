@@ -46,6 +46,8 @@ pub struct CurrentBrand {
     pub flow_device_code: Option<String>,
     #[serde(rename = "flow_lockdown", skip_serializing_if = "Option::is_none")]
     pub flow_lockdown: Option<String>,
+    #[serde(rename = "flow_request", skip_serializing_if = "Option::is_none")]
+    pub flow_request: Option<String>,
     #[serde(rename = "default_locale")]
     pub default_locale: String,
     #[serde(rename = "flags")]
@@ -84,6 +86,7 @@ impl CurrentBrand {
             flow_user_settings: None,
             flow_device_code: None,
             flow_lockdown: None,
+            flow_request: None,
             default_locale,
             flags,
         }

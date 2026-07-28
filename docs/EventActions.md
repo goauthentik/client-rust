@@ -37,6 +37,10 @@
 | ReviewOverdue | review_overdue |
 | ReviewAttested | review_attested |
 | ReviewCompleted | review_completed |
+| AccessRequestCreated | access_request_created |
+| AccessRequestApproved | access_request_approved |
+| AccessRequestDenied | access_request_denied |
+| AccessRequestRevoked | access_request_revoked |
 | Custom | custom_ |
 
 

@@ -166,6 +166,8 @@ pub enum AppEnum {
     AuthentikEnterpriseProvidersWsFederation,
     #[serde(rename = "authentik.enterprise.reports")]
     AuthentikEnterpriseReports,
+    #[serde(rename = "authentik.enterprise.requests")]
+    AuthentikEnterpriseRequests,
     #[serde(rename = "authentik.enterprise.stages.account_lockdown")]
     AuthentikEnterpriseStagesAccountLockdown,
     #[serde(rename = "authentik.enterprise.stages.authenticator_endpoint_gdtc")]
@@ -267,6 +269,7 @@ impl std::fmt::Display for AppEnum {
             Self::AuthentikEnterpriseProvidersSsf => write!(f, "authentik.enterprise.providers.ssf"),
             Self::AuthentikEnterpriseProvidersWsFederation => write!(f, "authentik.enterprise.providers.ws_federation"),
             Self::AuthentikEnterpriseReports => write!(f, "authentik.enterprise.reports"),
+            Self::AuthentikEnterpriseRequests => write!(f, "authentik.enterprise.requests"),
             Self::AuthentikEnterpriseStagesAccountLockdown => write!(f, "authentik.enterprise.stages.account_lockdown"),
             Self::AuthentikEnterpriseStagesAuthenticatorEndpointGdtc => {
                 write!(f, "authentik.enterprise.stages.authenticator_endpoint_gdtc")

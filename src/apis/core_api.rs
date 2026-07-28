@@ -49,6 +49,15 @@ pub enum CoreApplicationEntitlementsPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`core_application_entitlements_requestable_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CoreApplicationEntitlementsRequestableListError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`core_application_entitlements_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -116,6 +125,15 @@ pub enum CoreApplicationsListError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CoreApplicationsPartialUpdateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`core_applications_requestable_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CoreApplicationsRequestableListError {
     Status400(models::ValidationError),
     Status403(models::GenericError),
     UnknownValue(serde_json::Value),
@@ -914,6 +932,86 @@ pub async fn core_application_entitlements_partial_update(
     }
 }
 
+/// List application entitlements which the current user can request access to
+pub async fn core_application_entitlements_requestable_list(
+    configuration: &configuration::Configuration,
+    app: Option<&str>,
+    name: Option<&str>,
+    ordering: Option<&str>,
+    page: Option<i32>,
+    page_size: Option<i32>,
+    pbm_uuid: Option<&str>,
+    search: Option<&str>,
+) -> Result<models::PaginatedRequestableTargetList, Error<CoreApplicationEntitlementsRequestableListError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_app = app;
+    let p_query_name = name;
+    let p_query_ordering = ordering;
+    let p_query_page = page;
+    let p_query_page_size = page_size;
+    let p_query_pbm_uuid = pbm_uuid;
+    let p_query_search = search;
+
+    let uri_str = format!("{}/core/application_entitlements/requestable/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_app {
+        req_builder = req_builder.query(&[("app", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_name {
+        req_builder = req_builder.query(&[("name", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_ordering {
+        req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_page_size {
+        req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_pbm_uuid {
+        req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_search {
+        req_builder = req_builder.query(&[("search", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRequestableTargetList`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRequestableTargetList`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<CoreApplicationEntitlementsRequestableListError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// ApplicationEntitlement Viewset
 pub async fn core_application_entitlements_retrieve(
     configuration: &configuration::Configuration,
@@ -1386,6 +1484,101 @@ pub async fn core_applications_partial_update(
     } else {
         let content = resp.text().await?;
         let entity: Option<CoreApplicationsPartialUpdateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// List applications which the current user can request access to
+pub async fn core_applications_requestable_list(
+    configuration: &configuration::Configuration,
+    group: Option<&str>,
+    meta_description: Option<&str>,
+    meta_launch_url: Option<&str>,
+    meta_publisher: Option<&str>,
+    name: Option<&str>,
+    ordering: Option<&str>,
+    page: Option<i32>,
+    page_size: Option<i32>,
+    search: Option<&str>,
+    slug: Option<&str>,
+) -> Result<models::PaginatedApplicationList, Error<CoreApplicationsRequestableListError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_group = group;
+    let p_query_meta_description = meta_description;
+    let p_query_meta_launch_url = meta_launch_url;
+    let p_query_meta_publisher = meta_publisher;
+    let p_query_name = name;
+    let p_query_ordering = ordering;
+    let p_query_page = page;
+    let p_query_page_size = page_size;
+    let p_query_search = search;
+    let p_query_slug = slug;
+
+    let uri_str = format!("{}/core/applications/requestable/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_group {
+        req_builder = req_builder.query(&[("group", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_meta_description {
+        req_builder = req_builder.query(&[("meta_description", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_meta_launch_url {
+        req_builder = req_builder.query(&[("meta_launch_url", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_meta_publisher {
+        req_builder = req_builder.query(&[("meta_publisher", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_name {
+        req_builder = req_builder.query(&[("name", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_ordering {
+        req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_page_size {
+        req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_search {
+        req_builder = req_builder.query(&[("search", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_slug {
+        req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedApplicationList`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedApplicationList`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<CoreApplicationsRequestableListError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -2013,6 +2206,7 @@ pub async fn core_brands_list(
     flow_invalidation: Option<&str>,
     flow_lockdown: Option<&str>,
     flow_recovery: Option<&str>,
+    flow_request: Option<&str>,
     flow_unenrollment: Option<&str>,
     flow_user_settings: Option<&str>,
     ordering: Option<&str>,
@@ -2035,6 +2229,7 @@ pub async fn core_brands_list(
     let p_query_flow_invalidation = flow_invalidation;
     let p_query_flow_lockdown = flow_lockdown;
     let p_query_flow_recovery = flow_recovery;
+    let p_query_flow_request = flow_request;
     let p_query_flow_unenrollment = flow_unenrollment;
     let p_query_flow_user_settings = flow_user_settings;
     let p_query_ordering = ordering;
@@ -2100,6 +2295,9 @@ pub async fn core_brands_list(
     }
     if let Some(ref param_value) = p_query_flow_recovery {
         req_builder = req_builder.query(&[("flow_recovery", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_flow_request {
+        req_builder = req_builder.query(&[("flow_request", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_flow_unenrollment {
         req_builder = req_builder.query(&[("flow_unenrollment", &param_value.to_string())]);

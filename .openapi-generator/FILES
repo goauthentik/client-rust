@@ -233,6 +233,8 @@ docs/GoogleWorkspaceProviderMappingRequest.md
 docs/GoogleWorkspaceProviderRequest.md
 docs/GoogleWorkspaceProviderUser.md
 docs/GoogleWorkspaceProviderUserRequest.md
+docs/GrantRequest.md
+docs/GrantRequestCreateRequest.md
 docs/GrantTypesEnum.md
 docs/Group.md
 docs/GroupKerberosSourceConnection.md
@@ -336,6 +338,7 @@ docs/NetworkInterfaceRequest.md
 docs/NetworkRequest.md
 docs/NotConfiguredActionEnum.md
 docs/Notification.md
+docs/NotificationModeEnum.md
 docs/NotificationRequest.md
 docs/NotificationRule.md
 docs/NotificationRuleRequest.md
@@ -423,6 +426,7 @@ docs/PaginatedGoogleWorkspaceProviderGroupList.md
 docs/PaginatedGoogleWorkspaceProviderList.md
 docs/PaginatedGoogleWorkspaceProviderMappingList.md
 docs/PaginatedGoogleWorkspaceProviderUserList.md
+docs/PaginatedGrantRequestList.md
 docs/PaginatedGroupKerberosSourceConnectionList.md
 docs/PaginatedGroupLdapSourceConnectionList.md
 docs/PaginatedGroupList.md
@@ -481,6 +485,10 @@ docs/PaginatedRadiusProviderPropertyMappingList.md
 docs/PaginatedRedirectStageList.md
 docs/PaginatedReputationList.md
 docs/PaginatedReputationPolicyList.md
+docs/PaginatedRequestRuleBindingList.md
+docs/PaginatedRequestRuleChildBindingList.md
+docs/PaginatedRequestRuleList.md
+docs/PaginatedRequestableTargetList.md
 docs/PaginatedRoleAssignedObjectPermissionList.md
 docs/PaginatedRoleList.md
 docs/PaginatedSamlPropertyMappingList.md
@@ -585,6 +593,7 @@ docs/PatchedGoogleChromeConnectorRequest.md
 docs/PatchedGoogleEndpointDeviceRequest.md
 docs/PatchedGoogleWorkspaceProviderMappingRequest.md
 docs/PatchedGoogleWorkspaceProviderRequest.md
+docs/PatchedGrantRequestFulfillRequest.md
 docs/PatchedGroupKerberosSourceConnectionRequest.md
 docs/PatchedGroupLdapSourceConnectionRequest.md
 docs/PatchedGroupOAuthSourceConnectionRequest.md
@@ -633,6 +642,9 @@ docs/PatchedRadiusProviderPropertyMappingRequest.md
 docs/PatchedRadiusProviderRequest.md
 docs/PatchedRedirectStageRequest.md
 docs/PatchedReputationPolicyRequest.md
+docs/PatchedRequestRuleBindingRequest.md
+docs/PatchedRequestRuleChildBindingRequest.md
+docs/PatchedRequestRuleRequest.md
 docs/PatchedRoleRequest.md
 docs/PatchedSamlPropertyMappingRequest.md
 docs/PatchedSamlProviderRequest.md
@@ -737,11 +749,21 @@ docs/RedirectUriRequest.md
 docs/RedirectUriTypeEnum.md
 docs/RelatedGroup.md
 docs/RelatedRule.md
+docs/RelatedTarget.md
 docs/ReportsApi.md
 docs/Reputation.md
 docs/ReputationPolicy.md
 docs/ReputationPolicyRequest.md
 docs/RequestContentTypeEnum.md
+docs/RequestRule.md
+docs/RequestRuleBinding.md
+docs/RequestRuleBindingRequest.md
+docs/RequestRuleChildBinding.md
+docs/RequestRuleChildBindingRequest.md
+docs/RequestRuleRequest.md
+docs/RequestStatus.md
+docs/RequestableTarget.md
+docs/RequestsApi.md
 docs/Review.md
 docs/ReviewRequest.md
 docs/Role.md
@@ -941,6 +963,7 @@ src/apis/providers_api.rs
 src/apis/rac_api.rs
 src/apis/rbac_api.rs
 src/apis/reports_api.rs
+src/apis/requests_api.rs
 src/apis/root_api.rs
 src/apis/schema_api.rs
 src/apis/sources_api.rs
@@ -1172,6 +1195,8 @@ src/models/google_workspace_provider_mapping_request.rs
 src/models/google_workspace_provider_request.rs
 src/models/google_workspace_provider_user.rs
 src/models/google_workspace_provider_user_request.rs
+src/models/grant_request.rs
+src/models/grant_request_create_request.rs
 src/models/grant_types_enum.rs
 src/models/group.rs
 src/models/group_kerberos_source_connection.rs
@@ -1274,6 +1299,7 @@ src/models/network_interface_request.rs
 src/models/network_request.rs
 src/models/not_configured_action_enum.rs
 src/models/notification.rs
+src/models/notification_mode_enum.rs
 src/models/notification_request.rs
 src/models/notification_rule.rs
 src/models/notification_rule_request.rs
@@ -1359,6 +1385,7 @@ src/models/paginated_google_workspace_provider_group_list.rs
 src/models/paginated_google_workspace_provider_list.rs
 src/models/paginated_google_workspace_provider_mapping_list.rs
 src/models/paginated_google_workspace_provider_user_list.rs
+src/models/paginated_grant_request_list.rs
 src/models/paginated_group_kerberos_source_connection_list.rs
 src/models/paginated_group_ldap_source_connection_list.rs
 src/models/paginated_group_list.rs
@@ -1417,6 +1444,10 @@ src/models/paginated_radius_provider_property_mapping_list.rs
 src/models/paginated_redirect_stage_list.rs
 src/models/paginated_reputation_list.rs
 src/models/paginated_reputation_policy_list.rs
+src/models/paginated_request_rule_binding_list.rs
+src/models/paginated_request_rule_child_binding_list.rs
+src/models/paginated_request_rule_list.rs
+src/models/paginated_requestable_target_list.rs
 src/models/paginated_role_assigned_object_permission_list.rs
 src/models/paginated_role_list.rs
 src/models/paginated_saml_property_mapping_list.rs
@@ -1521,6 +1552,7 @@ src/models/patched_google_chrome_connector_request.rs
 src/models/patched_google_endpoint_device_request.rs
 src/models/patched_google_workspace_provider_mapping_request.rs
 src/models/patched_google_workspace_provider_request.rs
+src/models/patched_grant_request_fulfill_request.rs
 src/models/patched_group_kerberos_source_connection_request.rs
 src/models/patched_group_ldap_source_connection_request.rs
 src/models/patched_group_o_auth_source_connection_request.rs
@@ -1569,6 +1601,9 @@ src/models/patched_radius_provider_property_mapping_request.rs
 src/models/patched_radius_provider_request.rs
 src/models/patched_redirect_stage_request.rs
 src/models/patched_reputation_policy_request.rs
+src/models/patched_request_rule_binding_request.rs
+src/models/patched_request_rule_child_binding_request.rs
+src/models/patched_request_rule_request.rs
 src/models/patched_role_request.rs
 src/models/patched_saml_property_mapping_request.rs
 src/models/patched_saml_provider_request.rs
@@ -1668,10 +1703,19 @@ src/models/redirect_uri_request.rs
 src/models/redirect_uri_type_enum.rs
 src/models/related_group.rs
 src/models/related_rule.rs
+src/models/related_target.rs
 src/models/reputation.rs
 src/models/reputation_policy.rs
 src/models/reputation_policy_request.rs
 src/models/request_content_type_enum.rs
+src/models/request_rule.rs
+src/models/request_rule_binding.rs
+src/models/request_rule_binding_request.rs
+src/models/request_rule_child_binding.rs
+src/models/request_rule_child_binding_request.rs
+src/models/request_rule_request.rs
+src/models/request_status.rs
+src/models/requestable_target.rs
 src/models/review.rs
 src/models/review_request.rs
 src/models/role.rs

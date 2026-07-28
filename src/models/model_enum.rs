@@ -254,6 +254,14 @@ pub enum ModelEnum {
     AuthentikProvidersWsFederationWsfederationprovider,
     #[serde(rename = "authentik_reports.dataexport")]
     AuthentikReportsDataexport,
+    #[serde(rename = "authentik_requests.requestrulechildbinding")]
+    AuthentikRequestsRequestrulechildbinding,
+    #[serde(rename = "authentik_requests.requestrulebinding")]
+    AuthentikRequestsRequestrulebinding,
+    #[serde(rename = "authentik_requests.requestrule")]
+    AuthentikRequestsRequestrule,
+    #[serde(rename = "authentik_requests.grantrequest")]
+    AuthentikRequestsGrantrequest,
     #[serde(rename = "authentik_stages_account_lockdown.accountlockdownstage")]
     AuthentikStagesAccountLockdownAccountlockdownstage,
     #[serde(rename = "authentik_stages_authenticator_endpoint_gdtc.authenticatorendpointgdtcstage")]
@@ -485,6 +493,10 @@ impl std::fmt::Display for ModelEnum {
                 write!(f, "authentik_providers_ws_federation.wsfederationprovider")
             }
             Self::AuthentikReportsDataexport => write!(f, "authentik_reports.dataexport"),
+            Self::AuthentikRequestsRequestrulechildbinding => write!(f, "authentik_requests.requestrulechildbinding"),
+            Self::AuthentikRequestsRequestrulebinding => write!(f, "authentik_requests.requestrulebinding"),
+            Self::AuthentikRequestsRequestrule => write!(f, "authentik_requests.requestrule"),
+            Self::AuthentikRequestsGrantrequest => write!(f, "authentik_requests.grantrequest"),
             Self::AuthentikStagesAccountLockdownAccountlockdownstage => {
                 write!(f, "authentik_stages_account_lockdown.accountlockdownstage")
             }

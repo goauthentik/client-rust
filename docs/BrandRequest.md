@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **flow_user_settings** | Option<**uuid::Uuid**> |  | [optional]
 **flow_device_code** | Option<**uuid::Uuid**> |  | [optional]
 **flow_lockdown** | Option<**uuid::Uuid**> |  | [optional]
+**flow_request** | Option<**uuid::Uuid**> |  | [optional]
 **default_application** | Option<**uuid::Uuid**> | When set, external users will be redirected to this application after authenticating. | [optional]
 **web_certificate** | Option<**uuid::Uuid**> | Web Certificate used by the authentik Core webserver. | [optional]
 **client_certificates** | Option<**Vec<uuid::Uuid>**> | Certificates used for client authentication. | [optional]

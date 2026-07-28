@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pk** | **uuid::Uuid** |  | [readonly]
+**pbm_uuid** | **uuid::Uuid** |  | [readonly]
 **name** | **String** | Application's display Name. | 
 **slug** | **String** | Internal application name, used in URLs. | 
 **provider** | Option<**i32**> |  | [optional]
