@@ -19,7 +19,6 @@ Name | Type | Description | Notes
 **hints** | Option<[**Vec<models::WebAuthnHintEnum>**](WebAuthnHintEnum.md)> |  | [optional]
 **device_type_restrictions** | Option<**Vec<uuid::Uuid>**> |  | [optional]
 **device_type_restrictions_obj** | [**Vec<models::WebAuthnDeviceType>**](WebAuthnDeviceType.md) |  | [readonly]
-**prevent_duplicate_devices** | Option<**bool**> | When enabled, a given device can only be registered once. | [optional]
 **max_attempts** | Option<**u32**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
