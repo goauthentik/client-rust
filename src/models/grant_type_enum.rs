@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 
 ///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum GrantTypesEnum {
+pub enum GrantTypeEnum {
     #[serde(rename = "authorization_code")]
     AuthorizationCode,
     #[serde(rename = "implicit")]
@@ -32,7 +32,7 @@ pub enum GrantTypesEnum {
     UrnColonIetfColonParamsColonOauthColonGrantTypeColonTokenExchange,
 }
 
-impl std::fmt::Display for GrantTypesEnum {
+impl std::fmt::Display for GrantTypeEnum {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::AuthorizationCode => write!(f, "authorization_code"),
@@ -51,8 +51,8 @@ impl std::fmt::Display for GrantTypesEnum {
     }
 }
 
-impl Default for GrantTypesEnum {
-    fn default() -> GrantTypesEnum {
+impl Default for GrantTypeEnum {
+    fn default() -> GrantTypeEnum {
         Self::AuthorizationCode
     }
 }

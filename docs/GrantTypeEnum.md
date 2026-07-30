@@ -1,4 +1,4 @@
-# GrantTypesEnum
+# GrantTypeEnum
 
 ## Enum Variants
 

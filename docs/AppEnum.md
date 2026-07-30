@@ -75,6 +75,7 @@
 | AuthentikEnterprisePoliciesUniquePassword | authentik.enterprise.policies.unique_password |
 | AuthentikEnterpriseProvidersGoogleWorkspace | authentik.enterprise.providers.google_workspace |
 | AuthentikEnterpriseProvidersMicrosoftEntra | authentik.enterprise.providers.microsoft_entra |
+| AuthentikEnterpriseProvidersOauth2 | authentik.enterprise.providers.oauth2 |
 | AuthentikEnterpriseProvidersRadius | authentik.enterprise.providers.radius |
 | AuthentikEnterpriseProvidersScim | authentik.enterprise.providers.scim |
 | AuthentikEnterpriseProvidersSsf | authentik.enterprise.providers.ssf |

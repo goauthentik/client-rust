@@ -235,7 +235,7 @@ docs/GoogleWorkspaceProviderUser.md
 docs/GoogleWorkspaceProviderUserRequest.md
 docs/GrantRequest.md
 docs/GrantRequestCreateRequest.md
-docs/GrantTypesEnum.md
+docs/GrantTypeEnum.md
 docs/Group.md
 docs/GroupKerberosSourceConnection.md
 docs/GroupKerberosSourceConnectionRequest.md
@@ -347,6 +347,8 @@ docs/NotificationTransportRequest.md
 docs/NotificationTransportTest.md
 docs/NotificationWebhookMapping.md
 docs/NotificationWebhookMappingRequest.md
+docs/OAuth2DynamicClientRegistration.md
+docs/OAuth2DynamicClientRegistrationRequest.md
 docs/OAuth2Provider.md
 docs/OAuth2ProviderLogoutMethodEnum.md
 docs/OAuth2ProviderRequest.md
@@ -458,6 +460,7 @@ docs/PaginatedNotificationList.md
 docs/PaginatedNotificationRuleList.md
 docs/PaginatedNotificationTransportList.md
 docs/PaginatedNotificationWebhookMappingList.md
+docs/PaginatedOAuth2DynamicClientRegistrationList.md
 docs/PaginatedOAuth2ProviderList.md
 docs/PaginatedOAuthSourceList.md
 docs/PaginatedOAuthSourcePropertyMappingList.md
@@ -621,6 +624,7 @@ docs/PatchedNotificationRequest.md
 docs/PatchedNotificationRuleRequest.md
 docs/PatchedNotificationTransportRequest.md
 docs/PatchedNotificationWebhookMappingRequest.md
+docs/PatchedOAuth2DynamicClientRegistrationRequest.md
 docs/PatchedOAuth2ProviderRequest.md
 docs/PatchedOAuthSourcePropertyMappingRequest.md
 docs/PatchedOAuthSourceRequest.md
@@ -1197,7 +1201,7 @@ src/models/google_workspace_provider_user.rs
 src/models/google_workspace_provider_user_request.rs
 src/models/grant_request.rs
 src/models/grant_request_create_request.rs
-src/models/grant_types_enum.rs
+src/models/grant_type_enum.rs
 src/models/group.rs
 src/models/group_kerberos_source_connection.rs
 src/models/group_kerberos_source_connection_request.rs
@@ -1308,6 +1312,8 @@ src/models/notification_transport_request.rs
 src/models/notification_transport_test.rs
 src/models/notification_webhook_mapping.rs
 src/models/notification_webhook_mapping_request.rs
+src/models/o_auth2_dynamic_client_registration.rs
+src/models/o_auth2_dynamic_client_registration_request.rs
 src/models/o_auth2_provider.rs
 src/models/o_auth2_provider_logout_method_enum.rs
 src/models/o_auth2_provider_request.rs
@@ -1417,6 +1423,7 @@ src/models/paginated_notification_list.rs
 src/models/paginated_notification_rule_list.rs
 src/models/paginated_notification_transport_list.rs
 src/models/paginated_notification_webhook_mapping_list.rs
+src/models/paginated_o_auth2_dynamic_client_registration_list.rs
 src/models/paginated_o_auth2_provider_list.rs
 src/models/paginated_o_auth_source_list.rs
 src/models/paginated_o_auth_source_property_mapping_list.rs
@@ -1580,6 +1587,7 @@ src/models/patched_notification_request.rs
 src/models/patched_notification_rule_request.rs
 src/models/patched_notification_transport_request.rs
 src/models/patched_notification_webhook_mapping_request.rs
+src/models/patched_o_auth2_dynamic_client_registration_request.rs
 src/models/patched_o_auth2_provider_request.rs
 src/models/patched_o_auth_source_property_mapping_request.rs
 src/models/patched_o_auth_source_request.rs

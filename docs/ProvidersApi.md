@@ -55,6 +55,12 @@ Method | HTTP request | Description
 [**providers_microsoft_entra_users_retrieve**](ProvidersApi.md#providers_microsoft_entra_users_retrieve) | **GET** /providers/microsoft_entra_users/{id}/ | 
 [**providers_microsoft_entra_users_used_by_list**](ProvidersApi.md#providers_microsoft_entra_users_used_by_list) | **GET** /providers/microsoft_entra_users/{id}/used_by/ | 
 [**providers_oauth2_create**](ProvidersApi.md#providers_oauth2_create) | **POST** /providers/oauth2/ | 
+[**providers_oauth2_dcr_create**](ProvidersApi.md#providers_oauth2_dcr_create) | **POST** /providers/oauth2-dcr/ | 
+[**providers_oauth2_dcr_destroy**](ProvidersApi.md#providers_oauth2_dcr_destroy) | **DELETE** /providers/oauth2-dcr/{pbm_uuid}/ | 
+[**providers_oauth2_dcr_list**](ProvidersApi.md#providers_oauth2_dcr_list) | **GET** /providers/oauth2-dcr/ | 
+[**providers_oauth2_dcr_partial_update**](ProvidersApi.md#providers_oauth2_dcr_partial_update) | **PATCH** /providers/oauth2-dcr/{pbm_uuid}/ | 
+[**providers_oauth2_dcr_retrieve**](ProvidersApi.md#providers_oauth2_dcr_retrieve) | **GET** /providers/oauth2-dcr/{pbm_uuid}/ | 
+[**providers_oauth2_dcr_update**](ProvidersApi.md#providers_oauth2_dcr_update) | **PUT** /providers/oauth2-dcr/{pbm_uuid}/ | 
 [**providers_oauth2_destroy**](ProvidersApi.md#providers_oauth2_destroy) | **DELETE** /providers/oauth2/{id}/ | 
 [**providers_oauth2_list**](ProvidersApi.md#providers_oauth2_list) | **GET** /providers/oauth2/ | 
 [**providers_oauth2_partial_update**](ProvidersApi.md#providers_oauth2_partial_update) | **PATCH** /providers/oauth2/{id}/ | 
@@ -1708,6 +1714,192 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::OAuth2Provider**](OAuth2Provider.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## providers_oauth2_dcr_create
+
+> models::OAuth2DynamicClientRegistration providers_oauth2_dcr_create(o_auth2_dynamic_client_registration_request)
+
+
+OAuth2 Dynamic Client Registration configuration ViewSet
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**o_auth2_dynamic_client_registration_request** | [**OAuth2DynamicClientRegistrationRequest**](OAuth2DynamicClientRegistrationRequest.md) |  | [required] |
+
+### Return type
+
+[**models::OAuth2DynamicClientRegistration**](OAuth2DynamicClientRegistration.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## providers_oauth2_dcr_destroy
+
+> providers_oauth2_dcr_destroy(pbm_uuid)
+
+
+OAuth2 Dynamic Client Registration configuration ViewSet
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**pbm_uuid** | **uuid::Uuid** | A UUID string identifying this OAuth2 Dynamic Client Registration. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## providers_oauth2_dcr_list
+
+> models::PaginatedOAuth2DynamicClientRegistrationList providers_oauth2_dcr_list(ordering, page, page_size, provider, search)
+
+
+OAuth2 Dynamic Client Registration configuration ViewSet
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**ordering** | Option<**String**> | Which field to use when ordering the results. |  |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+**page_size** | Option<**i32**> | Number of results to return per page. |  |
+**provider** | Option<**i32**> |  |  |
+**search** | Option<**String**> | A search term. |  |
+
+### Return type
+
+[**models::PaginatedOAuth2DynamicClientRegistrationList**](PaginatedOAuth2DynamicClientRegistrationList.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## providers_oauth2_dcr_partial_update
+
+> models::OAuth2DynamicClientRegistration providers_oauth2_dcr_partial_update(pbm_uuid, patched_o_auth2_dynamic_client_registration_request)
+
+
+OAuth2 Dynamic Client Registration configuration ViewSet
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**pbm_uuid** | **uuid::Uuid** | A UUID string identifying this OAuth2 Dynamic Client Registration. | [required] |
+**patched_o_auth2_dynamic_client_registration_request** | Option<[**PatchedOAuth2DynamicClientRegistrationRequest**](PatchedOAuth2DynamicClientRegistrationRequest.md)> |  |  |
+
+### Return type
+
+[**models::OAuth2DynamicClientRegistration**](OAuth2DynamicClientRegistration.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## providers_oauth2_dcr_retrieve
+
+> models::OAuth2DynamicClientRegistration providers_oauth2_dcr_retrieve(pbm_uuid)
+
+
+OAuth2 Dynamic Client Registration configuration ViewSet
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**pbm_uuid** | **uuid::Uuid** | A UUID string identifying this OAuth2 Dynamic Client Registration. | [required] |
+
+### Return type
+
+[**models::OAuth2DynamicClientRegistration**](OAuth2DynamicClientRegistration.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## providers_oauth2_dcr_update
+
+> models::OAuth2DynamicClientRegistration providers_oauth2_dcr_update(pbm_uuid, o_auth2_dynamic_client_registration_request)
+
+
+OAuth2 Dynamic Client Registration configuration ViewSet
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**pbm_uuid** | **uuid::Uuid** | A UUID string identifying this OAuth2 Dynamic Client Registration. | [required] |
+**o_auth2_dynamic_client_registration_request** | [**OAuth2DynamicClientRegistrationRequest**](OAuth2DynamicClientRegistrationRequest.md) |  | [required] |
+
+### Return type
+
+[**models::OAuth2DynamicClientRegistration**](OAuth2DynamicClientRegistration.md)
 
 ### Authorization
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **invalidation_flow** | **uuid::Uuid** | Flow used ending the session from a provider. | 
 **property_mappings** | Option<**Vec<uuid::Uuid>**> |  | [optional]
 **client_type** | Option<[**models::ClientTypeEnum**](ClientTypeEnum.md)> | Confidential clients are capable of maintaining the confidentiality of their credentials. Public clients are incapable | [optional]
-**grant_types** | Option<[**Vec<models::GrantTypesEnum>**](GrantTypesEnum.md)> |  | [optional]
+**grant_types** | Option<[**Vec<models::GrantTypeEnum>**](GrantTypeEnum.md)> |  | [optional]
 **client_id** | Option<**String**> |  | [optional]
 **client_secret** | Option<**String**> |  | [optional]
 **access_code_validity** | Option<**String**> | Access codes not valid on or after current time + this value (Format: hours=1;minutes=2;seconds=3). | [optional]

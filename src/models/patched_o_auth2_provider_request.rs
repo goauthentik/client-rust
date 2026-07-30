@@ -36,7 +36,7 @@ pub struct PatchedOAuth2ProviderRequest {
     #[serde(rename = "client_type", skip_serializing_if = "Option::is_none")]
     pub client_type: Option<models::ClientTypeEnum>,
     #[serde(rename = "grant_types", skip_serializing_if = "Option::is_none")]
-    pub grant_types: Option<Vec<models::GrantTypesEnum>>,
+    pub grant_types: Option<Vec<models::GrantTypeEnum>>,
     #[serde(rename = "client_id", skip_serializing_if = "Option::is_none")]
     pub client_id: Option<String>,
     #[serde(rename = "client_secret", skip_serializing_if = "Option::is_none")]

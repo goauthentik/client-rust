@@ -86,6 +86,8 @@ pub enum ModelEnum {
     AuthentikProvidersOauth2Scopemapping,
     #[serde(rename = "authentik_providers_oauth2.oauth2provider")]
     AuthentikProvidersOauth2Oauth2provider,
+    #[serde(rename = "authentik_providers_oauth2.oauth2dynamicclientregistration")]
+    AuthentikProvidersOauth2Oauth2dynamicclientregistration,
     #[serde(rename = "authentik_providers_proxy.proxyprovider")]
     AuthentikProvidersProxyProxyprovider,
     #[serde(rename = "authentik_providers_rac.racprovider")]
@@ -327,6 +329,9 @@ impl std::fmt::Display for ModelEnum {
             Self::AuthentikProvidersLdapLdapprovider => write!(f, "authentik_providers_ldap.ldapprovider"),
             Self::AuthentikProvidersOauth2Scopemapping => write!(f, "authentik_providers_oauth2.scopemapping"),
             Self::AuthentikProvidersOauth2Oauth2provider => write!(f, "authentik_providers_oauth2.oauth2provider"),
+            Self::AuthentikProvidersOauth2Oauth2dynamicclientregistration => {
+                write!(f, "authentik_providers_oauth2.oauth2dynamicclientregistration")
+            }
             Self::AuthentikProvidersProxyProxyprovider => write!(f, "authentik_providers_proxy.proxyprovider"),
             Self::AuthentikProvidersRacRacprovider => write!(f, "authentik_providers_rac.racprovider"),
             Self::AuthentikProvidersRacEndpoint => write!(f, "authentik_providers_rac.endpoint"),

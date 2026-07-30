@@ -474,6 +474,60 @@ pub enum ProvidersOauth2CreateError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`providers_oauth2_dcr_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ProvidersOauth2DcrCreateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`providers_oauth2_dcr_destroy`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ProvidersOauth2DcrDestroyError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`providers_oauth2_dcr_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ProvidersOauth2DcrListError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`providers_oauth2_dcr_partial_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ProvidersOauth2DcrPartialUpdateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`providers_oauth2_dcr_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ProvidersOauth2DcrRetrieveError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`providers_oauth2_dcr_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ProvidersOauth2DcrUpdateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`providers_oauth2_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -3932,6 +3986,324 @@ pub async fn providers_oauth2_create(
     } else {
         let content = resp.text().await?;
         let entity: Option<ProvidersOauth2CreateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// OAuth2 Dynamic Client Registration configuration ViewSet
+pub async fn providers_oauth2_dcr_create(
+    configuration: &configuration::Configuration,
+    o_auth2_dynamic_client_registration_request: models::OAuth2DynamicClientRegistrationRequest,
+) -> Result<models::OAuth2DynamicClientRegistration, Error<ProvidersOauth2DcrCreateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_o_auth2_dynamic_client_registration_request = o_auth2_dynamic_client_registration_request;
+
+    let uri_str = format!("{}/providers/oauth2-dcr/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_o_auth2_dynamic_client_registration_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<ProvidersOauth2DcrCreateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// OAuth2 Dynamic Client Registration configuration ViewSet
+pub async fn providers_oauth2_dcr_destroy(
+    configuration: &configuration::Configuration,
+    pbm_uuid: &str,
+) -> Result<(), Error<ProvidersOauth2DcrDestroyError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_pbm_uuid = pbm_uuid;
+
+    let uri_str = format!(
+        "{}/providers/oauth2-dcr/{pbm_uuid}/",
+        configuration.base_path,
+        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<ProvidersOauth2DcrDestroyError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// OAuth2 Dynamic Client Registration configuration ViewSet
+pub async fn providers_oauth2_dcr_list(
+    configuration: &configuration::Configuration,
+    ordering: Option<&str>,
+    page: Option<i32>,
+    page_size: Option<i32>,
+    provider: Option<i32>,
+    search: Option<&str>,
+) -> Result<models::PaginatedOAuth2DynamicClientRegistrationList, Error<ProvidersOauth2DcrListError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_ordering = ordering;
+    let p_query_page = page;
+    let p_query_page_size = page_size;
+    let p_query_provider = provider;
+    let p_query_search = search;
+
+    let uri_str = format!("{}/providers/oauth2-dcr/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_ordering {
+        req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_page_size {
+        req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_provider {
+        req_builder = req_builder.query(&[("provider", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_search {
+        req_builder = req_builder.query(&[("search", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedOAuth2DynamicClientRegistrationList`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedOAuth2DynamicClientRegistrationList`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<ProvidersOauth2DcrListError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// OAuth2 Dynamic Client Registration configuration ViewSet
+pub async fn providers_oauth2_dcr_partial_update(
+    configuration: &configuration::Configuration,
+    pbm_uuid: &str,
+    patched_o_auth2_dynamic_client_registration_request: Option<models::PatchedOAuth2DynamicClientRegistrationRequest>,
+) -> Result<models::OAuth2DynamicClientRegistration, Error<ProvidersOauth2DcrPartialUpdateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_pbm_uuid = pbm_uuid;
+    let p_body_patched_o_auth2_dynamic_client_registration_request =
+        patched_o_auth2_dynamic_client_registration_request;
+
+    let uri_str = format!(
+        "{}/providers/oauth2-dcr/{pbm_uuid}/",
+        configuration.base_path,
+        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_patched_o_auth2_dynamic_client_registration_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<ProvidersOauth2DcrPartialUpdateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// OAuth2 Dynamic Client Registration configuration ViewSet
+pub async fn providers_oauth2_dcr_retrieve(
+    configuration: &configuration::Configuration,
+    pbm_uuid: &str,
+) -> Result<models::OAuth2DynamicClientRegistration, Error<ProvidersOauth2DcrRetrieveError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_pbm_uuid = pbm_uuid;
+
+    let uri_str = format!(
+        "{}/providers/oauth2-dcr/{pbm_uuid}/",
+        configuration.base_path,
+        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<ProvidersOauth2DcrRetrieveError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// OAuth2 Dynamic Client Registration configuration ViewSet
+pub async fn providers_oauth2_dcr_update(
+    configuration: &configuration::Configuration,
+    pbm_uuid: &str,
+    o_auth2_dynamic_client_registration_request: models::OAuth2DynamicClientRegistrationRequest,
+) -> Result<models::OAuth2DynamicClientRegistration, Error<ProvidersOauth2DcrUpdateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_pbm_uuid = pbm_uuid;
+    let p_body_o_auth2_dynamic_client_registration_request = o_auth2_dynamic_client_registration_request;
+
+    let uri_str = format!(
+        "{}/providers/oauth2-dcr/{pbm_uuid}/",
+        configuration.base_path,
+        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_o_auth2_dynamic_client_registration_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<ProvidersOauth2DcrUpdateError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
