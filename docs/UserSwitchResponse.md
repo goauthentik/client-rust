@@ -1,12 +1,10 @@
-# SessionUser
+# UserSwitchResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user** | [**models::UserSelf**](UserSelf.md) |  | 
-**original** | Option<[**models::UserSelf**](UserSelf.md)> |  | [optional]
-**users** | [**Vec<models::UserSelf>**](UserSelf.md) |  | 
+**redirect** | **String** |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

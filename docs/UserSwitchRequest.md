@@ -1,12 +1,11 @@
-# SessionUser
+# UserSwitchRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user** | [**models::UserSelf**](UserSelf.md) |  | 
-**original** | Option<[**models::UserSelf**](UserSelf.md)> |  | [optional]
-**users** | [**Vec<models::UserSelf>**](UserSelf.md) |  | 
+**action** | Option<[**models::UserSwitchActionEnum**](UserSwitchActionEnum.md)> |  | [optional][default to Switch]
+**user_pk** | Option<**i32**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

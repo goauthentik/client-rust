@@ -34,6 +34,8 @@ pub struct CurrentBrand {
     pub ui_theme: models::UiThemeEnum,
     #[serde(rename = "flow_authentication", skip_serializing_if = "Option::is_none")]
     pub flow_authentication: Option<String>,
+    #[serde(rename = "flow_user_switch", skip_serializing_if = "Option::is_none")]
+    pub flow_user_switch: Option<String>,
     #[serde(rename = "flow_invalidation", skip_serializing_if = "Option::is_none")]
     pub flow_invalidation: Option<String>,
     #[serde(rename = "flow_recovery", skip_serializing_if = "Option::is_none")]
@@ -80,6 +82,7 @@ impl CurrentBrand {
             ui_footer_links,
             ui_theme,
             flow_authentication: None,
+            flow_user_switch: None,
             flow_invalidation: None,
             flow_recovery: None,
             flow_unenrollment: None,

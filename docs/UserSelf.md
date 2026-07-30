@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **name** | **String** | User's display name. | 
 **is_active** | **bool** | Designates whether this user should be treated as active. Unselect this instead of deleting accounts. | [readonly]
 **is_superuser** | **bool** |  | [readonly]
+**is_current** | **bool** | Return whether this user owns the current browser session. | [readonly]
 **groups** | [**Vec<models::UserSelfGroups>**](UserSelfGroups.md) |  | [readonly]
 **roles** | [**Vec<models::UserSelfRoles>**](UserSelfRoles.md) |  | [readonly]
 **email** | Option<**String**> |  | [optional]

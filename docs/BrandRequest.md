@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **branding_custom_css** | Option<**String**> |  | [optional]
 **branding_default_flow_background** | Option<**String**> |  | [optional]
 **flow_authentication** | Option<**uuid::Uuid**> |  | [optional]
+**flow_user_switch** | Option<**uuid::Uuid**> |  | [optional]
 **flow_invalidation** | Option<**uuid::Uuid**> |  | [optional]
 **flow_recovery** | Option<**uuid::Uuid**> |  | [optional]
 **flow_unenrollment** | Option<**uuid::Uuid**> |  | [optional]

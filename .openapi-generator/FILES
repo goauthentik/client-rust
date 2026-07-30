@@ -929,6 +929,9 @@ docs/UserServiceAccountResponse.md
 docs/UserSetting.md
 docs/UserSourceConnection.md
 docs/UserSourceConnectionRequest.md
+docs/UserSwitchActionEnum.md
+docs/UserSwitchRequest.md
+docs/UserSwitchResponse.md
 docs/UserTelegramSourceConnection.md
 docs/UserTelegramSourceConnectionRequest.md
 docs/UserTypeEnum.md
@@ -1878,6 +1881,9 @@ src/models/user_service_account_response.rs
 src/models/user_setting.rs
 src/models/user_source_connection.rs
 src/models/user_source_connection_request.rs
+src/models/user_switch_action_enum.rs
+src/models/user_switch_request.rs
+src/models/user_switch_response.rs
 src/models/user_telegram_source_connection.rs
 src/models/user_telegram_source_connection_request.rs
 src/models/user_type_enum.rs

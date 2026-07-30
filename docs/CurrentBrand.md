@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **ui_footer_links** | [**Vec<models::FooterLink>**](FooterLink.md) |  | [readonly]
 **ui_theme** | [**models::UiThemeEnum**](UiThemeEnum.md) |  | [readonly][default to Automatic]
 **flow_authentication** | Option<**String**> |  | [optional]
+**flow_user_switch** | Option<**String**> |  | [optional]
 **flow_invalidation** | Option<**String**> |  | [optional]
 **flow_recovery** | Option<**String**> |  | [optional]
 **flow_unenrollment** | Option<**String**> |  | [optional]

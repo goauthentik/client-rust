@@ -79,6 +79,7 @@ Method | HTTP request | Description
 [**core_users_service_account_create**](CoreApi.md#core_users_service_account_create) | **POST** /core/users/service_account/ | 
 [**core_users_set_password_create**](CoreApi.md#core_users_set_password_create) | **POST** /core/users/{id}/set_password/ | 
 [**core_users_set_password_hash_create**](CoreApi.md#core_users_set_password_hash_create) | **POST** /core/users/{id}/set_password_hash/ | 
+[**core_users_switch_create**](CoreApi.md#core_users_switch_create) | **POST** /core/users/switch/ | 
 [**core_users_update**](CoreApi.md#core_users_update) | **PUT** /core/users/{id}/ | 
 [**core_users_used_by_list**](CoreApi.md#core_users_used_by_list) | **GET** /core/users/{id}/used_by/ | 
 
@@ -877,7 +878,7 @@ Name | Type | Description  | Required | Notes
 
 ## core_brands_list
 
-> models::PaginatedBrandList core_brands_list(brand_uuid, branding_default_flow_background, branding_favicon, branding_logo, branding_title, client_certificates, default, domain, flow_authentication, flow_device_code, flow_invalidation, flow_lockdown, flow_recovery, flow_request, flow_unenrollment, flow_user_settings, ordering, page, page_size, search, web_certificate)
+> models::PaginatedBrandList core_brands_list(brand_uuid, branding_default_flow_background, branding_favicon, branding_logo, branding_title, client_certificates, default, domain, flow_authentication, flow_device_code, flow_invalidation, flow_lockdown, flow_recovery, flow_request, flow_unenrollment, flow_user_settings, flow_user_switch, ordering, page, page_size, search, web_certificate)
 
 
 Brand Viewset
@@ -903,6 +904,7 @@ Name | Type | Description  | Required | Notes
 **flow_request** | Option<**uuid::Uuid**> |  |  |
 **flow_unenrollment** | Option<**uuid::Uuid**> |  |  |
 **flow_user_settings** | Option<**uuid::Uuid**> |  |  |
+**flow_user_switch** | Option<**uuid::Uuid**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
 **page_size** | Option<**i32**> | Number of results to return per page. |  |
@@ -2472,6 +2474,37 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[authentik](../README.md#authentik), [authentik_device_auth](../README.md#authentik_device_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## core_users_switch_create
+
+> models::UserSwitchResponse core_users_switch_create(next, user_switch_request)
+
+
+Start browser user switching.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**next** | Option<**String**> |  |  |
+**user_switch_request** | Option<[**UserSwitchRequest**](UserSwitchRequest.md)> |  |  |
+
+### Return type
+
+[**models::UserSwitchResponse**](UserSwitchResponse.md)
 
 ### Authorization
 

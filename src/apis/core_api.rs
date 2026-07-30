@@ -692,6 +692,15 @@ pub enum CoreUsersSetPasswordHashCreateError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`core_users_switch_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CoreUsersSwitchCreateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`core_users_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -2209,6 +2218,7 @@ pub async fn core_brands_list(
     flow_request: Option<&str>,
     flow_unenrollment: Option<&str>,
     flow_user_settings: Option<&str>,
+    flow_user_switch: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,
     page_size: Option<i32>,
@@ -2232,6 +2242,7 @@ pub async fn core_brands_list(
     let p_query_flow_request = flow_request;
     let p_query_flow_unenrollment = flow_unenrollment;
     let p_query_flow_user_settings = flow_user_settings;
+    let p_query_flow_user_switch = flow_user_switch;
     let p_query_ordering = ordering;
     let p_query_page = page;
     let p_query_page_size = page_size;
@@ -2304,6 +2315,9 @@ pub async fn core_brands_list(
     }
     if let Some(ref param_value) = p_query_flow_user_settings {
         req_builder = req_builder.query(&[("flow_user_settings", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_flow_user_switch {
+        req_builder = req_builder.query(&[("flow_user_switch", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
@@ -5520,6 +5534,59 @@ pub async fn core_users_set_password_hash_create(
     } else {
         let content = resp.text().await?;
         let entity: Option<CoreUsersSetPasswordHashCreateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Start browser user switching.
+pub async fn core_users_switch_create(
+    configuration: &configuration::Configuration,
+    next: Option<&str>,
+    user_switch_request: Option<models::UserSwitchRequest>,
+) -> Result<models::UserSwitchResponse, Error<CoreUsersSwitchCreateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_next = next;
+    let p_body_user_switch_request = user_switch_request;
+
+    let uri_str = format!("{}/core/users/switch/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref param_value) = p_query_next {
+        req_builder = req_builder.query(&[("next", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_user_switch_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserSwitchResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserSwitchResponse`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<CoreUsersSwitchCreateError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
