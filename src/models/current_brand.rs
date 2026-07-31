@@ -28,6 +28,8 @@ pub struct CurrentBrand {
     pub branding_favicon_themed_urls: Option<models::ThemedUrls>,
     #[serde(rename = "branding_custom_css")]
     pub branding_custom_css: String,
+    #[serde(rename = "branding_map_tiles")]
+    pub branding_map_tiles: String,
     #[serde(rename = "ui_footer_links")]
     pub ui_footer_links: Vec<models::FooterLink>,
     #[serde(rename = "ui_theme")]
@@ -66,6 +68,7 @@ impl CurrentBrand {
         branding_favicon: String,
         branding_favicon_themed_urls: Option<models::ThemedUrls>,
         branding_custom_css: String,
+        branding_map_tiles: String,
         ui_footer_links: Vec<models::FooterLink>,
         ui_theme: models::UiThemeEnum,
         default_locale: String,
@@ -79,6 +82,7 @@ impl CurrentBrand {
             branding_favicon,
             branding_favicon_themed_urls,
             branding_custom_css,
+            branding_map_tiles,
             ui_footer_links,
             ui_theme,
             flow_authentication: None,
