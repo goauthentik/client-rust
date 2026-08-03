@@ -28,6 +28,8 @@ pub enum ModelEnum {
     AuthentikCoreToken,
     #[serde(rename = "authentik_core.objectattribute")]
     AuthentikCoreObjectattribute,
+    #[serde(rename = "authentik_core.actor")]
+    AuthentikCoreActor,
     #[serde(rename = "authentik_crypto.certificatekeypair")]
     AuthentikCryptoCertificatekeypair,
     #[serde(rename = "authentik_endpoints.deviceuserbinding")]
@@ -284,6 +286,7 @@ impl std::fmt::Display for ModelEnum {
             Self::AuthentikCoreApplicationentitlement => write!(f, "authentik_core.applicationentitlement"),
             Self::AuthentikCoreToken => write!(f, "authentik_core.token"),
             Self::AuthentikCoreObjectattribute => write!(f, "authentik_core.objectattribute"),
+            Self::AuthentikCoreActor => write!(f, "authentik_core.actor"),
             Self::AuthentikCryptoCertificatekeypair => write!(f, "authentik_crypto.certificatekeypair"),
             Self::AuthentikEndpointsDeviceuserbinding => write!(f, "authentik_endpoints.deviceuserbinding"),
             Self::AuthentikEndpointsDeviceaccessgroup => write!(f, "authentik_endpoints.deviceaccessgroup"),
