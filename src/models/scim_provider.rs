@@ -93,6 +93,9 @@ pub struct ScimProvider {
     /// Timeout for synchronization of a single page
     #[serde(rename = "sync_page_timeout", skip_serializing_if = "Option::is_none")]
     pub sync_page_timeout: Option<String>,
+    /// When enabled, authentik will attempt to discover existing resources in the remote system.
+    #[serde(rename = "discovery_enabled", skip_serializing_if = "Option::is_none")]
+    pub discovery_enabled: Option<bool>,
     /// Group filters used to define sync-scope for groups.
     #[serde(rename = "group_filters", skip_serializing_if = "Option::is_none")]
     pub group_filters: Option<Vec<uuid::Uuid>>,
@@ -144,6 +147,7 @@ impl ScimProvider {
             exclude_users_service_account: None,
             sync_page_size: None,
             sync_page_timeout: None,
+            discovery_enabled: None,
             group_filters: None,
             dry_run: None,
         }

@@ -43,6 +43,9 @@ pub struct PatchedMicrosoftEntraProviderRequest {
     /// Controls the number of objects synced in a single task
     #[serde(rename = "sync_page_size", skip_serializing_if = "Option::is_none")]
     pub sync_page_size: Option<u32>,
+    /// When enabled, authentik will attempt to discover existing resources in the remote system.
+    #[serde(rename = "discovery_enabled", skip_serializing_if = "Option::is_none")]
+    pub discovery_enabled: Option<bool>,
     /// Timeout for synchronization of a single page
     #[serde(rename = "sync_page_timeout", skip_serializing_if = "Option::is_none")]
     pub sync_page_timeout: Option<String>,
@@ -66,6 +69,7 @@ impl PatchedMicrosoftEntraProviderRequest {
             user_delete_action: None,
             group_delete_action: None,
             sync_page_size: None,
+            discovery_enabled: None,
             sync_page_timeout: None,
             dry_run: None,
         }

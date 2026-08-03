@@ -77,6 +77,9 @@ pub struct GoogleWorkspaceProvider {
     /// When enabled, provider will not modify or create objects in the remote system.
     #[serde(rename = "dry_run", skip_serializing_if = "Option::is_none")]
     pub dry_run: Option<bool>,
+    /// When enabled, authentik will attempt to discover existing resources in the remote system.
+    #[serde(rename = "discovery_enabled", skip_serializing_if = "Option::is_none")]
+    pub discovery_enabled: Option<bool>,
 }
 
 impl GoogleWorkspaceProvider {
@@ -116,6 +119,7 @@ impl GoogleWorkspaceProvider {
             sync_page_size: None,
             sync_page_timeout: None,
             dry_run: None,
+            discovery_enabled: None,
         }
     }
 }
