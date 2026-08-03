@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 **exclude_users_service_account** | Option<**bool**> |  | [optional]
 **sync_page_size** | Option<**u32**> | Controls the number of objects synced in a single task | [optional]
 **sync_page_timeout** | Option<**String**> | Timeout for synchronization of a single page | [optional]
-**discovery_enabled** | Option<**bool**> | When enabled, authentik will attempt to discover existing resources in the remote system. | [optional]
 **group_filters** | Option<**Vec<uuid::Uuid>**> | Group filters used to define sync-scope for groups. | [optional]
 **dry_run** | Option<**bool**> | When enabled, provider will not modify or create objects in the remote system. | [optional]
 

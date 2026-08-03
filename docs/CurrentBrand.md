@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **branding_favicon** | **String** |  | 
 **branding_favicon_themed_urls** | Option<[**models::ThemedUrls**](ThemedUrls.md)> |  | [readonly]
 **branding_custom_css** | **String** |  | 
-**branding_map_tiles** | **String** |  | 
 **ui_footer_links** | [**Vec<models::FooterLink>**](FooterLink.md) |  | [readonly]
 **ui_theme** | [**models::UiThemeEnum**](UiThemeEnum.md) |  | [readonly][default to Automatic]
 **flow_authentication** | Option<**String**> |  | [optional]

@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **branding_favicon** | Option<**String**> |  | [optional]
 **branding_custom_css** | Option<**String**> |  | [optional]
 **branding_default_flow_background** | Option<**String**> |  | [optional]
-**branding_map_tiles** | Option<**String**> | URL template for the vector tile source used by the events map. Supports XYZ templates with {z}, {x} and {y} placeholders, or pmtiles:// archive URLs. When empty, the frontend uses the bundled hexworld basemap. This value is part of the brand information served to unauthenticated clients; do not embed API keys or other credentials in it. | [optional]
 **flow_authentication** | Option<**uuid::Uuid**> |  | [optional]
 **flow_user_switch** | Option<**uuid::Uuid**> |  | [optional]
 **flow_invalidation** | Option<**uuid::Uuid**> |  | [optional]
