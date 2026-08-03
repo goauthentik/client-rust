@@ -28,6 +28,8 @@ pub struct OAuth2ProviderSetupUrls {
     pub logout: String,
     #[serde(rename = "jwks")]
     pub jwks: String,
+    #[serde(rename = "dcr_registration", deserialize_with = "Option::deserialize")]
+    pub dcr_registration: Option<String>,
 }
 
 impl OAuth2ProviderSetupUrls {
@@ -40,6 +42,7 @@ impl OAuth2ProviderSetupUrls {
         provider_info: String,
         logout: String,
         jwks: String,
+        dcr_registration: Option<String>,
     ) -> OAuth2ProviderSetupUrls {
         OAuth2ProviderSetupUrls {
             issuer,
@@ -49,6 +52,7 @@ impl OAuth2ProviderSetupUrls {
             provider_info,
             logout,
             jwks,
+            dcr_registration,
         }
     }
 }

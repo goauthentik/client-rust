@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **provider_info** | **String** |  | [readonly]
 **logout** | **String** |  | [readonly]
 **jwks** | **String** |  | [readonly]
+**dcr_registration** | Option<**String**> |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
