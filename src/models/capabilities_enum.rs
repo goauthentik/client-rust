@@ -28,6 +28,8 @@ pub enum CapabilitiesEnum {
     CanDebug,
     #[serde(rename = "is_enterprise")]
     IsEnterprise,
+    #[serde(rename = "can_request")]
+    CanRequest,
 }
 
 impl std::fmt::Display for CapabilitiesEnum {
@@ -40,6 +42,7 @@ impl std::fmt::Display for CapabilitiesEnum {
             Self::CanImpersonate => write!(f, "can_impersonate"),
             Self::CanDebug => write!(f, "can_debug"),
             Self::IsEnterprise => write!(f, "is_enterprise"),
+            Self::CanRequest => write!(f, "can_request"),
         }
     }
 }
