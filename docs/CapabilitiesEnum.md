@@ -12,6 +12,7 @@
 | CanDebug | can_debug |
 | IsEnterprise | is_enterprise |
 | CanRequest | can_request |
+| CanAgentSelfService | can_agent_self_service |
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

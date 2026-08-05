@@ -6,14 +6,19 @@ docs/AccessDeniedChallenge.md
 docs/AccountLockdownStage.md
 docs/AccountLockdownStageRequest.md
 docs/AdminApi.md
+docs/Agent.md
 docs/AgentAuthenticationResponse.md
 docs/AgentConfig.md
 docs/AgentConnector.md
 docs/AgentConnectorRequest.md
+docs/AgentCreateRequest.md
+docs/AgentCreated.md
 docs/AgentPssoDeviceRegistrationRequest.md
 docs/AgentPssoDeviceRegistrationResponse.md
 docs/AgentPssoUserRegistrationRequest.md
+docs/AgentRequest.md
 docs/AgentTokenResponse.md
+docs/AgentsApi.md
 docs/AlgEnum.md
 docs/App.md
 docs/AppEnum.md
@@ -379,6 +384,7 @@ docs/OutpostTypeEnum.md
 docs/OutpostsApi.md
 docs/PaginatedAccountLockdownStageList.md
 docs/PaginatedAgentConnectorList.md
+docs/PaginatedAgentList.md
 docs/PaginatedAppleIndependentSecureEnclaveList.md
 docs/PaginatedApplicationEntitlementList.md
 docs/PaginatedApplicationList.md
@@ -554,6 +560,7 @@ docs/PasswordStage.md
 docs/PasswordStageRequest.md
 docs/PatchedAccountLockdownStageRequest.md
 docs/PatchedAgentConnectorRequest.md
+docs/PatchedAgentRequest.md
 docs/PatchedAppleIndependentSecureEnclaveRequest.md
 docs/PatchedApplicationEntitlementRequest.md
 docs/PatchedApplicationRequest.md
@@ -701,6 +708,7 @@ docs/PlexSourceRequest.md
 docs/PlexTokenRedeemRequest.md
 docs/PoliciesApi.md
 docs/Policy.md
+docs/PolicyBehaviorEnum.md
 docs/PolicyBinding.md
 docs/PolicyBindingRequest.md
 docs/PolicyEngineMode.md
@@ -951,6 +959,7 @@ docs/WsFederationProvider.md
 docs/WsFederationProviderRequest.md
 git_push.sh
 src/apis/admin_api.rs
+src/apis/agents_api.rs
 src/apis/authenticators_api.rs
 src/apis/configuration.rs
 src/apis/core_api.rs
@@ -982,13 +991,17 @@ src/lib.rs
 src/models/access_denied_challenge.rs
 src/models/account_lockdown_stage.rs
 src/models/account_lockdown_stage_request.rs
+src/models/agent.rs
 src/models/agent_authentication_response.rs
 src/models/agent_config.rs
 src/models/agent_connector.rs
 src/models/agent_connector_request.rs
+src/models/agent_create_request.rs
+src/models/agent_created.rs
 src/models/agent_psso_device_registration_request.rs
 src/models/agent_psso_device_registration_response.rs
 src/models/agent_psso_user_registration_request.rs
+src/models/agent_request.rs
 src/models/agent_token_response.rs
 src/models/alg_enum.rs
 src/models/app.rs
@@ -1345,6 +1358,7 @@ src/models/outpost_request.rs
 src/models/outpost_type_enum.rs
 src/models/paginated_account_lockdown_stage_list.rs
 src/models/paginated_agent_connector_list.rs
+src/models/paginated_agent_list.rs
 src/models/paginated_apple_independent_secure_enclave_list.rs
 src/models/paginated_application_entitlement_list.rs
 src/models/paginated_application_list.rs
@@ -1520,6 +1534,7 @@ src/models/password_stage.rs
 src/models/password_stage_request.rs
 src/models/patched_account_lockdown_stage_request.rs
 src/models/patched_agent_connector_request.rs
+src/models/patched_agent_request.rs
 src/models/patched_apple_independent_secure_enclave_request.rs
 src/models/patched_application_entitlement_request.rs
 src/models/patched_application_request.rs
@@ -1666,6 +1681,7 @@ src/models/plex_source_property_mapping_request.rs
 src/models/plex_source_request.rs
 src/models/plex_token_redeem_request.rs
 src/models/policy.rs
+src/models/policy_behavior_enum.rs
 src/models/policy_binding.rs
 src/models/policy_binding_request.rs
 src/models/policy_engine_mode.rs

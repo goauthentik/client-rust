@@ -140,6 +140,8 @@ pub enum AppEnum {
     AuthentikBrands,
     #[serde(rename = "authentik.blueprints")]
     AuthentikBlueprints,
+    #[serde(rename = "authentik.enterprise.agents")]
+    AuthentikEnterpriseAgents,
     #[serde(rename = "authentik.enterprise.audit")]
     AuthentikEnterpriseAudit,
     #[serde(rename = "authentik.enterprise.endpoints.connectors.agent")]
@@ -246,6 +248,7 @@ impl std::fmt::Display for AppEnum {
             Self::AuthentikTasksSchedules => write!(f, "authentik.tasks.schedules"),
             Self::AuthentikBrands => write!(f, "authentik.brands"),
             Self::AuthentikBlueprints => write!(f, "authentik.blueprints"),
+            Self::AuthentikEnterpriseAgents => write!(f, "authentik.enterprise.agents"),
             Self::AuthentikEnterpriseAudit => write!(f, "authentik.enterprise.audit"),
             Self::AuthentikEnterpriseEndpointsConnectorsAgent => {
                 write!(f, "authentik.enterprise.endpoints.connectors.agent")

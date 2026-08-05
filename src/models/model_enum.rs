@@ -230,6 +230,8 @@ pub enum ModelEnum {
     AuthentikBrandsBrand,
     #[serde(rename = "authentik_blueprints.blueprintinstance")]
     AuthentikBlueprintsBlueprintinstance,
+    #[serde(rename = "authentik_agents.agent")]
+    AuthentikAgentsAgent,
     #[serde(rename = "authentik_endpoints_connectors_fleet.fleetconnector")]
     AuthentikEndpointsConnectorsFleetFleetconnector,
     #[serde(rename = "authentik_endpoints_connectors_google_chrome.googlechromeconnector")]
@@ -471,6 +473,7 @@ impl std::fmt::Display for ModelEnum {
             Self::AuthentikTasksSchedulesSchedule => write!(f, "authentik_tasks_schedules.schedule"),
             Self::AuthentikBrandsBrand => write!(f, "authentik_brands.brand"),
             Self::AuthentikBlueprintsBlueprintinstance => write!(f, "authentik_blueprints.blueprintinstance"),
+            Self::AuthentikAgentsAgent => write!(f, "authentik_agents.agent"),
             Self::AuthentikEndpointsConnectorsFleetFleetconnector => {
                 write!(f, "authentik_endpoints_connectors_fleet.fleetconnector")
             }
