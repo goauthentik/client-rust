@@ -67,6 +67,7 @@
 | AuthentikTasksSchedules | authentik.tasks.schedules |
 | AuthentikBrands | authentik.brands |
 | AuthentikBlueprints | authentik.blueprints |
+| AuthentikEnterpriseAgents | authentik.enterprise.agents |
 | AuthentikEnterpriseAudit | authentik.enterprise.audit |
 | AuthentikEnterpriseEndpointsConnectorsAgent | authentik.enterprise.endpoints.connectors.agent |
 | AuthentikEnterpriseEndpointsConnectorsFleet | authentik.enterprise.endpoints.connectors.fleet |
@@ -75,7 +76,6 @@
 | AuthentikEnterprisePoliciesUniquePassword | authentik.enterprise.policies.unique_password |
 | AuthentikEnterpriseProvidersGoogleWorkspace | authentik.enterprise.providers.google_workspace |
 | AuthentikEnterpriseProvidersMicrosoftEntra | authentik.enterprise.providers.microsoft_entra |
-| AuthentikEnterpriseProvidersOauth2 | authentik.enterprise.providers.oauth2 |
 | AuthentikEnterpriseProvidersRadius | authentik.enterprise.providers.radius |
 | AuthentikEnterpriseProvidersScim | authentik.enterprise.providers.scim |
 | AuthentikEnterpriseProvidersSsf | authentik.enterprise.providers.ssf |

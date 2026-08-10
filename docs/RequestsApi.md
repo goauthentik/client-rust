@@ -4,6 +4,7 @@ All URIs are relative to */api/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**requests_grant_requests_agent_create**](RequestsApi.md#requests_grant_requests_agent_create) | **POST** /requests/grant-requests/agent/ | 
 [**requests_grant_requests_create**](RequestsApi.md#requests_grant_requests_create) | **POST** /requests/grant-requests/ | 
 [**requests_grant_requests_destroy**](RequestsApi.md#requests_grant_requests_destroy) | **DELETE** /requests/grant-requests/{uuid}/ | 
 [**requests_grant_requests_fulfill_partial_update**](RequestsApi.md#requests_grant_requests_fulfill_partial_update) | **PATCH** /requests/grant-requests/{uuid}/fulfill/ | 
@@ -33,6 +34,36 @@ Method | HTTP request | Description
 [**requests_rules_update**](RequestsApi.md#requests_rules_update) | **PUT** /requests/rules/{uuid}/ | 
 [**requests_rules_used_by_list**](RequestsApi.md#requests_rules_used_by_list) | **GET** /requests/rules/{uuid}/used_by/ | 
 
+
+
+## requests_grant_requests_agent_create
+
+> models::AgentGrantRequestCreated requests_grant_requests_agent_create(agent_grant_request_create_request)
+
+
+Delegate access an agent's owner already holds to the agent, time-boxed. Unlike `create` this persists the request directly instead of returning a flow link -- an agent authenticates with an API token and has no browser to run a flow in, so no justification is ever collected. That is why the agent may only ask for what its owner already has: the owner's approval is then the whole decision, and no reviewer is asked to judge a request with nothing in it. The returned `fulfill_url` is what the agent hands to its owner so they can act on it.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**agent_grant_request_create_request** | [**AgentGrantRequestCreateRequest**](AgentGrantRequestCreateRequest.md) |  | [required] |
+
+### Return type
+
+[**models::AgentGrantRequestCreated**](AgentGrantRequestCreated.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## requests_grant_requests_create
@@ -122,7 +153,7 @@ Name | Type | Description  | Required | Notes
 
 ## requests_grant_requests_list
 
-> models::PaginatedGrantRequestList requests_grant_requests_list(created_by, ordering, page, page_size, search, status)
+> models::PaginatedGrantRequestList requests_grant_requests_list(agent_owner, created_by, ordering, page, page_size, search, status)
 
 
 ### Parameters
@@ -130,6 +161,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**agent_owner** | Option<**i32**> |  |  |
 **created_by** | Option<**i32**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
@@ -155,7 +187,7 @@ Name | Type | Description  | Required | Notes
 
 ## requests_grant_requests_pending_review_list
 
-> models::PaginatedGrantRequestList requests_grant_requests_pending_review_list(created_by, ordering, page, page_size, search, status)
+> models::PaginatedGrantRequestList requests_grant_requests_pending_review_list(agent_owner, created_by, ordering, page, page_size, search, status)
 
 
 List pending grant requests the current user is eligible to review.
@@ -165,6 +197,7 @@ List pending grant requests the current user is eligible to review.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**agent_owner** | Option<**i32**> |  |  |
 **created_by** | Option<**i32**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
