@@ -13,6 +13,8 @@ docs/AgentConnector.md
 docs/AgentConnectorRequest.md
 docs/AgentCreateRequest.md
 docs/AgentCreated.md
+docs/AgentGrantRequestCreateRequest.md
+docs/AgentGrantRequestCreated.md
 docs/AgentPssoDeviceRegistrationRequest.md
 docs/AgentPssoDeviceRegistrationResponse.md
 docs/AgentPssoUserRegistrationRequest.md
@@ -998,6 +1000,8 @@ src/models/agent_connector.rs
 src/models/agent_connector_request.rs
 src/models/agent_create_request.rs
 src/models/agent_created.rs
+src/models/agent_grant_request_create_request.rs
+src/models/agent_grant_request_created.rs
 src/models/agent_psso_device_registration_request.rs
 src/models/agent_psso_device_registration_response.rs
 src/models/agent_psso_user_registration_request.rs

@@ -24,6 +24,8 @@ pub struct GrantRequest {
     pub fulfiller_data: Option<std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "revoked_by")]
     pub revoked_by: models::PartialUser,
+    #[serde(rename = "agent_owner")]
+    pub agent_owner: models::PartialUser,
     #[serde(rename = "is_active")]
     pub is_active: bool,
     #[serde(
@@ -49,6 +51,7 @@ impl GrantRequest {
         created: chrono::DateTime<chrono::FixedOffset>,
         created_by: models::PartialUser,
         revoked_by: models::PartialUser,
+        agent_owner: models::PartialUser,
         is_active: bool,
         status: models::RequestStatus,
         targets: Vec<uuid::Uuid>,
@@ -60,6 +63,7 @@ impl GrantRequest {
             requester_data: None,
             fulfiller_data: None,
             revoked_by,
+            agent_owner,
             is_active,
             expires: None,
             status,

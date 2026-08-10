@@ -158,8 +158,6 @@ pub enum AppEnum {
     AuthentikEnterpriseProvidersGoogleWorkspace,
     #[serde(rename = "authentik.enterprise.providers.microsoft_entra")]
     AuthentikEnterpriseProvidersMicrosoftEntra,
-    #[serde(rename = "authentik.enterprise.providers.oauth2")]
-    AuthentikEnterpriseProvidersOauth2,
     #[serde(rename = "authentik.enterprise.providers.radius")]
     AuthentikEnterpriseProvidersRadius,
     #[serde(rename = "authentik.enterprise.providers.scim")]
@@ -269,7 +267,6 @@ impl std::fmt::Display for AppEnum {
             Self::AuthentikEnterpriseProvidersMicrosoftEntra => {
                 write!(f, "authentik.enterprise.providers.microsoft_entra")
             }
-            Self::AuthentikEnterpriseProvidersOauth2 => write!(f, "authentik.enterprise.providers.oauth2"),
             Self::AuthentikEnterpriseProvidersRadius => write!(f, "authentik.enterprise.providers.radius"),
             Self::AuthentikEnterpriseProvidersScim => write!(f, "authentik.enterprise.providers.scim"),
             Self::AuthentikEnterpriseProvidersSsf => write!(f, "authentik.enterprise.providers.ssf"),
