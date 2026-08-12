@@ -37,14 +37,14 @@ pub struct EndpointDevice {
         skip_serializing_if = "Option::is_none"
     )]
     pub expires: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
-    #[serde(rename = "facts")]
-    pub facts: models::DeviceFactSnapshot,
+    #[serde(rename = "facts", deserialize_with = "Option::deserialize")]
+    pub facts: Option<models::DeviceFactSnapshot>,
     #[serde(rename = "attributes", skip_serializing_if = "Option::is_none")]
     pub attributes: Option<std::collections::HashMap<String, serde_json::Value>>,
 }
 
 impl EndpointDevice {
-    pub fn new(pbm_uuid: uuid::Uuid, name: String, facts: models::DeviceFactSnapshot) -> EndpointDevice {
+    pub fn new(pbm_uuid: uuid::Uuid, name: String, facts: Option<models::DeviceFactSnapshot>) -> EndpointDevice {
         EndpointDevice {
             device_uuid: None,
             pbm_uuid,
