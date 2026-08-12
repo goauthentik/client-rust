@@ -21,6 +21,9 @@ pub struct SourceStageRequest {
     /// Amount of time a user can take to return from the source to continue the flow (Format: hours=-1;minutes=-2;seconds=-3)
     #[serde(rename = "resume_timeout", skip_serializing_if = "Option::is_none")]
     pub resume_timeout: Option<String>,
+    /// Source matching failure reasons for which the flow should resume.
+    #[serde(rename = "resume_on_match_failures", skip_serializing_if = "Option::is_none")]
+    pub resume_on_match_failures: Option<Vec<models::ResumeOnMatchFailuresEnum>>,
 }
 
 impl SourceStageRequest {
@@ -30,6 +33,7 @@ impl SourceStageRequest {
             name,
             source,
             resume_timeout: None,
+            resume_on_match_failures: None,
         }
     }
 }

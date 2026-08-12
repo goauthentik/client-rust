@@ -778,6 +778,7 @@ docs/RequestRuleRequest.md
 docs/RequestStatus.md
 docs/RequestableTarget.md
 docs/RequestsApi.md
+docs/ResumeOnMatchFailuresEnum.md
 docs/Review.md
 docs/ReviewRequest.md
 docs/Role.md
@@ -1747,6 +1748,7 @@ src/models/request_rule_child_binding_request.rs
 src/models/request_rule_request.rs
 src/models/request_status.rs
 src/models/requestable_target.rs
+src/models/resume_on_match_failures_enum.rs
 src/models/review.rs
 src/models/review_request.rs
 src/models/role.rs
