@@ -22,10 +22,10 @@ pub struct GrantRequest {
     pub requester_data: Option<std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "fulfiller_data", skip_serializing_if = "Option::is_none")]
     pub fulfiller_data: Option<std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "revoked_by")]
-    pub revoked_by: models::PartialUser,
-    #[serde(rename = "agent_owner")]
-    pub agent_owner: models::PartialUser,
+    #[serde(rename = "revoked_by", deserialize_with = "Option::deserialize")]
+    pub revoked_by: Option<models::PartialUser>,
+    #[serde(rename = "agent_owner", deserialize_with = "Option::deserialize")]
+    pub agent_owner: Option<models::PartialUser>,
     #[serde(rename = "is_active")]
     pub is_active: bool,
     #[serde(
@@ -50,8 +50,8 @@ impl GrantRequest {
     pub fn new(
         created: chrono::DateTime<chrono::FixedOffset>,
         created_by: models::PartialUser,
-        revoked_by: models::PartialUser,
-        agent_owner: models::PartialUser,
+        revoked_by: Option<models::PartialUser>,
+        agent_owner: Option<models::PartialUser>,
         is_active: bool,
         status: models::RequestStatus,
         targets: Vec<uuid::Uuid>,
