@@ -136,14 +136,17 @@ Name | Type | Description  | Required | Notes
 
 ## endpoints_agents_connectors_auth_ia_create
 
-> models::AgentAuthenticationResponse endpoints_agents_connectors_auth_ia_create()
+> models::AgentAuthenticationResponse endpoints_agents_connectors_auth_ia_create(login_hint)
 
 
 Mixin to add a used_by endpoint to return a list of all objects using this object
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**login_hint** | Option<**String**> |  |  |
 
 ### Return type
 

@@ -1510,6 +1510,8 @@ pub mod request_status;
 pub use self::request_status::RequestStatus;
 pub mod requestable_target;
 pub use self::requestable_target::RequestableTarget;
+pub mod resume_on_match_failures_enum;
+pub use self::resume_on_match_failures_enum::ResumeOnMatchFailuresEnum;
 pub mod review;
 pub use self::review::Review;
 pub mod review_request;
