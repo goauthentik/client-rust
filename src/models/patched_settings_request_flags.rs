@@ -23,8 +23,8 @@ pub struct PatchedSettingsRequestFlags {
     #[serde(rename = "flows_continuous_login")]
     pub flows_continuous_login: bool,
     /// Refresh other tabs after successful authentication.
-    #[serde(rename = "flows_refresh_others")]
-    pub flows_refresh_others: bool,
+    #[serde(rename = "flows_refresh_others", skip_serializing_if = "Option::is_none")]
+    pub flows_refresh_others: Option<bool>,
 }
 
 impl PatchedSettingsRequestFlags {
@@ -32,13 +32,12 @@ impl PatchedSettingsRequestFlags {
         core_default_app_access: bool,
         enterprise_audit_include_expanded_diff: bool,
         flows_continuous_login: bool,
-        flows_refresh_others: bool,
     ) -> PatchedSettingsRequestFlags {
         PatchedSettingsRequestFlags {
             core_default_app_access,
             enterprise_audit_include_expanded_diff,
             flows_continuous_login,
-            flows_refresh_others,
+            flows_refresh_others: None,
         }
     }
 }

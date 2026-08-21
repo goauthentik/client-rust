@@ -17,15 +17,15 @@ pub struct CurrentBrandFlags {
     #[serde(rename = "flows_continuous_login")]
     pub flows_continuous_login: bool,
     /// Refresh other tabs after successful authentication.
-    #[serde(rename = "flows_refresh_others")]
-    pub flows_refresh_others: bool,
+    #[serde(rename = "flows_refresh_others", skip_serializing_if = "Option::is_none")]
+    pub flows_refresh_others: Option<bool>,
 }
 
 impl CurrentBrandFlags {
-    pub fn new(flows_continuous_login: bool, flows_refresh_others: bool) -> CurrentBrandFlags {
+    pub fn new(flows_continuous_login: bool) -> CurrentBrandFlags {
         CurrentBrandFlags {
             flows_continuous_login,
-            flows_refresh_others,
+            flows_refresh_others: None,
         }
     }
 }
