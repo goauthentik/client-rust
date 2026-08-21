@@ -212,6 +212,8 @@ docs/FlowErrorChallenge.md
 docs/FlowInspection.md
 docs/FlowInspectorPlan.md
 docs/FlowLayoutEnum.md
+docs/FlowMessage.md
+docs/FlowMessageLevelEnum.md
 docs/FlowRequest.md
 docs/FlowSet.md
 docs/FlowStageBinding.md
@@ -1193,6 +1195,8 @@ src/models/flow_error_challenge.rs
 src/models/flow_inspection.rs
 src/models/flow_inspector_plan.rs
 src/models/flow_layout_enum.rs
+src/models/flow_message.rs
+src/models/flow_message_level_enum.rs
 src/models/flow_request.rs
 src/models/flow_set.rs
 src/models/flow_stage_binding.rs

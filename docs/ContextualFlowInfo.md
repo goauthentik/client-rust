@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **background_themed_urls** | Option<[**models::ThemedUrls**](ThemedUrls.md)> |  | [optional]
 **cancel_url** | **String** |  | 
 **layout** | [**models::ContextualFlowInfoLayoutEnum**](ContextualFlowInfoLayoutEnum.md) |  | 
+**messages** | Option<[**Vec<models::FlowMessage>**](FlowMessage.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

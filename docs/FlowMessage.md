@@ -1,10 +1,11 @@
-# CurrentBrandFlags
+# FlowMessage
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flows_continuous_login** | **bool** | Upon successful authentication, re-start authentication in other open tabs. | 
+**level** | [**models::FlowMessageLevelEnum**](FlowMessageLevelEnum.md) |  | 
+**message** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
