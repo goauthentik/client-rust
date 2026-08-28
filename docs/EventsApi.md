@@ -725,7 +725,7 @@ Name | Type | Description  | Required | Notes
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
 **page_size** | Option<**i32**> | Number of results to return per page. |  |
 **search** | Option<**String**> | A search term. |  |
-**severity** | Option<[**models::SeverityEnum**](Models__SeverityEnum.md)> |  |  |
+**severity** | Option<**String**> |  |  |
 
 ### Return type
 

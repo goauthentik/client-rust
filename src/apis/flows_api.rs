@@ -304,7 +304,7 @@ pub async fn flows_bindings_list(
     configuration: &configuration::Configuration,
     evaluate_on_plan: Option<bool>,
     fsb_uuid: Option<&str>,
-    invalid_response_action: Option<models::InvalidResponseActionEnum>,
+    invalid_response_action: Option<&str>,
     order: Option<i32>,
     ordering: Option<&str>,
     page: Option<i32>,
@@ -1160,8 +1160,8 @@ pub async fn flows_instances_export_retrieve(
 /// Flow Viewset
 pub async fn flows_instances_list(
     configuration: &configuration::Configuration,
-    denied_action: Option<models::DeniedActionEnum>,
-    designation: Option<models::FlowDesignationEnum>,
+    denied_action: Option<&str>,
+    designation: Option<&str>,
     flow_uuid: Option<&str>,
     name: Option<&str>,
     ordering: Option<&str>,

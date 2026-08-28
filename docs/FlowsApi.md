@@ -103,7 +103,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **evaluate_on_plan** | Option<**bool**> |  |  |
 **fsb_uuid** | Option<**uuid::Uuid**> |  |  |
-**invalid_response_action** | Option<[**models::InvalidResponseActionEnum**](Models__InvalidResponseActionEnum.md)> |  |  |
+**invalid_response_action** | Option<**String**> |  |  |
 **order** | Option<**i32**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
@@ -563,8 +563,8 @@ Flow Viewset
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**denied_action** | Option<[**models::DeniedActionEnum**](Models__DeniedActionEnum.md)> |  |  |
-**designation** | Option<[**models::FlowDesignationEnum**](Models__FlowDesignationEnum.md)> |  |  |
+**denied_action** | Option<**String**> |  |  |
+**designation** | Option<**String**> |  |  |
 **flow_uuid** | Option<**uuid::Uuid**> |  |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |

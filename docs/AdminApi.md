@@ -93,7 +93,7 @@ Delete file from storage backend.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **name** | Option<**String**> |  |  |
-**usage** | Option<[**models::UsageEnum**](Models__UsageEnum.md)> |  |  |[default to media]
+**usage** | Option<**String**> |  |  |[default to media]
 
 ### Return type
 
@@ -125,7 +125,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **manageable_only** | Option<**bool**> |  |  |[default to false]
 **search** | Option<**String**> | A search term. |  |
-**usage** | Option<[**models::UsageEnum**](Models__UsageEnum.md)> |  |  |[default to media]
+**usage** | Option<**String**> |  |  |[default to media]
 
 ### Return type
 

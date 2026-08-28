@@ -1923,7 +1923,7 @@ Kerberos Source Viewset
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **enabled** | Option<**bool**> |  |  |
-**kadmin_type** | Option<[**models::KadminTypeEnum**](Models__KadminTypeEnum.md)> |  |  |
+**kadmin_type** | Option<**String**> |  |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
@@ -2488,7 +2488,7 @@ Name | Type | Description  | Required | Notes
 **consumer_key** | Option<**String**> |  |  |
 **enabled** | Option<**bool**> |  |  |
 **enrollment_flow** | Option<**uuid::Uuid**> |  |  |
-**group_matching_mode** | Option<[**models::GroupMatchingModeEnum**](Models__GroupMatchingModeEnum.md)> |  |  |
+**group_matching_mode** | Option<**String**> |  |  |
 **has_jwks** | Option<**bool**> | Only return sources with JWKS data |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
@@ -2501,7 +2501,7 @@ Name | Type | Description  | Required | Notes
 **request_token_url** | Option<**String**> |  |  |
 **search** | Option<**String**> | A search term. |  |
 **slug** | Option<**String**> |  |  |
-**user_matching_mode** | Option<[**models::UserMatchingModeEnum**](Models__UserMatchingModeEnum.md)> |  |  |
+**user_matching_mode** | Option<**String**> |  |  |
 
 ### Return type
 
@@ -2748,7 +2748,7 @@ Name | Type | Description  | Required | Notes
 **client_id** | Option<**String**> |  |  |
 **enabled** | Option<**bool**> |  |  |
 **enrollment_flow** | Option<**uuid::Uuid**> |  |  |
-**group_matching_mode** | Option<[**models::GroupMatchingModeEnum**](Models__GroupMatchingModeEnum.md)> |  |  |
+**group_matching_mode** | Option<**String**> |  |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
@@ -2757,7 +2757,7 @@ Name | Type | Description  | Required | Notes
 **policy_engine_mode** | Option<[**PolicyEngineMode**](PolicyEngineMode.md)> |  |  |
 **search** | Option<**String**> | A search term. |  |
 **slug** | Option<**String**> |  |  |
-**user_matching_mode** | Option<[**models::UserMatchingModeEnum**](Models__UserMatchingModeEnum.md)> |  |  |
+**user_matching_mode** | Option<**String**> |  |  |
 
 ### Return type
 
@@ -3041,7 +3041,7 @@ Name | Type | Description  | Required | Notes
 **issuer_override** | Option<**String**> |  |  |
 **managed** | Option<**String**> |  |  |
 **name** | Option<**String**> |  |  |
-**name_id_policy** | Option<[**models::SamlNameIdPolicyEnum**](Models__SamlNameIdPolicyEnum.md)> |  |  |
+**name_id_policy** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
 **page_size** | Option<**i32**> | Number of results to return per page. |  |
@@ -3057,7 +3057,7 @@ Name | Type | Description  | Required | Notes
 **slug** | Option<**String**> |  |  |
 **sso_url** | Option<**String**> |  |  |
 **temporary_user_delete_after** | Option<**String**> |  |  |
-**user_matching_mode** | Option<[**models::UserMatchingModeEnum**](Models__UserMatchingModeEnum.md)> |  |  |
+**user_matching_mode** | Option<**String**> |  |  |
 **verification_kp** | Option<**uuid::Uuid**> |  |  |
 
 ### Return type
@@ -3989,7 +3989,7 @@ Name | Type | Description  | Required | Notes
 **bot_username** | Option<**String**> |  |  |
 **enabled** | Option<**bool**> |  |  |
 **enrollment_flow** | Option<**uuid::Uuid**> |  |  |
-**group_matching_mode** | Option<[**models::GroupMatchingModeEnum**](Models__GroupMatchingModeEnum.md)> |  |  |
+**group_matching_mode** | Option<**String**> |  |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
@@ -3999,7 +3999,7 @@ Name | Type | Description  | Required | Notes
 **request_message_access** | Option<**bool**> |  |  |
 **search** | Option<**String**> | A search term. |  |
 **slug** | Option<**String**> |  |  |
-**user_matching_mode** | Option<[**models::UserMatchingModeEnum**](Models__UserMatchingModeEnum.md)> |  |  |
+**user_matching_mode** | Option<**String**> |  |  |
 
 ### Return type
 

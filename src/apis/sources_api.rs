@@ -4552,7 +4552,7 @@ pub async fn sources_kerberos_destroy(
 pub async fn sources_kerberos_list(
     configuration: &configuration::Configuration,
     enabled: Option<bool>,
-    kadmin_type: Option<models::KadminTypeEnum>,
+    kadmin_type: Option<&str>,
     name: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,
@@ -5746,7 +5746,7 @@ pub async fn sources_oauth_list(
     consumer_key: Option<&str>,
     enabled: Option<bool>,
     enrollment_flow: Option<&str>,
-    group_matching_mode: Option<models::GroupMatchingModeEnum>,
+    group_matching_mode: Option<&str>,
     has_jwks: Option<bool>,
     name: Option<&str>,
     ordering: Option<&str>,
@@ -5759,7 +5759,7 @@ pub async fn sources_oauth_list(
     request_token_url: Option<&str>,
     search: Option<&str>,
     slug: Option<&str>,
-    user_matching_mode: Option<models::UserMatchingModeEnum>,
+    user_matching_mode: Option<&str>,
 ) -> Result<models::PaginatedOAuthSourceList, Error<SourcesOauthListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_access_token_url = access_token_url;
@@ -6274,7 +6274,7 @@ pub async fn sources_plex_list(
     client_id: Option<&str>,
     enabled: Option<bool>,
     enrollment_flow: Option<&str>,
-    group_matching_mode: Option<models::GroupMatchingModeEnum>,
+    group_matching_mode: Option<&str>,
     name: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,
@@ -6283,7 +6283,7 @@ pub async fn sources_plex_list(
     policy_engine_mode: Option<models::PolicyEngineMode>,
     search: Option<&str>,
     slug: Option<&str>,
-    user_matching_mode: Option<models::UserMatchingModeEnum>,
+    user_matching_mode: Option<&str>,
 ) -> Result<models::PaginatedPlexSourceList, Error<SourcesPlexListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_allow_friends = allow_friends;
@@ -6824,7 +6824,7 @@ pub async fn sources_saml_list(
     issuer_override: Option<&str>,
     managed: Option<&str>,
     name: Option<&str>,
-    name_id_policy: Option<models::SamlNameIdPolicyEnum>,
+    name_id_policy: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,
     page_size: Option<i32>,
@@ -6840,7 +6840,7 @@ pub async fn sources_saml_list(
     slug: Option<&str>,
     sso_url: Option<&str>,
     temporary_user_delete_after: Option<&str>,
-    user_matching_mode: Option<models::UserMatchingModeEnum>,
+    user_matching_mode: Option<&str>,
     verification_kp: Option<&str>,
 ) -> Result<models::PaginatedSamlSourceList, Error<SourcesSamlListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -8656,7 +8656,7 @@ pub async fn sources_telegram_list(
     bot_username: Option<&str>,
     enabled: Option<bool>,
     enrollment_flow: Option<&str>,
-    group_matching_mode: Option<models::GroupMatchingModeEnum>,
+    group_matching_mode: Option<&str>,
     name: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,
@@ -8666,7 +8666,7 @@ pub async fn sources_telegram_list(
     request_message_access: Option<bool>,
     search: Option<&str>,
     slug: Option<&str>,
-    user_matching_mode: Option<models::UserMatchingModeEnum>,
+    user_matching_mode: Option<&str>,
 ) -> Result<models::PaginatedTelegramSourceList, Error<SourcesTelegramListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_authentication_flow = authentication_flow;

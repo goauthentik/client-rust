@@ -2066,7 +2066,7 @@ pub async fn policies_event_matcher_destroy(
 /// Event Matcher Policy Viewset
 pub async fn policies_event_matcher_list(
     configuration: &configuration::Configuration,
-    action: Option<models::EventActions>,
+    action: Option<&str>,
     app: Option<&str>,
     client_ip: Option<&str>,
     created: Option<chrono::DateTime<chrono::FixedOffset>>,

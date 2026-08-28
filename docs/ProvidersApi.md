@@ -1960,9 +1960,9 @@ Name | Type | Description  | Required | Notes
 **application** | Option<**uuid::Uuid**> |  |  |
 **authorization_flow** | Option<**uuid::Uuid**> |  |  |
 **client_id** | Option<**String**> |  |  |
-**client_type** | Option<[**models::ClientTypeEnum**](Models__ClientTypeEnum.md)> |  |  |
+**client_type** | Option<**String**> |  |  |
 **include_claims_in_id_token** | Option<**bool**> |  |  |
-**issuer_mode** | Option<[**models::IssuerModeEnum**](Models__IssuerModeEnum.md)> |  |  |
+**issuer_mode** | Option<**String**> |  |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
@@ -1971,7 +1971,7 @@ Name | Type | Description  | Required | Notes
 **refresh_token_validity** | Option<**String**> |  |  |
 **search** | Option<**String**> | A search term. |  |
 **signing_key** | Option<**uuid::Uuid**> |  |  |
-**sub_mode** | Option<[**models::SubModeEnum**](Models__SubModeEnum.md)> |  |  |
+**sub_mode** | Option<**String**> |  |  |
 
 ### Return type
 
@@ -2958,7 +2958,7 @@ Name | Type | Description  | Required | Notes
 **invalidation_flow** | Option<**uuid::Uuid**> |  |  |
 **is_backchannel** | Option<**bool**> |  |  |
 **issuer_override** | Option<**String**> |  |  |
-**logout_method** | Option<[**models::SamlLogoutMethods**](Models__SamlLogoutMethods.md)> |  |  |
+**logout_method** | Option<**String**> |  |  |
 **name** | Option<**String**> |  |  |
 **name_id_mapping** | Option<**uuid::Uuid**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
@@ -2973,9 +2973,9 @@ Name | Type | Description  | Required | Notes
 **sign_response** | Option<**bool**> |  |  |
 **signature_algorithm** | Option<[**SignatureAlgorithmEnum**](SignatureAlgorithmEnum.md)> |  |  |
 **signing_kp** | Option<**uuid::Uuid**> |  |  |
-**sls_binding** | Option<[**models::SamlBindingsEnum**](Models__SamlBindingsEnum.md)> |  |  |
+**sls_binding** | Option<**String**> |  |  |
 **sls_url** | Option<**String**> |  |  |
-**sp_binding** | Option<[**models::SamlBindingsEnum**](Models__SamlBindingsEnum.md)> |  |  |
+**sp_binding** | Option<**String**> |  |  |
 **verification_kp** | Option<**uuid::Uuid**> |  |  |
 
 ### Return type
@@ -4075,14 +4075,14 @@ Name | Type | Description  | Required | Notes
 **invalidation_flow** | Option<**uuid::Uuid**> |  |  |
 **is_backchannel** | Option<**bool**> |  |  |
 **issuer_override** | Option<**String**> |  |  |
-**logout_method** | Option<[**models::SamlLogoutMethods**](Models__SamlLogoutMethods.md)> |  |  |
+**logout_method** | Option<**String**> |  |  |
 **name** | Option<**String**> |  |  |
 **name_id_mapping** | Option<**uuid::Uuid**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
 **page_size** | Option<**i32**> | Number of results to return per page. |  |
 **property_mappings** | Option<[**Vec<uuid::Uuid>**](Uuid__Uuid.md)> |  |  |
-**saml_version** | Option<[**models::SamlVersionEnum**](Models__SamlVersionEnum.md)> |  |  |
+**saml_version** | Option<**String**> |  |  |
 **search** | Option<**String**> | A search term. |  |
 **session_valid_not_on_or_after** | Option<**String**> |  |  |
 **sign_assertion** | Option<**bool**> |  |  |
@@ -4091,9 +4091,9 @@ Name | Type | Description  | Required | Notes
 **sign_response** | Option<**bool**> |  |  |
 **signature_algorithm** | Option<[**SignatureAlgorithmEnum**](SignatureAlgorithmEnum.md)> |  |  |
 **signing_kp** | Option<**uuid::Uuid**> |  |  |
-**sls_binding** | Option<[**models::SamlBindingsEnum**](Models__SamlBindingsEnum.md)> |  |  |
+**sls_binding** | Option<**String**> |  |  |
 **sls_url** | Option<**String**> |  |  |
-**sp_binding** | Option<[**models::SamlBindingsEnum**](Models__SamlBindingsEnum.md)> |  |  |
+**sp_binding** | Option<**String**> |  |  |
 **verification_kp** | Option<**uuid::Uuid**> |  |  |
 
 ### Return type

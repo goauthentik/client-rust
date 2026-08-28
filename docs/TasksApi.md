@@ -191,7 +191,7 @@ Name | Type | Description  | Required | Notes
 **rel_obj_id** | Option<**String**> |  |  |
 **rel_obj_id__isnull** | Option<**bool**> |  |  |
 **search** | Option<**String**> | A search term. |  |
-**state** | Option<[**models::TaskStatusEnum**](Models__TaskStatusEnum.md)> |  |  |
+**state** | Option<**String**> |  |  |
 
 ### Return type
 

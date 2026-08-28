@@ -837,7 +837,7 @@ Event Matcher Policy Viewset
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**action** | Option<[**models::EventActions**](Models__EventActions.md)> |  |  |
+**action** | Option<**String**> |  |  |
 **app** | Option<**String**> |  |  |
 **client_ip** | Option<**String**> |  |  |
 **created** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  |  |

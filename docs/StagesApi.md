@@ -2399,7 +2399,7 @@ AuthenticatorWebAuthnStage Viewset
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**authenticator_attachment** | Option<[**models::AuthenticatorAttachmentEnum**](Models__AuthenticatorAttachmentEnum.md)> |  |  |
+**authenticator_attachment** | Option<**String**> |  |  |
 **configure_flow** | Option<**uuid::Uuid**> |  |  |
 **device_type_restrictions** | Option<[**Vec<uuid::Uuid>**](Uuid__Uuid.md)> |  |  |
 **max_attempts** | Option<**i32**> |  |  |
@@ -6219,9 +6219,9 @@ UserLoginStage Viewset
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**geoip_binding** | Option<[**models::GeoipBindingEnum**](Models__GeoipBindingEnum.md)> |  |  |
+**geoip_binding** | Option<**String**> |  |  |
 **name** | Option<**String**> |  |  |
-**network_binding** | Option<[**models::NetworkBindingEnum**](Models__NetworkBindingEnum.md)> |  |  |
+**network_binding** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
 **page_size** | Option<**i32**> | Number of results to return per page. |  |
