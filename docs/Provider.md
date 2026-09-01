@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **pk** | **i32** |  | [readonly]
 **name** | **String** |  | 
 **authentication_flow** | Option<**uuid::Uuid**> | Flow used for authentication when the associated application is accessed by an un-authenticated user. | [optional]
-**authorization_flow** | **uuid::Uuid** | Flow used when authorizing this provider. | 
-**invalidation_flow** | **uuid::Uuid** | Flow used ending the session from a provider. | 
+**authorization_flow** | Option<**uuid::Uuid**> | Flow used when authorizing this provider. | [optional]
+**invalidation_flow** | Option<**uuid::Uuid**> | Flow used ending the session from a provider. | [optional]
 **property_mappings** | Option<**Vec<uuid::Uuid>**> |  | [optional]
 **component** | **String** | Get object component so that we know how to edit the object | [readonly]
 **assigned_application_slug** | Option<**String**> | Internal application name, used in URLs. | [readonly]
