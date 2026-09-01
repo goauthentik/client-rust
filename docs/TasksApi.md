@@ -172,7 +172,7 @@ Name | Type | Description  | Required | Notes
 
 ## tasks_tasks_list
 
-> models::PaginatedTaskList tasks_tasks_list(actor_name, aggregated_status, ordering, page, page_size, queue_name, rel_obj_content_type__app_label, rel_obj_content_type__model, rel_obj_id, rel_obj_id__isnull, search, state)
+> models::PaginatedTaskList tasks_tasks_list(actor_name, aggregated_status, message_id, message_id__in, ordering, page, page_size, queue_name, rel_obj_content_type__app_label, rel_obj_content_type__model, rel_obj_id, rel_obj_id__isnull, search, state)
 
 
 ### Parameters
@@ -182,6 +182,8 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **actor_name** | Option<**String**> |  |  |
 **aggregated_status** | Option<[**Vec<models::TaskAggregatedStatusEnum>**](Models__TaskAggregatedStatusEnum.md)> |  |  |
+**message_id** | Option<**uuid::Uuid**> |  |  |
+**message_id__in** | Option<[**Vec<uuid::Uuid>**](Uuid__Uuid.md)> | Multiple values may be separated by commas. |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
 **page_size** | Option<**i32**> | Number of results to return per page. |  |

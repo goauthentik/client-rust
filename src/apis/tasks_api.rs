@@ -424,6 +424,8 @@ pub async fn tasks_tasks_list(
     configuration: &configuration::Configuration,
     actor_name: Option<&str>,
     aggregated_status: Option<Vec<models::TaskAggregatedStatusEnum>>,
+    message_id: Option<&str>,
+    message_id__in: Option<Vec<uuid::Uuid>>,
     ordering: Option<&str>,
     page: Option<i32>,
     page_size: Option<i32>,
@@ -438,6 +440,8 @@ pub async fn tasks_tasks_list(
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_actor_name = actor_name;
     let p_query_aggregated_status = aggregated_status;
+    let p_query_message_id = message_id;
+    let p_query_message_id__in = message_id__in;
     let p_query_ordering = ordering;
     let p_query_page = page;
     let p_query_page_size = page_size;
@@ -465,6 +469,28 @@ pub async fn tasks_tasks_list(
             ),
             _ => req_builder.query(&[(
                 "aggregated_status",
+                &param_value
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref param_value) = p_query_message_id {
+        req_builder = req_builder.query(&[("message_id", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_message_id__in {
+        req_builder = match "csv" {
+            "multi" => req_builder.query(
+                &param_value
+                    .into_iter()
+                    .map(|p| ("message_id__in".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => req_builder.query(&[(
+                "message_id__in",
                 &param_value
                     .into_iter()
                     .map(|p| p.to_string())
