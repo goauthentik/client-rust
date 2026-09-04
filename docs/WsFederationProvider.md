@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **session_valid_not_on_or_after** | Option<**String**> | Session not valid on or after current time + this value (Format: hours=1;minutes=2;seconds=3). | [optional]
 **name_id_mapping** | Option<**uuid::Uuid**> | Configure how the NameID value will be created. When left empty, the NameIDPolicy of the incoming request will be considered | [optional]
 **authn_context_class_ref_mapping** | Option<**uuid::Uuid**> | Configure how the AuthnContextClassRef value will be created. When left empty, the AuthnContextClassRef will be set based on which authentication methods the user used to authenticate. | [optional]
-**saml_version** | Option<[**models::SamlVersionEnum**](SamlVersionEnum.md)> | SAML assertion version to issue in the security token. Microsoft Entra ID and classic ADFS-style relying parties typically require SAML 1.1. | [optional]
+**saml_version** | Option<[**models::WsFedSamlVersionEnum**](WSFedSAMLVersionEnum.md)> | SAML assertion version to issue in the security token. Microsoft Entra ID and classic ADFS-style relying parties typically require SAML 1.1. | [optional]
 **digest_algorithm** | Option<[**models::DigestAlgorithmEnum**](DigestAlgorithmEnum.md)> |  | [optional]
 **signature_algorithm** | Option<[**models::SignatureAlgorithmEnum**](SignatureAlgorithmEnum.md)> |  | [optional]
 **signing_kp** | Option<**uuid::Uuid**> | Keypair used to sign outgoing Responses going to the Service Provider. | [optional]

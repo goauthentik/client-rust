@@ -13,14 +13,14 @@ use serde::{Deserialize, Serialize};
 
 ///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum SamlVersionEnum {
+pub enum WsFedSamlVersionEnum {
     #[serde(rename = "1.1")]
     Variant11,
     #[serde(rename = "2.0")]
     Variant20,
 }
 
-impl std::fmt::Display for SamlVersionEnum {
+impl std::fmt::Display for WsFedSamlVersionEnum {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::Variant11 => write!(f, "1.1"),
@@ -29,8 +29,8 @@ impl std::fmt::Display for SamlVersionEnum {
     }
 }
 
-impl Default for SamlVersionEnum {
-    fn default() -> SamlVersionEnum {
+impl Default for WsFedSamlVersionEnum {
+    fn default() -> WsFedSamlVersionEnum {
         Self::Variant11
     }
 }

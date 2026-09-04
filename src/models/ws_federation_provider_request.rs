@@ -63,7 +63,7 @@ pub struct WsFederationProviderRequest {
     pub authn_context_class_ref_mapping: Option<Option<uuid::Uuid>>,
     /// SAML assertion version to issue in the security token. Microsoft Entra ID and classic ADFS-style relying parties typically require SAML 1.1.
     #[serde(rename = "saml_version", skip_serializing_if = "Option::is_none")]
-    pub saml_version: Option<models::SamlVersionEnum>,
+    pub saml_version: Option<models::WsFedSamlVersionEnum>,
     #[serde(rename = "digest_algorithm", skip_serializing_if = "Option::is_none")]
     pub digest_algorithm: Option<models::DigestAlgorithmEnum>,
     #[serde(rename = "signature_algorithm", skip_serializing_if = "Option::is_none")]

@@ -801,7 +801,6 @@ docs/SamlSource.md
 docs/SamlSourcePropertyMapping.md
 docs/SamlSourcePropertyMappingRequest.md
 docs/SamlSourceRequest.md
-docs/SamlVersionEnum.md
 docs/Schedule.md
 docs/ScheduleRequest.md
 docs/SchemaApi.md
@@ -960,6 +959,7 @@ docs/WebAuthnDeviceRequest.md
 docs/WebAuthnDeviceType.md
 docs/WebAuthnHintEnum.md
 docs/Worker.md
+docs/WsFedSamlVersionEnum.md
 docs/WsFederationProvider.md
 docs/WsFederationProviderRequest.md
 git_push.sh
@@ -1772,7 +1772,6 @@ src/models/saml_source.rs
 src/models/saml_source_property_mapping.rs
 src/models/saml_source_property_mapping_request.rs
 src/models/saml_source_request.rs
-src/models/saml_version_enum.rs
 src/models/schedule.rs
 src/models/schedule_request.rs
 src/models/scim_authentication_mode_enum.rs
@@ -1925,5 +1924,6 @@ src/models/web_authn_device_request.rs
 src/models/web_authn_device_type.rs
 src/models/web_authn_hint_enum.rs
 src/models/worker.rs
+src/models/ws_fed_saml_version_enum.rs
 src/models/ws_federation_provider.rs
 src/models/ws_federation_provider_request.rs
