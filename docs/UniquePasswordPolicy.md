@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **verbose_name_plural** | **String** | Return object's plural verbose_name | [readonly]
 **meta_model_name** | **String** | Return internal model name | [readonly]
 **bound_to** | **i32** | Return objects policy is bound to | [readonly]
+**last_updated** | **chrono::DateTime<chrono::FixedOffset>** |  | [readonly]
+**created** | **chrono::DateTime<chrono::FixedOffset>** |  | [readonly]
 **password_field** | Option<**String**> | Field key to check, field keys defined in Prompt stages are available. | [optional]
 **num_historical_passwords** | Option<**u32**> | Number of passwords to check against. | [optional]
 

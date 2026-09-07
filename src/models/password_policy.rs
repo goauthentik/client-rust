@@ -36,6 +36,10 @@ pub struct PasswordPolicy {
     /// Return objects policy is bound to
     #[serde(rename = "bound_to")]
     pub bound_to: i32,
+    #[serde(rename = "last_updated")]
+    pub last_updated: chrono::DateTime<chrono::FixedOffset>,
+    #[serde(rename = "created")]
+    pub created: chrono::DateTime<chrono::FixedOffset>,
     /// Field key to check, field keys defined in Prompt stages are available.
     #[serde(rename = "password_field", skip_serializing_if = "Option::is_none")]
     pub password_field: Option<String>,
@@ -77,6 +81,8 @@ impl PasswordPolicy {
         verbose_name_plural: String,
         meta_model_name: String,
         bound_to: i32,
+        last_updated: chrono::DateTime<chrono::FixedOffset>,
+        created: chrono::DateTime<chrono::FixedOffset>,
     ) -> PasswordPolicy {
         PasswordPolicy {
             pk,
@@ -87,6 +93,8 @@ impl PasswordPolicy {
             verbose_name_plural,
             meta_model_name,
             bound_to,
+            last_updated,
+            created,
             password_field: None,
             amount_digits: None,
             amount_uppercase: None,

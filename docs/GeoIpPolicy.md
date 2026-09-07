@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **verbose_name_plural** | **String** | Return object's plural verbose_name | [readonly]
 **meta_model_name** | **String** | Return internal model name | [readonly]
 **bound_to** | **i32** | Return objects policy is bound to | [readonly]
+**last_updated** | **chrono::DateTime<chrono::FixedOffset>** |  | [readonly]
+**created** | **chrono::DateTime<chrono::FixedOffset>** |  | [readonly]
 **asns** | Option<**Vec<i32>**> |  | [optional]
 **countries** | [**Vec<models::CountryCodeEnum>**](CountryCodeEnum.md) |  | 
 **countries_obj** | [**Vec<models::GeoIpPolicyCountriesObjInner>**](GeoIPPolicyCountriesObjInner.md) |  | [readonly]

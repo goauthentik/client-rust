@@ -36,6 +36,10 @@ pub struct ReputationPolicy {
     /// Return objects policy is bound to
     #[serde(rename = "bound_to")]
     pub bound_to: i32,
+    #[serde(rename = "last_updated")]
+    pub last_updated: chrono::DateTime<chrono::FixedOffset>,
+    #[serde(rename = "created")]
+    pub created: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "check_ip", skip_serializing_if = "Option::is_none")]
     pub check_ip: Option<bool>,
     #[serde(rename = "check_username", skip_serializing_if = "Option::is_none")]
@@ -54,6 +58,8 @@ impl ReputationPolicy {
         verbose_name_plural: String,
         meta_model_name: String,
         bound_to: i32,
+        last_updated: chrono::DateTime<chrono::FixedOffset>,
+        created: chrono::DateTime<chrono::FixedOffset>,
     ) -> ReputationPolicy {
         ReputationPolicy {
             pk,
@@ -64,6 +70,8 @@ impl ReputationPolicy {
             verbose_name_plural,
             meta_model_name,
             bound_to,
+            last_updated,
+            created,
             check_ip: None,
             check_username: None,
             threshold: None,

@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **verbose_name_plural** | **String** | Return object's plural verbose_name | [readonly]
 **meta_model_name** | **String** | Return internal model name | [readonly]
 **bound_to** | **i32** | Return objects policy is bound to | [readonly]
+**last_updated** | **chrono::DateTime<chrono::FixedOffset>** |  | [readonly]
+**created** | **chrono::DateTime<chrono::FixedOffset>** |  | [readonly]
 **action** | Option<[**models::EventActions**](EventActions.md)> | Match created events with this action type. When left empty, all action types will be matched. | [optional]
 **client_ip** | Option<**String**> | Matches Event's Client IP (strict matching, for network matching use an Expression Policy) | [optional]
 **app** | Option<[**models::AppEnum**](AppEnum.md)> | Match events created by selected application. When left empty, all applications are matched. | [optional]
