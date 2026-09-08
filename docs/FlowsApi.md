@@ -466,7 +466,7 @@ Name | Type | Description  | Required | Notes
 > models::FlowDiagram flows_instances_diagram_retrieve(slug)
 
 
-Return diagram for flow with slug `slug`, in the format used by flowchart.js
+Return the graph of flow with slug `slug`, for the client to render
 
 ### Parameters
 

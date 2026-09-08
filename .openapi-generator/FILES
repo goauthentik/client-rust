@@ -146,6 +146,10 @@ docs/DeviceUser.md
 docs/DeviceUserBinding.md
 docs/DeviceUserBindingRequest.md
 docs/DeviceUserRequest.md
+docs/DiagramEdge.md
+docs/DiagramEdgeTypeEnum.md
+docs/DiagramNode.md
+docs/DiagramNodeTypeEnum.md
 docs/DigestAlgorithmEnum.md
 docs/DigitsEnum.md
 docs/Disk.md
@@ -1132,6 +1136,10 @@ src/models/device_user.rs
 src/models/device_user_binding.rs
 src/models/device_user_binding_request.rs
 src/models/device_user_request.rs
+src/models/diagram_edge.rs
+src/models/diagram_edge_type_enum.rs
+src/models/diagram_node.rs
+src/models/diagram_node_type_enum.rs
 src/models/digest_algorithm_enum.rs
 src/models/digits_enum.rs
 src/models/disk.rs

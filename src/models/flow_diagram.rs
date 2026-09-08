@@ -11,16 +11,18 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FlowDiagram : response of the flow's diagram action
+/// FlowDiagram : Base serializer class which doesn't implement create/update methods
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FlowDiagram {
-    #[serde(rename = "diagram")]
-    pub diagram: String,
+    #[serde(rename = "nodes")]
+    pub nodes: Vec<models::DiagramNode>,
+    #[serde(rename = "edges")]
+    pub edges: Vec<models::DiagramEdge>,
 }
 
 impl FlowDiagram {
-    /// response of the flow's diagram action
-    pub fn new(diagram: String) -> FlowDiagram {
-        FlowDiagram { diagram }
+    /// Base serializer class which doesn't implement create/update methods
+    pub fn new(nodes: Vec<models::DiagramNode>, edges: Vec<models::DiagramEdge>) -> FlowDiagram {
+        FlowDiagram { nodes, edges }
     }
 }

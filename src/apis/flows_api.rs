@@ -999,7 +999,7 @@ pub async fn flows_instances_destroy(
     }
 }
 
-/// Return diagram for flow with slug `slug`, in the format used by flowchart.js
+/// Return the graph of flow with slug `slug`, for the client to render
 pub async fn flows_instances_diagram_retrieve(
     configuration: &configuration::Configuration,
     slug: &str,
