@@ -17,7 +17,6 @@ Name | Type | Description | Notes
 **host** | Option<**String**> |  | [optional]
 **port** | Option<**i32**> |  | [optional]
 **username** | Option<**String**> |  | [optional]
-**password** | Option<**String**> |  | [optional]
 **use_tls** | Option<**bool**> |  | [optional]
 **use_ssl** | Option<**bool**> |  | [optional]
 **timeout** | Option<**i32**> |  | [optional]
