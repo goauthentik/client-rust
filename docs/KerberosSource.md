@@ -31,10 +31,8 @@ Name | Type | Description | Notes
 **sync_users** | Option<**bool**> | Sync users from Kerberos into authentik | [optional]
 **sync_users_password** | Option<**bool**> | When a user changes their password, sync it back to Kerberos | [optional]
 **sync_principal** | Option<**String**> | Principal to authenticate to kadmin for sync. | [optional]
-**sync_ccache** | Option<**String**> | Credentials cache to authenticate to kadmin for sync. Must be in the form TYPE:residual | [optional]
 **connectivity** | Option<**std::collections::HashMap<String, String>**> | Get cached source connectivity | [readonly]
 **spnego_server_name** | Option<**String**> | Force the use of a specific server name for SPNEGO. Must be in the form HTTP@hostname | [optional]
-**spnego_ccache** | Option<**String**> | Credential cache to use for SPNEGO in form type:residual | [optional]
 **password_login_update_internal_password** | Option<**bool**> | If enabled, the authentik-stored password will be updated upon login with the Kerberos password backend | [optional]
 **sync_outgoing_trigger_mode** | Option<[**models::SyncOutgoingTriggerModeEnum**](SyncOutgoingTriggerModeEnum.md)> | When to trigger sync for outgoing providers | [optional]
 

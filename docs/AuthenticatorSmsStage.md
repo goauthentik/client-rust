@@ -16,8 +16,6 @@ Name | Type | Description | Notes
 **provider** | [**models::ProviderEnum**](ProviderEnum.md) |  | 
 **from_number** | **String** |  | 
 **account_sid** | **String** |  | 
-**auth** | **String** |  | 
-**auth_password** | Option<**String**> |  | [optional]
 **auth_type** | Option<[**models::AuthTypeEnum**](AuthTypeEnum.md)> |  | [optional]
 **verify_only** | Option<**bool**> | When enabled, the Phone number is only used during enrollment to verify the users authenticity. Only a hash of the phone number is saved to ensure it is not reused in the future. | [optional]
 **mapping** | Option<**uuid::Uuid**> | Optionally modify the payload being sent to custom providers. | [optional]

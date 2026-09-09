@@ -51,8 +51,6 @@ pub struct AuthenticatorEmailStage {
     pub port: Option<i32>,
     #[serde(rename = "username", skip_serializing_if = "Option::is_none")]
     pub username: Option<String>,
-    #[serde(rename = "password", skip_serializing_if = "Option::is_none")]
-    pub password: Option<String>,
     #[serde(rename = "use_tls", skip_serializing_if = "Option::is_none")]
     pub use_tls: Option<bool>,
     #[serde(rename = "use_ssl", skip_serializing_if = "Option::is_none")]
@@ -95,7 +93,6 @@ impl AuthenticatorEmailStage {
             host: None,
             port: None,
             username: None,
-            password: None,
             use_tls: None,
             use_ssl: None,
             timeout: None,
