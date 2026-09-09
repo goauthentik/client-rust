@@ -94,7 +94,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[authentik_device_auth](../README.md#authentik_device_auth)
 
 ### HTTP request headers
 
@@ -124,7 +124,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[authentik_device_federation](../README.md#authentik_device_federation)
 
 ### HTTP request headers
 
@@ -151,7 +151,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[authentik_device_auth](../README.md#authentik_device_auth)
 
 ### HTTP request headers
 
@@ -181,7 +181,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[authentik_device_auth](../README.md#authentik_device_auth)
 
 ### HTTP request headers
 
@@ -271,7 +271,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[authentik_device_enroll](../README.md#authentik_device_enroll)
 
 ### HTTP request headers
 
@@ -951,7 +951,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[authentik_device_auth](../README.md#authentik_device_auth)
 
 ### HTTP request headers
 
@@ -979,7 +979,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[authentik_device_auth](../README.md#authentik_device_auth)
 
 ### HTTP request headers
 

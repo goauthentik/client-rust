@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **access_group_obj** | Option<[**models::DeviceAccessGroup**](DeviceAccessGroup.md)> |  | [optional]
 **expiring** | Option<**bool**> |  | [optional]
 **expires** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
-**facts** | [**models::DeviceFactSnapshot**](DeviceFactSnapshot.md) |  | [readonly]
+**facts** | Option<[**models::DeviceFactSnapshot**](DeviceFactSnapshot.md)> |  | [readonly]
 **attributes** | Option<**std::collections::HashMap<String, serde_json::Value>**> |  | [optional]
 **connections_obj** | [**Vec<models::DeviceConnection>**](DeviceConnection.md) |  | 
 **policies** | **Vec<uuid::Uuid>** |  | [readonly]

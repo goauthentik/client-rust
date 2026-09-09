@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **meta_model_name** | **String** | Return internal model name | [readonly]
 **url** | **String** | Base URL to SCIM requests, usually ends in /v2 | 
 **verify_certificates** | Option<**bool**> |  | [optional]
-**token** | Option<**String**> | Authentication token | [optional]
 **auth_mode** | Option<[**models::ScimAuthenticationModeEnum**](SCIMAuthenticationModeEnum.md)> |  | [optional]
 **auth_oauth** | Option<**uuid::Uuid**> | OAuth Source used for authentication | [optional]
 **auth_oauth_params** | Option<**std::collections::HashMap<String, serde_json::Value>**> | Additional OAuth parameters, such as grant_type | [optional]
