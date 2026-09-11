@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **expires** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **facts** | Option<[**models::DeviceFactSnapshot**](DeviceFactSnapshot.md)> |  | [readonly]
 **attributes** | Option<**std::collections::HashMap<String, serde_json::Value>**> |  | [optional]
+**primary_binding_obj** | Option<[**models::DeviceUserBinding**](DeviceUserBinding.md)> |  | [readonly]
 **connections_obj** | [**Vec<models::DeviceConnection>**](DeviceConnection.md) |  | 
 **policies** | **Vec<uuid::Uuid>** |  | [readonly]
 **connections** | **Vec<uuid::Uuid>** |  | [readonly]

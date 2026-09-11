@@ -41,10 +41,17 @@ pub struct EndpointDevice {
     pub facts: Option<models::DeviceFactSnapshot>,
     #[serde(rename = "attributes", skip_serializing_if = "Option::is_none")]
     pub attributes: Option<std::collections::HashMap<String, serde_json::Value>>,
+    #[serde(rename = "primary_binding_obj", deserialize_with = "Option::deserialize")]
+    pub primary_binding_obj: Option<models::DeviceUserBinding>,
 }
 
 impl EndpointDevice {
-    pub fn new(pbm_uuid: uuid::Uuid, name: String, facts: Option<models::DeviceFactSnapshot>) -> EndpointDevice {
+    pub fn new(
+        pbm_uuid: uuid::Uuid,
+        name: String,
+        facts: Option<models::DeviceFactSnapshot>,
+        primary_binding_obj: Option<models::DeviceUserBinding>,
+    ) -> EndpointDevice {
         EndpointDevice {
             device_uuid: None,
             pbm_uuid,
@@ -55,6 +62,7 @@ impl EndpointDevice {
             expires: None,
             facts,
             attributes: None,
+            primary_binding_obj,
         }
     }
 }
