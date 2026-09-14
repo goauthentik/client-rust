@@ -18,11 +18,17 @@ pub struct BlueprintImportResult {
     pub logs: Vec<models::LogEvent>,
     #[serde(rename = "success")]
     pub success: bool,
+    #[serde(rename = "imported")]
+    pub imported: bool,
 }
 
 impl BlueprintImportResult {
     /// Logs of an attempted blueprint import
-    pub fn new(logs: Vec<models::LogEvent>, success: bool) -> BlueprintImportResult {
-        BlueprintImportResult { logs, success }
+    pub fn new(logs: Vec<models::LogEvent>, success: bool, imported: bool) -> BlueprintImportResult {
+        BlueprintImportResult {
+            logs,
+            success,
+            imported,
+        }
     }
 }

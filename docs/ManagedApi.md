@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**managed_blueprints_retrieve**](ManagedApi.md#managed_blueprints_retrieve) | **GET** /managed/blueprints/{instance_uuid}/ | 
 [**managed_blueprints_update**](ManagedApi.md#managed_blueprints_update) | **PUT** /managed/blueprints/{instance_uuid}/ | 
 [**managed_blueprints_used_by_list**](ManagedApi.md#managed_blueprints_used_by_list) | **GET** /managed/blueprints/{instance_uuid}/used_by/ | 
+[**managed_blueprints_validate_create**](ManagedApi.md#managed_blueprints_validate_create) | **POST** /managed/blueprints/validate/ | 
 
 
 
@@ -318,6 +319,38 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## managed_blueprints_validate_create
+
+> models::BlueprintImportResult managed_blueprints_validate_create(file, path, context)
+
+
+Validate blueprint from .yaml file and return any errors
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**file** | Option<**std::path::PathBuf**> |  |  |
+**path** | Option<**String**> |  |  |
+**context** | Option<**String**> |  |  |
+
+### Return type
+
+[**models::BlueprintImportResult**](BlueprintImportResult.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
