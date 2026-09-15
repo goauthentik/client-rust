@@ -95,6 +95,9 @@ pub struct LdapSource {
     pub client_certificate: Option<Option<uuid::Uuid>>,
     #[serde(rename = "bind_cn", skip_serializing_if = "Option::is_none")]
     pub bind_cn: Option<String>,
+    /// Authentication method used for LDAP synchronization and writeback.
+    #[serde(rename = "service_bind_method", skip_serializing_if = "Option::is_none")]
+    pub service_bind_method: Option<models::ServiceBindMethodEnum>,
     #[serde(rename = "start_tls", skip_serializing_if = "Option::is_none")]
     pub start_tls: Option<bool>,
     #[serde(rename = "sni", skip_serializing_if = "Option::is_none")]
@@ -201,6 +204,7 @@ impl LdapSource {
             peer_certificate: None,
             client_certificate: None,
             bind_cn: None,
+            service_bind_method: None,
             start_tls: None,
             sni: None,
             base_dn,

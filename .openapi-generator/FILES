@@ -828,6 +828,7 @@ docs/ScimSourceUserRequest.md
 docs/ScopeMapping.md
 docs/ScopeMappingRequest.md
 docs/SelectableStage.md
+docs/ServiceBindMethodEnum.md
 docs/ServiceConnection.md
 docs/ServiceConnectionState.md
 docs/SessionEndChallenge.md
@@ -1802,6 +1803,7 @@ src/models/scim_source_user_request.rs
 src/models/scope_mapping.rs
 src/models/scope_mapping_request.rs
 src/models/selectable_stage.rs
+src/models/service_bind_method_enum.rs
 src/models/service_connection.rs
 src/models/service_connection_state.rs
 src/models/session_end_challenge.rs

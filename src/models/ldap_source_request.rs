@@ -76,6 +76,9 @@ pub struct LdapSourceRequest {
     pub bind_cn: Option<String>,
     #[serde(rename = "bind_password", skip_serializing_if = "Option::is_none")]
     pub bind_password: Option<String>,
+    /// Authentication method used for LDAP synchronization and writeback.
+    #[serde(rename = "service_bind_method", skip_serializing_if = "Option::is_none")]
+    pub service_bind_method: Option<models::ServiceBindMethodEnum>,
     #[serde(rename = "start_tls", skip_serializing_if = "Option::is_none")]
     pub start_tls: Option<bool>,
     #[serde(rename = "sni", skip_serializing_if = "Option::is_none")]
@@ -158,6 +161,7 @@ impl LdapSourceRequest {
             client_certificate: None,
             bind_cn: None,
             bind_password: None,
+            service_bind_method: None,
             start_tls: None,
             sni: None,
             base_dn,

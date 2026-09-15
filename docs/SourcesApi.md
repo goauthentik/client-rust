@@ -2198,7 +2198,7 @@ Name | Type | Description  | Required | Notes
 
 ## sources_ldap_list
 
-> models::PaginatedLdapSourceList sources_ldap_list(additional_group_dn, additional_user_dn, base_dn, bind_cn, client_certificate, delete_not_found_objects, enabled, group_membership_field, group_object_filter, group_property_mappings, lookup_groups_from_user, name, object_uniqueness_field, ordering, page, page_size, password_login_update_internal_password, pbm_uuid, peer_certificate, search, server_uri, slug, sni, start_tls, sync_group_hierarchy, sync_groups, sync_parent_group, sync_users, sync_users_password, user_membership_attribute, user_object_filter, user_property_mappings)
+> models::PaginatedLdapSourceList sources_ldap_list(additional_group_dn, additional_user_dn, base_dn, bind_cn, client_certificate, delete_not_found_objects, enabled, group_membership_field, group_object_filter, group_property_mappings, lookup_groups_from_user, name, object_uniqueness_field, ordering, page, page_size, password_login_update_internal_password, pbm_uuid, peer_certificate, search, server_uri, service_bind_method, slug, sni, start_tls, sync_group_hierarchy, sync_groups, sync_parent_group, sync_users, sync_users_password, user_membership_attribute, user_object_filter, user_property_mappings)
 
 
 LDAP Source Viewset
@@ -2229,6 +2229,7 @@ Name | Type | Description  | Required | Notes
 **peer_certificate** | Option<**uuid::Uuid**> |  |  |
 **search** | Option<**String**> | A search term. |  |
 **server_uri** | Option<**String**> |  |  |
+**service_bind_method** | Option<**String**> |  |  |
 **slug** | Option<**String**> |  |  |
 **sni** | Option<**bool**> |  |  |
 **start_tls** | Option<**bool**> |  |  |

@@ -1606,6 +1606,8 @@ pub mod scope_mapping_request;
 pub use self::scope_mapping_request::ScopeMappingRequest;
 pub mod selectable_stage;
 pub use self::selectable_stage::SelectableStage;
+pub mod service_bind_method_enum;
+pub use self::service_bind_method_enum::ServiceBindMethodEnum;
 pub mod service_connection;
 pub use self::service_connection::ServiceConnection;
 pub mod service_connection_state;

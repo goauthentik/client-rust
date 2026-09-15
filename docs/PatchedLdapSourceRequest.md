@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **client_certificate** | Option<**uuid::Uuid**> | Client certificate to authenticate against the LDAP Server's Certificate. | [optional]
 **bind_cn** | Option<**String**> |  | [optional]
 **bind_password** | Option<**String**> |  | [optional]
+**service_bind_method** | Option<[**models::ServiceBindMethodEnum**](ServiceBindMethodEnum.md)> | Authentication method used for LDAP synchronization and writeback. | [optional]
 **start_tls** | Option<**bool**> |  | [optional]
 **sni** | Option<**bool**> |  | [optional]
 **base_dn** | Option<**String**> |  | [optional]

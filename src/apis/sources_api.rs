@@ -5134,6 +5134,7 @@ pub async fn sources_ldap_list(
     peer_certificate: Option<&str>,
     search: Option<&str>,
     server_uri: Option<&str>,
+    service_bind_method: Option<&str>,
     slug: Option<&str>,
     sni: Option<bool>,
     start_tls: Option<bool>,
@@ -5168,6 +5169,7 @@ pub async fn sources_ldap_list(
     let p_query_peer_certificate = peer_certificate;
     let p_query_search = search;
     let p_query_server_uri = server_uri;
+    let p_query_service_bind_method = service_bind_method;
     let p_query_slug = slug;
     let p_query_sni = sni;
     let p_query_start_tls = start_tls;
@@ -5261,6 +5263,9 @@ pub async fn sources_ldap_list(
     }
     if let Some(ref param_value) = p_query_server_uri {
         req_builder = req_builder.query(&[("server_uri", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_service_bind_method {
+        req_builder = req_builder.query(&[("service_bind_method", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
