@@ -121,6 +121,7 @@ pub mod agents_api;
 pub mod authenticators_api;
 pub mod core_api;
 pub mod crypto_api;
+pub mod debug_api;
 pub mod endpoints_api;
 pub mod enterprise_api;
 pub mod events_api;

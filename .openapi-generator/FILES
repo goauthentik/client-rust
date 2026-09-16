@@ -17,6 +17,8 @@ docs/AgentGrantRequestCreateRequest.md
 docs/AgentGrantRequestCreated.md
 docs/AgentPssoDeviceRegistrationRequest.md
 docs/AgentPssoDeviceRegistrationResponse.md
+docs/AgentPssoDeviceState.md
+docs/AgentPssoDeviceStateUser.md
 docs/AgentPssoUserRegistrationRequest.md
 docs/AgentRequest.md
 docs/AgentTokenResponse.md
@@ -123,6 +125,7 @@ docs/CryptoApi.md
 docs/CurrentBrand.md
 docs/CurrentBrandFlags.md
 docs/DataExport.md
+docs/DebugApi.md
 docs/DeliveryMethodEnum.md
 docs/DeniedActionEnum.md
 docs/DenyStage.md
@@ -828,6 +831,7 @@ docs/ScimSourceUserRequest.md
 docs/ScopeMapping.md
 docs/ScopeMappingRequest.md
 docs/SelectableStage.md
+docs/ServerLogRequest.md
 docs/ServiceBindMethodEnum.md
 docs/ServiceConnection.md
 docs/ServiceConnectionState.md
@@ -974,6 +978,7 @@ src/apis/authenticators_api.rs
 src/apis/configuration.rs
 src/apis/core_api.rs
 src/apis/crypto_api.rs
+src/apis/debug_api.rs
 src/apis/endpoints_api.rs
 src/apis/enterprise_api.rs
 src/apis/events_api.rs
@@ -1012,6 +1017,8 @@ src/models/agent_grant_request_create_request.rs
 src/models/agent_grant_request_created.rs
 src/models/agent_psso_device_registration_request.rs
 src/models/agent_psso_device_registration_response.rs
+src/models/agent_psso_device_state.rs
+src/models/agent_psso_device_state_user.rs
 src/models/agent_psso_user_registration_request.rs
 src/models/agent_request.rs
 src/models/agent_token_response.rs
@@ -1803,6 +1810,7 @@ src/models/scim_source_user_request.rs
 src/models/scope_mapping.rs
 src/models/scope_mapping_request.rs
 src/models/selectable_stage.rs
+src/models/server_log_request.rs
 src/models/service_bind_method_enum.rs
 src/models/service_connection.rs
 src/models/service_connection_state.rs

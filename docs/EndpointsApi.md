@@ -33,6 +33,8 @@ Method | HTTP request | Description
 [**endpoints_agents_psso_ise_update**](EndpointsApi.md#endpoints_agents_psso_ise_update) | **PUT** /endpoints/agents/psso/ise/{uuid}/ | 
 [**endpoints_agents_psso_ise_used_by_list**](EndpointsApi.md#endpoints_agents_psso_ise_used_by_list) | **GET** /endpoints/agents/psso/ise/{uuid}/used_by/ | 
 [**endpoints_agents_psso_register_device_create**](EndpointsApi.md#endpoints_agents_psso_register_device_create) | **POST** /endpoints/agents/psso/register/device/ | 
+[**endpoints_agents_psso_register_device_destroy**](EndpointsApi.md#endpoints_agents_psso_register_device_destroy) | **DELETE** /endpoints/agents/psso/register/device/ | 
+[**endpoints_agents_psso_register_device_retrieve**](EndpointsApi.md#endpoints_agents_psso_register_device_retrieve) | **GET** /endpoints/agents/psso/register/device/ | 
 [**endpoints_agents_psso_register_user_create**](EndpointsApi.md#endpoints_agents_psso_register_user_create) | **POST** /endpoints/agents/psso/register/user/ | 
 [**endpoints_connectors_destroy**](EndpointsApi.md#endpoints_connectors_destroy) | **DELETE** /endpoints/connectors/{connector_uuid}/ | 
 [**endpoints_connectors_list**](EndpointsApi.md#endpoints_connectors_list) | **GET** /endpoints/connectors/ | 
@@ -959,6 +961,58 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## endpoints_agents_psso_register_device_destroy
+
+> endpoints_agents_psso_register_device_destroy()
+
+
+Clear this device's Platform SSO registration, used when the configuration profile is removed from the device. The device stays enrolled otherwise.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authentik_device_auth](../README.md#authentik_device_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## endpoints_agents_psso_register_device_retrieve
+
+> models::AgentPssoDeviceState endpoints_agents_psso_register_device_retrieve()
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::AgentPssoDeviceState**](AgentPSSODeviceState.md)
+
+### Authorization
+
+[authentik_device_auth](../README.md#authentik_device_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

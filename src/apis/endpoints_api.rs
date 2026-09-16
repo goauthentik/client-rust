@@ -276,6 +276,24 @@ pub enum EndpointsAgentsPssoRegisterDeviceCreateError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`endpoints_agents_psso_register_device_destroy`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum EndpointsAgentsPssoRegisterDeviceDestroyError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`endpoints_agents_psso_register_device_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum EndpointsAgentsPssoRegisterDeviceRetrieveError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`endpoints_agents_psso_register_user_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -2186,6 +2204,74 @@ pub async fn endpoints_agents_psso_register_device_create(
     } else {
         let content = resp.text().await?;
         let entity: Option<EndpointsAgentsPssoRegisterDeviceCreateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Clear this device's Platform SSO registration, used when the configuration profile is removed from the device. The device stays enrolled otherwise.
+pub async fn endpoints_agents_psso_register_device_destroy(
+    configuration: &configuration::Configuration,
+) -> Result<(), Error<EndpointsAgentsPssoRegisterDeviceDestroyError>> {
+    let uri_str = format!("{}/endpoints/agents/psso/register/device/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<EndpointsAgentsPssoRegisterDeviceDestroyError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+pub async fn endpoints_agents_psso_register_device_retrieve(
+    configuration: &configuration::Configuration,
+) -> Result<models::AgentPssoDeviceState, Error<EndpointsAgentsPssoRegisterDeviceRetrieveError>> {
+    let uri_str = format!("{}/endpoints/agents/psso/register/device/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AgentPssoDeviceState`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AgentPssoDeviceState`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<EndpointsAgentsPssoRegisterDeviceRetrieveError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
