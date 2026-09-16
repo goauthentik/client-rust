@@ -26,6 +26,8 @@ pub struct AgentPssoDeviceRegistrationResponse {
     pub audience: String,
     #[serde(rename = "nonce_endpoint")]
     pub nonce_endpoint: String,
+    #[serde(rename = "authorization_endpoint")]
+    pub authorization_endpoint: String,
 }
 
 impl AgentPssoDeviceRegistrationResponse {
@@ -37,6 +39,7 @@ impl AgentPssoDeviceRegistrationResponse {
         jwks_endpoint: String,
         audience: String,
         nonce_endpoint: String,
+        authorization_endpoint: String,
     ) -> AgentPssoDeviceRegistrationResponse {
         AgentPssoDeviceRegistrationResponse {
             client_id,
@@ -45,6 +48,7 @@ impl AgentPssoDeviceRegistrationResponse {
             jwks_endpoint,
             audience,
             nonce_endpoint,
+            authorization_endpoint,
         }
     }
 }
