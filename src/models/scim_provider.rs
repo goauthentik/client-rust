@@ -54,6 +54,9 @@ pub struct ScimProvider {
     pub verify_certificates: Option<bool>,
     #[serde(rename = "auth_mode", skip_serializing_if = "Option::is_none")]
     pub auth_mode: Option<models::ScimAuthenticationModeEnum>,
+    /// Username used for Basic authentication
+    #[serde(rename = "auth_basic_user", skip_serializing_if = "Option::is_none")]
+    pub auth_basic_user: Option<String>,
     /// OAuth Source used for authentication
     #[serde(
         rename = "auth_oauth",
@@ -132,6 +135,7 @@ impl ScimProvider {
             url,
             verify_certificates: None,
             auth_mode: None,
+            auth_basic_user: None,
             auth_oauth: None,
             auth_oauth_params: None,
             auth_oauth_token_last_updated,

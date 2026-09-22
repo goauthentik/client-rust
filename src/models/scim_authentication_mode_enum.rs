@@ -16,6 +16,8 @@ use serde::{Deserialize, Serialize};
 pub enum ScimAuthenticationModeEnum {
     #[serde(rename = "token")]
     Token,
+    #[serde(rename = "basic")]
+    Basic,
     #[serde(rename = "oauth")]
     Oauth,
     #[serde(rename = "oauth_interactive")]
@@ -26,6 +28,7 @@ impl std::fmt::Display for ScimAuthenticationModeEnum {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::Token => write!(f, "token"),
+            Self::Basic => write!(f, "basic"),
             Self::Oauth => write!(f, "oauth"),
             Self::OauthInteractive => write!(f, "oauth_interactive"),
         }

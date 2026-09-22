@@ -5,6 +5,7 @@
 | Name | Value |
 |---- | -----|
 | Token | token |
+| Basic | basic |
 | Oauth | oauth |
 | OauthInteractive | oauth_interactive |
 

@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **verify_certificates** | Option<**bool**> |  | [optional]
 **token** | Option<**String**> | Authentication token | [optional]
 **auth_mode** | Option<[**models::ScimAuthenticationModeEnum**](SCIMAuthenticationModeEnum.md)> |  | [optional]
+**auth_basic_user** | Option<**String**> | Username used for Basic authentication | [optional]
+**auth_basic_password** | Option<**String**> | Password used for Basic authentication | [optional]
 **auth_oauth** | Option<**uuid::Uuid**> | OAuth Source used for authentication | [optional]
 **auth_oauth_params** | Option<**std::collections::HashMap<String, serde_json::Value>**> | Additional OAuth parameters, such as grant_type | [optional]
 **compatibility_mode** | Option<[**models::CompatibilityModeEnum**](CompatibilityModeEnum.md)> | Alter authentik behavior for vendor-specific SCIM implementations. | [optional]
