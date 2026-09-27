@@ -1142,7 +1142,7 @@ Name | Type | Description  | Required | Notes
 
 ## core_groups_list
 
-> models::PaginatedGroupList core_groups_list(attributes, include_children, include_inherited_roles, include_parents, include_users, is_superuser, members_by_pk, members_by_username, name, ordering, page, page_size, search)
+> models::PaginatedGroupList core_groups_list(include_children, include_inherited_roles, include_parents, include_users, is_superuser, members_by_pk, members_by_username, name, ordering, page, page_size, search)
 
 
 Group Viewset
@@ -1152,7 +1152,6 @@ Group Viewset
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**attributes** | Option<**String**> | Attributes |  |
 **include_children** | Option<**bool**> |  |  |[default to false]
 **include_inherited_roles** | Option<**bool**> |  |  |[default to false]
 **include_parents** | Option<**bool**> |  |  |[default to false]
@@ -2045,7 +2044,7 @@ Name | Type | Description  | Required | Notes
 
 ## core_users_export_create
 
-> models::DataExport core_users_export_create(attributes, date_joined, date_joined__gt, date_joined__lt, email, groups_by_name, groups_by_pk, is_active, is_superuser, last_login, last_login__gt, last_login__isnull, last_login__lt, last_updated, last_updated__gt, last_updated__lt, name, ordering, path, path_startswith, roles_by_name, roles_by_pk, search, r#type, username, uuid)
+> models::DataExport core_users_export_create(date_joined, date_joined__gt, date_joined__lt, email, groups_by_name, groups_by_pk, is_active, is_superuser, last_login, last_login__gt, last_login__isnull, last_login__lt, last_updated, last_updated__gt, last_updated__lt, name, ordering, path, path_startswith, roles_by_name, roles_by_pk, search, r#type, username, uuid)
 
 
 Create a data export for this data type. Note that the export is generated asynchronously: this method returns a `DataExport` object that will initially have `completed=false` as well as the permanent URL to that object in the `Location` header. You can poll that URL until `completed=true`, at which point the `file_url` property will contain a URL to download
@@ -2055,7 +2054,6 @@ Create a data export for this data type. Note that the export is generated async
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**attributes** | Option<**String**> | Attributes |  |
 **date_joined** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  |  |
 **date_joined__gt** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  |  |
 **date_joined__lt** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  |  |
@@ -2158,7 +2156,7 @@ This endpoint does not need any parameter.
 
 ## core_users_list
 
-> models::PaginatedUserList core_users_list(attributes, date_joined, date_joined__gt, date_joined__lt, email, groups_by_name, groups_by_pk, include_groups, include_roles, is_active, is_superuser, last_login, last_login__gt, last_login__isnull, last_login__lt, last_updated, last_updated__gt, last_updated__lt, name, ordering, page, page_size, path, path_startswith, roles_by_name, roles_by_pk, search, r#type, username, uuid)
+> models::PaginatedUserList core_users_list(date_joined, date_joined__gt, date_joined__lt, email, groups_by_name, groups_by_pk, include_groups, include_roles, is_active, is_superuser, last_login, last_login__gt, last_login__isnull, last_login__lt, last_updated, last_updated__gt, last_updated__lt, name, ordering, page, page_size, path, path_startswith, roles_by_name, roles_by_pk, search, r#type, username, uuid)
 
 
 User Viewset
@@ -2168,7 +2166,6 @@ User Viewset
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**attributes** | Option<**String**> | Attributes |  |
 **date_joined** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  |  |
 **date_joined__gt** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  |  |
 **date_joined__lt** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  |  |

@@ -2746,7 +2746,6 @@ pub async fn core_groups_destroy(
 /// Group Viewset
 pub async fn core_groups_list(
     configuration: &configuration::Configuration,
-    attributes: Option<&str>,
     include_children: Option<bool>,
     include_inherited_roles: Option<bool>,
     include_parents: Option<bool>,
@@ -2761,7 +2760,6 @@ pub async fn core_groups_list(
     search: Option<&str>,
 ) -> Result<models::PaginatedGroupList, Error<CoreGroupsListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_attributes = attributes;
     let p_query_include_children = include_children;
     let p_query_include_inherited_roles = include_inherited_roles;
     let p_query_include_parents = include_parents;
@@ -2778,9 +2776,6 @@ pub async fn core_groups_list(
     let uri_str = format!("{}/core/groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_attributes {
-        req_builder = req_builder.query(&[("attributes", &param_value.to_string())]);
-    }
     if let Some(ref param_value) = p_query_include_children {
         req_builder = req_builder.query(&[("include_children", &param_value.to_string())]);
     }
@@ -4475,7 +4470,6 @@ pub async fn core_users_destroy(
 /// Create a data export for this data type. Note that the export is generated asynchronously: this method returns a `DataExport` object that will initially have `completed=false` as well as the permanent URL to that object in the `Location` header. You can poll that URL until `completed=true`, at which point the `file_url` property will contain a URL to download
 pub async fn core_users_export_create(
     configuration: &configuration::Configuration,
-    attributes: Option<&str>,
     date_joined: Option<chrono::DateTime<chrono::FixedOffset>>,
     date_joined__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
     date_joined__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
@@ -4503,7 +4497,6 @@ pub async fn core_users_export_create(
     uuid: Option<&str>,
 ) -> Result<models::DataExport, Error<CoreUsersExportCreateError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_attributes = attributes;
     let p_query_date_joined = date_joined;
     let p_query_date_joined__gt = date_joined__gt;
     let p_query_date_joined__lt = date_joined__lt;
@@ -4533,9 +4526,6 @@ pub async fn core_users_export_create(
     let uri_str = format!("{}/core/users/export/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_query_attributes {
-        req_builder = req_builder.query(&[("attributes", &param_value.to_string())]);
-    }
     if let Some(ref param_value) = p_query_date_joined {
         req_builder = req_builder.query(&[("date_joined", &param_value.to_string())]);
     }
@@ -4813,7 +4803,6 @@ pub async fn core_users_impersonate_end_retrieve(
 /// User Viewset
 pub async fn core_users_list(
     configuration: &configuration::Configuration,
-    attributes: Option<&str>,
     date_joined: Option<chrono::DateTime<chrono::FixedOffset>>,
     date_joined__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
     date_joined__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
@@ -4845,7 +4834,6 @@ pub async fn core_users_list(
     uuid: Option<&str>,
 ) -> Result<models::PaginatedUserList, Error<CoreUsersListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_attributes = attributes;
     let p_query_date_joined = date_joined;
     let p_query_date_joined__gt = date_joined__gt;
     let p_query_date_joined__lt = date_joined__lt;
@@ -4879,9 +4867,6 @@ pub async fn core_users_list(
     let uri_str = format!("{}/core/users/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_attributes {
-        req_builder = req_builder.query(&[("attributes", &param_value.to_string())]);
-    }
     if let Some(ref param_value) = p_query_date_joined {
         req_builder = req_builder.query(&[("date_joined", &param_value.to_string())]);
     }
