@@ -811,6 +811,7 @@ pub async fn core_application_entitlements_destroy(
 pub async fn core_application_entitlements_list(
     configuration: &configuration::Configuration,
     app: Option<&str>,
+    for_user: Option<&str>,
     name: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,
@@ -820,6 +821,7 @@ pub async fn core_application_entitlements_list(
 ) -> Result<models::PaginatedApplicationEntitlementList, Error<CoreApplicationEntitlementsListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_app = app;
+    let p_query_for_user = for_user;
     let p_query_name = name;
     let p_query_ordering = ordering;
     let p_query_page = page;
@@ -832,6 +834,9 @@ pub async fn core_application_entitlements_list(
 
     if let Some(ref param_value) = p_query_app {
         req_builder = req_builder.query(&[("app", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_for_user {
+        req_builder = req_builder.query(&[("for_user", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
@@ -945,6 +950,7 @@ pub async fn core_application_entitlements_partial_update(
 pub async fn core_application_entitlements_requestable_list(
     configuration: &configuration::Configuration,
     app: Option<&str>,
+    for_user: Option<&str>,
     name: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,
@@ -954,6 +960,7 @@ pub async fn core_application_entitlements_requestable_list(
 ) -> Result<models::PaginatedRequestableTargetList, Error<CoreApplicationEntitlementsRequestableListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_app = app;
+    let p_query_for_user = for_user;
     let p_query_name = name;
     let p_query_ordering = ordering;
     let p_query_page = page;
@@ -966,6 +973,9 @@ pub async fn core_application_entitlements_requestable_list(
 
     if let Some(ref param_value) = p_query_app {
         req_builder = req_builder.query(&[("app", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_for_user {
+        req_builder = req_builder.query(&[("for_user", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);

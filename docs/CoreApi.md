@@ -147,7 +147,7 @@ Name | Type | Description  | Required | Notes
 
 ## core_application_entitlements_list
 
-> models::PaginatedApplicationEntitlementList core_application_entitlements_list(app, name, ordering, page, page_size, pbm_uuid, search)
+> models::PaginatedApplicationEntitlementList core_application_entitlements_list(app, for_user, name, ordering, page, page_size, pbm_uuid, search)
 
 
 ApplicationEntitlement Viewset
@@ -158,6 +158,7 @@ ApplicationEntitlement Viewset
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **app** | Option<**uuid::Uuid**> |  |  |
+**for_user** | Option<**String**> | Entitlements assigned to this user, directly or through a group, regardless of the user's access to the application. |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
@@ -214,7 +215,7 @@ Name | Type | Description  | Required | Notes
 
 ## core_application_entitlements_requestable_list
 
-> models::PaginatedRequestableTargetList core_application_entitlements_requestable_list(app, name, ordering, page, page_size, pbm_uuid, search)
+> models::PaginatedRequestableTargetList core_application_entitlements_requestable_list(app, for_user, name, ordering, page, page_size, pbm_uuid, search)
 
 
 List application entitlements which the current user can request access to
@@ -225,6 +226,7 @@ List application entitlements which the current user can request access to
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **app** | Option<**uuid::Uuid**> |  |  |
+**for_user** | Option<**String**> | Entitlements assigned to this user, directly or through a group, regardless of the user's access to the application. |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
