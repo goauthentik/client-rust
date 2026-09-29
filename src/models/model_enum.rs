@@ -14,8 +14,6 @@ use serde::{Deserialize, Serialize};
 ///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ModelEnum {
-    #[serde(rename = "authentik_tenants.domain")]
-    AuthentikTenantsDomain,
     #[serde(rename = "authentik_core.group")]
     AuthentikCoreGroup,
     #[serde(rename = "authentik_core.user")]
@@ -281,7 +279,6 @@ pub enum ModelEnum {
 impl std::fmt::Display for ModelEnum {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::AuthentikTenantsDomain => write!(f, "authentik_tenants.domain"),
             Self::AuthentikCoreGroup => write!(f, "authentik_core.group"),
             Self::AuthentikCoreUser => write!(f, "authentik_core.user"),
             Self::AuthentikCoreApplication => write!(f, "authentik_core.application"),
@@ -523,6 +520,6 @@ impl std::fmt::Display for ModelEnum {
 
 impl Default for ModelEnum {
     fn default() -> ModelEnum {
-        Self::AuthentikTenantsDomain
+        Self::AuthentikCoreGroup
     }
 }

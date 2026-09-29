@@ -4,7 +4,6 @@
 
 | Name | Value |
 |---- | -----|
-| AuthentikTenantsDomain | authentik_tenants.domain |
 | AuthentikCoreGroup | authentik_core.group |
 | AuthentikCoreUser | authentik_core.user |
 | AuthentikCoreApplication | authentik_core.application |

@@ -157,8 +157,6 @@ docs/Disk.md
 docs/DiskRequest.md
 docs/DockerServiceConnection.md
 docs/DockerServiceConnectionRequest.md
-docs/Domain.md
-docs/DomainRequest.md
 docs/DummyChallenge.md
 docs/DummyChallengeResponseRequest.md
 docs/DummyPolicy.md
@@ -418,7 +416,6 @@ docs/PaginatedDenyStageList.md
 docs/PaginatedDeviceAccessGroupList.md
 docs/PaginatedDeviceUserBindingList.md
 docs/PaginatedDockerServiceConnectionList.md
-docs/PaginatedDomainList.md
 docs/PaginatedDummyPolicyList.md
 docs/PaginatedDummyStageList.md
 docs/PaginatedDuoDeviceList.md
@@ -534,7 +531,6 @@ docs/PaginatedStaticDeviceList.md
 docs/PaginatedTaskList.md
 docs/PaginatedTelegramSourceList.md
 docs/PaginatedTelegramSourcePropertyMappingList.md
-docs/PaginatedTenantList.md
 docs/PaginatedTokenList.md
 docs/PaginatedTokenModelList.md
 docs/PaginatedTotpDeviceList.md
@@ -591,7 +587,6 @@ docs/PatchedDenyStageRequest.md
 docs/PatchedDeviceAccessGroupRequest.md
 docs/PatchedDeviceUserBindingRequest.md
 docs/PatchedDockerServiceConnectionRequest.md
-docs/PatchedDomainRequest.md
 docs/PatchedDummyPolicyRequest.md
 docs/PatchedDummyStageRequest.md
 docs/PatchedDuoDeviceRequest.md
@@ -686,7 +681,6 @@ docs/PatchedSsfProviderRequest.md
 docs/PatchedStaticDeviceRequest.md
 docs/PatchedTelegramSourcePropertyMappingRequest.md
 docs/PatchedTelegramSourceRequest.md
-docs/PatchedTenantRequest.md
 docs/PatchedTokenRequest.md
 docs/PatchedTotpDeviceRequest.md
 docs/PatchedUniquePasswordPolicyRequest.md
@@ -880,12 +874,6 @@ docs/TelegramSource.md
 docs/TelegramSourcePropertyMapping.md
 docs/TelegramSourcePropertyMappingRequest.md
 docs/TelegramSourceRequest.md
-docs/Tenant.md
-docs/TenantAdminGroupRequestRequest.md
-docs/TenantRecoveryKeyRequestRequest.md
-docs/TenantRecoveryKeyResponse.md
-docs/TenantRequest.md
-docs/TenantsApi.md
 docs/ThemedUrls.md
 docs/Token.md
 docs/TokenModel.md
@@ -999,7 +987,6 @@ src/apis/sources_api.rs
 src/apis/ssf_api.rs
 src/apis/stages_api.rs
 src/apis/tasks_api.rs
-src/apis/tenants_api.rs
 src/lib.rs
 src/models/access_denied_challenge.rs
 src/models/account_lockdown_stage.rs
@@ -1150,8 +1137,6 @@ src/models/disk.rs
 src/models/disk_request.rs
 src/models/docker_service_connection.rs
 src/models/docker_service_connection_request.rs
-src/models/domain.rs
-src/models/domain_request.rs
 src/models/dummy_challenge.rs
 src/models/dummy_challenge_response_request.rs
 src/models/dummy_policy.rs
@@ -1404,7 +1389,6 @@ src/models/paginated_deny_stage_list.rs
 src/models/paginated_device_access_group_list.rs
 src/models/paginated_device_user_binding_list.rs
 src/models/paginated_docker_service_connection_list.rs
-src/models/paginated_domain_list.rs
 src/models/paginated_dummy_policy_list.rs
 src/models/paginated_dummy_stage_list.rs
 src/models/paginated_duo_device_list.rs
@@ -1520,7 +1504,6 @@ src/models/paginated_static_device_list.rs
 src/models/paginated_task_list.rs
 src/models/paginated_telegram_source_list.rs
 src/models/paginated_telegram_source_property_mapping_list.rs
-src/models/paginated_tenant_list.rs
 src/models/paginated_token_list.rs
 src/models/paginated_token_model_list.rs
 src/models/paginated_totp_device_list.rs
@@ -1577,7 +1560,6 @@ src/models/patched_deny_stage_request.rs
 src/models/patched_device_access_group_request.rs
 src/models/patched_device_user_binding_request.rs
 src/models/patched_docker_service_connection_request.rs
-src/models/patched_domain_request.rs
 src/models/patched_dummy_policy_request.rs
 src/models/patched_dummy_stage_request.rs
 src/models/patched_duo_device_request.rs
@@ -1672,7 +1654,6 @@ src/models/patched_ssf_provider_request.rs
 src/models/patched_static_device_request.rs
 src/models/patched_telegram_source_property_mapping_request.rs
 src/models/patched_telegram_source_request.rs
-src/models/patched_tenant_request.rs
 src/models/patched_token_request.rs
 src/models/patched_totp_device_request.rs
 src/models/patched_unique_password_policy_request.rs
@@ -1853,11 +1834,6 @@ src/models/telegram_source.rs
 src/models/telegram_source_property_mapping.rs
 src/models/telegram_source_property_mapping_request.rs
 src/models/telegram_source_request.rs
-src/models/tenant.rs
-src/models/tenant_admin_group_request_request.rs
-src/models/tenant_recovery_key_request_request.rs
-src/models/tenant_recovery_key_response.rs
-src/models/tenant_request.rs
 src/models/themed_urls.rs
 src/models/token.rs
 src/models/token_model.rs

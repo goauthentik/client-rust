@@ -16,8 +16,6 @@ use serde::{Deserialize, Serialize};
 pub enum AppEnum {
     #[serde(rename = "authentik.commands")]
     AuthentikCommands,
-    #[serde(rename = "authentik.tenants")]
-    AuthentikTenants,
     #[serde(rename = "authentik.tasks")]
     AuthentikTasks,
     #[serde(rename = "authentik.admin")]
@@ -136,6 +134,8 @@ pub enum AppEnum {
     AuthentikStagesUserWrite,
     #[serde(rename = "authentik.tasks.schedules")]
     AuthentikTasksSchedules,
+    #[serde(rename = "authentik.tenants")]
+    AuthentikTenants,
     #[serde(rename = "authentik.brands")]
     AuthentikBrands,
     #[serde(rename = "authentik.blueprints")]
@@ -184,7 +184,6 @@ impl std::fmt::Display for AppEnum {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::AuthentikCommands => write!(f, "authentik.commands"),
-            Self::AuthentikTenants => write!(f, "authentik.tenants"),
             Self::AuthentikTasks => write!(f, "authentik.tasks"),
             Self::AuthentikAdmin => write!(f, "authentik.admin"),
             Self::AuthentikApi => write!(f, "authentik.api"),
@@ -244,6 +243,7 @@ impl std::fmt::Display for AppEnum {
             Self::AuthentikStagesUserLogout => write!(f, "authentik.stages.user_logout"),
             Self::AuthentikStagesUserWrite => write!(f, "authentik.stages.user_write"),
             Self::AuthentikTasksSchedules => write!(f, "authentik.tasks.schedules"),
+            Self::AuthentikTenants => write!(f, "authentik.tenants"),
             Self::AuthentikBrands => write!(f, "authentik.brands"),
             Self::AuthentikBlueprints => write!(f, "authentik.blueprints"),
             Self::AuthentikEnterpriseAgents => write!(f, "authentik.enterprise.agents"),
