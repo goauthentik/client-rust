@@ -18,17 +18,17 @@ pub struct ConnectionTokenRequest {
     pub pk: Option<uuid::Uuid>,
     #[serde(rename = "provider")]
     pub provider: i32,
-    #[serde(rename = "endpoint")]
-    pub endpoint: uuid::Uuid,
+    #[serde(rename = "device")]
+    pub device: uuid::Uuid,
 }
 
 impl ConnectionTokenRequest {
     /// ConnectionToken Serializer
-    pub fn new(provider: i32, endpoint: uuid::Uuid) -> ConnectionTokenRequest {
+    pub fn new(provider: i32, device: uuid::Uuid) -> ConnectionTokenRequest {
         ConnectionTokenRequest {
             pk: None,
             provider,
-            endpoint,
+            device,
         }
     }
 }

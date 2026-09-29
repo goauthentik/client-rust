@@ -1,4 +1,4 @@
-# EndpointAuthModeEnum
+# RacProviderAuthModeEnum
 
 ## Enum Variants
 

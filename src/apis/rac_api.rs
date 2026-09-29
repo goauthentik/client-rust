@@ -67,65 +67,11 @@ pub enum RacConnectionTokensUsedByListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`rac_endpoints_create`]
+/// struct for typed errors of method [`rac_devices_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum RacEndpointsCreateError {
-    Status400(models::ValidationError),
-    Status403(models::GenericError),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`rac_endpoints_destroy`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum RacEndpointsDestroyError {
-    Status400(models::ValidationError),
-    Status403(models::GenericError),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`rac_endpoints_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum RacEndpointsListError {
+pub enum RacDevicesListError {
     Status400(),
-    Status403(models::GenericError),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`rac_endpoints_partial_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum RacEndpointsPartialUpdateError {
-    Status400(models::ValidationError),
-    Status403(models::GenericError),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`rac_endpoints_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum RacEndpointsRetrieveError {
-    Status400(models::ValidationError),
-    Status403(models::GenericError),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`rac_endpoints_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum RacEndpointsUpdateError {
-    Status400(models::ValidationError),
-    Status403(models::GenericError),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`rac_endpoints_used_by_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum RacEndpointsUsedByListError {
-    Status400(models::ValidationError),
     Status403(models::GenericError),
     UnknownValue(serde_json::Value),
 }
@@ -173,7 +119,7 @@ pub async fn rac_connection_tokens_destroy(
 /// ConnectionToken Viewset
 pub async fn rac_connection_tokens_list(
     configuration: &configuration::Configuration,
-    endpoint: Option<&str>,
+    device: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,
     page_size: Option<i32>,
@@ -182,7 +128,7 @@ pub async fn rac_connection_tokens_list(
     session__user: Option<i32>,
 ) -> Result<models::PaginatedConnectionTokenList, Error<RacConnectionTokensListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_endpoint = endpoint;
+    let p_query_device = device;
     let p_query_ordering = ordering;
     let p_query_page = page;
     let p_query_page_size = page_size;
@@ -193,8 +139,8 @@ pub async fn rac_connection_tokens_list(
     let uri_str = format!("{}/rac/connection_tokens/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_endpoint {
-        req_builder = req_builder.query(&[("endpoint", &param_value.to_string())]);
+    if let Some(ref param_value) = p_query_device {
+        req_builder = req_builder.query(&[("device", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
@@ -478,128 +424,27 @@ pub async fn rac_connection_tokens_used_by_list(
     }
 }
 
-/// Endpoint Viewset
-pub async fn rac_endpoints_create(
+/// List devices accessible through a RAC provider
+pub async fn rac_devices_list(
     configuration: &configuration::Configuration,
-    endpoint_request: models::EndpointRequest,
-) -> Result<models::Endpoint, Error<RacEndpointsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_endpoint_request = endpoint_request;
-
-    let uri_str = format!("{}/rac/endpoints/", configuration.base_path);
-    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_endpoint_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => {
-                return Err(Error::from(serde_json::Error::custom(
-                    "Received `text/plain` content type response that cannot be converted to `models::Endpoint`",
-                )))
-            }
-            ContentType::Unsupported(unknown_type) => {
-                return Err(Error::from(serde_json::Error::custom(format!(
-                    "Received `{unknown_type}` content type response that cannot be converted to `models::Endpoint`"
-                ))))
-            }
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<RacEndpointsCreateError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent {
-            status,
-            content,
-            entity,
-        }))
-    }
-}
-
-/// Endpoint Viewset
-pub async fn rac_endpoints_destroy(
-    configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-) -> Result<(), Error<RacEndpointsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
-    let uri_str = format!(
-        "{}/rac/endpoints/{pbm_uuid}/",
-        configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
-    );
-    let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-
-    if !status.is_client_error() && !status.is_server_error() {
-        Ok(())
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<RacEndpointsDestroyError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent {
-            status,
-            content,
-            entity,
-        }))
-    }
-}
-
-/// List accessible endpoints
-pub async fn rac_endpoints_list(
-    configuration: &configuration::Configuration,
-    name: Option<&str>,
+    provider: i32,
     ordering: Option<&str>,
     page: Option<i32>,
     page_size: Option<i32>,
-    provider: Option<i32>,
     search: Option<&str>,
     superuser_full_list: Option<bool>,
-) -> Result<models::PaginatedEndpointList, Error<RacEndpointsListError>> {
+) -> Result<models::PaginatedRacDeviceList, Error<RacDevicesListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
+    let p_query_provider = provider;
     let p_query_ordering = ordering;
     let p_query_page = page;
     let p_query_page_size = page_size;
-    let p_query_provider = provider;
     let p_query_search = search;
     let p_query_superuser_full_list = superuser_full_list;
 
-    let uri_str = format!("{}/rac/endpoints/", configuration.base_path);
+    let uri_str = format!("{}/rac/devices/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
-        req_builder = req_builder.query(&[("name", &param_value.to_string())]);
-    }
     if let Some(ref param_value) = p_query_ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
@@ -609,9 +454,7 @@ pub async fn rac_endpoints_list(
     if let Some(ref param_value) = p_query_page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider {
-        req_builder = req_builder.query(&[("provider", &param_value.to_string())]);
-    }
+    req_builder = req_builder.query(&[("provider", &p_query_provider.to_string())]);
     if let Some(ref param_value) = p_query_search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
@@ -640,246 +483,12 @@ pub async fn rac_endpoints_list(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedEndpointList`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedEndpointList`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRacDeviceList`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRacDeviceList`")))),
         }
     } else {
         let content = resp.text().await?;
-        let entity: Option<RacEndpointsListError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent {
-            status,
-            content,
-            entity,
-        }))
-    }
-}
-
-/// Endpoint Viewset
-pub async fn rac_endpoints_partial_update(
-    configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-    patched_endpoint_request: Option<models::PatchedEndpointRequest>,
-) -> Result<models::Endpoint, Error<RacEndpointsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-    let p_body_patched_endpoint_request = patched_endpoint_request;
-
-    let uri_str = format!(
-        "{}/rac/endpoints/{pbm_uuid}/",
-        configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
-    );
-    let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_patched_endpoint_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => {
-                return Err(Error::from(serde_json::Error::custom(
-                    "Received `text/plain` content type response that cannot be converted to `models::Endpoint`",
-                )))
-            }
-            ContentType::Unsupported(unknown_type) => {
-                return Err(Error::from(serde_json::Error::custom(format!(
-                    "Received `{unknown_type}` content type response that cannot be converted to `models::Endpoint`"
-                ))))
-            }
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<RacEndpointsPartialUpdateError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent {
-            status,
-            content,
-            entity,
-        }))
-    }
-}
-
-/// Endpoint Viewset
-pub async fn rac_endpoints_retrieve(
-    configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-) -> Result<models::Endpoint, Error<RacEndpointsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
-    let uri_str = format!(
-        "{}/rac/endpoints/{pbm_uuid}/",
-        configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
-    );
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => {
-                return Err(Error::from(serde_json::Error::custom(
-                    "Received `text/plain` content type response that cannot be converted to `models::Endpoint`",
-                )))
-            }
-            ContentType::Unsupported(unknown_type) => {
-                return Err(Error::from(serde_json::Error::custom(format!(
-                    "Received `{unknown_type}` content type response that cannot be converted to `models::Endpoint`"
-                ))))
-            }
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<RacEndpointsRetrieveError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent {
-            status,
-            content,
-            entity,
-        }))
-    }
-}
-
-/// Endpoint Viewset
-pub async fn rac_endpoints_update(
-    configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-    endpoint_request: models::EndpointRequest,
-) -> Result<models::Endpoint, Error<RacEndpointsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-    let p_body_endpoint_request = endpoint_request;
-
-    let uri_str = format!(
-        "{}/rac/endpoints/{pbm_uuid}/",
-        configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
-    );
-    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_endpoint_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => {
-                return Err(Error::from(serde_json::Error::custom(
-                    "Received `text/plain` content type response that cannot be converted to `models::Endpoint`",
-                )))
-            }
-            ContentType::Unsupported(unknown_type) => {
-                return Err(Error::from(serde_json::Error::custom(format!(
-                    "Received `{unknown_type}` content type response that cannot be converted to `models::Endpoint`"
-                ))))
-            }
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<RacEndpointsUpdateError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent {
-            status,
-            content,
-            entity,
-        }))
-    }
-}
-
-/// Get a list of all objects that use this object
-pub async fn rac_endpoints_used_by_list(
-    configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-) -> Result<Vec<models::UsedBy>, Error<RacEndpointsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
-    let uri_str = format!(
-        "{}/rac/endpoints/{pbm_uuid}/used_by/",
-        configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
-    );
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<RacEndpointsUsedByListError> = serde_json::from_str(&content).ok();
+        let entity: Option<RacDevicesListError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

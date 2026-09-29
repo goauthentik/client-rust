@@ -31,6 +31,19 @@ pub struct RacProviderRequest {
     pub property_mappings: Option<Vec<uuid::Uuid>>,
     #[serde(rename = "settings", skip_serializing_if = "Option::is_none")]
     pub settings: Option<std::collections::HashMap<String, serde_json::Value>>,
+    /// Only devices in this access group can be accessed through this provider. When left empty, every device the user has access to can be accessed.
+    #[serde(
+        rename = "access_group",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub access_group: Option<Option<uuid::Uuid>>,
+    /// Maximum concurrent connections to a single device. Can be set to -1 to disable the limit.
+    #[serde(rename = "maximum_connections", skip_serializing_if = "Option::is_none")]
+    pub maximum_connections: Option<i32>,
+    #[serde(rename = "auth_mode", skip_serializing_if = "Option::is_none")]
+    pub auth_mode: Option<models::RacProviderAuthModeEnum>,
     /// Determines how long a session lasts. Default of 0 means that the sessions lasts until the browser is closed. (Format: hours=-1;minutes=-2;seconds=-3)
     #[serde(rename = "connection_expiry", skip_serializing_if = "Option::is_none")]
     pub connection_expiry: Option<String>,
@@ -48,6 +61,9 @@ impl RacProviderRequest {
             authorization_flow,
             property_mappings: None,
             settings: None,
+            access_group: None,
+            maximum_connections: None,
+            auth_mode: None,
             connection_expiry: None,
             delete_token_on_disconnect: None,
         }

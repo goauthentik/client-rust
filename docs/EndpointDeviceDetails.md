@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **facts** | Option<[**models::DeviceFactSnapshot**](DeviceFactSnapshot.md)> |  | [readonly]
 **attributes** | Option<**std::collections::HashMap<String, serde_json::Value>**> |  | [optional]
 **primary_binding_obj** | Option<[**models::DeviceUserBinding**](DeviceUserBinding.md)> |  | [readonly]
+**rac** | Option<[**models::RacConnectionOverride**](RACConnectionOverride.md)> |  | 
 **connections_obj** | [**Vec<models::DeviceConnection>**](DeviceConnection.md) |  | 
 **policies** | **Vec<uuid::Uuid>** |  | [readonly]
 **connections** | **Vec<uuid::Uuid>** |  | [readonly]

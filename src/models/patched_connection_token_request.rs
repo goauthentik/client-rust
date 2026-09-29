@@ -18,8 +18,8 @@ pub struct PatchedConnectionTokenRequest {
     pub pk: Option<uuid::Uuid>,
     #[serde(rename = "provider", skip_serializing_if = "Option::is_none")]
     pub provider: Option<i32>,
-    #[serde(rename = "endpoint", skip_serializing_if = "Option::is_none")]
-    pub endpoint: Option<uuid::Uuid>,
+    #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
+    pub device: Option<uuid::Uuid>,
 }
 
 impl PatchedConnectionTokenRequest {
@@ -28,7 +28,7 @@ impl PatchedConnectionTokenRequest {
         PatchedConnectionTokenRequest {
             pk: None,
             provider: None,
-            endpoint: None,
+            device: None,
         }
     }
 }

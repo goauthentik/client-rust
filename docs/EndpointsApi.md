@@ -53,6 +53,7 @@ Method | HTTP request | Description
 [**endpoints_device_bindings_retrieve**](EndpointsApi.md#endpoints_device_bindings_retrieve) | **GET** /endpoints/device_bindings/{policy_binding_uuid}/ | 
 [**endpoints_device_bindings_update**](EndpointsApi.md#endpoints_device_bindings_update) | **PUT** /endpoints/device_bindings/{policy_binding_uuid}/ | 
 [**endpoints_device_bindings_used_by_list**](EndpointsApi.md#endpoints_device_bindings_used_by_list) | **GET** /endpoints/device_bindings/{policy_binding_uuid}/used_by/ | 
+[**endpoints_devices_create**](EndpointsApi.md#endpoints_devices_create) | **POST** /endpoints/devices/ | 
 [**endpoints_devices_destroy**](EndpointsApi.md#endpoints_devices_destroy) | **DELETE** /endpoints/devices/{device_uuid}/ | 
 [**endpoints_devices_list**](EndpointsApi.md#endpoints_devices_list) | **GET** /endpoints/devices/ | 
 [**endpoints_devices_partial_update**](EndpointsApi.md#endpoints_devices_partial_update) | **PATCH** /endpoints/devices/{device_uuid}/ | 
@@ -1576,6 +1577,36 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## endpoints_devices_create
+
+> models::EndpointDevice endpoints_devices_create(endpoint_device_request)
+
+
+Mixin to add a used_by endpoint to return a list of all objects using this object
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**endpoint_device_request** | [**EndpointDeviceRequest**](EndpointDeviceRequest.md) |  | [required] |
+
+### Return type
+
+[**models::EndpointDevice**](EndpointDevice.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

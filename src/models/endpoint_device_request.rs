@@ -37,10 +37,12 @@ pub struct EndpointDeviceRequest {
     pub expires: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "attributes", skip_serializing_if = "Option::is_none")]
     pub attributes: Option<std::collections::HashMap<String, serde_json::Value>>,
+    #[serde(rename = "rac", deserialize_with = "Option::deserialize")]
+    pub rac: Option<models::RacConnectionOverrideRequest>,
 }
 
 impl EndpointDeviceRequest {
-    pub fn new(name: String) -> EndpointDeviceRequest {
+    pub fn new(name: String, rac: Option<models::RacConnectionOverrideRequest>) -> EndpointDeviceRequest {
         EndpointDeviceRequest {
             device_uuid: None,
             name,
@@ -49,6 +51,7 @@ impl EndpointDeviceRequest {
             expiring: None,
             expires: None,
             attributes: None,
+            rac,
         }
     }
 }

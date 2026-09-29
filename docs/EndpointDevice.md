@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **facts** | Option<[**models::DeviceFactSnapshot**](DeviceFactSnapshot.md)> |  | [readonly]
 **attributes** | Option<**std::collections::HashMap<String, serde_json::Value>**> |  | [optional]
 **primary_binding_obj** | Option<[**models::DeviceUserBinding**](DeviceUserBinding.md)> |  | [readonly]
+**rac** | Option<[**models::RacConnectionOverride**](RACConnectionOverride.md)> |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

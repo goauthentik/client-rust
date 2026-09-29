@@ -92,8 +92,6 @@ pub enum ModelEnum {
     AuthentikProvidersProxyProxyprovider,
     #[serde(rename = "authentik_providers_rac.racprovider")]
     AuthentikProvidersRacRacprovider,
-    #[serde(rename = "authentik_providers_rac.endpoint")]
-    AuthentikProvidersRacEndpoint,
     #[serde(rename = "authentik_providers_rac.racpropertymapping")]
     AuthentikProvidersRacRacpropertymapping,
     #[serde(rename = "authentik_providers_radius.radiusprovider")]
@@ -336,7 +334,6 @@ impl std::fmt::Display for ModelEnum {
             }
             Self::AuthentikProvidersProxyProxyprovider => write!(f, "authentik_providers_proxy.proxyprovider"),
             Self::AuthentikProvidersRacRacprovider => write!(f, "authentik_providers_rac.racprovider"),
-            Self::AuthentikProvidersRacEndpoint => write!(f, "authentik_providers_rac.endpoint"),
             Self::AuthentikProvidersRacRacpropertymapping => write!(f, "authentik_providers_rac.racpropertymapping"),
             Self::AuthentikProvidersRadiusRadiusprovider => write!(f, "authentik_providers_radius.radiusprovider"),
             Self::AuthentikProvidersRadiusRadiusproviderpropertymapping => {

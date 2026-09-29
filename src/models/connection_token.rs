@@ -20,10 +20,10 @@ pub struct ConnectionToken {
     pub provider: i32,
     #[serde(rename = "provider_obj")]
     pub provider_obj: models::RacProvider,
-    #[serde(rename = "endpoint")]
-    pub endpoint: uuid::Uuid,
-    #[serde(rename = "endpoint_obj")]
-    pub endpoint_obj: models::Endpoint,
+    #[serde(rename = "device")]
+    pub device: uuid::Uuid,
+    #[serde(rename = "device_name")]
+    pub device_name: String,
     #[serde(rename = "user")]
     pub user: models::PartialUser,
 }
@@ -33,16 +33,16 @@ impl ConnectionToken {
     pub fn new(
         provider: i32,
         provider_obj: models::RacProvider,
-        endpoint: uuid::Uuid,
-        endpoint_obj: models::Endpoint,
+        device: uuid::Uuid,
+        device_name: String,
         user: models::PartialUser,
     ) -> ConnectionToken {
         ConnectionToken {
             pk: None,
             provider,
             provider_obj,
-            endpoint,
-            endpoint_obj,
+            device,
+            device_name,
             user,
         }
     }

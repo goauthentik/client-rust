@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**enterprise_license_create**](EnterpriseApi.md#enterprise_license_create) | **POST** /enterprise/license/ | 
 [**enterprise_license_destroy**](EnterpriseApi.md#enterprise_license_destroy) | **DELETE** /enterprise/license/{license_uuid}/ | 
-[**enterprise_license_forecast_retrieve**](EnterpriseApi.md#enterprise_license_forecast_retrieve) | **GET** /enterprise/license/forecast/ | 
 [**enterprise_license_install_id_retrieve**](EnterpriseApi.md#enterprise_license_install_id_retrieve) | **GET** /enterprise/license/install_id/ | 
 [**enterprise_license_list**](EnterpriseApi.md#enterprise_license_list) | **GET** /enterprise/license/ | 
 [**enterprise_license_partial_update**](EnterpriseApi.md#enterprise_license_partial_update) | **PATCH** /enterprise/license/{license_uuid}/ | 
@@ -14,6 +13,7 @@ Method | HTTP request | Description
 [**enterprise_license_summary_retrieve**](EnterpriseApi.md#enterprise_license_summary_retrieve) | **GET** /enterprise/license/summary/ | 
 [**enterprise_license_update**](EnterpriseApi.md#enterprise_license_update) | **PUT** /enterprise/license/{license_uuid}/ | 
 [**enterprise_license_used_by_list**](EnterpriseApi.md#enterprise_license_used_by_list) | **GET** /enterprise/license/{license_uuid}/used_by/ | 
+[**enterprise_license_user_counts_retrieve**](EnterpriseApi.md#enterprise_license_user_counts_retrieve) | **GET** /enterprise/license/user_counts/ | 
 
 
 
@@ -64,33 +64,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
-
-### Authorization
-
-[authentik](../README.md#authentik)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## enterprise_license_forecast_retrieve
-
-> models::LicenseForecast enterprise_license_forecast_retrieve()
-
-
-Forecast how many users will be required in a year
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**models::LicenseForecast**](LicenseForecast.md)
 
 ### Authorization
 
@@ -304,6 +277,38 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<models::UsedBy>**](UsedBy.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## enterprise_license_user_counts_retrieve
+
+> models::LicenseUserCounts enterprise_license_user_counts_retrieve(count_steps, end, start)
+
+
+Get active user totals and counts for relative or absolute date ranges.  At least one positive relative count step or a complete absolute range is required. Relative and absolute ranges may be combined. Range starts are inclusive and ends are exclusive. Counts include currently active, non-anonymous accounts.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**count_steps** | Option<[**Vec<String>**](String.md)> | Positive relative periods, such as 'days=30' or 'weeks=3;days=2'. |  |
+**end** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Exclusive end of an absolute range; must be provided with start. |  |
+**start** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Inclusive start of an absolute range; must be provided with end. |  |
+
+### Return type
+
+[**models::LicenseUserCounts**](LicenseUserCounts.md)
 
 ### Authorization
 

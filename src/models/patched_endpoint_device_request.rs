@@ -37,6 +37,13 @@ pub struct PatchedEndpointDeviceRequest {
     pub expires: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "attributes", skip_serializing_if = "Option::is_none")]
     pub attributes: Option<std::collections::HashMap<String, serde_json::Value>>,
+    #[serde(
+        rename = "rac",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub rac: Option<Option<models::RacConnectionOverrideRequest>>,
 }
 
 impl PatchedEndpointDeviceRequest {
@@ -49,6 +56,7 @@ impl PatchedEndpointDeviceRequest {
             expiring: None,
             expires: None,
             attributes: None,
+            rac: None,
         }
     }
 }

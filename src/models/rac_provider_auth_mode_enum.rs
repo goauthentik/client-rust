@@ -13,14 +13,14 @@ use serde::{Deserialize, Serialize};
 
 ///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum EndpointAuthModeEnum {
+pub enum RacProviderAuthModeEnum {
     #[serde(rename = "static")]
     Static,
     #[serde(rename = "prompt")]
     Prompt,
 }
 
-impl std::fmt::Display for EndpointAuthModeEnum {
+impl std::fmt::Display for RacProviderAuthModeEnum {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::Static => write!(f, "static"),
@@ -29,8 +29,8 @@ impl std::fmt::Display for EndpointAuthModeEnum {
     }
 }
 
-impl Default for EndpointAuthModeEnum {
-    fn default() -> EndpointAuthModeEnum {
+impl Default for RacProviderAuthModeEnum {
+    fn default() -> RacProviderAuthModeEnum {
         Self::Static
     }
 }

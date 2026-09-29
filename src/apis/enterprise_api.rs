@@ -31,15 +31,6 @@ pub enum EnterpriseLicenseDestroyError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`enterprise_license_forecast_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum EnterpriseLicenseForecastRetrieveError {
-    Status400(models::ValidationError),
-    Status403(models::GenericError),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`enterprise_license_install_id_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -98,6 +89,15 @@ pub enum EnterpriseLicenseUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EnterpriseLicenseUsedByListError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`enterprise_license_user_counts_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum EnterpriseLicenseUserCountsRetrieveError {
     Status400(models::ValidationError),
     Status403(models::GenericError),
     UnknownValue(serde_json::Value),
@@ -191,55 +191,6 @@ pub async fn enterprise_license_destroy(
     } else {
         let content = resp.text().await?;
         let entity: Option<EnterpriseLicenseDestroyError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent {
-            status,
-            content,
-            entity,
-        }))
-    }
-}
-
-/// Forecast how many users will be required in a year
-pub async fn enterprise_license_forecast_retrieve(
-    configuration: &configuration::Configuration,
-) -> Result<models::LicenseForecast, Error<EnterpriseLicenseForecastRetrieveError>> {
-    let uri_str = format!("{}/enterprise/license/forecast/", configuration.base_path);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => {
-                return Err(Error::from(serde_json::Error::custom(
-                    "Received `text/plain` content type response that cannot be converted to `models::LicenseForecast`",
-                )))
-            }
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!(
-                "Received `{unknown_type}` content type response that cannot be converted to `models::LicenseForecast`"
-            )))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<EnterpriseLicenseForecastRetrieveError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -651,6 +602,82 @@ pub async fn enterprise_license_used_by_list(
     } else {
         let content = resp.text().await?;
         let entity: Option<EnterpriseLicenseUsedByListError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get active user totals and counts for relative or absolute date ranges.  At least one positive relative count step or a complete absolute range is required. Relative and absolute ranges may be combined. Range starts are inclusive and ends are exclusive. Counts include currently active, non-anonymous accounts.
+pub async fn enterprise_license_user_counts_retrieve(
+    configuration: &configuration::Configuration,
+    count_steps: Option<Vec<String>>,
+    end: Option<chrono::DateTime<chrono::FixedOffset>>,
+    start: Option<chrono::DateTime<chrono::FixedOffset>>,
+) -> Result<models::LicenseUserCounts, Error<EnterpriseLicenseUserCountsRetrieveError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_count_steps = count_steps;
+    let p_query_end = end;
+    let p_query_start = start;
+
+    let uri_str = format!("{}/enterprise/license/user_counts/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_count_steps {
+        req_builder = match "multi" {
+            "multi" => req_builder.query(
+                &param_value
+                    .into_iter()
+                    .map(|p| ("count_steps".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => req_builder.query(&[(
+                "count_steps",
+                &param_value
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref param_value) = p_query_end {
+        req_builder = req_builder.query(&[("end", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_start {
+        req_builder = req_builder.query(&[("start", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::LicenseUserCounts`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::LicenseUserCounts`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<EnterpriseLicenseUserCountsRetrieveError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

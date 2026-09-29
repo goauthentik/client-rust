@@ -43,6 +43,8 @@ pub struct EndpointDeviceDetails {
     pub attributes: Option<std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "primary_binding_obj", deserialize_with = "Option::deserialize")]
     pub primary_binding_obj: Option<models::DeviceUserBinding>,
+    #[serde(rename = "rac", deserialize_with = "Option::deserialize")]
+    pub rac: Option<models::RacConnectionOverride>,
     #[serde(rename = "connections_obj")]
     pub connections_obj: Vec<models::DeviceConnection>,
     #[serde(rename = "policies")]
@@ -57,6 +59,7 @@ impl EndpointDeviceDetails {
         name: String,
         facts: Option<models::DeviceFactSnapshot>,
         primary_binding_obj: Option<models::DeviceUserBinding>,
+        rac: Option<models::RacConnectionOverride>,
         connections_obj: Vec<models::DeviceConnection>,
         policies: Vec<uuid::Uuid>,
         connections: Vec<uuid::Uuid>,
@@ -72,6 +75,7 @@ impl EndpointDeviceDetails {
             facts,
             attributes: None,
             primary_binding_obj,
+            rac,
             connections_obj,
             policies,
             connections,
