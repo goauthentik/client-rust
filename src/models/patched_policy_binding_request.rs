@@ -42,6 +42,9 @@ pub struct PatchedPolicyBindingRequest {
     pub negate: Option<bool>,
     #[serde(rename = "enabled", skip_serializing_if = "Option::is_none")]
     pub enabled: Option<bool>,
+    /// Execute the policy but ignore its result.
+    #[serde(rename = "dry_run", skip_serializing_if = "Option::is_none")]
+    pub dry_run: Option<bool>,
     #[serde(rename = "order", skip_serializing_if = "Option::is_none")]
     pub order: Option<i32>,
     /// Timeout after which Policy execution is terminated.
@@ -62,6 +65,7 @@ impl PatchedPolicyBindingRequest {
             target: None,
             negate: None,
             enabled: None,
+            dry_run: None,
             order: None,
             timeout: None,
             failure_result: None,

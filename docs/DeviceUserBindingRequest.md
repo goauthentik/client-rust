@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **target** | **uuid::Uuid** |  | 
 **negate** | Option<**bool**> | Negates the outcome of the policy. Messages are unaffected. | [optional]
 **enabled** | Option<**bool**> |  | [optional]
+**dry_run** | Option<**bool**> | Execute the policy but ignore its result. | [optional]
 **order** | **i32** |  | 
 **timeout** | Option<**u32**> | Timeout after which Policy execution is terminated. | [optional]
 **failure_result** | Option<**bool**> | Result if the Policy execution fails. | [optional]

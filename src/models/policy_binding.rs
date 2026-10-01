@@ -50,6 +50,9 @@ pub struct PolicyBinding {
     pub negate: Option<bool>,
     #[serde(rename = "enabled", skip_serializing_if = "Option::is_none")]
     pub enabled: Option<bool>,
+    /// Execute the policy but ignore its result.
+    #[serde(rename = "dry_run", skip_serializing_if = "Option::is_none")]
+    pub dry_run: Option<bool>,
     #[serde(rename = "order")]
     pub order: i32,
     /// Timeout after which Policy execution is terminated.
@@ -87,6 +90,7 @@ impl PolicyBinding {
             target,
             negate: None,
             enabled: None,
+            dry_run: None,
             order,
             timeout: None,
             failure_result: None,
