@@ -95,8 +95,8 @@ pub struct OAuthSourceRequest {
     pub pkce: Option<models::PkceMethodEnum>,
     #[serde(rename = "consumer_key")]
     pub consumer_key: String,
-    #[serde(rename = "consumer_secret")]
-    pub consumer_secret: String,
+    #[serde(rename = "consumer_secret", skip_serializing_if = "Option::is_none")]
+    pub consumer_secret: Option<String>,
     #[serde(rename = "additional_scopes", skip_serializing_if = "Option::is_none")]
     pub additional_scopes: Option<String>,
     #[serde(rename = "oidc_well_known_url", skip_serializing_if = "Option::is_none")]
@@ -117,7 +117,6 @@ impl OAuthSourceRequest {
         slug: String,
         provider_type: models::ProviderTypeEnum,
         consumer_key: String,
-        consumer_secret: String,
     ) -> OAuthSourceRequest {
         OAuthSourceRequest {
             name,
@@ -140,7 +139,7 @@ impl OAuthSourceRequest {
             profile_url: None,
             pkce: None,
             consumer_key,
-            consumer_secret,
+            consumer_secret: None,
             additional_scopes: None,
             oidc_well_known_url: None,
             oidc_jwks_url: None,
