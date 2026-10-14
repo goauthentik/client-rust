@@ -432,7 +432,6 @@ pub async fn rac_devices_list(
     page: Option<i32>,
     page_size: Option<i32>,
     search: Option<&str>,
-    superuser_full_list: Option<bool>,
 ) -> Result<models::PaginatedRacDeviceList, Error<RacDevicesListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_provider = provider;
@@ -440,7 +439,6 @@ pub async fn rac_devices_list(
     let p_query_page = page;
     let p_query_page_size = page_size;
     let p_query_search = search;
-    let p_query_superuser_full_list = superuser_full_list;
 
     let uri_str = format!("{}/rac/devices/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -457,9 +455,6 @@ pub async fn rac_devices_list(
     req_builder = req_builder.query(&[("provider", &p_query_provider.to_string())]);
     if let Some(ref param_value) = p_query_search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_superuser_full_list {
-        req_builder = req_builder.query(&[("superuser_full_list", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

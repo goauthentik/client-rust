@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**core_application_entitlements_retrieve**](CoreApi.md#core_application_entitlements_retrieve) | **GET** /core/application_entitlements/{pbm_uuid}/ | 
 [**core_application_entitlements_update**](CoreApi.md#core_application_entitlements_update) | **PUT** /core/application_entitlements/{pbm_uuid}/ | 
 [**core_application_entitlements_used_by_list**](CoreApi.md#core_application_entitlements_used_by_list) | **GET** /core/application_entitlements/{pbm_uuid}/used_by/ | 
+[**core_applications_accessible_list**](CoreApi.md#core_applications_accessible_list) | **GET** /core/applications/@accessible/ | 
 [**core_applications_check_access_retrieve**](CoreApi.md#core_applications_check_access_retrieve) | **GET** /core/applications/{slug}/check_access/ | 
 [**core_applications_create**](CoreApi.md#core_applications_create) | **POST** /core/applications/ | 
 [**core_applications_destroy**](CoreApi.md#core_applications_destroy) | **DELETE** /core/applications/{slug}/ | 
@@ -341,6 +342,47 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## core_applications_accessible_list
+
+> models::PaginatedApplicationList core_applications_accessible_list(for_user, group, meta_description, meta_launch_url, meta_publisher, name, only_with_launch_url, ordering, page, page_size, search, slug)
+
+
+List applications the user passes policies for, regardless of RBAC permissions
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**for_user** | Option<**i32**> |  |  |
+**group** | Option<**String**> |  |  |
+**meta_description** | Option<**String**> |  |  |
+**meta_launch_url** | Option<**String**> |  |  |
+**meta_publisher** | Option<**String**> |  |  |
+**name** | Option<**String**> |  |  |
+**only_with_launch_url** | Option<**bool**> |  |  |
+**ordering** | Option<**String**> | Which field to use when ordering the results. |  |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+**page_size** | Option<**i32**> | Number of results to return per page. |  |
+**search** | Option<**String**> | A search term. |  |
+**slug** | Option<**String**> |  |  |
+
+### Return type
+
+[**models::PaginatedApplicationList**](PaginatedApplicationList.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## core_applications_check_access_retrieve
 
 > models::PolicyTestResult core_applications_check_access_retrieve(slug, for_user)
@@ -434,29 +476,26 @@ Name | Type | Description  | Required | Notes
 
 ## core_applications_list
 
-> models::PaginatedApplicationList core_applications_list(for_user, group, meta_description, meta_launch_url, meta_publisher, name, only_with_launch_url, ordering, page, page_size, search, slug, superuser_full_list)
+> models::PaginatedApplicationList core_applications_list(group, meta_description, meta_launch_url, meta_publisher, name, ordering, page, page_size, search, slug)
 
 
-Custom list method that checks Policy based access instead of guardian
+Application Viewset
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**for_user** | Option<**i32**> |  |  |
 **group** | Option<**String**> |  |  |
 **meta_description** | Option<**String**> |  |  |
 **meta_launch_url** | Option<**String**> |  |  |
 **meta_publisher** | Option<**String**> |  |  |
 **name** | Option<**String**> |  |  |
-**only_with_launch_url** | Option<**bool**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
 **page_size** | Option<**i32**> | Number of results to return per page. |  |
 **search** | Option<**String**> | A search term. |  |
 **slug** | Option<**String**> |  |  |
-**superuser_full_list** | Option<**bool**> |  |  |
 
 ### Return type
 

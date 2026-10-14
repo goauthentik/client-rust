@@ -204,7 +204,7 @@ Name | Type | Description  | Required | Notes
 
 ## rac_devices_list
 
-> models::PaginatedRacDeviceList rac_devices_list(provider, ordering, page, page_size, search, superuser_full_list)
+> models::PaginatedRacDeviceList rac_devices_list(provider, ordering, page, page_size, search)
 
 
 List devices accessible through a RAC provider
@@ -219,7 +219,6 @@ Name | Type | Description  | Required | Notes
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
 **page_size** | Option<**i32**> | Number of results to return per page. |  |
 **search** | Option<**String**> | A search term. |  |
-**superuser_full_list** | Option<**bool**> |  |  |
 
 ### Return type
 
