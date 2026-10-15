@@ -17,12 +17,8 @@ pub struct Version {
     /// Get current version
     #[serde(rename = "version_current")]
     pub version_current: String,
-    /// Get latest version from cache
     #[serde(rename = "version_latest")]
-    pub version_latest: String,
-    /// Check if latest version is valid
-    #[serde(rename = "version_latest_valid")]
-    pub version_latest_valid: bool,
+    pub version_latest: models::UpdateVersionInfo,
     /// Get build hash, if version is not latest or released
     #[serde(rename = "build_hash")]
     pub build_hash: String,
@@ -38,8 +34,7 @@ impl Version {
     /// Get running and latest version.
     pub fn new(
         version_current: String,
-        version_latest: String,
-        version_latest_valid: bool,
+        version_latest: models::UpdateVersionInfo,
         build_hash: String,
         outdated: bool,
         outpost_outdated: bool,
@@ -47,7 +42,6 @@ impl Version {
         Version {
             version_current,
             version_latest,
-            version_latest_valid,
             build_hash,
             outdated,
             outpost_outdated,

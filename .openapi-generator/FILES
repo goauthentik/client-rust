@@ -892,6 +892,8 @@ docs/TypeCreate.md
 docs/UiThemeEnum.md
 docs/UniquePasswordPolicy.md
 docs/UniquePasswordPolicyRequest.md
+docs/UpdateVersionInfo.md
+docs/UpdateVersionReason.md
 docs/UsageEnum.md
 docs/UsedBy.md
 docs/UsedByActionEnum.md
@@ -1854,6 +1856,8 @@ src/models/type_create.rs
 src/models/ui_theme_enum.rs
 src/models/unique_password_policy.rs
 src/models/unique_password_policy_request.rs
+src/models/update_version_info.rs
+src/models/update_version_reason.rs
 src/models/usage_enum.rs
 src/models/used_by.rs
 src/models/used_by_action_enum.rs
