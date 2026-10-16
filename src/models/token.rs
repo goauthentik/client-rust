@@ -31,7 +31,7 @@ pub struct Token {
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
     pub user: Option<i32>,
     #[serde(rename = "user_obj")]
-    pub user_obj: models::User,
+    pub user_obj: models::PartialUser,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(
@@ -47,7 +47,7 @@ pub struct Token {
 
 impl Token {
     /// Token Serializer
-    pub fn new(pk: uuid::Uuid, identifier: String, user_obj: models::User) -> Token {
+    pub fn new(pk: uuid::Uuid, identifier: String, user_obj: models::PartialUser) -> Token {
         Token {
             pk,
             managed: None,

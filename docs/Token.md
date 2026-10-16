@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **identifier** | **String** |  | 
 **intent** | Option<[**models::IntentEnum**](IntentEnum.md)> |  | [optional]
 **user** | Option<**i32**> |  | [optional]
-**user_obj** | [**models::User**](User.md) |  | [readonly]
+**user_obj** | [**models::PartialUser**](PartialUser.md) |  | [readonly]
 **description** | Option<**String**> |  | [optional]
 **expires** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **expiring** | Option<**bool**> |  | [optional]
