@@ -22,6 +22,12 @@ pub enum KeyTypeEnum {
     Ed25519,
     #[serde(rename = "ed448")]
     Ed448,
+    #[serde(rename = "mldsa44")]
+    Mldsa44,
+    #[serde(rename = "mldsa65")]
+    Mldsa65,
+    #[serde(rename = "mldsa87")]
+    Mldsa87,
     #[serde(rename = "rsa")]
     Rsa,
 }
@@ -33,6 +39,9 @@ impl std::fmt::Display for KeyTypeEnum {
             Self::Ec => write!(f, "ec"),
             Self::Ed25519 => write!(f, "ed25519"),
             Self::Ed448 => write!(f, "ed448"),
+            Self::Mldsa44 => write!(f, "mldsa44"),
+            Self::Mldsa65 => write!(f, "mldsa65"),
+            Self::Mldsa87 => write!(f, "mldsa87"),
             Self::Rsa => write!(f, "rsa"),
         }
     }
