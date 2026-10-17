@@ -14,8 +14,13 @@ use serde::{Deserialize, Serialize};
 /// AgentCreateRequest : Base serializer class which doesn't implement create/update methods
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AgentCreateRequest {
-    #[serde(rename = "parent", skip_serializing_if = "Option::is_none")]
-    pub parent: Option<i32>,
+    #[serde(
+        rename = "parent",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub parent: Option<Option<i32>>,
     #[serde(rename = "label", skip_serializing_if = "Option::is_none")]
     pub label: Option<String>,
     #[serde(rename = "expiring", skip_serializing_if = "Option::is_none")]
