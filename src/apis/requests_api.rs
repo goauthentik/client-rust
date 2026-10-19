@@ -13,6 +13,254 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`requests_grant_requests_agent_create`]
+#[derive(Clone, Debug)]
+pub struct RequestsGrantRequestsAgentCreateParams {
+    pub agent_grant_request_create_request: models::AgentGrantRequestCreateRequest,
+}
+
+/// struct for passing parameters to the method [`requests_grant_requests_create`]
+#[derive(Clone, Debug)]
+pub struct RequestsGrantRequestsCreateParams {
+    pub grant_request_create_request: models::GrantRequestCreateRequest,
+}
+
+/// struct for passing parameters to the method [`requests_grant_requests_destroy`]
+#[derive(Clone, Debug)]
+pub struct RequestsGrantRequestsDestroyParams {
+    /// A UUID string identifying this Grant Request.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`requests_grant_requests_fulfill_partial_update`]
+#[derive(Clone, Debug)]
+pub struct RequestsGrantRequestsFulfillPartialUpdateParams {
+    /// A UUID string identifying this Grant Request.
+    pub uuid: String,
+    pub patched_grant_request_fulfill_request: Option<models::PatchedGrantRequestFulfillRequest>,
+}
+
+/// struct for passing parameters to the method [`requests_grant_requests_list`]
+#[derive(Clone, Debug)]
+pub struct RequestsGrantRequestsListParams {
+    pub agent_owner: Option<i32>,
+    pub created_by: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub status: Option<models::RequestStatus>,
+}
+
+/// struct for passing parameters to the method [`requests_grant_requests_pending_review_list`]
+#[derive(Clone, Debug)]
+pub struct RequestsGrantRequestsPendingReviewListParams {
+    pub agent_owner: Option<i32>,
+    pub created_by: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub status: Option<models::RequestStatus>,
+}
+
+/// struct for passing parameters to the method [`requests_grant_requests_retrieve`]
+#[derive(Clone, Debug)]
+pub struct RequestsGrantRequestsRetrieveParams {
+    /// A UUID string identifying this Grant Request.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`requests_grant_requests_revoke_destroy`]
+#[derive(Clone, Debug)]
+pub struct RequestsGrantRequestsRevokeDestroyParams {
+    /// A UUID string identifying this Grant Request.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`requests_rule_bindings_create`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleBindingsCreateParams {
+    pub request_rule_binding_request: models::RequestRuleBindingRequest,
+}
+
+/// struct for passing parameters to the method [`requests_rule_bindings_destroy`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleBindingsDestroyParams {
+    /// A UUID string identifying this Request Rule Binding.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`requests_rule_bindings_list`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleBindingsListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub rule: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub target: Option<String>,
+}
+
+/// struct for passing parameters to the method [`requests_rule_bindings_partial_update`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleBindingsPartialUpdateParams {
+    /// A UUID string identifying this Request Rule Binding.
+    pub uuid: String,
+    pub patched_request_rule_binding_request: Option<models::PatchedRequestRuleBindingRequest>,
+}
+
+/// struct for passing parameters to the method [`requests_rule_bindings_retrieve`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleBindingsRetrieveParams {
+    /// A UUID string identifying this Request Rule Binding.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`requests_rule_bindings_update`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleBindingsUpdateParams {
+    /// A UUID string identifying this Request Rule Binding.
+    pub uuid: String,
+    pub request_rule_binding_request: models::RequestRuleBindingRequest,
+}
+
+/// struct for passing parameters to the method [`requests_rule_bindings_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleBindingsUsedByListParams {
+    /// A UUID string identifying this Request Rule Binding.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`requests_rule_child_bindings_create`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleChildBindingsCreateParams {
+    pub request_rule_child_binding_request: models::RequestRuleChildBindingRequest,
+}
+
+/// struct for passing parameters to the method [`requests_rule_child_bindings_destroy`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleChildBindingsDestroyParams {
+    /// A UUID string identifying this Request Rule Child Binding.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`requests_rule_child_bindings_list`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleChildBindingsListParams {
+    pub binding: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub target: Option<String>,
+}
+
+/// struct for passing parameters to the method [`requests_rule_child_bindings_partial_update`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleChildBindingsPartialUpdateParams {
+    /// A UUID string identifying this Request Rule Child Binding.
+    pub uuid: String,
+    pub patched_request_rule_child_binding_request: Option<models::PatchedRequestRuleChildBindingRequest>,
+}
+
+/// struct for passing parameters to the method [`requests_rule_child_bindings_retrieve`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleChildBindingsRetrieveParams {
+    /// A UUID string identifying this Request Rule Child Binding.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`requests_rule_child_bindings_update`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleChildBindingsUpdateParams {
+    /// A UUID string identifying this Request Rule Child Binding.
+    pub uuid: String,
+    pub request_rule_child_binding_request: models::RequestRuleChildBindingRequest,
+}
+
+/// struct for passing parameters to the method [`requests_rule_child_bindings_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct RequestsRuleChildBindingsUsedByListParams {
+    /// A UUID string identifying this Request Rule Child Binding.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`requests_rules_create`]
+#[derive(Clone, Debug)]
+pub struct RequestsRulesCreateParams {
+    pub request_rule_request: models::RequestRuleRequest,
+}
+
+/// struct for passing parameters to the method [`requests_rules_destroy`]
+#[derive(Clone, Debug)]
+pub struct RequestsRulesDestroyParams {
+    /// A UUID string identifying this Request Rule.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`requests_rules_list`]
+#[derive(Clone, Debug)]
+pub struct RequestsRulesListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pbm_uuid: Option<String>,
+    pub request_flow__slug: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`requests_rules_partial_update`]
+#[derive(Clone, Debug)]
+pub struct RequestsRulesPartialUpdateParams {
+    /// A UUID string identifying this Request Rule.
+    pub uuid: String,
+    pub patched_request_rule_request: Option<models::PatchedRequestRuleRequest>,
+}
+
+/// struct for passing parameters to the method [`requests_rules_retrieve`]
+#[derive(Clone, Debug)]
+pub struct RequestsRulesRetrieveParams {
+    /// A UUID string identifying this Request Rule.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`requests_rules_update`]
+#[derive(Clone, Debug)]
+pub struct RequestsRulesUpdateParams {
+    /// A UUID string identifying this Request Rule.
+    pub uuid: String,
+    pub request_rule_request: models::RequestRuleRequest,
+}
+
+/// struct for passing parameters to the method [`requests_rules_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct RequestsRulesUsedByListParams {
+    /// A UUID string identifying this Request Rule.
+    pub uuid: String,
+}
+
 /// struct for typed errors of method [`requests_grant_requests_agent_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -277,11 +525,8 @@ pub enum RequestsRulesUsedByListError {
 /// Delegate access an agent's owner already holds to the agent, time-boxed. Unlike `create` this persists the request directly instead of returning a flow link -- an agent authenticates with an API token and has no browser to run a flow in, so no justification is ever collected. That is why the agent may only ask for what its owner already has: the owner's approval is then the whole decision, and no reviewer is asked to judge a request with nothing in it. The returned `fulfill_url` is what the agent hands to its owner so they can act on it.
 pub async fn requests_grant_requests_agent_create(
     configuration: &configuration::Configuration,
-    agent_grant_request_create_request: models::AgentGrantRequestCreateRequest,
+    params: RequestsGrantRequestsAgentCreateParams,
 ) -> Result<models::AgentGrantRequestCreated, Error<RequestsGrantRequestsAgentCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_agent_grant_request_create_request = agent_grant_request_create_request;
-
     let uri_str = format!("{}/requests/grant-requests/agent/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -291,7 +536,7 @@ pub async fn requests_grant_requests_agent_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_agent_grant_request_create_request);
+    req_builder = req_builder.json(&params.agent_grant_request_create_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -307,7 +552,7 @@ pub async fn requests_grant_requests_agent_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AgentGrantRequestCreated`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AgentGrantRequestCreated`")))),
         }
@@ -324,11 +569,8 @@ pub async fn requests_grant_requests_agent_create(
 
 pub async fn requests_grant_requests_create(
     configuration: &configuration::Configuration,
-    grant_request_create_request: models::GrantRequestCreateRequest,
+    params: RequestsGrantRequestsCreateParams,
 ) -> Result<models::Link, Error<RequestsGrantRequestsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_grant_request_create_request = grant_request_create_request;
-
     let uri_str = format!("{}/requests/grant-requests/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -338,7 +580,7 @@ pub async fn requests_grant_requests_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_grant_request_create_request);
+    req_builder = req_builder.json(&params.grant_request_create_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -354,7 +596,9 @@ pub async fn requests_grant_requests_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Link`",
@@ -379,15 +623,12 @@ pub async fn requests_grant_requests_create(
 
 pub async fn requests_grant_requests_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RequestsGrantRequestsDestroyParams,
 ) -> Result<(), Error<RequestsGrantRequestsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/requests/grant-requests/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -418,17 +659,12 @@ pub async fn requests_grant_requests_destroy(
 
 pub async fn requests_grant_requests_fulfill_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_grant_request_fulfill_request: Option<models::PatchedGrantRequestFulfillRequest>,
+    params: RequestsGrantRequestsFulfillPartialUpdateParams,
 ) -> Result<(), Error<RequestsGrantRequestsFulfillPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_grant_request_fulfill_request = patched_grant_request_fulfill_request;
-
     let uri_str = format!(
         "{}/requests/grant-requests/{uuid}/fulfill/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -438,7 +674,7 @@ pub async fn requests_grant_requests_fulfill_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_grant_request_fulfill_request);
+    req_builder = req_builder.json(&params.patched_grant_request_fulfill_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -460,45 +696,30 @@ pub async fn requests_grant_requests_fulfill_partial_update(
 
 pub async fn requests_grant_requests_list(
     configuration: &configuration::Configuration,
-    agent_owner: Option<i32>,
-    created_by: Option<i32>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    status: Option<models::RequestStatus>,
+    params: RequestsGrantRequestsListParams,
 ) -> Result<models::PaginatedGrantRequestList, Error<RequestsGrantRequestsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_agent_owner = agent_owner;
-    let p_query_created_by = created_by;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_status = status;
-
     let uri_str = format!("{}/requests/grant-requests/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_agent_owner {
+    if let Some(ref param_value) = params.agent_owner {
         req_builder = req_builder.query(&[("agent_owner", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_created_by {
+    if let Some(ref param_value) = params.created_by {
         req_builder = req_builder.query(&[("created_by", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_status {
+    if let Some(ref param_value) = params.status {
         req_builder = req_builder.query(&[("status", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -522,7 +743,7 @@ pub async fn requests_grant_requests_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGrantRequestList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGrantRequestList`")))),
         }
@@ -540,45 +761,30 @@ pub async fn requests_grant_requests_list(
 /// List pending grant requests the current user is eligible to review.
 pub async fn requests_grant_requests_pending_review_list(
     configuration: &configuration::Configuration,
-    agent_owner: Option<i32>,
-    created_by: Option<i32>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    status: Option<models::RequestStatus>,
+    params: RequestsGrantRequestsPendingReviewListParams,
 ) -> Result<models::PaginatedGrantRequestList, Error<RequestsGrantRequestsPendingReviewListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_agent_owner = agent_owner;
-    let p_query_created_by = created_by;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_status = status;
-
     let uri_str = format!("{}/requests/grant-requests/pending_review/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_agent_owner {
+    if let Some(ref param_value) = params.agent_owner {
         req_builder = req_builder.query(&[("agent_owner", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_created_by {
+    if let Some(ref param_value) = params.created_by {
         req_builder = req_builder.query(&[("created_by", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_status {
+    if let Some(ref param_value) = params.status {
         req_builder = req_builder.query(&[("status", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -602,7 +808,7 @@ pub async fn requests_grant_requests_pending_review_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGrantRequestList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGrantRequestList`")))),
         }
@@ -619,15 +825,12 @@ pub async fn requests_grant_requests_pending_review_list(
 
 pub async fn requests_grant_requests_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RequestsGrantRequestsRetrieveParams,
 ) -> Result<models::GrantRequest, Error<RequestsGrantRequestsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/requests/grant-requests/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -652,7 +855,9 @@ pub async fn requests_grant_requests_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::GrantRequest`",
@@ -676,15 +881,12 @@ pub async fn requests_grant_requests_retrieve(
 /// Immediately end an active grant. Available to the same reviewers who could approve it in the first place.
 pub async fn requests_grant_requests_revoke_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RequestsGrantRequestsRevokeDestroyParams,
 ) -> Result<(), Error<RequestsGrantRequestsRevokeDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/requests/grant-requests/{uuid}/revoke/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -716,11 +918,8 @@ pub async fn requests_grant_requests_revoke_destroy(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rule_bindings_create(
     configuration: &configuration::Configuration,
-    request_rule_binding_request: models::RequestRuleBindingRequest,
+    params: RequestsRuleBindingsCreateParams,
 ) -> Result<models::RequestRuleBinding, Error<RequestsRuleBindingsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_request_rule_binding_request = request_rule_binding_request;
-
     let uri_str = format!("{}/requests/rule-bindings/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -730,7 +929,7 @@ pub async fn requests_rule_bindings_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_request_rule_binding_request);
+    req_builder = req_builder.json(&params.request_rule_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -746,7 +945,7 @@ pub async fn requests_rule_bindings_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RequestRuleBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RequestRuleBinding`")))),
         }
@@ -764,15 +963,12 @@ pub async fn requests_rule_bindings_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rule_bindings_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RequestsRuleBindingsDestroyParams,
 ) -> Result<(), Error<RequestsRuleBindingsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/requests/rule-bindings/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -804,40 +1000,27 @@ pub async fn requests_rule_bindings_destroy(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rule_bindings_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    rule: Option<&str>,
-    search: Option<&str>,
-    target: Option<&str>,
+    params: RequestsRuleBindingsListParams,
 ) -> Result<models::PaginatedRequestRuleBindingList, Error<RequestsRuleBindingsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_rule = rule;
-    let p_query_search = search;
-    let p_query_target = target;
-
     let uri_str = format!("{}/requests/rule-bindings/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_rule {
+    if let Some(ref param_value) = params.rule {
         req_builder = req_builder.query(&[("rule", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_target {
+    if let Some(ref param_value) = params.target {
         req_builder = req_builder.query(&[("target", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -861,7 +1044,7 @@ pub async fn requests_rule_bindings_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRequestRuleBindingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRequestRuleBindingList`")))),
         }
@@ -879,17 +1062,12 @@ pub async fn requests_rule_bindings_list(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rule_bindings_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_request_rule_binding_request: Option<models::PatchedRequestRuleBindingRequest>,
+    params: RequestsRuleBindingsPartialUpdateParams,
 ) -> Result<models::RequestRuleBinding, Error<RequestsRuleBindingsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_request_rule_binding_request = patched_request_rule_binding_request;
-
     let uri_str = format!(
         "{}/requests/rule-bindings/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -899,7 +1077,7 @@ pub async fn requests_rule_bindings_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_request_rule_binding_request);
+    req_builder = req_builder.json(&params.patched_request_rule_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -915,7 +1093,7 @@ pub async fn requests_rule_bindings_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RequestRuleBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RequestRuleBinding`")))),
         }
@@ -933,15 +1111,12 @@ pub async fn requests_rule_bindings_partial_update(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rule_bindings_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RequestsRuleBindingsRetrieveParams,
 ) -> Result<models::RequestRuleBinding, Error<RequestsRuleBindingsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/requests/rule-bindings/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -966,7 +1141,7 @@ pub async fn requests_rule_bindings_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RequestRuleBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RequestRuleBinding`")))),
         }
@@ -984,17 +1159,12 @@ pub async fn requests_rule_bindings_retrieve(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rule_bindings_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    request_rule_binding_request: models::RequestRuleBindingRequest,
+    params: RequestsRuleBindingsUpdateParams,
 ) -> Result<models::RequestRuleBinding, Error<RequestsRuleBindingsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_request_rule_binding_request = request_rule_binding_request;
-
     let uri_str = format!(
         "{}/requests/rule-bindings/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1004,7 +1174,7 @@ pub async fn requests_rule_bindings_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_request_rule_binding_request);
+    req_builder = req_builder.json(&params.request_rule_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1020,7 +1190,7 @@ pub async fn requests_rule_bindings_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RequestRuleBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RequestRuleBinding`")))),
         }
@@ -1038,15 +1208,12 @@ pub async fn requests_rule_bindings_update(
 /// Get a list of all objects that use this object
 pub async fn requests_rule_bindings_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RequestsRuleBindingsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<RequestsRuleBindingsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/requests/rule-bindings/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1071,7 +1238,7 @@ pub async fn requests_rule_bindings_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1089,11 +1256,8 @@ pub async fn requests_rule_bindings_used_by_list(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rule_child_bindings_create(
     configuration: &configuration::Configuration,
-    request_rule_child_binding_request: models::RequestRuleChildBindingRequest,
+    params: RequestsRuleChildBindingsCreateParams,
 ) -> Result<models::RequestRuleChildBinding, Error<RequestsRuleChildBindingsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_request_rule_child_binding_request = request_rule_child_binding_request;
-
     let uri_str = format!("{}/requests/rule-child-bindings/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1103,7 +1267,7 @@ pub async fn requests_rule_child_bindings_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_request_rule_child_binding_request);
+    req_builder = req_builder.json(&params.request_rule_child_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1119,7 +1283,7 @@ pub async fn requests_rule_child_bindings_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RequestRuleChildBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RequestRuleChildBinding`")))),
         }
@@ -1137,15 +1301,12 @@ pub async fn requests_rule_child_bindings_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rule_child_bindings_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RequestsRuleChildBindingsDestroyParams,
 ) -> Result<(), Error<RequestsRuleChildBindingsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/requests/rule-child-bindings/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1177,40 +1338,27 @@ pub async fn requests_rule_child_bindings_destroy(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rule_child_bindings_list(
     configuration: &configuration::Configuration,
-    binding: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    target: Option<&str>,
+    params: RequestsRuleChildBindingsListParams,
 ) -> Result<models::PaginatedRequestRuleChildBindingList, Error<RequestsRuleChildBindingsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_binding = binding;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_target = target;
-
     let uri_str = format!("{}/requests/rule-child-bindings/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_binding {
+    if let Some(ref param_value) = params.binding {
         req_builder = req_builder.query(&[("binding", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_target {
+    if let Some(ref param_value) = params.target {
         req_builder = req_builder.query(&[("target", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1234,7 +1382,7 @@ pub async fn requests_rule_child_bindings_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRequestRuleChildBindingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRequestRuleChildBindingList`")))),
         }
@@ -1252,17 +1400,12 @@ pub async fn requests_rule_child_bindings_list(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rule_child_bindings_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_request_rule_child_binding_request: Option<models::PatchedRequestRuleChildBindingRequest>,
+    params: RequestsRuleChildBindingsPartialUpdateParams,
 ) -> Result<models::RequestRuleChildBinding, Error<RequestsRuleChildBindingsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_request_rule_child_binding_request = patched_request_rule_child_binding_request;
-
     let uri_str = format!(
         "{}/requests/rule-child-bindings/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1272,7 +1415,7 @@ pub async fn requests_rule_child_bindings_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_request_rule_child_binding_request);
+    req_builder = req_builder.json(&params.patched_request_rule_child_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1288,7 +1431,7 @@ pub async fn requests_rule_child_bindings_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RequestRuleChildBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RequestRuleChildBinding`")))),
         }
@@ -1306,15 +1449,12 @@ pub async fn requests_rule_child_bindings_partial_update(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rule_child_bindings_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RequestsRuleChildBindingsRetrieveParams,
 ) -> Result<models::RequestRuleChildBinding, Error<RequestsRuleChildBindingsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/requests/rule-child-bindings/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1339,7 +1479,7 @@ pub async fn requests_rule_child_bindings_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RequestRuleChildBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RequestRuleChildBinding`")))),
         }
@@ -1357,17 +1497,12 @@ pub async fn requests_rule_child_bindings_retrieve(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rule_child_bindings_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    request_rule_child_binding_request: models::RequestRuleChildBindingRequest,
+    params: RequestsRuleChildBindingsUpdateParams,
 ) -> Result<models::RequestRuleChildBinding, Error<RequestsRuleChildBindingsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_request_rule_child_binding_request = request_rule_child_binding_request;
-
     let uri_str = format!(
         "{}/requests/rule-child-bindings/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1377,7 +1512,7 @@ pub async fn requests_rule_child_bindings_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_request_rule_child_binding_request);
+    req_builder = req_builder.json(&params.request_rule_child_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1393,7 +1528,7 @@ pub async fn requests_rule_child_bindings_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RequestRuleChildBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RequestRuleChildBinding`")))),
         }
@@ -1411,15 +1546,12 @@ pub async fn requests_rule_child_bindings_update(
 /// Get a list of all objects that use this object
 pub async fn requests_rule_child_bindings_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RequestsRuleChildBindingsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<RequestsRuleChildBindingsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/requests/rule-child-bindings/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1444,7 +1576,7 @@ pub async fn requests_rule_child_bindings_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1462,11 +1594,8 @@ pub async fn requests_rule_child_bindings_used_by_list(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rules_create(
     configuration: &configuration::Configuration,
-    request_rule_request: models::RequestRuleRequest,
+    params: RequestsRulesCreateParams,
 ) -> Result<models::RequestRule, Error<RequestsRulesCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_request_rule_request = request_rule_request;
-
     let uri_str = format!("{}/requests/rules/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1476,7 +1605,7 @@ pub async fn requests_rules_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_request_rule_request);
+    req_builder = req_builder.json(&params.request_rule_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1492,7 +1621,9 @@ pub async fn requests_rules_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RequestRule`",
@@ -1518,15 +1649,12 @@ pub async fn requests_rules_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rules_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RequestsRulesDestroyParams,
 ) -> Result<(), Error<RequestsRulesDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/requests/rules/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1558,45 +1686,30 @@ pub async fn requests_rules_destroy(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rules_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pbm_uuid: Option<&str>,
-    request_flow__slug: Option<&str>,
-    search: Option<&str>,
+    params: RequestsRulesListParams,
 ) -> Result<models::PaginatedRequestRuleList, Error<RequestsRulesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_request_flow__slug = request_flow__slug;
-    let p_query_search = search;
-
     let uri_str = format!("{}/requests/rules/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_request_flow__slug {
+    if let Some(ref param_value) = params.request_flow__slug {
         req_builder = req_builder.query(&[("request_flow__slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1620,7 +1733,7 @@ pub async fn requests_rules_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRequestRuleList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRequestRuleList`")))),
         }
@@ -1638,17 +1751,12 @@ pub async fn requests_rules_list(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rules_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_request_rule_request: Option<models::PatchedRequestRuleRequest>,
+    params: RequestsRulesPartialUpdateParams,
 ) -> Result<models::RequestRule, Error<RequestsRulesPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_request_rule_request = patched_request_rule_request;
-
     let uri_str = format!(
         "{}/requests/rules/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1658,7 +1766,7 @@ pub async fn requests_rules_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_request_rule_request);
+    req_builder = req_builder.json(&params.patched_request_rule_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1674,7 +1782,9 @@ pub async fn requests_rules_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RequestRule`",
@@ -1700,15 +1810,12 @@ pub async fn requests_rules_partial_update(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rules_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RequestsRulesRetrieveParams,
 ) -> Result<models::RequestRule, Error<RequestsRulesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/requests/rules/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1733,7 +1840,9 @@ pub async fn requests_rules_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RequestRule`",
@@ -1759,17 +1868,12 @@ pub async fn requests_rules_retrieve(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn requests_rules_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    request_rule_request: models::RequestRuleRequest,
+    params: RequestsRulesUpdateParams,
 ) -> Result<models::RequestRule, Error<RequestsRulesUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_request_rule_request = request_rule_request;
-
     let uri_str = format!(
         "{}/requests/rules/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1779,7 +1883,7 @@ pub async fn requests_rules_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_request_rule_request);
+    req_builder = req_builder.json(&params.request_rule_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1795,7 +1899,9 @@ pub async fn requests_rules_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RequestRule`",
@@ -1821,15 +1927,12 @@ pub async fn requests_rules_update(
 /// Get a list of all objects that use this object
 pub async fn requests_rules_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RequestsRulesUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<RequestsRulesUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/requests/rules/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1854,7 +1957,7 @@ pub async fn requests_rules_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

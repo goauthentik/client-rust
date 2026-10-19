@@ -13,6 +13,89 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`crypto_certificatekeypairs_create`]
+#[derive(Clone, Debug)]
+pub struct CryptoCertificatekeypairsCreateParams {
+    pub certificate_key_pair_request: models::CertificateKeyPairRequest,
+}
+
+/// struct for passing parameters to the method [`crypto_certificatekeypairs_destroy`]
+#[derive(Clone, Debug)]
+pub struct CryptoCertificatekeypairsDestroyParams {
+    /// A UUID string identifying this Certificate-Key Pair.
+    pub kp_uuid: String,
+}
+
+/// struct for passing parameters to the method [`crypto_certificatekeypairs_generate_create`]
+#[derive(Clone, Debug)]
+pub struct CryptoCertificatekeypairsGenerateCreateParams {
+    pub certificate_generation_request: models::CertificateGenerationRequest,
+}
+
+/// struct for passing parameters to the method [`crypto_certificatekeypairs_list`]
+#[derive(Clone, Debug)]
+pub struct CryptoCertificatekeypairsListParams {
+    /// Only return certificate-key pairs with keys
+    pub has_key: Option<bool>,
+    pub key_type: Option<Vec<models::KeyTypeEnum>>,
+    pub managed: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`crypto_certificatekeypairs_partial_update`]
+#[derive(Clone, Debug)]
+pub struct CryptoCertificatekeypairsPartialUpdateParams {
+    /// A UUID string identifying this Certificate-Key Pair.
+    pub kp_uuid: String,
+    pub patched_certificate_key_pair_request: Option<models::PatchedCertificateKeyPairRequest>,
+}
+
+/// struct for passing parameters to the method [`crypto_certificatekeypairs_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CryptoCertificatekeypairsRetrieveParams {
+    /// A UUID string identifying this Certificate-Key Pair.
+    pub kp_uuid: String,
+}
+
+/// struct for passing parameters to the method [`crypto_certificatekeypairs_update`]
+#[derive(Clone, Debug)]
+pub struct CryptoCertificatekeypairsUpdateParams {
+    /// A UUID string identifying this Certificate-Key Pair.
+    pub kp_uuid: String,
+    pub certificate_key_pair_request: models::CertificateKeyPairRequest,
+}
+
+/// struct for passing parameters to the method [`crypto_certificatekeypairs_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct CryptoCertificatekeypairsUsedByListParams {
+    /// A UUID string identifying this Certificate-Key Pair.
+    pub kp_uuid: String,
+}
+
+/// struct for passing parameters to the method [`crypto_certificatekeypairs_view_certificate_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CryptoCertificatekeypairsViewCertificateRetrieveParams {
+    /// A UUID string identifying this Certificate-Key Pair.
+    pub kp_uuid: String,
+    pub download: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`crypto_certificatekeypairs_view_private_key_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CryptoCertificatekeypairsViewPrivateKeyRetrieveParams {
+    /// A UUID string identifying this Certificate-Key Pair.
+    pub kp_uuid: String,
+    pub download: Option<bool>,
+}
+
 /// struct for typed errors of method [`crypto_certificatekeypairs_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -106,11 +189,8 @@ pub enum CryptoCertificatekeypairsViewPrivateKeyRetrieveError {
 /// CertificateKeyPair Viewset
 pub async fn crypto_certificatekeypairs_create(
     configuration: &configuration::Configuration,
-    certificate_key_pair_request: models::CertificateKeyPairRequest,
+    params: CryptoCertificatekeypairsCreateParams,
 ) -> Result<models::CertificateKeyPair, Error<CryptoCertificatekeypairsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_certificate_key_pair_request = certificate_key_pair_request;
-
     let uri_str = format!("{}/crypto/certificatekeypairs/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -120,7 +200,7 @@ pub async fn crypto_certificatekeypairs_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_certificate_key_pair_request);
+    req_builder = req_builder.json(&params.certificate_key_pair_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -136,7 +216,7 @@ pub async fn crypto_certificatekeypairs_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CertificateKeyPair`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CertificateKeyPair`")))),
         }
@@ -154,15 +234,12 @@ pub async fn crypto_certificatekeypairs_create(
 /// CertificateKeyPair Viewset
 pub async fn crypto_certificatekeypairs_destroy(
     configuration: &configuration::Configuration,
-    kp_uuid: &str,
+    params: CryptoCertificatekeypairsDestroyParams,
 ) -> Result<(), Error<CryptoCertificatekeypairsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_kp_uuid = kp_uuid;
-
     let uri_str = format!(
         "{}/crypto/certificatekeypairs/{kp_uuid}/",
         configuration.base_path,
-        kp_uuid = crate::apis::urlencode(p_path_kp_uuid)
+        kp_uuid = crate::apis::urlencode(params.kp_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -194,11 +271,8 @@ pub async fn crypto_certificatekeypairs_destroy(
 /// Generate a new, self-signed certificate-key pair
 pub async fn crypto_certificatekeypairs_generate_create(
     configuration: &configuration::Configuration,
-    certificate_generation_request: models::CertificateGenerationRequest,
+    params: CryptoCertificatekeypairsGenerateCreateParams,
 ) -> Result<models::CertificateKeyPair, Error<CryptoCertificatekeypairsGenerateCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_certificate_generation_request = certificate_generation_request;
-
     let uri_str = format!("{}/crypto/certificatekeypairs/generate/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -208,7 +282,7 @@ pub async fn crypto_certificatekeypairs_generate_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_certificate_generation_request);
+    req_builder = req_builder.json(&params.certificate_generation_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -224,7 +298,7 @@ pub async fn crypto_certificatekeypairs_generate_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CertificateKeyPair`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CertificateKeyPair`")))),
         }
@@ -242,32 +316,15 @@ pub async fn crypto_certificatekeypairs_generate_create(
 /// CertificateKeyPair Viewset
 pub async fn crypto_certificatekeypairs_list(
     configuration: &configuration::Configuration,
-    has_key: Option<bool>,
-    key_type: Option<Vec<models::KeyTypeEnum>>,
-    managed: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: CryptoCertificatekeypairsListParams,
 ) -> Result<models::PaginatedCertificateKeyPairList, Error<CryptoCertificatekeypairsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_has_key = has_key;
-    let p_query_key_type = key_type;
-    let p_query_managed = managed;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/crypto/certificatekeypairs/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_has_key {
+    if let Some(ref param_value) = params.has_key {
         req_builder = req_builder.query(&[("has_key", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_key_type {
+    if let Some(ref param_value) = params.key_type {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -286,22 +343,22 @@ pub async fn crypto_certificatekeypairs_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = req_builder.query(&[("managed", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -325,7 +382,7 @@ pub async fn crypto_certificatekeypairs_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedCertificateKeyPairList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedCertificateKeyPairList`")))),
         }
@@ -343,17 +400,12 @@ pub async fn crypto_certificatekeypairs_list(
 /// CertificateKeyPair Viewset
 pub async fn crypto_certificatekeypairs_partial_update(
     configuration: &configuration::Configuration,
-    kp_uuid: &str,
-    patched_certificate_key_pair_request: Option<models::PatchedCertificateKeyPairRequest>,
+    params: CryptoCertificatekeypairsPartialUpdateParams,
 ) -> Result<models::CertificateKeyPair, Error<CryptoCertificatekeypairsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_kp_uuid = kp_uuid;
-    let p_body_patched_certificate_key_pair_request = patched_certificate_key_pair_request;
-
     let uri_str = format!(
         "{}/crypto/certificatekeypairs/{kp_uuid}/",
         configuration.base_path,
-        kp_uuid = crate::apis::urlencode(p_path_kp_uuid)
+        kp_uuid = crate::apis::urlencode(params.kp_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -363,7 +415,7 @@ pub async fn crypto_certificatekeypairs_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_certificate_key_pair_request);
+    req_builder = req_builder.json(&params.patched_certificate_key_pair_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -379,7 +431,7 @@ pub async fn crypto_certificatekeypairs_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CertificateKeyPair`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CertificateKeyPair`")))),
         }
@@ -397,15 +449,12 @@ pub async fn crypto_certificatekeypairs_partial_update(
 /// CertificateKeyPair Viewset
 pub async fn crypto_certificatekeypairs_retrieve(
     configuration: &configuration::Configuration,
-    kp_uuid: &str,
+    params: CryptoCertificatekeypairsRetrieveParams,
 ) -> Result<models::CertificateKeyPair, Error<CryptoCertificatekeypairsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_kp_uuid = kp_uuid;
-
     let uri_str = format!(
         "{}/crypto/certificatekeypairs/{kp_uuid}/",
         configuration.base_path,
-        kp_uuid = crate::apis::urlencode(p_path_kp_uuid)
+        kp_uuid = crate::apis::urlencode(params.kp_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -430,7 +479,7 @@ pub async fn crypto_certificatekeypairs_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CertificateKeyPair`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CertificateKeyPair`")))),
         }
@@ -448,17 +497,12 @@ pub async fn crypto_certificatekeypairs_retrieve(
 /// CertificateKeyPair Viewset
 pub async fn crypto_certificatekeypairs_update(
     configuration: &configuration::Configuration,
-    kp_uuid: &str,
-    certificate_key_pair_request: models::CertificateKeyPairRequest,
+    params: CryptoCertificatekeypairsUpdateParams,
 ) -> Result<models::CertificateKeyPair, Error<CryptoCertificatekeypairsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_kp_uuid = kp_uuid;
-    let p_body_certificate_key_pair_request = certificate_key_pair_request;
-
     let uri_str = format!(
         "{}/crypto/certificatekeypairs/{kp_uuid}/",
         configuration.base_path,
-        kp_uuid = crate::apis::urlencode(p_path_kp_uuid)
+        kp_uuid = crate::apis::urlencode(params.kp_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -468,7 +512,7 @@ pub async fn crypto_certificatekeypairs_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_certificate_key_pair_request);
+    req_builder = req_builder.json(&params.certificate_key_pair_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -484,7 +528,7 @@ pub async fn crypto_certificatekeypairs_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CertificateKeyPair`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CertificateKeyPair`")))),
         }
@@ -502,15 +546,12 @@ pub async fn crypto_certificatekeypairs_update(
 /// Get a list of all objects that use this object
 pub async fn crypto_certificatekeypairs_used_by_list(
     configuration: &configuration::Configuration,
-    kp_uuid: &str,
+    params: CryptoCertificatekeypairsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<CryptoCertificatekeypairsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_kp_uuid = kp_uuid;
-
     let uri_str = format!(
         "{}/crypto/certificatekeypairs/{kp_uuid}/used_by/",
         configuration.base_path,
-        kp_uuid = crate::apis::urlencode(p_path_kp_uuid)
+        kp_uuid = crate::apis::urlencode(params.kp_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -535,7 +576,7 @@ pub async fn crypto_certificatekeypairs_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -553,21 +594,16 @@ pub async fn crypto_certificatekeypairs_used_by_list(
 /// Return certificate-key pairs certificate and log access
 pub async fn crypto_certificatekeypairs_view_certificate_retrieve(
     configuration: &configuration::Configuration,
-    kp_uuid: &str,
-    download: Option<bool>,
+    params: CryptoCertificatekeypairsViewCertificateRetrieveParams,
 ) -> Result<models::CertificateData, Error<CryptoCertificatekeypairsViewCertificateRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_kp_uuid = kp_uuid;
-    let p_query_download = download;
-
     let uri_str = format!(
         "{}/crypto/certificatekeypairs/{kp_uuid}/view_certificate/",
         configuration.base_path,
-        kp_uuid = crate::apis::urlencode(p_path_kp_uuid)
+        kp_uuid = crate::apis::urlencode(params.kp_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_download {
+    if let Some(ref param_value) = params.download {
         req_builder = req_builder.query(&[("download", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -591,7 +627,9 @@ pub async fn crypto_certificatekeypairs_view_certificate_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::CertificateData`",
@@ -615,21 +653,16 @@ pub async fn crypto_certificatekeypairs_view_certificate_retrieve(
 /// Return certificate-key pairs private key and log access
 pub async fn crypto_certificatekeypairs_view_private_key_retrieve(
     configuration: &configuration::Configuration,
-    kp_uuid: &str,
-    download: Option<bool>,
+    params: CryptoCertificatekeypairsViewPrivateKeyRetrieveParams,
 ) -> Result<models::CertificateData, Error<CryptoCertificatekeypairsViewPrivateKeyRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_kp_uuid = kp_uuid;
-    let p_query_download = download;
-
     let uri_str = format!(
         "{}/crypto/certificatekeypairs/{kp_uuid}/view_private_key/",
         configuration.base_path,
-        kp_uuid = crate::apis::urlencode(p_path_kp_uuid)
+        kp_uuid = crate::apis::urlencode(params.kp_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_download {
+    if let Some(ref param_value) = params.download {
         req_builder = req_builder.query(&[("download", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -653,7 +686,9 @@ pub async fn crypto_certificatekeypairs_view_private_key_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::CertificateData`",

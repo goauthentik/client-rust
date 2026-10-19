@@ -13,6 +13,13 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`schema_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SchemaRetrieveParams {
+    pub format: Option<models::FormatEnum>,
+    pub lang: Option<models::LangEnum>,
+}
+
 /// struct for typed errors of method [`schema_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -25,20 +32,15 @@ pub enum SchemaRetrieveError {
 /// OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
 pub async fn schema_retrieve(
     configuration: &configuration::Configuration,
-    format: Option<models::FormatEnum>,
-    lang: Option<models::LangEnum>,
+    params: SchemaRetrieveParams,
 ) -> Result<std::collections::HashMap<String, serde_json::Value>, Error<SchemaRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_format = format;
-    let p_query_lang = lang;
-
     let uri_str = format!("{}/schema/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_format {
+    if let Some(ref param_value) = params.format {
         req_builder = req_builder.query(&[("format", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_lang {
+    if let Some(ref param_value) = params.lang {
         req_builder = req_builder.query(&[("lang", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -62,7 +64,7 @@ pub async fn schema_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `std::collections::HashMap&lt;String, serde_json::Value&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `std::collections::HashMap&lt;String, serde_json::Value&gt;`")))),
         }

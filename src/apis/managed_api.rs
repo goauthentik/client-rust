@@ -15,6 +15,87 @@ use serde::{de::Error as _, Deserialize, Serialize};
 use tokio::fs::File as TokioFile;
 use tokio_util::codec::{BytesCodec, FramedRead};
 
+/// struct for passing parameters to the method [`managed_blueprints_apply_create`]
+#[derive(Clone, Debug)]
+pub struct ManagedBlueprintsApplyCreateParams {
+    /// A UUID string identifying this Blueprint Instance.
+    pub instance_uuid: String,
+}
+
+/// struct for passing parameters to the method [`managed_blueprints_create`]
+#[derive(Clone, Debug)]
+pub struct ManagedBlueprintsCreateParams {
+    pub blueprint_instance_request: models::BlueprintInstanceRequest,
+}
+
+/// struct for passing parameters to the method [`managed_blueprints_destroy`]
+#[derive(Clone, Debug)]
+pub struct ManagedBlueprintsDestroyParams {
+    /// A UUID string identifying this Blueprint Instance.
+    pub instance_uuid: String,
+}
+
+/// struct for passing parameters to the method [`managed_blueprints_import_create`]
+#[derive(Clone, Debug)]
+pub struct ManagedBlueprintsImportCreateParams {
+    pub file: Option<std::path::PathBuf>,
+    pub path: Option<String>,
+    pub context: Option<String>,
+}
+
+/// struct for passing parameters to the method [`managed_blueprints_list`]
+#[derive(Clone, Debug)]
+pub struct ManagedBlueprintsListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub path: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`managed_blueprints_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ManagedBlueprintsPartialUpdateParams {
+    /// A UUID string identifying this Blueprint Instance.
+    pub instance_uuid: String,
+    pub patched_blueprint_instance_request: Option<models::PatchedBlueprintInstanceRequest>,
+}
+
+/// struct for passing parameters to the method [`managed_blueprints_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ManagedBlueprintsRetrieveParams {
+    /// A UUID string identifying this Blueprint Instance.
+    pub instance_uuid: String,
+}
+
+/// struct for passing parameters to the method [`managed_blueprints_update`]
+#[derive(Clone, Debug)]
+pub struct ManagedBlueprintsUpdateParams {
+    /// A UUID string identifying this Blueprint Instance.
+    pub instance_uuid: String,
+    pub blueprint_instance_request: models::BlueprintInstanceRequest,
+}
+
+/// struct for passing parameters to the method [`managed_blueprints_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ManagedBlueprintsUsedByListParams {
+    /// A UUID string identifying this Blueprint Instance.
+    pub instance_uuid: String,
+}
+
+/// struct for passing parameters to the method [`managed_blueprints_validate_create`]
+#[derive(Clone, Debug)]
+pub struct ManagedBlueprintsValidateCreateParams {
+    pub file: Option<std::path::PathBuf>,
+    pub path: Option<String>,
+    pub context: Option<String>,
+}
+
 /// struct for typed errors of method [`managed_blueprints_apply_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -117,15 +198,12 @@ pub enum ManagedBlueprintsValidateCreateError {
 /// Apply a blueprint
 pub async fn managed_blueprints_apply_create(
     configuration: &configuration::Configuration,
-    instance_uuid: &str,
+    params: ManagedBlueprintsApplyCreateParams,
 ) -> Result<models::BlueprintInstance, Error<ManagedBlueprintsApplyCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_instance_uuid = instance_uuid;
-
     let uri_str = format!(
         "{}/managed/blueprints/{instance_uuid}/apply/",
         configuration.base_path,
-        instance_uuid = crate::apis::urlencode(p_path_instance_uuid)
+        instance_uuid = crate::apis::urlencode(params.instance_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -150,7 +228,7 @@ pub async fn managed_blueprints_apply_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::BlueprintInstance`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::BlueprintInstance`")))),
         }
@@ -193,7 +271,7 @@ pub async fn managed_blueprints_available_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::BlueprintFile&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::BlueprintFile&gt;`")))),
         }
@@ -211,11 +289,8 @@ pub async fn managed_blueprints_available_list(
 /// Blueprint instances
 pub async fn managed_blueprints_create(
     configuration: &configuration::Configuration,
-    blueprint_instance_request: models::BlueprintInstanceRequest,
+    params: ManagedBlueprintsCreateParams,
 ) -> Result<models::BlueprintInstance, Error<ManagedBlueprintsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_blueprint_instance_request = blueprint_instance_request;
-
     let uri_str = format!("{}/managed/blueprints/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -225,7 +300,7 @@ pub async fn managed_blueprints_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_blueprint_instance_request);
+    req_builder = req_builder.json(&params.blueprint_instance_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -241,7 +316,7 @@ pub async fn managed_blueprints_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::BlueprintInstance`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::BlueprintInstance`")))),
         }
@@ -259,15 +334,12 @@ pub async fn managed_blueprints_create(
 /// Blueprint instances
 pub async fn managed_blueprints_destroy(
     configuration: &configuration::Configuration,
-    instance_uuid: &str,
+    params: ManagedBlueprintsDestroyParams,
 ) -> Result<(), Error<ManagedBlueprintsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_instance_uuid = instance_uuid;
-
     let uri_str = format!(
         "{}/managed/blueprints/{instance_uuid}/",
         configuration.base_path,
-        instance_uuid = crate::apis::urlencode(p_path_instance_uuid)
+        instance_uuid = crate::apis::urlencode(params.instance_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -299,15 +371,8 @@ pub async fn managed_blueprints_destroy(
 /// Import blueprint from .yaml file and apply it once, without creating an instance
 pub async fn managed_blueprints_import_create(
     configuration: &configuration::Configuration,
-    file: Option<std::path::PathBuf>,
-    path: Option<&str>,
-    context: Option<&str>,
+    params: ManagedBlueprintsImportCreateParams,
 ) -> Result<models::BlueprintImportResult, Error<ManagedBlueprintsImportCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_form_file = file;
-    let p_form_path = path;
-    let p_form_context = context;
-
     let uri_str = format!("{}/managed/blueprints/import/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -318,7 +383,7 @@ pub async fn managed_blueprints_import_create(
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
     let mut multipart_form = reqwest::multipart::Form::new();
-    if let Some(ref param_value) = p_form_file {
+    if let Some(ref param_value) = params.file {
         let file = TokioFile::open(param_value).await?;
         let stream = FramedRead::new(file, BytesCodec::new());
         let file_name = param_value
@@ -328,10 +393,10 @@ pub async fn managed_blueprints_import_create(
         let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
         multipart_form = multipart_form.part("file", file_part);
     }
-    if let Some(param_value) = p_form_path {
+    if let Some(param_value) = params.path {
         multipart_form = multipart_form.text("path", param_value.to_string());
     }
-    if let Some(param_value) = p_form_context {
+    if let Some(param_value) = params.context {
         multipart_form = multipart_form.text("context", param_value.to_string());
     }
     req_builder = req_builder.multipart(multipart_form);
@@ -350,7 +415,7 @@ pub async fn managed_blueprints_import_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::BlueprintImportResult`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::BlueprintImportResult`")))),
         }
@@ -368,40 +433,27 @@ pub async fn managed_blueprints_import_create(
 /// Blueprint instances
 pub async fn managed_blueprints_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    path: Option<&str>,
-    search: Option<&str>,
+    params: ManagedBlueprintsListParams,
 ) -> Result<models::PaginatedBlueprintInstanceList, Error<ManagedBlueprintsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_path = path;
-    let p_query_search = search;
-
     let uri_str = format!("{}/managed/blueprints/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_path {
+    if let Some(ref param_value) = params.path {
         req_builder = req_builder.query(&[("path", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -425,7 +477,7 @@ pub async fn managed_blueprints_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedBlueprintInstanceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedBlueprintInstanceList`")))),
         }
@@ -443,17 +495,12 @@ pub async fn managed_blueprints_list(
 /// Blueprint instances
 pub async fn managed_blueprints_partial_update(
     configuration: &configuration::Configuration,
-    instance_uuid: &str,
-    patched_blueprint_instance_request: Option<models::PatchedBlueprintInstanceRequest>,
+    params: ManagedBlueprintsPartialUpdateParams,
 ) -> Result<models::BlueprintInstance, Error<ManagedBlueprintsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_instance_uuid = instance_uuid;
-    let p_body_patched_blueprint_instance_request = patched_blueprint_instance_request;
-
     let uri_str = format!(
         "{}/managed/blueprints/{instance_uuid}/",
         configuration.base_path,
-        instance_uuid = crate::apis::urlencode(p_path_instance_uuid)
+        instance_uuid = crate::apis::urlencode(params.instance_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -463,7 +510,7 @@ pub async fn managed_blueprints_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_blueprint_instance_request);
+    req_builder = req_builder.json(&params.patched_blueprint_instance_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -479,7 +526,7 @@ pub async fn managed_blueprints_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::BlueprintInstance`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::BlueprintInstance`")))),
         }
@@ -497,15 +544,12 @@ pub async fn managed_blueprints_partial_update(
 /// Blueprint instances
 pub async fn managed_blueprints_retrieve(
     configuration: &configuration::Configuration,
-    instance_uuid: &str,
+    params: ManagedBlueprintsRetrieveParams,
 ) -> Result<models::BlueprintInstance, Error<ManagedBlueprintsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_instance_uuid = instance_uuid;
-
     let uri_str = format!(
         "{}/managed/blueprints/{instance_uuid}/",
         configuration.base_path,
-        instance_uuid = crate::apis::urlencode(p_path_instance_uuid)
+        instance_uuid = crate::apis::urlencode(params.instance_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -530,7 +574,7 @@ pub async fn managed_blueprints_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::BlueprintInstance`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::BlueprintInstance`")))),
         }
@@ -548,17 +592,12 @@ pub async fn managed_blueprints_retrieve(
 /// Blueprint instances
 pub async fn managed_blueprints_update(
     configuration: &configuration::Configuration,
-    instance_uuid: &str,
-    blueprint_instance_request: models::BlueprintInstanceRequest,
+    params: ManagedBlueprintsUpdateParams,
 ) -> Result<models::BlueprintInstance, Error<ManagedBlueprintsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_instance_uuid = instance_uuid;
-    let p_body_blueprint_instance_request = blueprint_instance_request;
-
     let uri_str = format!(
         "{}/managed/blueprints/{instance_uuid}/",
         configuration.base_path,
-        instance_uuid = crate::apis::urlencode(p_path_instance_uuid)
+        instance_uuid = crate::apis::urlencode(params.instance_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -568,7 +607,7 @@ pub async fn managed_blueprints_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_blueprint_instance_request);
+    req_builder = req_builder.json(&params.blueprint_instance_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -584,7 +623,7 @@ pub async fn managed_blueprints_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::BlueprintInstance`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::BlueprintInstance`")))),
         }
@@ -602,15 +641,12 @@ pub async fn managed_blueprints_update(
 /// Get a list of all objects that use this object
 pub async fn managed_blueprints_used_by_list(
     configuration: &configuration::Configuration,
-    instance_uuid: &str,
+    params: ManagedBlueprintsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ManagedBlueprintsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_instance_uuid = instance_uuid;
-
     let uri_str = format!(
         "{}/managed/blueprints/{instance_uuid}/used_by/",
         configuration.base_path,
-        instance_uuid = crate::apis::urlencode(p_path_instance_uuid)
+        instance_uuid = crate::apis::urlencode(params.instance_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -635,7 +671,7 @@ pub async fn managed_blueprints_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -653,15 +689,8 @@ pub async fn managed_blueprints_used_by_list(
 /// Validate blueprint from .yaml file and return any errors
 pub async fn managed_blueprints_validate_create(
     configuration: &configuration::Configuration,
-    file: Option<std::path::PathBuf>,
-    path: Option<&str>,
-    context: Option<&str>,
+    params: ManagedBlueprintsValidateCreateParams,
 ) -> Result<models::BlueprintImportResult, Error<ManagedBlueprintsValidateCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_form_file = file;
-    let p_form_path = path;
-    let p_form_context = context;
-
     let uri_str = format!("{}/managed/blueprints/validate/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -672,7 +701,7 @@ pub async fn managed_blueprints_validate_create(
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
     let mut multipart_form = reqwest::multipart::Form::new();
-    if let Some(ref param_value) = p_form_file {
+    if let Some(ref param_value) = params.file {
         let file = TokioFile::open(param_value).await?;
         let stream = FramedRead::new(file, BytesCodec::new());
         let file_name = param_value
@@ -682,10 +711,10 @@ pub async fn managed_blueprints_validate_create(
         let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
         multipart_form = multipart_form.part("file", file_part);
     }
-    if let Some(param_value) = p_form_path {
+    if let Some(param_value) = params.path {
         multipart_form = multipart_form.text("path", param_value.to_string());
     }
-    if let Some(param_value) = p_form_context {
+    if let Some(param_value) = params.context {
         multipart_form = multipart_form.text("context", param_value.to_string());
     }
     req_builder = req_builder.multipart(multipart_form);
@@ -704,7 +733,7 @@ pub async fn managed_blueprints_validate_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::BlueprintImportResult`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::BlueprintImportResult`")))),
         }

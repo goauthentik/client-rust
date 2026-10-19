@@ -13,6 +13,56 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`agents_agents_create`]
+#[derive(Clone, Debug)]
+pub struct AgentsAgentsCreateParams {
+    pub agent_create_request: Option<models::AgentCreateRequest>,
+}
+
+/// struct for passing parameters to the method [`agents_agents_destroy`]
+#[derive(Clone, Debug)]
+pub struct AgentsAgentsDestroyParams {
+    /// A unique integer value identifying this Agent.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`agents_agents_list`]
+#[derive(Clone, Debug)]
+pub struct AgentsAgentsListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub parent: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`agents_agents_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AgentsAgentsPartialUpdateParams {
+    /// A unique integer value identifying this Agent.
+    pub id: i32,
+    pub patched_agent_request: Option<models::PatchedAgentRequest>,
+}
+
+/// struct for passing parameters to the method [`agents_agents_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AgentsAgentsRetrieveParams {
+    /// A unique integer value identifying this Agent.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`agents_agents_update`]
+#[derive(Clone, Debug)]
+pub struct AgentsAgentsUpdateParams {
+    /// A unique integer value identifying this Agent.
+    pub id: i32,
+    pub agent_request: models::AgentRequest,
+}
+
 /// struct for typed errors of method [`agents_agents_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -70,11 +120,8 @@ pub enum AgentsAgentsUpdateError {
 /// Admin-provisioned delegate identities. An admin creates a Agent for a given parent user, then grants it access the same way as any other User -- ordinary PolicyBindings pointed at whatever it needs.
 pub async fn agents_agents_create(
     configuration: &configuration::Configuration,
-    agent_create_request: Option<models::AgentCreateRequest>,
+    params: AgentsAgentsCreateParams,
 ) -> Result<models::AgentCreated, Error<AgentsAgentsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_agent_create_request = agent_create_request;
-
     let uri_str = format!("{}/agents/agents/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -84,7 +131,7 @@ pub async fn agents_agents_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_agent_create_request);
+    req_builder = req_builder.json(&params.agent_create_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -100,7 +147,9 @@ pub async fn agents_agents_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::AgentCreated`",
@@ -124,12 +173,9 @@ pub async fn agents_agents_create(
 /// Admin-provisioned delegate identities. An admin creates a Agent for a given parent user, then grants it access the same way as any other User -- ordinary PolicyBindings pointed at whatever it needs.
 pub async fn agents_agents_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AgentsAgentsDestroyParams,
 ) -> Result<(), Error<AgentsAgentsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/agents/agents/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/agents/agents/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -160,35 +206,24 @@ pub async fn agents_agents_destroy(
 /// Admin-provisioned delegate identities. An admin creates a Agent for a given parent user, then grants it access the same way as any other User -- ordinary PolicyBindings pointed at whatever it needs.
 pub async fn agents_agents_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    parent: Option<i32>,
-    search: Option<&str>,
+    params: AgentsAgentsListParams,
 ) -> Result<models::PaginatedAgentList, Error<AgentsAgentsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_parent = parent;
-    let p_query_search = search;
-
     let uri_str = format!("{}/agents/agents/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_parent {
+    if let Some(ref param_value) = params.parent {
         req_builder = req_builder.query(&[("parent", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -212,7 +247,7 @@ pub async fn agents_agents_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAgentList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAgentList`")))),
         }
@@ -230,14 +265,9 @@ pub async fn agents_agents_list(
 /// Admin-provisioned delegate identities. An admin creates a Agent for a given parent user, then grants it access the same way as any other User -- ordinary PolicyBindings pointed at whatever it needs.
 pub async fn agents_agents_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_agent_request: Option<models::PatchedAgentRequest>,
+    params: AgentsAgentsPartialUpdateParams,
 ) -> Result<models::Agent, Error<AgentsAgentsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_agent_request = patched_agent_request;
-
-    let uri_str = format!("{}/agents/agents/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/agents/agents/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -246,7 +276,7 @@ pub async fn agents_agents_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_agent_request);
+    req_builder = req_builder.json(&params.patched_agent_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -262,7 +292,9 @@ pub async fn agents_agents_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Agent`",
@@ -288,12 +320,9 @@ pub async fn agents_agents_partial_update(
 /// Admin-provisioned delegate identities. An admin creates a Agent for a given parent user, then grants it access the same way as any other User -- ordinary PolicyBindings pointed at whatever it needs.
 pub async fn agents_agents_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AgentsAgentsRetrieveParams,
 ) -> Result<models::Agent, Error<AgentsAgentsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/agents/agents/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/agents/agents/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -317,7 +346,9 @@ pub async fn agents_agents_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Agent`",
@@ -343,14 +374,9 @@ pub async fn agents_agents_retrieve(
 /// Admin-provisioned delegate identities. An admin creates a Agent for a given parent user, then grants it access the same way as any other User -- ordinary PolicyBindings pointed at whatever it needs.
 pub async fn agents_agents_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    agent_request: models::AgentRequest,
+    params: AgentsAgentsUpdateParams,
 ) -> Result<models::Agent, Error<AgentsAgentsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_agent_request = agent_request;
-
-    let uri_str = format!("{}/agents/agents/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/agents/agents/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -359,7 +385,7 @@ pub async fn agents_agents_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_agent_request);
+    req_builder = req_builder.json(&params.agent_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -375,7 +401,9 @@ pub async fn agents_agents_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Agent`",

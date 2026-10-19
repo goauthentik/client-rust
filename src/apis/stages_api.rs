@@ -13,6 +13,1817 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`stages_account_lockdown_create`]
+#[derive(Clone, Debug)]
+pub struct StagesAccountLockdownCreateParams {
+    pub account_lockdown_stage_request: models::AccountLockdownStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_account_lockdown_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesAccountLockdownDestroyParams {
+    /// A UUID string identifying this Account Lockdown Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_account_lockdown_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAccountLockdownListParams {
+    pub deactivate_user: Option<bool>,
+    pub delete_sessions: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub revoke_tokens: Option<bool>,
+    /// A search term.
+    pub search: Option<String>,
+    pub self_service_completion_flow: Option<String>,
+    pub set_unusable_password: Option<bool>,
+    pub stage_uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_account_lockdown_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAccountLockdownPartialUpdateParams {
+    /// A UUID string identifying this Account Lockdown Stage.
+    pub stage_uuid: String,
+    pub patched_account_lockdown_stage_request: Option<models::PatchedAccountLockdownStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_account_lockdown_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesAccountLockdownRetrieveParams {
+    /// A UUID string identifying this Account Lockdown Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_account_lockdown_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAccountLockdownUpdateParams {
+    /// A UUID string identifying this Account Lockdown Stage.
+    pub stage_uuid: String,
+    pub account_lockdown_stage_request: models::AccountLockdownStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_account_lockdown_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAccountLockdownUsedByListParams {
+    /// A UUID string identifying this Account Lockdown Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_all_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesAllDestroyParams {
+    /// A UUID string identifying this stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_all_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAllListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_all_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesAllRetrieveParams {
+    /// A UUID string identifying this stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_all_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAllUsedByListParams {
+    /// A UUID string identifying this stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_duo_create`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorDuoCreateParams {
+    pub authenticator_duo_stage_request: models::AuthenticatorDuoStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_duo_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorDuoDestroyParams {
+    /// A UUID string identifying this Duo Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_duo_enrollment_status_create`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorDuoEnrollmentStatusCreateParams {
+    /// A UUID string identifying this Duo Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_duo_import_device_manual_create`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorDuoImportDeviceManualCreateParams {
+    /// A UUID string identifying this Duo Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub authenticator_duo_stage_manual_device_import_request: models::AuthenticatorDuoStageManualDeviceImportRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_duo_import_devices_automatic_create`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorDuoImportDevicesAutomaticCreateParams {
+    /// A UUID string identifying this Duo Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_duo_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorDuoListParams {
+    pub api_hostname: Option<String>,
+    pub client_id: Option<String>,
+    pub configure_flow: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_duo_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorDuoPartialUpdateParams {
+    /// A UUID string identifying this Duo Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub patched_authenticator_duo_stage_request: Option<models::PatchedAuthenticatorDuoStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_duo_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorDuoRetrieveParams {
+    /// A UUID string identifying this Duo Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_duo_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorDuoUpdateParams {
+    /// A UUID string identifying this Duo Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub authenticator_duo_stage_request: models::AuthenticatorDuoStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_duo_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorDuoUsedByListParams {
+    /// A UUID string identifying this Duo Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_email_create`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEmailCreateParams {
+    pub authenticator_email_stage_request: models::AuthenticatorEmailStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_email_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEmailDestroyParams {
+    /// A UUID string identifying this Email Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_email_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEmailListParams {
+    pub configure_flow: Option<String>,
+    pub friendly_name: Option<String>,
+    pub from_address: Option<String>,
+    pub host: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub password: Option<String>,
+    pub port: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+    pub subject: Option<String>,
+    pub template: Option<String>,
+    pub timeout: Option<i32>,
+    pub token_expiry: Option<String>,
+    pub use_global_settings: Option<bool>,
+    pub use_ssl: Option<bool>,
+    pub use_tls: Option<bool>,
+    pub username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_email_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEmailPartialUpdateParams {
+    /// A UUID string identifying this Email Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub patched_authenticator_email_stage_request: Option<models::PatchedAuthenticatorEmailStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_email_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEmailRetrieveParams {
+    /// A UUID string identifying this Email Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_email_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEmailUpdateParams {
+    /// A UUID string identifying this Email Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub authenticator_email_stage_request: models::AuthenticatorEmailStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_email_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEmailUsedByListParams {
+    /// A UUID string identifying this Email Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_endpoint_gdtc_create`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEndpointGdtcCreateParams {
+    pub authenticator_endpoint_gdtc_stage_request: models::AuthenticatorEndpointGdtcStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_endpoint_gdtc_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEndpointGdtcDestroyParams {
+    /// A UUID string identifying this Endpoint Authenticator Google Device Trust Connector Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_endpoint_gdtc_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEndpointGdtcListParams {
+    pub configure_flow: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_endpoint_gdtc_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEndpointGdtcPartialUpdateParams {
+    /// A UUID string identifying this Endpoint Authenticator Google Device Trust Connector Stage.
+    pub stage_uuid: String,
+    pub patched_authenticator_endpoint_gdtc_stage_request: Option<models::PatchedAuthenticatorEndpointGdtcStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_endpoint_gdtc_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEndpointGdtcRetrieveParams {
+    /// A UUID string identifying this Endpoint Authenticator Google Device Trust Connector Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_endpoint_gdtc_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEndpointGdtcUpdateParams {
+    /// A UUID string identifying this Endpoint Authenticator Google Device Trust Connector Stage.
+    pub stage_uuid: String,
+    pub authenticator_endpoint_gdtc_stage_request: models::AuthenticatorEndpointGdtcStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_endpoint_gdtc_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorEndpointGdtcUsedByListParams {
+    /// A UUID string identifying this Endpoint Authenticator Google Device Trust Connector Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_sms_create`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorSmsCreateParams {
+    pub authenticator_sms_stage_request: models::AuthenticatorSmsStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_sms_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorSmsDestroyParams {
+    /// A UUID string identifying this SMS Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_sms_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorSmsListParams {
+    pub account_sid: Option<String>,
+    pub auth: Option<String>,
+    pub auth_password: Option<String>,
+    pub auth_type: Option<models::AuthTypeEnum>,
+    pub configure_flow: Option<String>,
+    pub friendly_name: Option<String>,
+    pub from_number: Option<String>,
+    pub mapping: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub provider: Option<models::ProviderEnum>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+    pub verify_only: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_sms_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorSmsPartialUpdateParams {
+    /// A UUID string identifying this SMS Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub patched_authenticator_sms_stage_request: Option<models::PatchedAuthenticatorSmsStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_sms_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorSmsRetrieveParams {
+    /// A UUID string identifying this SMS Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_sms_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorSmsUpdateParams {
+    /// A UUID string identifying this SMS Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub authenticator_sms_stage_request: models::AuthenticatorSmsStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_sms_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorSmsUsedByListParams {
+    /// A UUID string identifying this SMS Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_static_create`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorStaticCreateParams {
+    pub authenticator_static_stage_request: models::AuthenticatorStaticStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_static_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorStaticDestroyParams {
+    /// A UUID string identifying this Static Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_static_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorStaticListParams {
+    pub configure_flow: Option<String>,
+    pub friendly_name: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+    pub token_count: Option<i32>,
+    pub token_length: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_static_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorStaticPartialUpdateParams {
+    /// A UUID string identifying this Static Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub patched_authenticator_static_stage_request: Option<models::PatchedAuthenticatorStaticStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_static_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorStaticRetrieveParams {
+    /// A UUID string identifying this Static Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_static_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorStaticUpdateParams {
+    /// A UUID string identifying this Static Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub authenticator_static_stage_request: models::AuthenticatorStaticStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_static_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorStaticUsedByListParams {
+    /// A UUID string identifying this Static Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_totp_create`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorTotpCreateParams {
+    pub authenticator_totp_stage_request: models::AuthenticatorTotpStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_totp_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorTotpDestroyParams {
+    /// A UUID string identifying this TOTP Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_totp_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorTotpListParams {
+    pub configure_flow: Option<String>,
+    pub digits: Option<models::DigitsEnum>,
+    pub friendly_name: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_totp_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorTotpPartialUpdateParams {
+    /// A UUID string identifying this TOTP Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub patched_authenticator_totp_stage_request: Option<models::PatchedAuthenticatorTotpStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_totp_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorTotpRetrieveParams {
+    /// A UUID string identifying this TOTP Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_totp_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorTotpUpdateParams {
+    /// A UUID string identifying this TOTP Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub authenticator_totp_stage_request: models::AuthenticatorTotpStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_totp_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorTotpUsedByListParams {
+    /// A UUID string identifying this TOTP Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_validate_create`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorValidateCreateParams {
+    pub authenticator_validate_stage_request: models::AuthenticatorValidateStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_validate_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorValidateDestroyParams {
+    /// A UUID string identifying this Authenticator Validation Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_validate_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorValidateListParams {
+    pub configuration_stages: Option<Vec<uuid::Uuid>>,
+    pub name: Option<String>,
+    pub not_configured_action: Option<models::NotConfiguredActionEnum>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_validate_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorValidatePartialUpdateParams {
+    /// A UUID string identifying this Authenticator Validation Stage.
+    pub stage_uuid: String,
+    pub patched_authenticator_validate_stage_request: Option<models::PatchedAuthenticatorValidateStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_validate_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorValidateRetrieveParams {
+    /// A UUID string identifying this Authenticator Validation Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_validate_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorValidateUpdateParams {
+    /// A UUID string identifying this Authenticator Validation Stage.
+    pub stage_uuid: String,
+    pub authenticator_validate_stage_request: models::AuthenticatorValidateStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_validate_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorValidateUsedByListParams {
+    /// A UUID string identifying this Authenticator Validation Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_webauthn_create`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorWebauthnCreateParams {
+    pub authenticator_web_authn_stage_request: models::AuthenticatorWebAuthnStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_webauthn_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorWebauthnDestroyParams {
+    /// A UUID string identifying this WebAuthn Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_webauthn_device_types_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorWebauthnDeviceTypesListParams {
+    pub aaguid: Option<String>,
+    pub description: Option<String>,
+    pub icon: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_webauthn_device_types_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorWebauthnDeviceTypesRetrieveParams {
+    /// A UUID string identifying this WebAuthn Device type.
+    pub aaguid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_webauthn_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorWebauthnListParams {
+    pub authenticator_attachment: Option<String>,
+    pub configure_flow: Option<String>,
+    pub device_type_restrictions: Option<Vec<uuid::Uuid>>,
+    pub max_attempts: Option<i32>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub resident_key_requirement: Option<models::UserVerificationEnum>,
+    /// A search term.
+    pub search: Option<String>,
+    pub user_verification: Option<models::UserVerificationEnum>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_webauthn_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorWebauthnPartialUpdateParams {
+    /// A UUID string identifying this WebAuthn Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub patched_authenticator_web_authn_stage_request: Option<models::PatchedAuthenticatorWebAuthnStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_webauthn_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorWebauthnRetrieveParams {
+    /// A UUID string identifying this WebAuthn Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_webauthn_update`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorWebauthnUpdateParams {
+    /// A UUID string identifying this WebAuthn Authenticator Setup Stage.
+    pub stage_uuid: String,
+    pub authenticator_web_authn_stage_request: models::AuthenticatorWebAuthnStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_authenticator_webauthn_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesAuthenticatorWebauthnUsedByListParams {
+    /// A UUID string identifying this WebAuthn Authenticator Setup Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_captcha_create`]
+#[derive(Clone, Debug)]
+pub struct StagesCaptchaCreateParams {
+    pub captcha_stage_request: models::CaptchaStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_captcha_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesCaptchaDestroyParams {
+    /// A UUID string identifying this Captcha Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_captcha_list`]
+#[derive(Clone, Debug)]
+pub struct StagesCaptchaListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub public_key: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_captcha_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesCaptchaPartialUpdateParams {
+    /// A UUID string identifying this Captcha Stage.
+    pub stage_uuid: String,
+    pub patched_captcha_stage_request: Option<models::PatchedCaptchaStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_captcha_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesCaptchaRetrieveParams {
+    /// A UUID string identifying this Captcha Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_captcha_update`]
+#[derive(Clone, Debug)]
+pub struct StagesCaptchaUpdateParams {
+    /// A UUID string identifying this Captcha Stage.
+    pub stage_uuid: String,
+    pub captcha_stage_request: models::CaptchaStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_captcha_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesCaptchaUsedByListParams {
+    /// A UUID string identifying this Captcha Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_consent_create`]
+#[derive(Clone, Debug)]
+pub struct StagesConsentCreateParams {
+    pub consent_stage_request: models::ConsentStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_consent_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesConsentDestroyParams {
+    /// A UUID string identifying this Consent Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_consent_list`]
+#[derive(Clone, Debug)]
+pub struct StagesConsentListParams {
+    pub consent_expire_in: Option<String>,
+    pub mode: Option<models::ConsentModeEnum>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_consent_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesConsentPartialUpdateParams {
+    /// A UUID string identifying this Consent Stage.
+    pub stage_uuid: String,
+    pub patched_consent_stage_request: Option<models::PatchedConsentStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_consent_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesConsentRetrieveParams {
+    /// A UUID string identifying this Consent Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_consent_update`]
+#[derive(Clone, Debug)]
+pub struct StagesConsentUpdateParams {
+    /// A UUID string identifying this Consent Stage.
+    pub stage_uuid: String,
+    pub consent_stage_request: models::ConsentStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_consent_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesConsentUsedByListParams {
+    /// A UUID string identifying this Consent Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_deny_create`]
+#[derive(Clone, Debug)]
+pub struct StagesDenyCreateParams {
+    pub deny_stage_request: models::DenyStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_deny_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesDenyDestroyParams {
+    /// A UUID string identifying this Deny Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_deny_list`]
+#[derive(Clone, Debug)]
+pub struct StagesDenyListParams {
+    pub deny_message: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_deny_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesDenyPartialUpdateParams {
+    /// A UUID string identifying this Deny Stage.
+    pub stage_uuid: String,
+    pub patched_deny_stage_request: Option<models::PatchedDenyStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_deny_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesDenyRetrieveParams {
+    /// A UUID string identifying this Deny Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_deny_update`]
+#[derive(Clone, Debug)]
+pub struct StagesDenyUpdateParams {
+    /// A UUID string identifying this Deny Stage.
+    pub stage_uuid: String,
+    pub deny_stage_request: models::DenyStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_deny_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesDenyUsedByListParams {
+    /// A UUID string identifying this Deny Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_dummy_create`]
+#[derive(Clone, Debug)]
+pub struct StagesDummyCreateParams {
+    pub dummy_stage_request: models::DummyStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_dummy_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesDummyDestroyParams {
+    /// A UUID string identifying this Dummy Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_dummy_list`]
+#[derive(Clone, Debug)]
+pub struct StagesDummyListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+    pub throw_error: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`stages_dummy_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesDummyPartialUpdateParams {
+    /// A UUID string identifying this Dummy Stage.
+    pub stage_uuid: String,
+    pub patched_dummy_stage_request: Option<models::PatchedDummyStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_dummy_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesDummyRetrieveParams {
+    /// A UUID string identifying this Dummy Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_dummy_update`]
+#[derive(Clone, Debug)]
+pub struct StagesDummyUpdateParams {
+    /// A UUID string identifying this Dummy Stage.
+    pub stage_uuid: String,
+    pub dummy_stage_request: models::DummyStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_dummy_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesDummyUsedByListParams {
+    /// A UUID string identifying this Dummy Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_email_create`]
+#[derive(Clone, Debug)]
+pub struct StagesEmailCreateParams {
+    pub email_stage_request: models::EmailStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_email_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesEmailDestroyParams {
+    /// A UUID string identifying this Email Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_email_list`]
+#[derive(Clone, Debug)]
+pub struct StagesEmailListParams {
+    pub activate_user_on_success: Option<bool>,
+    pub from_address: Option<String>,
+    pub host: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub port: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub subject: Option<String>,
+    pub template: Option<String>,
+    pub timeout: Option<i32>,
+    pub token_expiry: Option<String>,
+    pub use_global_settings: Option<bool>,
+    pub use_ssl: Option<bool>,
+    pub use_tls: Option<bool>,
+    pub username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_email_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesEmailPartialUpdateParams {
+    /// A UUID string identifying this Email Stage.
+    pub stage_uuid: String,
+    pub patched_email_stage_request: Option<models::PatchedEmailStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_email_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesEmailRetrieveParams {
+    /// A UUID string identifying this Email Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_email_update`]
+#[derive(Clone, Debug)]
+pub struct StagesEmailUpdateParams {
+    /// A UUID string identifying this Email Stage.
+    pub stage_uuid: String,
+    pub email_stage_request: models::EmailStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_email_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesEmailUsedByListParams {
+    /// A UUID string identifying this Email Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_endpoints_create`]
+#[derive(Clone, Debug)]
+pub struct StagesEndpointsCreateParams {
+    pub endpoint_stage_request: models::EndpointStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_endpoints_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesEndpointsDestroyParams {
+    /// A UUID string identifying this Endpoint Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_endpoints_list`]
+#[derive(Clone, Debug)]
+pub struct StagesEndpointsListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_endpoints_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesEndpointsPartialUpdateParams {
+    /// A UUID string identifying this Endpoint Stage.
+    pub stage_uuid: String,
+    pub patched_endpoint_stage_request: Option<models::PatchedEndpointStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_endpoints_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesEndpointsRetrieveParams {
+    /// A UUID string identifying this Endpoint Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_endpoints_update`]
+#[derive(Clone, Debug)]
+pub struct StagesEndpointsUpdateParams {
+    /// A UUID string identifying this Endpoint Stage.
+    pub stage_uuid: String,
+    pub endpoint_stage_request: models::EndpointStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_endpoints_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesEndpointsUsedByListParams {
+    /// A UUID string identifying this Endpoint Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_identification_create`]
+#[derive(Clone, Debug)]
+pub struct StagesIdentificationCreateParams {
+    pub identification_stage_request: models::IdentificationStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_identification_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesIdentificationDestroyParams {
+    /// A UUID string identifying this Identification Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_identification_list`]
+#[derive(Clone, Debug)]
+pub struct StagesIdentificationListParams {
+    pub captcha_stage: Option<String>,
+    pub case_insensitive_matching: Option<bool>,
+    pub enrollment_flow: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub password_stage: Option<String>,
+    pub passwordless_flow: Option<String>,
+    pub recovery_flow: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub show_matched_user: Option<bool>,
+    pub show_source_labels: Option<bool>,
+    pub webauthn_stage: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_identification_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesIdentificationPartialUpdateParams {
+    /// A UUID string identifying this Identification Stage.
+    pub stage_uuid: String,
+    pub patched_identification_stage_request: Option<models::PatchedIdentificationStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_identification_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesIdentificationRetrieveParams {
+    /// A UUID string identifying this Identification Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_identification_update`]
+#[derive(Clone, Debug)]
+pub struct StagesIdentificationUpdateParams {
+    /// A UUID string identifying this Identification Stage.
+    pub stage_uuid: String,
+    pub identification_stage_request: models::IdentificationStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_identification_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesIdentificationUsedByListParams {
+    /// A UUID string identifying this Identification Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_invitations_create`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationInvitationsCreateParams {
+    pub invitation_request: models::InvitationRequest,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_invitations_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationInvitationsDestroyParams {
+    /// A UUID string identifying this Invitation.
+    pub invite_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_invitations_list`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationInvitationsListParams {
+    pub created_by__username: Option<String>,
+    pub expires: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub flow__slug: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_invitations_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationInvitationsPartialUpdateParams {
+    /// A UUID string identifying this Invitation.
+    pub invite_uuid: String,
+    pub patched_invitation_request: Option<models::PatchedInvitationRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_invitations_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationInvitationsRetrieveParams {
+    /// A UUID string identifying this Invitation.
+    pub invite_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_invitations_send_email_create`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationInvitationsSendEmailCreateParams {
+    /// A UUID string identifying this Invitation.
+    pub invite_uuid: String,
+    pub invitation_send_email_request: models::InvitationSendEmailRequest,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_invitations_update`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationInvitationsUpdateParams {
+    /// A UUID string identifying this Invitation.
+    pub invite_uuid: String,
+    pub invitation_request: models::InvitationRequest,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_invitations_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationInvitationsUsedByListParams {
+    /// A UUID string identifying this Invitation.
+    pub invite_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_stages_create`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationStagesCreateParams {
+    pub invitation_stage_request: models::InvitationStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_stages_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationStagesDestroyParams {
+    /// A UUID string identifying this Invitation Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_stages_list`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationStagesListParams {
+    pub continue_flow_without_invitation: Option<bool>,
+    pub name: Option<String>,
+    pub no_flows: Option<bool>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_stages_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationStagesPartialUpdateParams {
+    /// A UUID string identifying this Invitation Stage.
+    pub stage_uuid: String,
+    pub patched_invitation_stage_request: Option<models::PatchedInvitationStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_stages_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationStagesRetrieveParams {
+    /// A UUID string identifying this Invitation Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_stages_update`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationStagesUpdateParams {
+    /// A UUID string identifying this Invitation Stage.
+    pub stage_uuid: String,
+    pub invitation_stage_request: models::InvitationStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_invitation_stages_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesInvitationStagesUsedByListParams {
+    /// A UUID string identifying this Invitation Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_mtls_create`]
+#[derive(Clone, Debug)]
+pub struct StagesMtlsCreateParams {
+    pub mutual_tls_stage_request: models::MutualTlsStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_mtls_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesMtlsDestroyParams {
+    /// A UUID string identifying this Mutual TLS Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_mtls_list`]
+#[derive(Clone, Debug)]
+pub struct StagesMtlsListParams {
+    pub cert_attribute: Option<models::CertAttributeEnum>,
+    pub certificate_authorities: Option<Vec<uuid::Uuid>>,
+    pub mode: Option<models::StageModeEnum>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+    pub user_attribute: Option<models::UserAttributeEnum>,
+}
+
+/// struct for passing parameters to the method [`stages_mtls_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesMtlsPartialUpdateParams {
+    /// A UUID string identifying this Mutual TLS Stage.
+    pub stage_uuid: String,
+    pub patched_mutual_tls_stage_request: Option<models::PatchedMutualTlsStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_mtls_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesMtlsRetrieveParams {
+    /// A UUID string identifying this Mutual TLS Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_mtls_update`]
+#[derive(Clone, Debug)]
+pub struct StagesMtlsUpdateParams {
+    /// A UUID string identifying this Mutual TLS Stage.
+    pub stage_uuid: String,
+    pub mutual_tls_stage_request: models::MutualTlsStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_mtls_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesMtlsUsedByListParams {
+    /// A UUID string identifying this Mutual TLS Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_password_create`]
+#[derive(Clone, Debug)]
+pub struct StagesPasswordCreateParams {
+    pub password_stage_request: models::PasswordStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_password_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesPasswordDestroyParams {
+    /// A UUID string identifying this Password Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_password_list`]
+#[derive(Clone, Debug)]
+pub struct StagesPasswordListParams {
+    pub allow_show_password: Option<bool>,
+    pub configure_flow: Option<String>,
+    pub failed_attempts_before_cancel: Option<i32>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_password_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesPasswordPartialUpdateParams {
+    /// A UUID string identifying this Password Stage.
+    pub stage_uuid: String,
+    pub patched_password_stage_request: Option<models::PatchedPasswordStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_password_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesPasswordRetrieveParams {
+    /// A UUID string identifying this Password Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_password_update`]
+#[derive(Clone, Debug)]
+pub struct StagesPasswordUpdateParams {
+    /// A UUID string identifying this Password Stage.
+    pub stage_uuid: String,
+    pub password_stage_request: models::PasswordStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_password_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesPasswordUsedByListParams {
+    /// A UUID string identifying this Password Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_prompts_create`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptPromptsCreateParams {
+    pub prompt_request: models::PromptRequest,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_prompts_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptPromptsDestroyParams {
+    /// A UUID string identifying this Prompt.
+    pub prompt_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_prompts_list`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptPromptsListParams {
+    pub field_key: Option<String>,
+    pub label: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub placeholder: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub r#type: Option<models::PromptTypeEnum>,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_prompts_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptPromptsPartialUpdateParams {
+    /// A UUID string identifying this Prompt.
+    pub prompt_uuid: String,
+    pub patched_prompt_request: Option<models::PatchedPromptRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_prompts_preview_create`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptPromptsPreviewCreateParams {
+    pub prompt_request: models::PromptRequest,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_prompts_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptPromptsRetrieveParams {
+    /// A UUID string identifying this Prompt.
+    pub prompt_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_prompts_update`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptPromptsUpdateParams {
+    /// A UUID string identifying this Prompt.
+    pub prompt_uuid: String,
+    pub prompt_request: models::PromptRequest,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_prompts_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptPromptsUsedByListParams {
+    /// A UUID string identifying this Prompt.
+    pub prompt_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_stages_create`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptStagesCreateParams {
+    pub prompt_stage_request: models::PromptStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_stages_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptStagesDestroyParams {
+    /// A UUID string identifying this Prompt Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_stages_list`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptStagesListParams {
+    pub fields: Option<Vec<uuid::Uuid>>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+    pub validation_policies: Option<Vec<uuid::Uuid>>,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_stages_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptStagesPartialUpdateParams {
+    /// A UUID string identifying this Prompt Stage.
+    pub stage_uuid: String,
+    pub patched_prompt_stage_request: Option<models::PatchedPromptStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_stages_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptStagesRetrieveParams {
+    /// A UUID string identifying this Prompt Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_stages_update`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptStagesUpdateParams {
+    /// A UUID string identifying this Prompt Stage.
+    pub stage_uuid: String,
+    pub prompt_stage_request: models::PromptStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_prompt_stages_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesPromptStagesUsedByListParams {
+    /// A UUID string identifying this Prompt Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_redirect_create`]
+#[derive(Clone, Debug)]
+pub struct StagesRedirectCreateParams {
+    pub redirect_stage_request: models::RedirectStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_redirect_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesRedirectDestroyParams {
+    /// A UUID string identifying this Redirect Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_redirect_list`]
+#[derive(Clone, Debug)]
+pub struct StagesRedirectListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_redirect_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesRedirectPartialUpdateParams {
+    /// A UUID string identifying this Redirect Stage.
+    pub stage_uuid: String,
+    pub patched_redirect_stage_request: Option<models::PatchedRedirectStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_redirect_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesRedirectRetrieveParams {
+    /// A UUID string identifying this Redirect Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_redirect_update`]
+#[derive(Clone, Debug)]
+pub struct StagesRedirectUpdateParams {
+    /// A UUID string identifying this Redirect Stage.
+    pub stage_uuid: String,
+    pub redirect_stage_request: models::RedirectStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_redirect_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesRedirectUsedByListParams {
+    /// A UUID string identifying this Redirect Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_source_create`]
+#[derive(Clone, Debug)]
+pub struct StagesSourceCreateParams {
+    pub source_stage_request: models::SourceStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_source_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesSourceDestroyParams {
+    /// A UUID string identifying this Source Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_source_list`]
+#[derive(Clone, Debug)]
+pub struct StagesSourceListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub resume_timeout: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source: Option<String>,
+    pub stage_uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_source_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesSourcePartialUpdateParams {
+    /// A UUID string identifying this Source Stage.
+    pub stage_uuid: String,
+    pub patched_source_stage_request: Option<models::PatchedSourceStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_source_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesSourceRetrieveParams {
+    /// A UUID string identifying this Source Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_source_update`]
+#[derive(Clone, Debug)]
+pub struct StagesSourceUpdateParams {
+    /// A UUID string identifying this Source Stage.
+    pub stage_uuid: String,
+    pub source_stage_request: models::SourceStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_source_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesSourceUsedByListParams {
+    /// A UUID string identifying this Source Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_user_delete_create`]
+#[derive(Clone, Debug)]
+pub struct StagesUserDeleteCreateParams {
+    pub user_delete_stage_request: models::UserDeleteStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_user_delete_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesUserDeleteDestroyParams {
+    /// A UUID string identifying this User Delete Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_user_delete_list`]
+#[derive(Clone, Debug)]
+pub struct StagesUserDeleteListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_user_delete_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesUserDeletePartialUpdateParams {
+    /// A UUID string identifying this User Delete Stage.
+    pub stage_uuid: String,
+    pub patched_user_delete_stage_request: Option<models::PatchedUserDeleteStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_user_delete_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesUserDeleteRetrieveParams {
+    /// A UUID string identifying this User Delete Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_user_delete_update`]
+#[derive(Clone, Debug)]
+pub struct StagesUserDeleteUpdateParams {
+    /// A UUID string identifying this User Delete Stage.
+    pub stage_uuid: String,
+    pub user_delete_stage_request: models::UserDeleteStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_user_delete_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesUserDeleteUsedByListParams {
+    /// A UUID string identifying this User Delete Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_user_login_create`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLoginCreateParams {
+    pub user_login_stage_request: models::UserLoginStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_user_login_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLoginDestroyParams {
+    /// A UUID string identifying this User Login Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_user_login_list`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLoginListParams {
+    pub geoip_binding: Option<String>,
+    pub name: Option<String>,
+    pub network_binding: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub remember_device: Option<String>,
+    pub remember_me_offset: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub session_duration: Option<String>,
+    pub stage_uuid: Option<String>,
+    pub terminate_other_sessions: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`stages_user_login_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLoginPartialUpdateParams {
+    /// A UUID string identifying this User Login Stage.
+    pub stage_uuid: String,
+    pub patched_user_login_stage_request: Option<models::PatchedUserLoginStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_user_login_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLoginRetrieveParams {
+    /// A UUID string identifying this User Login Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_user_login_update`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLoginUpdateParams {
+    /// A UUID string identifying this User Login Stage.
+    pub stage_uuid: String,
+    pub user_login_stage_request: models::UserLoginStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_user_login_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLoginUsedByListParams {
+    /// A UUID string identifying this User Login Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_user_logout_create`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLogoutCreateParams {
+    pub user_logout_stage_request: models::UserLogoutStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_user_logout_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLogoutDestroyParams {
+    /// A UUID string identifying this User Logout Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_user_logout_list`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLogoutListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`stages_user_logout_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLogoutPartialUpdateParams {
+    /// A UUID string identifying this User Logout Stage.
+    pub stage_uuid: String,
+    pub patched_user_logout_stage_request: Option<models::PatchedUserLogoutStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_user_logout_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLogoutRetrieveParams {
+    /// A UUID string identifying this User Logout Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_user_logout_update`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLogoutUpdateParams {
+    /// A UUID string identifying this User Logout Stage.
+    pub stage_uuid: String,
+    pub user_logout_stage_request: models::UserLogoutStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_user_logout_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesUserLogoutUsedByListParams {
+    /// A UUID string identifying this User Logout Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_user_write_create`]
+#[derive(Clone, Debug)]
+pub struct StagesUserWriteCreateParams {
+    pub user_write_stage_request: models::UserWriteStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_user_write_destroy`]
+#[derive(Clone, Debug)]
+pub struct StagesUserWriteDestroyParams {
+    /// A UUID string identifying this User Write Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_user_write_list`]
+#[derive(Clone, Debug)]
+pub struct StagesUserWriteListParams {
+    pub create_users_as_inactive: Option<bool>,
+    pub create_users_group: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage_uuid: Option<String>,
+    pub user_creation_mode: Option<models::UserCreationModeEnum>,
+    pub user_path_template: Option<String>,
+    pub user_type: Option<models::UserTypeEnum>,
+}
+
+/// struct for passing parameters to the method [`stages_user_write_partial_update`]
+#[derive(Clone, Debug)]
+pub struct StagesUserWritePartialUpdateParams {
+    /// A UUID string identifying this User Write Stage.
+    pub stage_uuid: String,
+    pub patched_user_write_stage_request: Option<models::PatchedUserWriteStageRequest>,
+}
+
+/// struct for passing parameters to the method [`stages_user_write_retrieve`]
+#[derive(Clone, Debug)]
+pub struct StagesUserWriteRetrieveParams {
+    /// A UUID string identifying this User Write Stage.
+    pub stage_uuid: String,
+}
+
+/// struct for passing parameters to the method [`stages_user_write_update`]
+#[derive(Clone, Debug)]
+pub struct StagesUserWriteUpdateParams {
+    /// A UUID string identifying this User Write Stage.
+    pub stage_uuid: String,
+    pub user_write_stage_request: models::UserWriteStageRequest,
+}
+
+/// struct for passing parameters to the method [`stages_user_write_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct StagesUserWriteUsedByListParams {
+    /// A UUID string identifying this User Write Stage.
+    pub stage_uuid: String,
+}
+
 /// struct for typed errors of method [`stages_account_lockdown_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -1906,11 +3717,8 @@ pub enum StagesUserWriteUsedByListError {
 /// AccountLockdownStage Viewset
 pub async fn stages_account_lockdown_create(
     configuration: &configuration::Configuration,
-    account_lockdown_stage_request: models::AccountLockdownStageRequest,
+    params: StagesAccountLockdownCreateParams,
 ) -> Result<models::AccountLockdownStage, Error<StagesAccountLockdownCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_account_lockdown_stage_request = account_lockdown_stage_request;
-
     let uri_str = format!("{}/stages/account_lockdown/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1920,7 +3728,7 @@ pub async fn stages_account_lockdown_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_account_lockdown_stage_request);
+    req_builder = req_builder.json(&params.account_lockdown_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1936,7 +3744,7 @@ pub async fn stages_account_lockdown_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AccountLockdownStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AccountLockdownStage`")))),
         }
@@ -1954,15 +3762,12 @@ pub async fn stages_account_lockdown_create(
 /// AccountLockdownStage Viewset
 pub async fn stages_account_lockdown_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAccountLockdownDestroyParams,
 ) -> Result<(), Error<StagesAccountLockdownDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/account_lockdown/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1994,65 +3799,42 @@ pub async fn stages_account_lockdown_destroy(
 /// AccountLockdownStage Viewset
 pub async fn stages_account_lockdown_list(
     configuration: &configuration::Configuration,
-    deactivate_user: Option<bool>,
-    delete_sessions: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    revoke_tokens: Option<bool>,
-    search: Option<&str>,
-    self_service_completion_flow: Option<&str>,
-    set_unusable_password: Option<bool>,
-    stage_uuid: Option<&str>,
+    params: StagesAccountLockdownListParams,
 ) -> Result<models::PaginatedAccountLockdownStageList, Error<StagesAccountLockdownListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_deactivate_user = deactivate_user;
-    let p_query_delete_sessions = delete_sessions;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_revoke_tokens = revoke_tokens;
-    let p_query_search = search;
-    let p_query_self_service_completion_flow = self_service_completion_flow;
-    let p_query_set_unusable_password = set_unusable_password;
-    let p_query_stage_uuid = stage_uuid;
-
     let uri_str = format!("{}/stages/account_lockdown/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_deactivate_user {
+    if let Some(ref param_value) = params.deactivate_user {
         req_builder = req_builder.query(&[("deactivate_user", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_delete_sessions {
+    if let Some(ref param_value) = params.delete_sessions {
         req_builder = req_builder.query(&[("delete_sessions", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_revoke_tokens {
+    if let Some(ref param_value) = params.revoke_tokens {
         req_builder = req_builder.query(&[("revoke_tokens", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_self_service_completion_flow {
+    if let Some(ref param_value) = params.self_service_completion_flow {
         req_builder = req_builder.query(&[("self_service_completion_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_set_unusable_password {
+    if let Some(ref param_value) = params.set_unusable_password {
         req_builder = req_builder.query(&[("set_unusable_password", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2076,7 +3858,7 @@ pub async fn stages_account_lockdown_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAccountLockdownStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAccountLockdownStageList`")))),
         }
@@ -2094,17 +3876,12 @@ pub async fn stages_account_lockdown_list(
 /// AccountLockdownStage Viewset
 pub async fn stages_account_lockdown_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_account_lockdown_stage_request: Option<models::PatchedAccountLockdownStageRequest>,
+    params: StagesAccountLockdownPartialUpdateParams,
 ) -> Result<models::AccountLockdownStage, Error<StagesAccountLockdownPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_account_lockdown_stage_request = patched_account_lockdown_stage_request;
-
     let uri_str = format!(
         "{}/stages/account_lockdown/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2114,7 +3891,7 @@ pub async fn stages_account_lockdown_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_account_lockdown_stage_request);
+    req_builder = req_builder.json(&params.patched_account_lockdown_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2130,7 +3907,7 @@ pub async fn stages_account_lockdown_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AccountLockdownStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AccountLockdownStage`")))),
         }
@@ -2148,15 +3925,12 @@ pub async fn stages_account_lockdown_partial_update(
 /// AccountLockdownStage Viewset
 pub async fn stages_account_lockdown_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAccountLockdownRetrieveParams,
 ) -> Result<models::AccountLockdownStage, Error<StagesAccountLockdownRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/account_lockdown/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2181,7 +3955,7 @@ pub async fn stages_account_lockdown_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AccountLockdownStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AccountLockdownStage`")))),
         }
@@ -2199,17 +3973,12 @@ pub async fn stages_account_lockdown_retrieve(
 /// AccountLockdownStage Viewset
 pub async fn stages_account_lockdown_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    account_lockdown_stage_request: models::AccountLockdownStageRequest,
+    params: StagesAccountLockdownUpdateParams,
 ) -> Result<models::AccountLockdownStage, Error<StagesAccountLockdownUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_account_lockdown_stage_request = account_lockdown_stage_request;
-
     let uri_str = format!(
         "{}/stages/account_lockdown/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2219,7 +3988,7 @@ pub async fn stages_account_lockdown_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_account_lockdown_stage_request);
+    req_builder = req_builder.json(&params.account_lockdown_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2235,7 +4004,7 @@ pub async fn stages_account_lockdown_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AccountLockdownStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AccountLockdownStage`")))),
         }
@@ -2253,15 +4022,12 @@ pub async fn stages_account_lockdown_update(
 /// Get a list of all objects that use this object
 pub async fn stages_account_lockdown_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAccountLockdownUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesAccountLockdownUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/account_lockdown/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2286,7 +4052,7 @@ pub async fn stages_account_lockdown_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2304,15 +4070,12 @@ pub async fn stages_account_lockdown_used_by_list(
 /// Stage Viewset
 pub async fn stages_all_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAllDestroyParams,
 ) -> Result<(), Error<StagesAllDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/all/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2344,35 +4107,24 @@ pub async fn stages_all_destroy(
 /// Stage Viewset
 pub async fn stages_all_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: StagesAllListParams,
 ) -> Result<models::PaginatedStageList, Error<StagesAllListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/stages/all/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2396,7 +4148,7 @@ pub async fn stages_all_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedStageList`")))),
         }
@@ -2414,15 +4166,12 @@ pub async fn stages_all_list(
 /// Stage Viewset
 pub async fn stages_all_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAllRetrieveParams,
 ) -> Result<models::Stage, Error<StagesAllRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/all/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2447,7 +4196,9 @@ pub async fn stages_all_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Stage`",
@@ -2498,7 +4249,7 @@ pub async fn stages_all_types_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`")))),
         }
@@ -2516,15 +4267,12 @@ pub async fn stages_all_types_list(
 /// Get a list of all objects that use this object
 pub async fn stages_all_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAllUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesAllUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/all/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2549,7 +4297,7 @@ pub async fn stages_all_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2592,7 +4340,7 @@ pub async fn stages_all_user_settings_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UserSetting&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UserSetting&gt;`")))),
         }
@@ -2610,11 +4358,8 @@ pub async fn stages_all_user_settings_list(
 /// AuthenticatorDuoStage Viewset
 pub async fn stages_authenticator_duo_create(
     configuration: &configuration::Configuration,
-    authenticator_duo_stage_request: models::AuthenticatorDuoStageRequest,
+    params: StagesAuthenticatorDuoCreateParams,
 ) -> Result<models::AuthenticatorDuoStage, Error<StagesAuthenticatorDuoCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_authenticator_duo_stage_request = authenticator_duo_stage_request;
-
     let uri_str = format!("{}/stages/authenticator/duo/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2624,7 +4369,7 @@ pub async fn stages_authenticator_duo_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_duo_stage_request);
+    req_builder = req_builder.json(&params.authenticator_duo_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2640,7 +4385,7 @@ pub async fn stages_authenticator_duo_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorDuoStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorDuoStage`")))),
         }
@@ -2658,15 +4403,12 @@ pub async fn stages_authenticator_duo_create(
 /// AuthenticatorDuoStage Viewset
 pub async fn stages_authenticator_duo_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorDuoDestroyParams,
 ) -> Result<(), Error<StagesAuthenticatorDuoDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/duo/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2698,15 +4440,12 @@ pub async fn stages_authenticator_duo_destroy(
 /// Check enrollment status of user details in current session
 pub async fn stages_authenticator_duo_enrollment_status_create(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorDuoEnrollmentStatusCreateParams,
 ) -> Result<models::DuoDeviceEnrollmentStatus, Error<StagesAuthenticatorDuoEnrollmentStatusCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/duo/{stage_uuid}/enrollment_status/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2728,7 +4467,7 @@ pub async fn stages_authenticator_duo_enrollment_status_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DuoDeviceEnrollmentStatus`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DuoDeviceEnrollmentStatus`")))),
         }
@@ -2746,18 +4485,12 @@ pub async fn stages_authenticator_duo_enrollment_status_create(
 /// Import duo devices into authentik
 pub async fn stages_authenticator_duo_import_device_manual_create(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    authenticator_duo_stage_manual_device_import_request: models::AuthenticatorDuoStageManualDeviceImportRequest,
+    params: StagesAuthenticatorDuoImportDeviceManualCreateParams,
 ) -> Result<(), Error<StagesAuthenticatorDuoImportDeviceManualCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_authenticator_duo_stage_manual_device_import_request =
-        authenticator_duo_stage_manual_device_import_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/duo/{stage_uuid}/import_device_manual/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2767,7 +4500,7 @@ pub async fn stages_authenticator_duo_import_device_manual_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_duo_stage_manual_device_import_request);
+    req_builder = req_builder.json(&params.authenticator_duo_stage_manual_device_import_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2790,18 +4523,15 @@ pub async fn stages_authenticator_duo_import_device_manual_create(
 /// Import duo devices into authentik
 pub async fn stages_authenticator_duo_import_devices_automatic_create(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorDuoImportDevicesAutomaticCreateParams,
 ) -> Result<
     models::AuthenticatorDuoStageDeviceImportResponse,
     Error<StagesAuthenticatorDuoImportDevicesAutomaticCreateError>,
 > {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/duo/{stage_uuid}/import_devices_automatic/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2826,7 +4556,7 @@ pub async fn stages_authenticator_duo_import_devices_automatic_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorDuoStageDeviceImportResponse`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorDuoStageDeviceImportResponse`")))),
         }
@@ -2845,50 +4575,33 @@ pub async fn stages_authenticator_duo_import_devices_automatic_create(
 /// AuthenticatorDuoStage Viewset
 pub async fn stages_authenticator_duo_list(
     configuration: &configuration::Configuration,
-    api_hostname: Option<&str>,
-    client_id: Option<&str>,
-    configure_flow: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: StagesAuthenticatorDuoListParams,
 ) -> Result<models::PaginatedAuthenticatorDuoStageList, Error<StagesAuthenticatorDuoListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_api_hostname = api_hostname;
-    let p_query_client_id = client_id;
-    let p_query_configure_flow = configure_flow;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/stages/authenticator/duo/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_api_hostname {
+    if let Some(ref param_value) = params.api_hostname {
         req_builder = req_builder.query(&[("api_hostname", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_id {
+    if let Some(ref param_value) = params.client_id {
         req_builder = req_builder.query(&[("client_id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_configure_flow {
+    if let Some(ref param_value) = params.configure_flow {
         req_builder = req_builder.query(&[("configure_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2912,7 +4625,7 @@ pub async fn stages_authenticator_duo_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAuthenticatorDuoStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAuthenticatorDuoStageList`")))),
         }
@@ -2930,17 +4643,12 @@ pub async fn stages_authenticator_duo_list(
 /// AuthenticatorDuoStage Viewset
 pub async fn stages_authenticator_duo_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_authenticator_duo_stage_request: Option<models::PatchedAuthenticatorDuoStageRequest>,
+    params: StagesAuthenticatorDuoPartialUpdateParams,
 ) -> Result<models::AuthenticatorDuoStage, Error<StagesAuthenticatorDuoPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_authenticator_duo_stage_request = patched_authenticator_duo_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/duo/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2950,7 +4658,7 @@ pub async fn stages_authenticator_duo_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_authenticator_duo_stage_request);
+    req_builder = req_builder.json(&params.patched_authenticator_duo_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2966,7 +4674,7 @@ pub async fn stages_authenticator_duo_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorDuoStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorDuoStage`")))),
         }
@@ -2984,15 +4692,12 @@ pub async fn stages_authenticator_duo_partial_update(
 /// AuthenticatorDuoStage Viewset
 pub async fn stages_authenticator_duo_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorDuoRetrieveParams,
 ) -> Result<models::AuthenticatorDuoStage, Error<StagesAuthenticatorDuoRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/duo/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3017,7 +4722,7 @@ pub async fn stages_authenticator_duo_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorDuoStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorDuoStage`")))),
         }
@@ -3035,17 +4740,12 @@ pub async fn stages_authenticator_duo_retrieve(
 /// AuthenticatorDuoStage Viewset
 pub async fn stages_authenticator_duo_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    authenticator_duo_stage_request: models::AuthenticatorDuoStageRequest,
+    params: StagesAuthenticatorDuoUpdateParams,
 ) -> Result<models::AuthenticatorDuoStage, Error<StagesAuthenticatorDuoUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_authenticator_duo_stage_request = authenticator_duo_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/duo/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3055,7 +4755,7 @@ pub async fn stages_authenticator_duo_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_duo_stage_request);
+    req_builder = req_builder.json(&params.authenticator_duo_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3071,7 +4771,7 @@ pub async fn stages_authenticator_duo_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorDuoStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorDuoStage`")))),
         }
@@ -3089,15 +4789,12 @@ pub async fn stages_authenticator_duo_update(
 /// Get a list of all objects that use this object
 pub async fn stages_authenticator_duo_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorDuoUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesAuthenticatorDuoUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/duo/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3122,7 +4819,7 @@ pub async fn stages_authenticator_duo_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3140,11 +4837,8 @@ pub async fn stages_authenticator_duo_used_by_list(
 /// AuthenticatorEmailStage Viewset
 pub async fn stages_authenticator_email_create(
     configuration: &configuration::Configuration,
-    authenticator_email_stage_request: models::AuthenticatorEmailStageRequest,
+    params: StagesAuthenticatorEmailCreateParams,
 ) -> Result<models::AuthenticatorEmailStage, Error<StagesAuthenticatorEmailCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_authenticator_email_stage_request = authenticator_email_stage_request;
-
     let uri_str = format!("{}/stages/authenticator/email/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3154,7 +4848,7 @@ pub async fn stages_authenticator_email_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_email_stage_request);
+    req_builder = req_builder.json(&params.authenticator_email_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3170,7 +4864,7 @@ pub async fn stages_authenticator_email_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorEmailStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorEmailStage`")))),
         }
@@ -3188,15 +4882,12 @@ pub async fn stages_authenticator_email_create(
 /// AuthenticatorEmailStage Viewset
 pub async fn stages_authenticator_email_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorEmailDestroyParams,
 ) -> Result<(), Error<StagesAuthenticatorEmailDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/email/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3228,110 +4919,69 @@ pub async fn stages_authenticator_email_destroy(
 /// AuthenticatorEmailStage Viewset
 pub async fn stages_authenticator_email_list(
     configuration: &configuration::Configuration,
-    configure_flow: Option<&str>,
-    friendly_name: Option<&str>,
-    from_address: Option<&str>,
-    host: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    password: Option<&str>,
-    port: Option<i32>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
-    subject: Option<&str>,
-    template: Option<&str>,
-    timeout: Option<i32>,
-    token_expiry: Option<&str>,
-    use_global_settings: Option<bool>,
-    use_ssl: Option<bool>,
-    use_tls: Option<bool>,
-    username: Option<&str>,
+    params: StagesAuthenticatorEmailListParams,
 ) -> Result<models::PaginatedAuthenticatorEmailStageList, Error<StagesAuthenticatorEmailListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_configure_flow = configure_flow;
-    let p_query_friendly_name = friendly_name;
-    let p_query_from_address = from_address;
-    let p_query_host = host;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_password = password;
-    let p_query_port = port;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-    let p_query_subject = subject;
-    let p_query_template = template;
-    let p_query_timeout = timeout;
-    let p_query_token_expiry = token_expiry;
-    let p_query_use_global_settings = use_global_settings;
-    let p_query_use_ssl = use_ssl;
-    let p_query_use_tls = use_tls;
-    let p_query_username = username;
-
     let uri_str = format!("{}/stages/authenticator/email/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_configure_flow {
+    if let Some(ref param_value) = params.configure_flow {
         req_builder = req_builder.query(&[("configure_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_friendly_name {
+    if let Some(ref param_value) = params.friendly_name {
         req_builder = req_builder.query(&[("friendly_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_from_address {
+    if let Some(ref param_value) = params.from_address {
         req_builder = req_builder.query(&[("from_address", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_host {
+    if let Some(ref param_value) = params.host {
         req_builder = req_builder.query(&[("host", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_password {
+    if let Some(ref param_value) = params.password {
         req_builder = req_builder.query(&[("password", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_port {
+    if let Some(ref param_value) = params.port {
         req_builder = req_builder.query(&[("port", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_subject {
+    if let Some(ref param_value) = params.subject {
         req_builder = req_builder.query(&[("subject", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_template {
+    if let Some(ref param_value) = params.template {
         req_builder = req_builder.query(&[("template", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_timeout {
+    if let Some(ref param_value) = params.timeout {
         req_builder = req_builder.query(&[("timeout", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_token_expiry {
+    if let Some(ref param_value) = params.token_expiry {
         req_builder = req_builder.query(&[("token_expiry", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_use_global_settings {
+    if let Some(ref param_value) = params.use_global_settings {
         req_builder = req_builder.query(&[("use_global_settings", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_use_ssl {
+    if let Some(ref param_value) = params.use_ssl {
         req_builder = req_builder.query(&[("use_ssl", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_use_tls {
+    if let Some(ref param_value) = params.use_tls {
         req_builder = req_builder.query(&[("use_tls", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_username {
+    if let Some(ref param_value) = params.username {
         req_builder = req_builder.query(&[("username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3355,7 +5005,7 @@ pub async fn stages_authenticator_email_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAuthenticatorEmailStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAuthenticatorEmailStageList`")))),
         }
@@ -3373,17 +5023,12 @@ pub async fn stages_authenticator_email_list(
 /// AuthenticatorEmailStage Viewset
 pub async fn stages_authenticator_email_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_authenticator_email_stage_request: Option<models::PatchedAuthenticatorEmailStageRequest>,
+    params: StagesAuthenticatorEmailPartialUpdateParams,
 ) -> Result<models::AuthenticatorEmailStage, Error<StagesAuthenticatorEmailPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_authenticator_email_stage_request = patched_authenticator_email_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/email/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3393,7 +5038,7 @@ pub async fn stages_authenticator_email_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_authenticator_email_stage_request);
+    req_builder = req_builder.json(&params.patched_authenticator_email_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3409,7 +5054,7 @@ pub async fn stages_authenticator_email_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorEmailStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorEmailStage`")))),
         }
@@ -3427,15 +5072,12 @@ pub async fn stages_authenticator_email_partial_update(
 /// AuthenticatorEmailStage Viewset
 pub async fn stages_authenticator_email_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorEmailRetrieveParams,
 ) -> Result<models::AuthenticatorEmailStage, Error<StagesAuthenticatorEmailRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/email/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3460,7 +5102,7 @@ pub async fn stages_authenticator_email_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorEmailStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorEmailStage`")))),
         }
@@ -3478,17 +5120,12 @@ pub async fn stages_authenticator_email_retrieve(
 /// AuthenticatorEmailStage Viewset
 pub async fn stages_authenticator_email_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    authenticator_email_stage_request: models::AuthenticatorEmailStageRequest,
+    params: StagesAuthenticatorEmailUpdateParams,
 ) -> Result<models::AuthenticatorEmailStage, Error<StagesAuthenticatorEmailUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_authenticator_email_stage_request = authenticator_email_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/email/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3498,7 +5135,7 @@ pub async fn stages_authenticator_email_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_email_stage_request);
+    req_builder = req_builder.json(&params.authenticator_email_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3514,7 +5151,7 @@ pub async fn stages_authenticator_email_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorEmailStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorEmailStage`")))),
         }
@@ -3532,15 +5169,12 @@ pub async fn stages_authenticator_email_update(
 /// Get a list of all objects that use this object
 pub async fn stages_authenticator_email_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorEmailUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesAuthenticatorEmailUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/email/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3565,7 +5199,7 @@ pub async fn stages_authenticator_email_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3583,11 +5217,8 @@ pub async fn stages_authenticator_email_used_by_list(
 /// AuthenticatorEndpointGDTCStage Viewset
 pub async fn stages_authenticator_endpoint_gdtc_create(
     configuration: &configuration::Configuration,
-    authenticator_endpoint_gdtc_stage_request: models::AuthenticatorEndpointGdtcStageRequest,
+    params: StagesAuthenticatorEndpointGdtcCreateParams,
 ) -> Result<models::AuthenticatorEndpointGdtcStage, Error<StagesAuthenticatorEndpointGdtcCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_authenticator_endpoint_gdtc_stage_request = authenticator_endpoint_gdtc_stage_request;
-
     let uri_str = format!("{}/stages/authenticator/endpoint_gdtc/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3597,7 +5228,7 @@ pub async fn stages_authenticator_endpoint_gdtc_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_endpoint_gdtc_stage_request);
+    req_builder = req_builder.json(&params.authenticator_endpoint_gdtc_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3613,7 +5244,7 @@ pub async fn stages_authenticator_endpoint_gdtc_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorEndpointGdtcStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorEndpointGdtcStage`")))),
         }
@@ -3631,15 +5262,12 @@ pub async fn stages_authenticator_endpoint_gdtc_create(
 /// AuthenticatorEndpointGDTCStage Viewset
 pub async fn stages_authenticator_endpoint_gdtc_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorEndpointGdtcDestroyParams,
 ) -> Result<(), Error<StagesAuthenticatorEndpointGdtcDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/endpoint_gdtc/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3671,40 +5299,27 @@ pub async fn stages_authenticator_endpoint_gdtc_destroy(
 /// AuthenticatorEndpointGDTCStage Viewset
 pub async fn stages_authenticator_endpoint_gdtc_list(
     configuration: &configuration::Configuration,
-    configure_flow: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: StagesAuthenticatorEndpointGdtcListParams,
 ) -> Result<models::PaginatedAuthenticatorEndpointGdtcStageList, Error<StagesAuthenticatorEndpointGdtcListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_configure_flow = configure_flow;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/stages/authenticator/endpoint_gdtc/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_configure_flow {
+    if let Some(ref param_value) = params.configure_flow {
         req_builder = req_builder.query(&[("configure_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3728,7 +5343,7 @@ pub async fn stages_authenticator_endpoint_gdtc_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAuthenticatorEndpointGdtcStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAuthenticatorEndpointGdtcStageList`")))),
         }
@@ -3746,17 +5361,12 @@ pub async fn stages_authenticator_endpoint_gdtc_list(
 /// AuthenticatorEndpointGDTCStage Viewset
 pub async fn stages_authenticator_endpoint_gdtc_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_authenticator_endpoint_gdtc_stage_request: Option<models::PatchedAuthenticatorEndpointGdtcStageRequest>,
+    params: StagesAuthenticatorEndpointGdtcPartialUpdateParams,
 ) -> Result<models::AuthenticatorEndpointGdtcStage, Error<StagesAuthenticatorEndpointGdtcPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_authenticator_endpoint_gdtc_stage_request = patched_authenticator_endpoint_gdtc_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/endpoint_gdtc/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3766,7 +5376,7 @@ pub async fn stages_authenticator_endpoint_gdtc_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_authenticator_endpoint_gdtc_stage_request);
+    req_builder = req_builder.json(&params.patched_authenticator_endpoint_gdtc_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3782,7 +5392,7 @@ pub async fn stages_authenticator_endpoint_gdtc_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorEndpointGdtcStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorEndpointGdtcStage`")))),
         }
@@ -3800,15 +5410,12 @@ pub async fn stages_authenticator_endpoint_gdtc_partial_update(
 /// AuthenticatorEndpointGDTCStage Viewset
 pub async fn stages_authenticator_endpoint_gdtc_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorEndpointGdtcRetrieveParams,
 ) -> Result<models::AuthenticatorEndpointGdtcStage, Error<StagesAuthenticatorEndpointGdtcRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/endpoint_gdtc/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3833,7 +5440,7 @@ pub async fn stages_authenticator_endpoint_gdtc_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorEndpointGdtcStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorEndpointGdtcStage`")))),
         }
@@ -3851,17 +5458,12 @@ pub async fn stages_authenticator_endpoint_gdtc_retrieve(
 /// AuthenticatorEndpointGDTCStage Viewset
 pub async fn stages_authenticator_endpoint_gdtc_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    authenticator_endpoint_gdtc_stage_request: models::AuthenticatorEndpointGdtcStageRequest,
+    params: StagesAuthenticatorEndpointGdtcUpdateParams,
 ) -> Result<models::AuthenticatorEndpointGdtcStage, Error<StagesAuthenticatorEndpointGdtcUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_authenticator_endpoint_gdtc_stage_request = authenticator_endpoint_gdtc_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/endpoint_gdtc/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3871,7 +5473,7 @@ pub async fn stages_authenticator_endpoint_gdtc_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_endpoint_gdtc_stage_request);
+    req_builder = req_builder.json(&params.authenticator_endpoint_gdtc_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3887,7 +5489,7 @@ pub async fn stages_authenticator_endpoint_gdtc_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorEndpointGdtcStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorEndpointGdtcStage`")))),
         }
@@ -3905,15 +5507,12 @@ pub async fn stages_authenticator_endpoint_gdtc_update(
 /// Get a list of all objects that use this object
 pub async fn stages_authenticator_endpoint_gdtc_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorEndpointGdtcUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesAuthenticatorEndpointGdtcUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/endpoint_gdtc/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3938,7 +5537,7 @@ pub async fn stages_authenticator_endpoint_gdtc_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3956,11 +5555,8 @@ pub async fn stages_authenticator_endpoint_gdtc_used_by_list(
 /// AuthenticatorSMSStage Viewset
 pub async fn stages_authenticator_sms_create(
     configuration: &configuration::Configuration,
-    authenticator_sms_stage_request: models::AuthenticatorSmsStageRequest,
+    params: StagesAuthenticatorSmsCreateParams,
 ) -> Result<models::AuthenticatorSmsStage, Error<StagesAuthenticatorSmsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_authenticator_sms_stage_request = authenticator_sms_stage_request;
-
     let uri_str = format!("{}/stages/authenticator/sms/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3970,7 +5566,7 @@ pub async fn stages_authenticator_sms_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_sms_stage_request);
+    req_builder = req_builder.json(&params.authenticator_sms_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3986,7 +5582,7 @@ pub async fn stages_authenticator_sms_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorSmsStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorSmsStage`")))),
         }
@@ -4004,15 +5600,12 @@ pub async fn stages_authenticator_sms_create(
 /// AuthenticatorSMSStage Viewset
 pub async fn stages_authenticator_sms_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorSmsDestroyParams,
 ) -> Result<(), Error<StagesAuthenticatorSmsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/sms/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4044,90 +5637,57 @@ pub async fn stages_authenticator_sms_destroy(
 /// AuthenticatorSMSStage Viewset
 pub async fn stages_authenticator_sms_list(
     configuration: &configuration::Configuration,
-    account_sid: Option<&str>,
-    auth: Option<&str>,
-    auth_password: Option<&str>,
-    auth_type: Option<models::AuthTypeEnum>,
-    configure_flow: Option<&str>,
-    friendly_name: Option<&str>,
-    from_number: Option<&str>,
-    mapping: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    provider: Option<models::ProviderEnum>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
-    verify_only: Option<bool>,
+    params: StagesAuthenticatorSmsListParams,
 ) -> Result<models::PaginatedAuthenticatorSmsStageList, Error<StagesAuthenticatorSmsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_account_sid = account_sid;
-    let p_query_auth = auth;
-    let p_query_auth_password = auth_password;
-    let p_query_auth_type = auth_type;
-    let p_query_configure_flow = configure_flow;
-    let p_query_friendly_name = friendly_name;
-    let p_query_from_number = from_number;
-    let p_query_mapping = mapping;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_provider = provider;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-    let p_query_verify_only = verify_only;
-
     let uri_str = format!("{}/stages/authenticator/sms/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_account_sid {
+    if let Some(ref param_value) = params.account_sid {
         req_builder = req_builder.query(&[("account_sid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_auth {
+    if let Some(ref param_value) = params.auth {
         req_builder = req_builder.query(&[("auth", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_auth_password {
+    if let Some(ref param_value) = params.auth_password {
         req_builder = req_builder.query(&[("auth_password", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_auth_type {
+    if let Some(ref param_value) = params.auth_type {
         req_builder = req_builder.query(&[("auth_type", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_configure_flow {
+    if let Some(ref param_value) = params.configure_flow {
         req_builder = req_builder.query(&[("configure_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_friendly_name {
+    if let Some(ref param_value) = params.friendly_name {
         req_builder = req_builder.query(&[("friendly_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_from_number {
+    if let Some(ref param_value) = params.from_number {
         req_builder = req_builder.query(&[("from_number", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_mapping {
+    if let Some(ref param_value) = params.mapping {
         req_builder = req_builder.query(&[("mapping", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider {
+    if let Some(ref param_value) = params.provider {
         req_builder = req_builder.query(&[("provider", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_verify_only {
+    if let Some(ref param_value) = params.verify_only {
         req_builder = req_builder.query(&[("verify_only", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4151,7 +5711,7 @@ pub async fn stages_authenticator_sms_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAuthenticatorSmsStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAuthenticatorSmsStageList`")))),
         }
@@ -4169,17 +5729,12 @@ pub async fn stages_authenticator_sms_list(
 /// AuthenticatorSMSStage Viewset
 pub async fn stages_authenticator_sms_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_authenticator_sms_stage_request: Option<models::PatchedAuthenticatorSmsStageRequest>,
+    params: StagesAuthenticatorSmsPartialUpdateParams,
 ) -> Result<models::AuthenticatorSmsStage, Error<StagesAuthenticatorSmsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_authenticator_sms_stage_request = patched_authenticator_sms_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/sms/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -4189,7 +5744,7 @@ pub async fn stages_authenticator_sms_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_authenticator_sms_stage_request);
+    req_builder = req_builder.json(&params.patched_authenticator_sms_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4205,7 +5760,7 @@ pub async fn stages_authenticator_sms_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorSmsStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorSmsStage`")))),
         }
@@ -4223,15 +5778,12 @@ pub async fn stages_authenticator_sms_partial_update(
 /// AuthenticatorSMSStage Viewset
 pub async fn stages_authenticator_sms_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorSmsRetrieveParams,
 ) -> Result<models::AuthenticatorSmsStage, Error<StagesAuthenticatorSmsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/sms/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4256,7 +5808,7 @@ pub async fn stages_authenticator_sms_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorSmsStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorSmsStage`")))),
         }
@@ -4274,17 +5826,12 @@ pub async fn stages_authenticator_sms_retrieve(
 /// AuthenticatorSMSStage Viewset
 pub async fn stages_authenticator_sms_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    authenticator_sms_stage_request: models::AuthenticatorSmsStageRequest,
+    params: StagesAuthenticatorSmsUpdateParams,
 ) -> Result<models::AuthenticatorSmsStage, Error<StagesAuthenticatorSmsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_authenticator_sms_stage_request = authenticator_sms_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/sms/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4294,7 +5841,7 @@ pub async fn stages_authenticator_sms_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_sms_stage_request);
+    req_builder = req_builder.json(&params.authenticator_sms_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4310,7 +5857,7 @@ pub async fn stages_authenticator_sms_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorSmsStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorSmsStage`")))),
         }
@@ -4328,15 +5875,12 @@ pub async fn stages_authenticator_sms_update(
 /// Get a list of all objects that use this object
 pub async fn stages_authenticator_sms_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorSmsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesAuthenticatorSmsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/sms/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4361,7 +5905,7 @@ pub async fn stages_authenticator_sms_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4379,11 +5923,8 @@ pub async fn stages_authenticator_sms_used_by_list(
 /// AuthenticatorStaticStage Viewset
 pub async fn stages_authenticator_static_create(
     configuration: &configuration::Configuration,
-    authenticator_static_stage_request: models::AuthenticatorStaticStageRequest,
+    params: StagesAuthenticatorStaticCreateParams,
 ) -> Result<models::AuthenticatorStaticStage, Error<StagesAuthenticatorStaticCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_authenticator_static_stage_request = authenticator_static_stage_request;
-
     let uri_str = format!("{}/stages/authenticator/static/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4393,7 +5934,7 @@ pub async fn stages_authenticator_static_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_static_stage_request);
+    req_builder = req_builder.json(&params.authenticator_static_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4409,7 +5950,7 @@ pub async fn stages_authenticator_static_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorStaticStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorStaticStage`")))),
         }
@@ -4427,15 +5968,12 @@ pub async fn stages_authenticator_static_create(
 /// AuthenticatorStaticStage Viewset
 pub async fn stages_authenticator_static_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorStaticDestroyParams,
 ) -> Result<(), Error<StagesAuthenticatorStaticDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/static/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4467,60 +6005,39 @@ pub async fn stages_authenticator_static_destroy(
 /// AuthenticatorStaticStage Viewset
 pub async fn stages_authenticator_static_list(
     configuration: &configuration::Configuration,
-    configure_flow: Option<&str>,
-    friendly_name: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
-    token_count: Option<i32>,
-    token_length: Option<i32>,
+    params: StagesAuthenticatorStaticListParams,
 ) -> Result<models::PaginatedAuthenticatorStaticStageList, Error<StagesAuthenticatorStaticListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_configure_flow = configure_flow;
-    let p_query_friendly_name = friendly_name;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-    let p_query_token_count = token_count;
-    let p_query_token_length = token_length;
-
     let uri_str = format!("{}/stages/authenticator/static/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_configure_flow {
+    if let Some(ref param_value) = params.configure_flow {
         req_builder = req_builder.query(&[("configure_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_friendly_name {
+    if let Some(ref param_value) = params.friendly_name {
         req_builder = req_builder.query(&[("friendly_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_token_count {
+    if let Some(ref param_value) = params.token_count {
         req_builder = req_builder.query(&[("token_count", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_token_length {
+    if let Some(ref param_value) = params.token_length {
         req_builder = req_builder.query(&[("token_length", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4544,7 +6061,7 @@ pub async fn stages_authenticator_static_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAuthenticatorStaticStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAuthenticatorStaticStageList`")))),
         }
@@ -4562,17 +6079,12 @@ pub async fn stages_authenticator_static_list(
 /// AuthenticatorStaticStage Viewset
 pub async fn stages_authenticator_static_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_authenticator_static_stage_request: Option<models::PatchedAuthenticatorStaticStageRequest>,
+    params: StagesAuthenticatorStaticPartialUpdateParams,
 ) -> Result<models::AuthenticatorStaticStage, Error<StagesAuthenticatorStaticPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_authenticator_static_stage_request = patched_authenticator_static_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/static/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -4582,7 +6094,7 @@ pub async fn stages_authenticator_static_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_authenticator_static_stage_request);
+    req_builder = req_builder.json(&params.patched_authenticator_static_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4598,7 +6110,7 @@ pub async fn stages_authenticator_static_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorStaticStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorStaticStage`")))),
         }
@@ -4616,15 +6128,12 @@ pub async fn stages_authenticator_static_partial_update(
 /// AuthenticatorStaticStage Viewset
 pub async fn stages_authenticator_static_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorStaticRetrieveParams,
 ) -> Result<models::AuthenticatorStaticStage, Error<StagesAuthenticatorStaticRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/static/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4649,7 +6158,7 @@ pub async fn stages_authenticator_static_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorStaticStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorStaticStage`")))),
         }
@@ -4667,17 +6176,12 @@ pub async fn stages_authenticator_static_retrieve(
 /// AuthenticatorStaticStage Viewset
 pub async fn stages_authenticator_static_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    authenticator_static_stage_request: models::AuthenticatorStaticStageRequest,
+    params: StagesAuthenticatorStaticUpdateParams,
 ) -> Result<models::AuthenticatorStaticStage, Error<StagesAuthenticatorStaticUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_authenticator_static_stage_request = authenticator_static_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/static/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4687,7 +6191,7 @@ pub async fn stages_authenticator_static_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_static_stage_request);
+    req_builder = req_builder.json(&params.authenticator_static_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4703,7 +6207,7 @@ pub async fn stages_authenticator_static_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorStaticStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorStaticStage`")))),
         }
@@ -4721,15 +6225,12 @@ pub async fn stages_authenticator_static_update(
 /// Get a list of all objects that use this object
 pub async fn stages_authenticator_static_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorStaticUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesAuthenticatorStaticUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/static/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4754,7 +6255,7 @@ pub async fn stages_authenticator_static_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4772,11 +6273,8 @@ pub async fn stages_authenticator_static_used_by_list(
 /// AuthenticatorTOTPStage Viewset
 pub async fn stages_authenticator_totp_create(
     configuration: &configuration::Configuration,
-    authenticator_totp_stage_request: models::AuthenticatorTotpStageRequest,
+    params: StagesAuthenticatorTotpCreateParams,
 ) -> Result<models::AuthenticatorTotpStage, Error<StagesAuthenticatorTotpCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_authenticator_totp_stage_request = authenticator_totp_stage_request;
-
     let uri_str = format!("{}/stages/authenticator/totp/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4786,7 +6284,7 @@ pub async fn stages_authenticator_totp_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_totp_stage_request);
+    req_builder = req_builder.json(&params.authenticator_totp_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4802,7 +6300,7 @@ pub async fn stages_authenticator_totp_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorTotpStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorTotpStage`")))),
         }
@@ -4820,15 +6318,12 @@ pub async fn stages_authenticator_totp_create(
 /// AuthenticatorTOTPStage Viewset
 pub async fn stages_authenticator_totp_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorTotpDestroyParams,
 ) -> Result<(), Error<StagesAuthenticatorTotpDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/totp/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4860,55 +6355,36 @@ pub async fn stages_authenticator_totp_destroy(
 /// AuthenticatorTOTPStage Viewset
 pub async fn stages_authenticator_totp_list(
     configuration: &configuration::Configuration,
-    configure_flow: Option<&str>,
-    digits: Option<models::DigitsEnum>,
-    friendly_name: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
+    params: StagesAuthenticatorTotpListParams,
 ) -> Result<models::PaginatedAuthenticatorTotpStageList, Error<StagesAuthenticatorTotpListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_configure_flow = configure_flow;
-    let p_query_digits = digits;
-    let p_query_friendly_name = friendly_name;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-
     let uri_str = format!("{}/stages/authenticator/totp/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_configure_flow {
+    if let Some(ref param_value) = params.configure_flow {
         req_builder = req_builder.query(&[("configure_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_digits {
+    if let Some(ref param_value) = params.digits {
         req_builder = req_builder.query(&[("digits", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_friendly_name {
+    if let Some(ref param_value) = params.friendly_name {
         req_builder = req_builder.query(&[("friendly_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4932,7 +6408,7 @@ pub async fn stages_authenticator_totp_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAuthenticatorTotpStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAuthenticatorTotpStageList`")))),
         }
@@ -4950,17 +6426,12 @@ pub async fn stages_authenticator_totp_list(
 /// AuthenticatorTOTPStage Viewset
 pub async fn stages_authenticator_totp_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_authenticator_totp_stage_request: Option<models::PatchedAuthenticatorTotpStageRequest>,
+    params: StagesAuthenticatorTotpPartialUpdateParams,
 ) -> Result<models::AuthenticatorTotpStage, Error<StagesAuthenticatorTotpPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_authenticator_totp_stage_request = patched_authenticator_totp_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/totp/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -4970,7 +6441,7 @@ pub async fn stages_authenticator_totp_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_authenticator_totp_stage_request);
+    req_builder = req_builder.json(&params.patched_authenticator_totp_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4986,7 +6457,7 @@ pub async fn stages_authenticator_totp_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorTotpStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorTotpStage`")))),
         }
@@ -5004,15 +6475,12 @@ pub async fn stages_authenticator_totp_partial_update(
 /// AuthenticatorTOTPStage Viewset
 pub async fn stages_authenticator_totp_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorTotpRetrieveParams,
 ) -> Result<models::AuthenticatorTotpStage, Error<StagesAuthenticatorTotpRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/totp/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5037,7 +6505,7 @@ pub async fn stages_authenticator_totp_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorTotpStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorTotpStage`")))),
         }
@@ -5055,17 +6523,12 @@ pub async fn stages_authenticator_totp_retrieve(
 /// AuthenticatorTOTPStage Viewset
 pub async fn stages_authenticator_totp_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    authenticator_totp_stage_request: models::AuthenticatorTotpStageRequest,
+    params: StagesAuthenticatorTotpUpdateParams,
 ) -> Result<models::AuthenticatorTotpStage, Error<StagesAuthenticatorTotpUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_authenticator_totp_stage_request = authenticator_totp_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/totp/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -5075,7 +6538,7 @@ pub async fn stages_authenticator_totp_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_totp_stage_request);
+    req_builder = req_builder.json(&params.authenticator_totp_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5091,7 +6554,7 @@ pub async fn stages_authenticator_totp_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorTotpStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorTotpStage`")))),
         }
@@ -5109,15 +6572,12 @@ pub async fn stages_authenticator_totp_update(
 /// Get a list of all objects that use this object
 pub async fn stages_authenticator_totp_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorTotpUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesAuthenticatorTotpUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/totp/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5142,7 +6602,7 @@ pub async fn stages_authenticator_totp_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -5160,11 +6620,8 @@ pub async fn stages_authenticator_totp_used_by_list(
 /// AuthenticatorValidateStage Viewset
 pub async fn stages_authenticator_validate_create(
     configuration: &configuration::Configuration,
-    authenticator_validate_stage_request: models::AuthenticatorValidateStageRequest,
+    params: StagesAuthenticatorValidateCreateParams,
 ) -> Result<models::AuthenticatorValidateStage, Error<StagesAuthenticatorValidateCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_authenticator_validate_stage_request = authenticator_validate_stage_request;
-
     let uri_str = format!("{}/stages/authenticator/validate/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -5174,7 +6631,7 @@ pub async fn stages_authenticator_validate_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_validate_stage_request);
+    req_builder = req_builder.json(&params.authenticator_validate_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5190,7 +6647,7 @@ pub async fn stages_authenticator_validate_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorValidateStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorValidateStage`")))),
         }
@@ -5208,15 +6665,12 @@ pub async fn stages_authenticator_validate_create(
 /// AuthenticatorValidateStage Viewset
 pub async fn stages_authenticator_validate_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorValidateDestroyParams,
 ) -> Result<(), Error<StagesAuthenticatorValidateDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/validate/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -5248,27 +6702,12 @@ pub async fn stages_authenticator_validate_destroy(
 /// AuthenticatorValidateStage Viewset
 pub async fn stages_authenticator_validate_list(
     configuration: &configuration::Configuration,
-    configuration_stages: Option<Vec<uuid::Uuid>>,
-    name: Option<&str>,
-    not_configured_action: Option<models::NotConfiguredActionEnum>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: StagesAuthenticatorValidateListParams,
 ) -> Result<models::PaginatedAuthenticatorValidateStageList, Error<StagesAuthenticatorValidateListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_configuration_stages = configuration_stages;
-    let p_query_name = name;
-    let p_query_not_configured_action = not_configured_action;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/stages/authenticator/validate/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_configuration_stages {
+    if let Some(ref param_value) = params.configuration_stages {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5287,22 +6726,22 @@ pub async fn stages_authenticator_validate_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_not_configured_action {
+    if let Some(ref param_value) = params.not_configured_action {
         req_builder = req_builder.query(&[("not_configured_action", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5326,7 +6765,7 @@ pub async fn stages_authenticator_validate_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAuthenticatorValidateStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAuthenticatorValidateStageList`")))),
         }
@@ -5344,17 +6783,12 @@ pub async fn stages_authenticator_validate_list(
 /// AuthenticatorValidateStage Viewset
 pub async fn stages_authenticator_validate_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_authenticator_validate_stage_request: Option<models::PatchedAuthenticatorValidateStageRequest>,
+    params: StagesAuthenticatorValidatePartialUpdateParams,
 ) -> Result<models::AuthenticatorValidateStage, Error<StagesAuthenticatorValidatePartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_authenticator_validate_stage_request = patched_authenticator_validate_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/validate/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -5364,7 +6798,7 @@ pub async fn stages_authenticator_validate_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_authenticator_validate_stage_request);
+    req_builder = req_builder.json(&params.patched_authenticator_validate_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5380,7 +6814,7 @@ pub async fn stages_authenticator_validate_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorValidateStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorValidateStage`")))),
         }
@@ -5398,15 +6832,12 @@ pub async fn stages_authenticator_validate_partial_update(
 /// AuthenticatorValidateStage Viewset
 pub async fn stages_authenticator_validate_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorValidateRetrieveParams,
 ) -> Result<models::AuthenticatorValidateStage, Error<StagesAuthenticatorValidateRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/validate/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5431,7 +6862,7 @@ pub async fn stages_authenticator_validate_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorValidateStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorValidateStage`")))),
         }
@@ -5449,17 +6880,12 @@ pub async fn stages_authenticator_validate_retrieve(
 /// AuthenticatorValidateStage Viewset
 pub async fn stages_authenticator_validate_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    authenticator_validate_stage_request: models::AuthenticatorValidateStageRequest,
+    params: StagesAuthenticatorValidateUpdateParams,
 ) -> Result<models::AuthenticatorValidateStage, Error<StagesAuthenticatorValidateUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_authenticator_validate_stage_request = authenticator_validate_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/validate/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -5469,7 +6895,7 @@ pub async fn stages_authenticator_validate_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_validate_stage_request);
+    req_builder = req_builder.json(&params.authenticator_validate_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5485,7 +6911,7 @@ pub async fn stages_authenticator_validate_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorValidateStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorValidateStage`")))),
         }
@@ -5503,15 +6929,12 @@ pub async fn stages_authenticator_validate_update(
 /// Get a list of all objects that use this object
 pub async fn stages_authenticator_validate_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorValidateUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesAuthenticatorValidateUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/validate/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5536,7 +6959,7 @@ pub async fn stages_authenticator_validate_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -5554,11 +6977,8 @@ pub async fn stages_authenticator_validate_used_by_list(
 /// AuthenticatorWebAuthnStage Viewset
 pub async fn stages_authenticator_webauthn_create(
     configuration: &configuration::Configuration,
-    authenticator_web_authn_stage_request: models::AuthenticatorWebAuthnStageRequest,
+    params: StagesAuthenticatorWebauthnCreateParams,
 ) -> Result<models::AuthenticatorWebAuthnStage, Error<StagesAuthenticatorWebauthnCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_authenticator_web_authn_stage_request = authenticator_web_authn_stage_request;
-
     let uri_str = format!("{}/stages/authenticator/webauthn/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -5568,7 +6988,7 @@ pub async fn stages_authenticator_webauthn_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_web_authn_stage_request);
+    req_builder = req_builder.json(&params.authenticator_web_authn_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5584,7 +7004,7 @@ pub async fn stages_authenticator_webauthn_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorWebAuthnStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorWebAuthnStage`")))),
         }
@@ -5602,15 +7022,12 @@ pub async fn stages_authenticator_webauthn_create(
 /// AuthenticatorWebAuthnStage Viewset
 pub async fn stages_authenticator_webauthn_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorWebauthnDestroyParams,
 ) -> Result<(), Error<StagesAuthenticatorWebauthnDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/webauthn/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -5642,48 +7059,33 @@ pub async fn stages_authenticator_webauthn_destroy(
 /// WebAuthnDeviceType Viewset
 pub async fn stages_authenticator_webauthn_device_types_list(
     configuration: &configuration::Configuration,
-    aaguid: Option<&str>,
-    description: Option<&str>,
-    icon: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: StagesAuthenticatorWebauthnDeviceTypesListParams,
 ) -> Result<models::PaginatedWebAuthnDeviceTypeList, Error<StagesAuthenticatorWebauthnDeviceTypesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_aaguid = aaguid;
-    let p_query_description = description;
-    let p_query_icon = icon;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!(
         "{}/stages/authenticator/webauthn_device_types/",
         configuration.base_path
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_aaguid {
+    if let Some(ref param_value) = params.aaguid {
         req_builder = req_builder.query(&[("aaguid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_description {
+    if let Some(ref param_value) = params.description {
         req_builder = req_builder.query(&[("description", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_icon {
+    if let Some(ref param_value) = params.icon {
         req_builder = req_builder.query(&[("icon", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5707,7 +7109,7 @@ pub async fn stages_authenticator_webauthn_device_types_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedWebAuthnDeviceTypeList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedWebAuthnDeviceTypeList`")))),
         }
@@ -5725,15 +7127,12 @@ pub async fn stages_authenticator_webauthn_device_types_list(
 /// WebAuthnDeviceType Viewset
 pub async fn stages_authenticator_webauthn_device_types_retrieve(
     configuration: &configuration::Configuration,
-    aaguid: &str,
+    params: StagesAuthenticatorWebauthnDeviceTypesRetrieveParams,
 ) -> Result<models::WebAuthnDeviceType, Error<StagesAuthenticatorWebauthnDeviceTypesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_aaguid = aaguid;
-
     let uri_str = format!(
         "{}/stages/authenticator/webauthn_device_types/{aaguid}/",
         configuration.base_path,
-        aaguid = crate::apis::urlencode(p_path_aaguid)
+        aaguid = crate::apis::urlencode(params.aaguid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5758,7 +7157,7 @@ pub async fn stages_authenticator_webauthn_device_types_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::WebAuthnDeviceType`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::WebAuthnDeviceType`")))),
         }
@@ -5776,41 +7175,18 @@ pub async fn stages_authenticator_webauthn_device_types_retrieve(
 /// AuthenticatorWebAuthnStage Viewset
 pub async fn stages_authenticator_webauthn_list(
     configuration: &configuration::Configuration,
-    authenticator_attachment: Option<&str>,
-    configure_flow: Option<&str>,
-    device_type_restrictions: Option<Vec<uuid::Uuid>>,
-    max_attempts: Option<i32>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    resident_key_requirement: Option<models::UserVerificationEnum>,
-    search: Option<&str>,
-    user_verification: Option<models::UserVerificationEnum>,
+    params: StagesAuthenticatorWebauthnListParams,
 ) -> Result<models::PaginatedAuthenticatorWebAuthnStageList, Error<StagesAuthenticatorWebauthnListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_authenticator_attachment = authenticator_attachment;
-    let p_query_configure_flow = configure_flow;
-    let p_query_device_type_restrictions = device_type_restrictions;
-    let p_query_max_attempts = max_attempts;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_resident_key_requirement = resident_key_requirement;
-    let p_query_search = search;
-    let p_query_user_verification = user_verification;
-
     let uri_str = format!("{}/stages/authenticator/webauthn/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_authenticator_attachment {
+    if let Some(ref param_value) = params.authenticator_attachment {
         req_builder = req_builder.query(&[("authenticator_attachment", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_configure_flow {
+    if let Some(ref param_value) = params.configure_flow {
         req_builder = req_builder.query(&[("configure_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_device_type_restrictions {
+    if let Some(ref param_value) = params.device_type_restrictions {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5829,28 +7205,28 @@ pub async fn stages_authenticator_webauthn_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_max_attempts {
+    if let Some(ref param_value) = params.max_attempts {
         req_builder = req_builder.query(&[("max_attempts", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_resident_key_requirement {
+    if let Some(ref param_value) = params.resident_key_requirement {
         req_builder = req_builder.query(&[("resident_key_requirement", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_verification {
+    if let Some(ref param_value) = params.user_verification {
         req_builder = req_builder.query(&[("user_verification", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5874,7 +7250,7 @@ pub async fn stages_authenticator_webauthn_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAuthenticatorWebAuthnStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAuthenticatorWebAuthnStageList`")))),
         }
@@ -5892,17 +7268,12 @@ pub async fn stages_authenticator_webauthn_list(
 /// AuthenticatorWebAuthnStage Viewset
 pub async fn stages_authenticator_webauthn_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_authenticator_web_authn_stage_request: Option<models::PatchedAuthenticatorWebAuthnStageRequest>,
+    params: StagesAuthenticatorWebauthnPartialUpdateParams,
 ) -> Result<models::AuthenticatorWebAuthnStage, Error<StagesAuthenticatorWebauthnPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_authenticator_web_authn_stage_request = patched_authenticator_web_authn_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/webauthn/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -5912,7 +7283,7 @@ pub async fn stages_authenticator_webauthn_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_authenticator_web_authn_stage_request);
+    req_builder = req_builder.json(&params.patched_authenticator_web_authn_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5928,7 +7299,7 @@ pub async fn stages_authenticator_webauthn_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorWebAuthnStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorWebAuthnStage`")))),
         }
@@ -5946,15 +7317,12 @@ pub async fn stages_authenticator_webauthn_partial_update(
 /// AuthenticatorWebAuthnStage Viewset
 pub async fn stages_authenticator_webauthn_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorWebauthnRetrieveParams,
 ) -> Result<models::AuthenticatorWebAuthnStage, Error<StagesAuthenticatorWebauthnRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/webauthn/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5979,7 +7347,7 @@ pub async fn stages_authenticator_webauthn_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorWebAuthnStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorWebAuthnStage`")))),
         }
@@ -5997,17 +7365,12 @@ pub async fn stages_authenticator_webauthn_retrieve(
 /// AuthenticatorWebAuthnStage Viewset
 pub async fn stages_authenticator_webauthn_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    authenticator_web_authn_stage_request: models::AuthenticatorWebAuthnStageRequest,
+    params: StagesAuthenticatorWebauthnUpdateParams,
 ) -> Result<models::AuthenticatorWebAuthnStage, Error<StagesAuthenticatorWebauthnUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_authenticator_web_authn_stage_request = authenticator_web_authn_stage_request;
-
     let uri_str = format!(
         "{}/stages/authenticator/webauthn/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -6017,7 +7380,7 @@ pub async fn stages_authenticator_webauthn_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_authenticator_web_authn_stage_request);
+    req_builder = req_builder.json(&params.authenticator_web_authn_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6033,7 +7396,7 @@ pub async fn stages_authenticator_webauthn_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatorWebAuthnStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatorWebAuthnStage`")))),
         }
@@ -6051,15 +7414,12 @@ pub async fn stages_authenticator_webauthn_update(
 /// Get a list of all objects that use this object
 pub async fn stages_authenticator_webauthn_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesAuthenticatorWebauthnUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesAuthenticatorWebauthnUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/authenticator/webauthn/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6084,7 +7444,7 @@ pub async fn stages_authenticator_webauthn_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -6102,11 +7462,8 @@ pub async fn stages_authenticator_webauthn_used_by_list(
 /// CaptchaStage Viewset
 pub async fn stages_captcha_create(
     configuration: &configuration::Configuration,
-    captcha_stage_request: models::CaptchaStageRequest,
+    params: StagesCaptchaCreateParams,
 ) -> Result<models::CaptchaStage, Error<StagesCaptchaCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_captcha_stage_request = captcha_stage_request;
-
     let uri_str = format!("{}/stages/captcha/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -6116,7 +7473,7 @@ pub async fn stages_captcha_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_captcha_stage_request);
+    req_builder = req_builder.json(&params.captcha_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6132,7 +7489,9 @@ pub async fn stages_captcha_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::CaptchaStage`",
@@ -6156,15 +7515,12 @@ pub async fn stages_captcha_create(
 /// CaptchaStage Viewset
 pub async fn stages_captcha_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesCaptchaDestroyParams,
 ) -> Result<(), Error<StagesCaptchaDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/captcha/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -6196,40 +7552,27 @@ pub async fn stages_captcha_destroy(
 /// CaptchaStage Viewset
 pub async fn stages_captcha_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    public_key: Option<&str>,
-    search: Option<&str>,
+    params: StagesCaptchaListParams,
 ) -> Result<models::PaginatedCaptchaStageList, Error<StagesCaptchaListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_public_key = public_key;
-    let p_query_search = search;
-
     let uri_str = format!("{}/stages/captcha/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_public_key {
+    if let Some(ref param_value) = params.public_key {
         req_builder = req_builder.query(&[("public_key", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6253,7 +7596,7 @@ pub async fn stages_captcha_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedCaptchaStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedCaptchaStageList`")))),
         }
@@ -6271,17 +7614,12 @@ pub async fn stages_captcha_list(
 /// CaptchaStage Viewset
 pub async fn stages_captcha_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_captcha_stage_request: Option<models::PatchedCaptchaStageRequest>,
+    params: StagesCaptchaPartialUpdateParams,
 ) -> Result<models::CaptchaStage, Error<StagesCaptchaPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_captcha_stage_request = patched_captcha_stage_request;
-
     let uri_str = format!(
         "{}/stages/captcha/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -6291,7 +7629,7 @@ pub async fn stages_captcha_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_captcha_stage_request);
+    req_builder = req_builder.json(&params.patched_captcha_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6307,7 +7645,9 @@ pub async fn stages_captcha_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::CaptchaStage`",
@@ -6331,15 +7671,12 @@ pub async fn stages_captcha_partial_update(
 /// CaptchaStage Viewset
 pub async fn stages_captcha_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesCaptchaRetrieveParams,
 ) -> Result<models::CaptchaStage, Error<StagesCaptchaRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/captcha/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6364,7 +7701,9 @@ pub async fn stages_captcha_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::CaptchaStage`",
@@ -6388,17 +7727,12 @@ pub async fn stages_captcha_retrieve(
 /// CaptchaStage Viewset
 pub async fn stages_captcha_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    captcha_stage_request: models::CaptchaStageRequest,
+    params: StagesCaptchaUpdateParams,
 ) -> Result<models::CaptchaStage, Error<StagesCaptchaUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_captcha_stage_request = captcha_stage_request;
-
     let uri_str = format!(
         "{}/stages/captcha/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -6408,7 +7742,7 @@ pub async fn stages_captcha_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_captcha_stage_request);
+    req_builder = req_builder.json(&params.captcha_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6424,7 +7758,9 @@ pub async fn stages_captcha_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::CaptchaStage`",
@@ -6448,15 +7784,12 @@ pub async fn stages_captcha_update(
 /// Get a list of all objects that use this object
 pub async fn stages_captcha_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesCaptchaUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesCaptchaUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/captcha/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6481,7 +7814,7 @@ pub async fn stages_captcha_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -6499,11 +7832,8 @@ pub async fn stages_captcha_used_by_list(
 /// ConsentStage Viewset
 pub async fn stages_consent_create(
     configuration: &configuration::Configuration,
-    consent_stage_request: models::ConsentStageRequest,
+    params: StagesConsentCreateParams,
 ) -> Result<models::ConsentStage, Error<StagesConsentCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_consent_stage_request = consent_stage_request;
-
     let uri_str = format!("{}/stages/consent/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -6513,7 +7843,7 @@ pub async fn stages_consent_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_consent_stage_request);
+    req_builder = req_builder.json(&params.consent_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6529,7 +7859,9 @@ pub async fn stages_consent_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ConsentStage`",
@@ -6553,15 +7885,12 @@ pub async fn stages_consent_create(
 /// ConsentStage Viewset
 pub async fn stages_consent_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesConsentDestroyParams,
 ) -> Result<(), Error<StagesConsentDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/consent/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -6593,50 +7922,33 @@ pub async fn stages_consent_destroy(
 /// ConsentStage Viewset
 pub async fn stages_consent_list(
     configuration: &configuration::Configuration,
-    consent_expire_in: Option<&str>,
-    mode: Option<models::ConsentModeEnum>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
+    params: StagesConsentListParams,
 ) -> Result<models::PaginatedConsentStageList, Error<StagesConsentListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_consent_expire_in = consent_expire_in;
-    let p_query_mode = mode;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-
     let uri_str = format!("{}/stages/consent/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_consent_expire_in {
+    if let Some(ref param_value) = params.consent_expire_in {
         req_builder = req_builder.query(&[("consent_expire_in", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_mode {
+    if let Some(ref param_value) = params.mode {
         req_builder = req_builder.query(&[("mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6660,7 +7972,7 @@ pub async fn stages_consent_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedConsentStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedConsentStageList`")))),
         }
@@ -6678,17 +7990,12 @@ pub async fn stages_consent_list(
 /// ConsentStage Viewset
 pub async fn stages_consent_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_consent_stage_request: Option<models::PatchedConsentStageRequest>,
+    params: StagesConsentPartialUpdateParams,
 ) -> Result<models::ConsentStage, Error<StagesConsentPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_consent_stage_request = patched_consent_stage_request;
-
     let uri_str = format!(
         "{}/stages/consent/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -6698,7 +8005,7 @@ pub async fn stages_consent_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_consent_stage_request);
+    req_builder = req_builder.json(&params.patched_consent_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6714,7 +8021,9 @@ pub async fn stages_consent_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ConsentStage`",
@@ -6738,15 +8047,12 @@ pub async fn stages_consent_partial_update(
 /// ConsentStage Viewset
 pub async fn stages_consent_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesConsentRetrieveParams,
 ) -> Result<models::ConsentStage, Error<StagesConsentRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/consent/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6771,7 +8077,9 @@ pub async fn stages_consent_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ConsentStage`",
@@ -6795,17 +8103,12 @@ pub async fn stages_consent_retrieve(
 /// ConsentStage Viewset
 pub async fn stages_consent_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    consent_stage_request: models::ConsentStageRequest,
+    params: StagesConsentUpdateParams,
 ) -> Result<models::ConsentStage, Error<StagesConsentUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_consent_stage_request = consent_stage_request;
-
     let uri_str = format!(
         "{}/stages/consent/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -6815,7 +8118,7 @@ pub async fn stages_consent_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_consent_stage_request);
+    req_builder = req_builder.json(&params.consent_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6831,7 +8134,9 @@ pub async fn stages_consent_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ConsentStage`",
@@ -6855,15 +8160,12 @@ pub async fn stages_consent_update(
 /// Get a list of all objects that use this object
 pub async fn stages_consent_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesConsentUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesConsentUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/consent/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6888,7 +8190,7 @@ pub async fn stages_consent_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -6906,11 +8208,8 @@ pub async fn stages_consent_used_by_list(
 /// DenyStage Viewset
 pub async fn stages_deny_create(
     configuration: &configuration::Configuration,
-    deny_stage_request: models::DenyStageRequest,
+    params: StagesDenyCreateParams,
 ) -> Result<models::DenyStage, Error<StagesDenyCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_deny_stage_request = deny_stage_request;
-
     let uri_str = format!("{}/stages/deny/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -6920,7 +8219,7 @@ pub async fn stages_deny_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_deny_stage_request);
+    req_builder = req_builder.json(&params.deny_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6936,7 +8235,9 @@ pub async fn stages_deny_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DenyStage`",
@@ -6962,15 +8263,12 @@ pub async fn stages_deny_create(
 /// DenyStage Viewset
 pub async fn stages_deny_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesDenyDestroyParams,
 ) -> Result<(), Error<StagesDenyDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/deny/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -7002,45 +8300,30 @@ pub async fn stages_deny_destroy(
 /// DenyStage Viewset
 pub async fn stages_deny_list(
     configuration: &configuration::Configuration,
-    deny_message: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
+    params: StagesDenyListParams,
 ) -> Result<models::PaginatedDenyStageList, Error<StagesDenyListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_deny_message = deny_message;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-
     let uri_str = format!("{}/stages/deny/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_deny_message {
+    if let Some(ref param_value) = params.deny_message {
         req_builder = req_builder.query(&[("deny_message", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7064,7 +8347,7 @@ pub async fn stages_deny_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedDenyStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedDenyStageList`")))),
         }
@@ -7082,17 +8365,12 @@ pub async fn stages_deny_list(
 /// DenyStage Viewset
 pub async fn stages_deny_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_deny_stage_request: Option<models::PatchedDenyStageRequest>,
+    params: StagesDenyPartialUpdateParams,
 ) -> Result<models::DenyStage, Error<StagesDenyPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_deny_stage_request = patched_deny_stage_request;
-
     let uri_str = format!(
         "{}/stages/deny/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -7102,7 +8380,7 @@ pub async fn stages_deny_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_deny_stage_request);
+    req_builder = req_builder.json(&params.patched_deny_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7118,7 +8396,9 @@ pub async fn stages_deny_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DenyStage`",
@@ -7144,15 +8424,12 @@ pub async fn stages_deny_partial_update(
 /// DenyStage Viewset
 pub async fn stages_deny_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesDenyRetrieveParams,
 ) -> Result<models::DenyStage, Error<StagesDenyRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/deny/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7177,7 +8454,9 @@ pub async fn stages_deny_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DenyStage`",
@@ -7203,17 +8482,12 @@ pub async fn stages_deny_retrieve(
 /// DenyStage Viewset
 pub async fn stages_deny_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    deny_stage_request: models::DenyStageRequest,
+    params: StagesDenyUpdateParams,
 ) -> Result<models::DenyStage, Error<StagesDenyUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_deny_stage_request = deny_stage_request;
-
     let uri_str = format!(
         "{}/stages/deny/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -7223,7 +8497,7 @@ pub async fn stages_deny_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_deny_stage_request);
+    req_builder = req_builder.json(&params.deny_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7239,7 +8513,9 @@ pub async fn stages_deny_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DenyStage`",
@@ -7265,15 +8541,12 @@ pub async fn stages_deny_update(
 /// Get a list of all objects that use this object
 pub async fn stages_deny_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesDenyUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesDenyUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/deny/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7298,7 +8571,7 @@ pub async fn stages_deny_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -7316,11 +8589,8 @@ pub async fn stages_deny_used_by_list(
 /// DummyStage Viewset
 pub async fn stages_dummy_create(
     configuration: &configuration::Configuration,
-    dummy_stage_request: models::DummyStageRequest,
+    params: StagesDummyCreateParams,
 ) -> Result<models::DummyStage, Error<StagesDummyCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_dummy_stage_request = dummy_stage_request;
-
     let uri_str = format!("{}/stages/dummy/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -7330,7 +8600,7 @@ pub async fn stages_dummy_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_dummy_stage_request);
+    req_builder = req_builder.json(&params.dummy_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7346,7 +8616,9 @@ pub async fn stages_dummy_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DummyStage`",
@@ -7372,15 +8644,12 @@ pub async fn stages_dummy_create(
 /// DummyStage Viewset
 pub async fn stages_dummy_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesDummyDestroyParams,
 ) -> Result<(), Error<StagesDummyDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/dummy/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -7412,45 +8681,30 @@ pub async fn stages_dummy_destroy(
 /// DummyStage Viewset
 pub async fn stages_dummy_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
-    throw_error: Option<bool>,
+    params: StagesDummyListParams,
 ) -> Result<models::PaginatedDummyStageList, Error<StagesDummyListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-    let p_query_throw_error = throw_error;
-
     let uri_str = format!("{}/stages/dummy/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_throw_error {
+    if let Some(ref param_value) = params.throw_error {
         req_builder = req_builder.query(&[("throw_error", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7474,7 +8728,7 @@ pub async fn stages_dummy_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedDummyStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedDummyStageList`")))),
         }
@@ -7492,17 +8746,12 @@ pub async fn stages_dummy_list(
 /// DummyStage Viewset
 pub async fn stages_dummy_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_dummy_stage_request: Option<models::PatchedDummyStageRequest>,
+    params: StagesDummyPartialUpdateParams,
 ) -> Result<models::DummyStage, Error<StagesDummyPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_dummy_stage_request = patched_dummy_stage_request;
-
     let uri_str = format!(
         "{}/stages/dummy/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -7512,7 +8761,7 @@ pub async fn stages_dummy_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_dummy_stage_request);
+    req_builder = req_builder.json(&params.patched_dummy_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7528,7 +8777,9 @@ pub async fn stages_dummy_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DummyStage`",
@@ -7554,15 +8805,12 @@ pub async fn stages_dummy_partial_update(
 /// DummyStage Viewset
 pub async fn stages_dummy_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesDummyRetrieveParams,
 ) -> Result<models::DummyStage, Error<StagesDummyRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/dummy/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7587,7 +8835,9 @@ pub async fn stages_dummy_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DummyStage`",
@@ -7613,17 +8863,12 @@ pub async fn stages_dummy_retrieve(
 /// DummyStage Viewset
 pub async fn stages_dummy_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    dummy_stage_request: models::DummyStageRequest,
+    params: StagesDummyUpdateParams,
 ) -> Result<models::DummyStage, Error<StagesDummyUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_dummy_stage_request = dummy_stage_request;
-
     let uri_str = format!(
         "{}/stages/dummy/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -7633,7 +8878,7 @@ pub async fn stages_dummy_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_dummy_stage_request);
+    req_builder = req_builder.json(&params.dummy_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7649,7 +8894,9 @@ pub async fn stages_dummy_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DummyStage`",
@@ -7675,15 +8922,12 @@ pub async fn stages_dummy_update(
 /// Get a list of all objects that use this object
 pub async fn stages_dummy_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesDummyUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesDummyUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/dummy/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7708,7 +8952,7 @@ pub async fn stages_dummy_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -7726,11 +8970,8 @@ pub async fn stages_dummy_used_by_list(
 /// EmailStage Viewset
 pub async fn stages_email_create(
     configuration: &configuration::Configuration,
-    email_stage_request: models::EmailStageRequest,
+    params: StagesEmailCreateParams,
 ) -> Result<models::EmailStage, Error<StagesEmailCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_email_stage_request = email_stage_request;
-
     let uri_str = format!("{}/stages/email/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -7740,7 +8981,7 @@ pub async fn stages_email_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_email_stage_request);
+    req_builder = req_builder.json(&params.email_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7756,7 +8997,9 @@ pub async fn stages_email_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EmailStage`",
@@ -7782,15 +9025,12 @@ pub async fn stages_email_create(
 /// EmailStage Viewset
 pub async fn stages_email_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesEmailDestroyParams,
 ) -> Result<(), Error<StagesEmailDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/email/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -7822,95 +9062,60 @@ pub async fn stages_email_destroy(
 /// EmailStage Viewset
 pub async fn stages_email_list(
     configuration: &configuration::Configuration,
-    activate_user_on_success: Option<bool>,
-    from_address: Option<&str>,
-    host: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    port: Option<i32>,
-    search: Option<&str>,
-    subject: Option<&str>,
-    template: Option<&str>,
-    timeout: Option<i32>,
-    token_expiry: Option<&str>,
-    use_global_settings: Option<bool>,
-    use_ssl: Option<bool>,
-    use_tls: Option<bool>,
-    username: Option<&str>,
+    params: StagesEmailListParams,
 ) -> Result<models::PaginatedEmailStageList, Error<StagesEmailListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_activate_user_on_success = activate_user_on_success;
-    let p_query_from_address = from_address;
-    let p_query_host = host;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_port = port;
-    let p_query_search = search;
-    let p_query_subject = subject;
-    let p_query_template = template;
-    let p_query_timeout = timeout;
-    let p_query_token_expiry = token_expiry;
-    let p_query_use_global_settings = use_global_settings;
-    let p_query_use_ssl = use_ssl;
-    let p_query_use_tls = use_tls;
-    let p_query_username = username;
-
     let uri_str = format!("{}/stages/email/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_activate_user_on_success {
+    if let Some(ref param_value) = params.activate_user_on_success {
         req_builder = req_builder.query(&[("activate_user_on_success", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_from_address {
+    if let Some(ref param_value) = params.from_address {
         req_builder = req_builder.query(&[("from_address", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_host {
+    if let Some(ref param_value) = params.host {
         req_builder = req_builder.query(&[("host", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_port {
+    if let Some(ref param_value) = params.port {
         req_builder = req_builder.query(&[("port", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_subject {
+    if let Some(ref param_value) = params.subject {
         req_builder = req_builder.query(&[("subject", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_template {
+    if let Some(ref param_value) = params.template {
         req_builder = req_builder.query(&[("template", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_timeout {
+    if let Some(ref param_value) = params.timeout {
         req_builder = req_builder.query(&[("timeout", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_token_expiry {
+    if let Some(ref param_value) = params.token_expiry {
         req_builder = req_builder.query(&[("token_expiry", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_use_global_settings {
+    if let Some(ref param_value) = params.use_global_settings {
         req_builder = req_builder.query(&[("use_global_settings", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_use_ssl {
+    if let Some(ref param_value) = params.use_ssl {
         req_builder = req_builder.query(&[("use_ssl", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_use_tls {
+    if let Some(ref param_value) = params.use_tls {
         req_builder = req_builder.query(&[("use_tls", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_username {
+    if let Some(ref param_value) = params.username {
         req_builder = req_builder.query(&[("username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7934,7 +9139,7 @@ pub async fn stages_email_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedEmailStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedEmailStageList`")))),
         }
@@ -7952,17 +9157,12 @@ pub async fn stages_email_list(
 /// EmailStage Viewset
 pub async fn stages_email_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_email_stage_request: Option<models::PatchedEmailStageRequest>,
+    params: StagesEmailPartialUpdateParams,
 ) -> Result<models::EmailStage, Error<StagesEmailPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_email_stage_request = patched_email_stage_request;
-
     let uri_str = format!(
         "{}/stages/email/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -7972,7 +9172,7 @@ pub async fn stages_email_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_email_stage_request);
+    req_builder = req_builder.json(&params.patched_email_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7988,7 +9188,9 @@ pub async fn stages_email_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EmailStage`",
@@ -8014,15 +9216,12 @@ pub async fn stages_email_partial_update(
 /// EmailStage Viewset
 pub async fn stages_email_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesEmailRetrieveParams,
 ) -> Result<models::EmailStage, Error<StagesEmailRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/email/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -8047,7 +9246,9 @@ pub async fn stages_email_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EmailStage`",
@@ -8098,7 +9299,7 @@ pub async fn stages_email_templates_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`")))),
         }
@@ -8116,17 +9317,12 @@ pub async fn stages_email_templates_list(
 /// EmailStage Viewset
 pub async fn stages_email_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    email_stage_request: models::EmailStageRequest,
+    params: StagesEmailUpdateParams,
 ) -> Result<models::EmailStage, Error<StagesEmailUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_email_stage_request = email_stage_request;
-
     let uri_str = format!(
         "{}/stages/email/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -8136,7 +9332,7 @@ pub async fn stages_email_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_email_stage_request);
+    req_builder = req_builder.json(&params.email_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8152,7 +9348,9 @@ pub async fn stages_email_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EmailStage`",
@@ -8178,15 +9376,12 @@ pub async fn stages_email_update(
 /// Get a list of all objects that use this object
 pub async fn stages_email_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesEmailUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesEmailUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/email/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -8211,7 +9406,7 @@ pub async fn stages_email_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -8229,11 +9424,8 @@ pub async fn stages_email_used_by_list(
 /// EndpointStage Viewset
 pub async fn stages_endpoints_create(
     configuration: &configuration::Configuration,
-    endpoint_stage_request: models::EndpointStageRequest,
+    params: StagesEndpointsCreateParams,
 ) -> Result<models::EndpointStage, Error<StagesEndpointsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_endpoint_stage_request = endpoint_stage_request;
-
     let uri_str = format!("{}/stages/endpoints/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -8243,7 +9435,7 @@ pub async fn stages_endpoints_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_endpoint_stage_request);
+    req_builder = req_builder.json(&params.endpoint_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8259,7 +9451,9 @@ pub async fn stages_endpoints_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EndpointStage`",
@@ -8283,15 +9477,12 @@ pub async fn stages_endpoints_create(
 /// EndpointStage Viewset
 pub async fn stages_endpoints_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesEndpointsDestroyParams,
 ) -> Result<(), Error<StagesEndpointsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/endpoints/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -8323,35 +9514,24 @@ pub async fn stages_endpoints_destroy(
 /// EndpointStage Viewset
 pub async fn stages_endpoints_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: StagesEndpointsListParams,
 ) -> Result<models::PaginatedEndpointStageList, Error<StagesEndpointsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/stages/endpoints/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8375,7 +9555,7 @@ pub async fn stages_endpoints_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedEndpointStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedEndpointStageList`")))),
         }
@@ -8393,17 +9573,12 @@ pub async fn stages_endpoints_list(
 /// EndpointStage Viewset
 pub async fn stages_endpoints_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_endpoint_stage_request: Option<models::PatchedEndpointStageRequest>,
+    params: StagesEndpointsPartialUpdateParams,
 ) -> Result<models::EndpointStage, Error<StagesEndpointsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_endpoint_stage_request = patched_endpoint_stage_request;
-
     let uri_str = format!(
         "{}/stages/endpoints/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -8413,7 +9588,7 @@ pub async fn stages_endpoints_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_endpoint_stage_request);
+    req_builder = req_builder.json(&params.patched_endpoint_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8429,7 +9604,9 @@ pub async fn stages_endpoints_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EndpointStage`",
@@ -8453,15 +9630,12 @@ pub async fn stages_endpoints_partial_update(
 /// EndpointStage Viewset
 pub async fn stages_endpoints_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesEndpointsRetrieveParams,
 ) -> Result<models::EndpointStage, Error<StagesEndpointsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/endpoints/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -8486,7 +9660,9 @@ pub async fn stages_endpoints_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EndpointStage`",
@@ -8510,17 +9686,12 @@ pub async fn stages_endpoints_retrieve(
 /// EndpointStage Viewset
 pub async fn stages_endpoints_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    endpoint_stage_request: models::EndpointStageRequest,
+    params: StagesEndpointsUpdateParams,
 ) -> Result<models::EndpointStage, Error<StagesEndpointsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_endpoint_stage_request = endpoint_stage_request;
-
     let uri_str = format!(
         "{}/stages/endpoints/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -8530,7 +9701,7 @@ pub async fn stages_endpoints_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_endpoint_stage_request);
+    req_builder = req_builder.json(&params.endpoint_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8546,7 +9717,9 @@ pub async fn stages_endpoints_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EndpointStage`",
@@ -8570,15 +9743,12 @@ pub async fn stages_endpoints_update(
 /// Get a list of all objects that use this object
 pub async fn stages_endpoints_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesEndpointsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesEndpointsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/endpoints/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -8603,7 +9773,7 @@ pub async fn stages_endpoints_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -8621,11 +9791,8 @@ pub async fn stages_endpoints_used_by_list(
 /// IdentificationStage Viewset
 pub async fn stages_identification_create(
     configuration: &configuration::Configuration,
-    identification_stage_request: models::IdentificationStageRequest,
+    params: StagesIdentificationCreateParams,
 ) -> Result<models::IdentificationStage, Error<StagesIdentificationCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_identification_stage_request = identification_stage_request;
-
     let uri_str = format!("{}/stages/identification/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -8635,7 +9802,7 @@ pub async fn stages_identification_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_identification_stage_request);
+    req_builder = req_builder.json(&params.identification_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8651,7 +9818,7 @@ pub async fn stages_identification_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::IdentificationStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::IdentificationStage`")))),
         }
@@ -8669,15 +9836,12 @@ pub async fn stages_identification_create(
 /// IdentificationStage Viewset
 pub async fn stages_identification_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesIdentificationDestroyParams,
 ) -> Result<(), Error<StagesIdentificationDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/identification/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -8709,80 +9873,51 @@ pub async fn stages_identification_destroy(
 /// IdentificationStage Viewset
 pub async fn stages_identification_list(
     configuration: &configuration::Configuration,
-    captcha_stage: Option<&str>,
-    case_insensitive_matching: Option<bool>,
-    enrollment_flow: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    password_stage: Option<&str>,
-    passwordless_flow: Option<&str>,
-    recovery_flow: Option<&str>,
-    search: Option<&str>,
-    show_matched_user: Option<bool>,
-    show_source_labels: Option<bool>,
-    webauthn_stage: Option<&str>,
+    params: StagesIdentificationListParams,
 ) -> Result<models::PaginatedIdentificationStageList, Error<StagesIdentificationListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_captcha_stage = captcha_stage;
-    let p_query_case_insensitive_matching = case_insensitive_matching;
-    let p_query_enrollment_flow = enrollment_flow;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_password_stage = password_stage;
-    let p_query_passwordless_flow = passwordless_flow;
-    let p_query_recovery_flow = recovery_flow;
-    let p_query_search = search;
-    let p_query_show_matched_user = show_matched_user;
-    let p_query_show_source_labels = show_source_labels;
-    let p_query_webauthn_stage = webauthn_stage;
-
     let uri_str = format!("{}/stages/identification/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_captcha_stage {
+    if let Some(ref param_value) = params.captcha_stage {
         req_builder = req_builder.query(&[("captcha_stage", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_case_insensitive_matching {
+    if let Some(ref param_value) = params.case_insensitive_matching {
         req_builder = req_builder.query(&[("case_insensitive_matching", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_enrollment_flow {
+    if let Some(ref param_value) = params.enrollment_flow {
         req_builder = req_builder.query(&[("enrollment_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_password_stage {
+    if let Some(ref param_value) = params.password_stage {
         req_builder = req_builder.query(&[("password_stage", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_passwordless_flow {
+    if let Some(ref param_value) = params.passwordless_flow {
         req_builder = req_builder.query(&[("passwordless_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_recovery_flow {
+    if let Some(ref param_value) = params.recovery_flow {
         req_builder = req_builder.query(&[("recovery_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_show_matched_user {
+    if let Some(ref param_value) = params.show_matched_user {
         req_builder = req_builder.query(&[("show_matched_user", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_show_source_labels {
+    if let Some(ref param_value) = params.show_source_labels {
         req_builder = req_builder.query(&[("show_source_labels", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_webauthn_stage {
+    if let Some(ref param_value) = params.webauthn_stage {
         req_builder = req_builder.query(&[("webauthn_stage", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8806,7 +9941,7 @@ pub async fn stages_identification_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedIdentificationStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedIdentificationStageList`")))),
         }
@@ -8824,17 +9959,12 @@ pub async fn stages_identification_list(
 /// IdentificationStage Viewset
 pub async fn stages_identification_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_identification_stage_request: Option<models::PatchedIdentificationStageRequest>,
+    params: StagesIdentificationPartialUpdateParams,
 ) -> Result<models::IdentificationStage, Error<StagesIdentificationPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_identification_stage_request = patched_identification_stage_request;
-
     let uri_str = format!(
         "{}/stages/identification/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -8844,7 +9974,7 @@ pub async fn stages_identification_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_identification_stage_request);
+    req_builder = req_builder.json(&params.patched_identification_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8860,7 +9990,7 @@ pub async fn stages_identification_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::IdentificationStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::IdentificationStage`")))),
         }
@@ -8878,15 +10008,12 @@ pub async fn stages_identification_partial_update(
 /// IdentificationStage Viewset
 pub async fn stages_identification_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesIdentificationRetrieveParams,
 ) -> Result<models::IdentificationStage, Error<StagesIdentificationRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/identification/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -8911,7 +10038,7 @@ pub async fn stages_identification_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::IdentificationStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::IdentificationStage`")))),
         }
@@ -8929,17 +10056,12 @@ pub async fn stages_identification_retrieve(
 /// IdentificationStage Viewset
 pub async fn stages_identification_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    identification_stage_request: models::IdentificationStageRequest,
+    params: StagesIdentificationUpdateParams,
 ) -> Result<models::IdentificationStage, Error<StagesIdentificationUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_identification_stage_request = identification_stage_request;
-
     let uri_str = format!(
         "{}/stages/identification/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -8949,7 +10071,7 @@ pub async fn stages_identification_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_identification_stage_request);
+    req_builder = req_builder.json(&params.identification_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8965,7 +10087,7 @@ pub async fn stages_identification_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::IdentificationStage`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::IdentificationStage`")))),
         }
@@ -8983,15 +10105,12 @@ pub async fn stages_identification_update(
 /// Get a list of all objects that use this object
 pub async fn stages_identification_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesIdentificationUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesIdentificationUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/identification/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -9016,7 +10135,7 @@ pub async fn stages_identification_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -9034,11 +10153,8 @@ pub async fn stages_identification_used_by_list(
 /// Invitation Viewset
 pub async fn stages_invitation_invitations_create(
     configuration: &configuration::Configuration,
-    invitation_request: models::InvitationRequest,
+    params: StagesInvitationInvitationsCreateParams,
 ) -> Result<models::Invitation, Error<StagesInvitationInvitationsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_invitation_request = invitation_request;
-
     let uri_str = format!("{}/stages/invitation/invitations/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -9048,7 +10164,7 @@ pub async fn stages_invitation_invitations_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_invitation_request);
+    req_builder = req_builder.json(&params.invitation_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9064,7 +10180,9 @@ pub async fn stages_invitation_invitations_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Invitation`",
@@ -9090,15 +10208,12 @@ pub async fn stages_invitation_invitations_create(
 /// Invitation Viewset
 pub async fn stages_invitation_invitations_destroy(
     configuration: &configuration::Configuration,
-    invite_uuid: &str,
+    params: StagesInvitationInvitationsDestroyParams,
 ) -> Result<(), Error<StagesInvitationInvitationsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_invite_uuid = invite_uuid;
-
     let uri_str = format!(
         "{}/stages/invitation/invitations/{invite_uuid}/",
         configuration.base_path,
-        invite_uuid = crate::apis::urlencode(p_path_invite_uuid)
+        invite_uuid = crate::apis::urlencode(params.invite_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -9130,50 +10245,33 @@ pub async fn stages_invitation_invitations_destroy(
 /// Invitation Viewset
 pub async fn stages_invitation_invitations_list(
     configuration: &configuration::Configuration,
-    created_by__username: Option<&str>,
-    expires: Option<chrono::DateTime<chrono::FixedOffset>>,
-    flow__slug: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: StagesInvitationInvitationsListParams,
 ) -> Result<models::PaginatedInvitationList, Error<StagesInvitationInvitationsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_created_by__username = created_by__username;
-    let p_query_expires = expires;
-    let p_query_flow__slug = flow__slug;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/stages/invitation/invitations/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_created_by__username {
+    if let Some(ref param_value) = params.created_by__username {
         req_builder = req_builder.query(&[("created_by__username", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_expires {
+    if let Some(ref param_value) = params.expires {
         req_builder = req_builder.query(&[("expires", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_flow__slug {
+    if let Some(ref param_value) = params.flow__slug {
         req_builder = req_builder.query(&[("flow__slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -9197,7 +10295,7 @@ pub async fn stages_invitation_invitations_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedInvitationList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedInvitationList`")))),
         }
@@ -9215,17 +10313,12 @@ pub async fn stages_invitation_invitations_list(
 /// Invitation Viewset
 pub async fn stages_invitation_invitations_partial_update(
     configuration: &configuration::Configuration,
-    invite_uuid: &str,
-    patched_invitation_request: Option<models::PatchedInvitationRequest>,
+    params: StagesInvitationInvitationsPartialUpdateParams,
 ) -> Result<models::Invitation, Error<StagesInvitationInvitationsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_invite_uuid = invite_uuid;
-    let p_body_patched_invitation_request = patched_invitation_request;
-
     let uri_str = format!(
         "{}/stages/invitation/invitations/{invite_uuid}/",
         configuration.base_path,
-        invite_uuid = crate::apis::urlencode(p_path_invite_uuid)
+        invite_uuid = crate::apis::urlencode(params.invite_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -9235,7 +10328,7 @@ pub async fn stages_invitation_invitations_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_invitation_request);
+    req_builder = req_builder.json(&params.patched_invitation_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9251,7 +10344,9 @@ pub async fn stages_invitation_invitations_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Invitation`",
@@ -9277,15 +10372,12 @@ pub async fn stages_invitation_invitations_partial_update(
 /// Invitation Viewset
 pub async fn stages_invitation_invitations_retrieve(
     configuration: &configuration::Configuration,
-    invite_uuid: &str,
+    params: StagesInvitationInvitationsRetrieveParams,
 ) -> Result<models::Invitation, Error<StagesInvitationInvitationsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_invite_uuid = invite_uuid;
-
     let uri_str = format!(
         "{}/stages/invitation/invitations/{invite_uuid}/",
         configuration.base_path,
-        invite_uuid = crate::apis::urlencode(p_path_invite_uuid)
+        invite_uuid = crate::apis::urlencode(params.invite_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -9310,7 +10402,9 @@ pub async fn stages_invitation_invitations_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Invitation`",
@@ -9336,17 +10430,12 @@ pub async fn stages_invitation_invitations_retrieve(
 /// Send invitation link via email to one or more addresses
 pub async fn stages_invitation_invitations_send_email_create(
     configuration: &configuration::Configuration,
-    invite_uuid: &str,
-    invitation_send_email_request: models::InvitationSendEmailRequest,
+    params: StagesInvitationInvitationsSendEmailCreateParams,
 ) -> Result<(), Error<StagesInvitationInvitationsSendEmailCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_invite_uuid = invite_uuid;
-    let p_body_invitation_send_email_request = invitation_send_email_request;
-
     let uri_str = format!(
         "{}/stages/invitation/invitations/{invite_uuid}/send_email/",
         configuration.base_path,
-        invite_uuid = crate::apis::urlencode(p_path_invite_uuid)
+        invite_uuid = crate::apis::urlencode(params.invite_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -9356,7 +10445,7 @@ pub async fn stages_invitation_invitations_send_email_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_invitation_send_email_request);
+    req_builder = req_builder.json(&params.invitation_send_email_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9379,17 +10468,12 @@ pub async fn stages_invitation_invitations_send_email_create(
 /// Invitation Viewset
 pub async fn stages_invitation_invitations_update(
     configuration: &configuration::Configuration,
-    invite_uuid: &str,
-    invitation_request: models::InvitationRequest,
+    params: StagesInvitationInvitationsUpdateParams,
 ) -> Result<models::Invitation, Error<StagesInvitationInvitationsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_invite_uuid = invite_uuid;
-    let p_body_invitation_request = invitation_request;
-
     let uri_str = format!(
         "{}/stages/invitation/invitations/{invite_uuid}/",
         configuration.base_path,
-        invite_uuid = crate::apis::urlencode(p_path_invite_uuid)
+        invite_uuid = crate::apis::urlencode(params.invite_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -9399,7 +10483,7 @@ pub async fn stages_invitation_invitations_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_invitation_request);
+    req_builder = req_builder.json(&params.invitation_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9415,7 +10499,9 @@ pub async fn stages_invitation_invitations_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Invitation`",
@@ -9441,15 +10527,12 @@ pub async fn stages_invitation_invitations_update(
 /// Get a list of all objects that use this object
 pub async fn stages_invitation_invitations_used_by_list(
     configuration: &configuration::Configuration,
-    invite_uuid: &str,
+    params: StagesInvitationInvitationsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesInvitationInvitationsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_invite_uuid = invite_uuid;
-
     let uri_str = format!(
         "{}/stages/invitation/invitations/{invite_uuid}/used_by/",
         configuration.base_path,
-        invite_uuid = crate::apis::urlencode(p_path_invite_uuid)
+        invite_uuid = crate::apis::urlencode(params.invite_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -9474,7 +10557,7 @@ pub async fn stages_invitation_invitations_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -9492,11 +10575,8 @@ pub async fn stages_invitation_invitations_used_by_list(
 /// InvitationStage Viewset
 pub async fn stages_invitation_stages_create(
     configuration: &configuration::Configuration,
-    invitation_stage_request: models::InvitationStageRequest,
+    params: StagesInvitationStagesCreateParams,
 ) -> Result<models::InvitationStage, Error<StagesInvitationStagesCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_invitation_stage_request = invitation_stage_request;
-
     let uri_str = format!("{}/stages/invitation/stages/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -9506,7 +10586,7 @@ pub async fn stages_invitation_stages_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_invitation_stage_request);
+    req_builder = req_builder.json(&params.invitation_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9522,7 +10602,9 @@ pub async fn stages_invitation_stages_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::InvitationStage`",
@@ -9546,15 +10628,12 @@ pub async fn stages_invitation_stages_create(
 /// InvitationStage Viewset
 pub async fn stages_invitation_stages_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesInvitationStagesDestroyParams,
 ) -> Result<(), Error<StagesInvitationStagesDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/invitation/stages/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -9586,50 +10665,33 @@ pub async fn stages_invitation_stages_destroy(
 /// InvitationStage Viewset
 pub async fn stages_invitation_stages_list(
     configuration: &configuration::Configuration,
-    continue_flow_without_invitation: Option<bool>,
-    name: Option<&str>,
-    no_flows: Option<bool>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
+    params: StagesInvitationStagesListParams,
 ) -> Result<models::PaginatedInvitationStageList, Error<StagesInvitationStagesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_continue_flow_without_invitation = continue_flow_without_invitation;
-    let p_query_name = name;
-    let p_query_no_flows = no_flows;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-
     let uri_str = format!("{}/stages/invitation/stages/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_continue_flow_without_invitation {
+    if let Some(ref param_value) = params.continue_flow_without_invitation {
         req_builder = req_builder.query(&[("continue_flow_without_invitation", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_no_flows {
+    if let Some(ref param_value) = params.no_flows {
         req_builder = req_builder.query(&[("no_flows", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -9653,7 +10715,7 @@ pub async fn stages_invitation_stages_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedInvitationStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedInvitationStageList`")))),
         }
@@ -9671,17 +10733,12 @@ pub async fn stages_invitation_stages_list(
 /// InvitationStage Viewset
 pub async fn stages_invitation_stages_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_invitation_stage_request: Option<models::PatchedInvitationStageRequest>,
+    params: StagesInvitationStagesPartialUpdateParams,
 ) -> Result<models::InvitationStage, Error<StagesInvitationStagesPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_invitation_stage_request = patched_invitation_stage_request;
-
     let uri_str = format!(
         "{}/stages/invitation/stages/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -9691,7 +10748,7 @@ pub async fn stages_invitation_stages_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_invitation_stage_request);
+    req_builder = req_builder.json(&params.patched_invitation_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9707,7 +10764,9 @@ pub async fn stages_invitation_stages_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::InvitationStage`",
@@ -9731,15 +10790,12 @@ pub async fn stages_invitation_stages_partial_update(
 /// InvitationStage Viewset
 pub async fn stages_invitation_stages_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesInvitationStagesRetrieveParams,
 ) -> Result<models::InvitationStage, Error<StagesInvitationStagesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/invitation/stages/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -9764,7 +10820,9 @@ pub async fn stages_invitation_stages_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::InvitationStage`",
@@ -9788,17 +10846,12 @@ pub async fn stages_invitation_stages_retrieve(
 /// InvitationStage Viewset
 pub async fn stages_invitation_stages_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    invitation_stage_request: models::InvitationStageRequest,
+    params: StagesInvitationStagesUpdateParams,
 ) -> Result<models::InvitationStage, Error<StagesInvitationStagesUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_invitation_stage_request = invitation_stage_request;
-
     let uri_str = format!(
         "{}/stages/invitation/stages/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -9808,7 +10861,7 @@ pub async fn stages_invitation_stages_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_invitation_stage_request);
+    req_builder = req_builder.json(&params.invitation_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9824,7 +10877,9 @@ pub async fn stages_invitation_stages_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::InvitationStage`",
@@ -9848,15 +10903,12 @@ pub async fn stages_invitation_stages_update(
 /// Get a list of all objects that use this object
 pub async fn stages_invitation_stages_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesInvitationStagesUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesInvitationStagesUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/invitation/stages/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -9881,7 +10933,7 @@ pub async fn stages_invitation_stages_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -9899,11 +10951,8 @@ pub async fn stages_invitation_stages_used_by_list(
 /// MutualTLSStage Viewset
 pub async fn stages_mtls_create(
     configuration: &configuration::Configuration,
-    mutual_tls_stage_request: models::MutualTlsStageRequest,
+    params: StagesMtlsCreateParams,
 ) -> Result<models::MutualTlsStage, Error<StagesMtlsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_mutual_tls_stage_request = mutual_tls_stage_request;
-
     let uri_str = format!("{}/stages/mtls/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -9913,7 +10962,7 @@ pub async fn stages_mtls_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_mutual_tls_stage_request);
+    req_builder = req_builder.json(&params.mutual_tls_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9929,7 +10978,9 @@ pub async fn stages_mtls_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::MutualTlsStage`",
@@ -9953,15 +11004,12 @@ pub async fn stages_mtls_create(
 /// MutualTLSStage Viewset
 pub async fn stages_mtls_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesMtlsDestroyParams,
 ) -> Result<(), Error<StagesMtlsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/mtls/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -9993,36 +11041,15 @@ pub async fn stages_mtls_destroy(
 /// MutualTLSStage Viewset
 pub async fn stages_mtls_list(
     configuration: &configuration::Configuration,
-    cert_attribute: Option<models::CertAttributeEnum>,
-    certificate_authorities: Option<Vec<uuid::Uuid>>,
-    mode: Option<models::StageModeEnum>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
-    user_attribute: Option<models::UserAttributeEnum>,
+    params: StagesMtlsListParams,
 ) -> Result<models::PaginatedMutualTlsStageList, Error<StagesMtlsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_cert_attribute = cert_attribute;
-    let p_query_certificate_authorities = certificate_authorities;
-    let p_query_mode = mode;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-    let p_query_user_attribute = user_attribute;
-
     let uri_str = format!("{}/stages/mtls/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_cert_attribute {
+    if let Some(ref param_value) = params.cert_attribute {
         req_builder = req_builder.query(&[("cert_attribute", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_certificate_authorities {
+    if let Some(ref param_value) = params.certificate_authorities {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -10041,28 +11068,28 @@ pub async fn stages_mtls_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_mode {
+    if let Some(ref param_value) = params.mode {
         req_builder = req_builder.query(&[("mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_attribute {
+    if let Some(ref param_value) = params.user_attribute {
         req_builder = req_builder.query(&[("user_attribute", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -10086,7 +11113,7 @@ pub async fn stages_mtls_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedMutualTlsStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedMutualTlsStageList`")))),
         }
@@ -10104,17 +11131,12 @@ pub async fn stages_mtls_list(
 /// MutualTLSStage Viewset
 pub async fn stages_mtls_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_mutual_tls_stage_request: Option<models::PatchedMutualTlsStageRequest>,
+    params: StagesMtlsPartialUpdateParams,
 ) -> Result<models::MutualTlsStage, Error<StagesMtlsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_mutual_tls_stage_request = patched_mutual_tls_stage_request;
-
     let uri_str = format!(
         "{}/stages/mtls/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -10124,7 +11146,7 @@ pub async fn stages_mtls_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_mutual_tls_stage_request);
+    req_builder = req_builder.json(&params.patched_mutual_tls_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10140,7 +11162,9 @@ pub async fn stages_mtls_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::MutualTlsStage`",
@@ -10164,15 +11188,12 @@ pub async fn stages_mtls_partial_update(
 /// MutualTLSStage Viewset
 pub async fn stages_mtls_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesMtlsRetrieveParams,
 ) -> Result<models::MutualTlsStage, Error<StagesMtlsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/mtls/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -10197,7 +11218,9 @@ pub async fn stages_mtls_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::MutualTlsStage`",
@@ -10221,17 +11244,12 @@ pub async fn stages_mtls_retrieve(
 /// MutualTLSStage Viewset
 pub async fn stages_mtls_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    mutual_tls_stage_request: models::MutualTlsStageRequest,
+    params: StagesMtlsUpdateParams,
 ) -> Result<models::MutualTlsStage, Error<StagesMtlsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_mutual_tls_stage_request = mutual_tls_stage_request;
-
     let uri_str = format!(
         "{}/stages/mtls/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -10241,7 +11259,7 @@ pub async fn stages_mtls_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_mutual_tls_stage_request);
+    req_builder = req_builder.json(&params.mutual_tls_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10257,7 +11275,9 @@ pub async fn stages_mtls_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::MutualTlsStage`",
@@ -10281,15 +11301,12 @@ pub async fn stages_mtls_update(
 /// Get a list of all objects that use this object
 pub async fn stages_mtls_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesMtlsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesMtlsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/mtls/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -10314,7 +11331,7 @@ pub async fn stages_mtls_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -10332,11 +11349,8 @@ pub async fn stages_mtls_used_by_list(
 /// PasswordStage Viewset
 pub async fn stages_password_create(
     configuration: &configuration::Configuration,
-    password_stage_request: models::PasswordStageRequest,
+    params: StagesPasswordCreateParams,
 ) -> Result<models::PasswordStage, Error<StagesPasswordCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_password_stage_request = password_stage_request;
-
     let uri_str = format!("{}/stages/password/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -10346,7 +11360,7 @@ pub async fn stages_password_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_password_stage_request);
+    req_builder = req_builder.json(&params.password_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10362,7 +11376,9 @@ pub async fn stages_password_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PasswordStage`",
@@ -10386,15 +11402,12 @@ pub async fn stages_password_create(
 /// PasswordStage Viewset
 pub async fn stages_password_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesPasswordDestroyParams,
 ) -> Result<(), Error<StagesPasswordDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/password/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -10426,50 +11439,33 @@ pub async fn stages_password_destroy(
 /// PasswordStage Viewset
 pub async fn stages_password_list(
     configuration: &configuration::Configuration,
-    allow_show_password: Option<bool>,
-    configure_flow: Option<&str>,
-    failed_attempts_before_cancel: Option<i32>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: StagesPasswordListParams,
 ) -> Result<models::PaginatedPasswordStageList, Error<StagesPasswordListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_allow_show_password = allow_show_password;
-    let p_query_configure_flow = configure_flow;
-    let p_query_failed_attempts_before_cancel = failed_attempts_before_cancel;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/stages/password/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_allow_show_password {
+    if let Some(ref param_value) = params.allow_show_password {
         req_builder = req_builder.query(&[("allow_show_password", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_configure_flow {
+    if let Some(ref param_value) = params.configure_flow {
         req_builder = req_builder.query(&[("configure_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_failed_attempts_before_cancel {
+    if let Some(ref param_value) = params.failed_attempts_before_cancel {
         req_builder = req_builder.query(&[("failed_attempts_before_cancel", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -10493,7 +11489,7 @@ pub async fn stages_password_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedPasswordStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedPasswordStageList`")))),
         }
@@ -10511,17 +11507,12 @@ pub async fn stages_password_list(
 /// PasswordStage Viewset
 pub async fn stages_password_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_password_stage_request: Option<models::PatchedPasswordStageRequest>,
+    params: StagesPasswordPartialUpdateParams,
 ) -> Result<models::PasswordStage, Error<StagesPasswordPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_password_stage_request = patched_password_stage_request;
-
     let uri_str = format!(
         "{}/stages/password/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -10531,7 +11522,7 @@ pub async fn stages_password_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_password_stage_request);
+    req_builder = req_builder.json(&params.patched_password_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10547,7 +11538,9 @@ pub async fn stages_password_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PasswordStage`",
@@ -10571,15 +11564,12 @@ pub async fn stages_password_partial_update(
 /// PasswordStage Viewset
 pub async fn stages_password_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesPasswordRetrieveParams,
 ) -> Result<models::PasswordStage, Error<StagesPasswordRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/password/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -10604,7 +11594,9 @@ pub async fn stages_password_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PasswordStage`",
@@ -10628,17 +11620,12 @@ pub async fn stages_password_retrieve(
 /// PasswordStage Viewset
 pub async fn stages_password_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    password_stage_request: models::PasswordStageRequest,
+    params: StagesPasswordUpdateParams,
 ) -> Result<models::PasswordStage, Error<StagesPasswordUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_password_stage_request = password_stage_request;
-
     let uri_str = format!(
         "{}/stages/password/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -10648,7 +11635,7 @@ pub async fn stages_password_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_password_stage_request);
+    req_builder = req_builder.json(&params.password_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10664,7 +11651,9 @@ pub async fn stages_password_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PasswordStage`",
@@ -10688,15 +11677,12 @@ pub async fn stages_password_update(
 /// Get a list of all objects that use this object
 pub async fn stages_password_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesPasswordUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesPasswordUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/password/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -10721,7 +11707,7 @@ pub async fn stages_password_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -10739,11 +11725,8 @@ pub async fn stages_password_used_by_list(
 /// Prompt Viewset
 pub async fn stages_prompt_prompts_create(
     configuration: &configuration::Configuration,
-    prompt_request: models::PromptRequest,
+    params: StagesPromptPromptsCreateParams,
 ) -> Result<models::Prompt, Error<StagesPromptPromptsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_prompt_request = prompt_request;
-
     let uri_str = format!("{}/stages/prompt/prompts/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -10753,7 +11736,7 @@ pub async fn stages_prompt_prompts_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_prompt_request);
+    req_builder = req_builder.json(&params.prompt_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10769,7 +11752,9 @@ pub async fn stages_prompt_prompts_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Prompt`",
@@ -10795,15 +11780,12 @@ pub async fn stages_prompt_prompts_create(
 /// Prompt Viewset
 pub async fn stages_prompt_prompts_destroy(
     configuration: &configuration::Configuration,
-    prompt_uuid: &str,
+    params: StagesPromptPromptsDestroyParams,
 ) -> Result<(), Error<StagesPromptPromptsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_prompt_uuid = prompt_uuid;
-
     let uri_str = format!(
         "{}/stages/prompt/prompts/{prompt_uuid}/",
         configuration.base_path,
-        prompt_uuid = crate::apis::urlencode(p_path_prompt_uuid)
+        prompt_uuid = crate::apis::urlencode(params.prompt_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -10835,55 +11817,36 @@ pub async fn stages_prompt_prompts_destroy(
 /// Prompt Viewset
 pub async fn stages_prompt_prompts_list(
     configuration: &configuration::Configuration,
-    field_key: Option<&str>,
-    label: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    placeholder: Option<&str>,
-    search: Option<&str>,
-    r#type: Option<models::PromptTypeEnum>,
+    params: StagesPromptPromptsListParams,
 ) -> Result<models::PaginatedPromptList, Error<StagesPromptPromptsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_field_key = field_key;
-    let p_query_label = label;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_placeholder = placeholder;
-    let p_query_search = search;
-    let p_query_type = r#type;
-
     let uri_str = format!("{}/stages/prompt/prompts/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_field_key {
+    if let Some(ref param_value) = params.field_key {
         req_builder = req_builder.query(&[("field_key", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_label {
+    if let Some(ref param_value) = params.label {
         req_builder = req_builder.query(&[("label", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_placeholder {
+    if let Some(ref param_value) = params.placeholder {
         req_builder = req_builder.query(&[("placeholder", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_type {
+    if let Some(ref param_value) = params.r#type {
         req_builder = req_builder.query(&[("type", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -10907,7 +11870,7 @@ pub async fn stages_prompt_prompts_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedPromptList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedPromptList`")))),
         }
@@ -10925,17 +11888,12 @@ pub async fn stages_prompt_prompts_list(
 /// Prompt Viewset
 pub async fn stages_prompt_prompts_partial_update(
     configuration: &configuration::Configuration,
-    prompt_uuid: &str,
-    patched_prompt_request: Option<models::PatchedPromptRequest>,
+    params: StagesPromptPromptsPartialUpdateParams,
 ) -> Result<models::Prompt, Error<StagesPromptPromptsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_prompt_uuid = prompt_uuid;
-    let p_body_patched_prompt_request = patched_prompt_request;
-
     let uri_str = format!(
         "{}/stages/prompt/prompts/{prompt_uuid}/",
         configuration.base_path,
-        prompt_uuid = crate::apis::urlencode(p_path_prompt_uuid)
+        prompt_uuid = crate::apis::urlencode(params.prompt_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -10945,7 +11903,7 @@ pub async fn stages_prompt_prompts_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_prompt_request);
+    req_builder = req_builder.json(&params.patched_prompt_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10961,7 +11919,9 @@ pub async fn stages_prompt_prompts_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Prompt`",
@@ -10987,11 +11947,8 @@ pub async fn stages_prompt_prompts_partial_update(
 /// Preview a prompt as a challenge, just like a flow would receive
 pub async fn stages_prompt_prompts_preview_create(
     configuration: &configuration::Configuration,
-    prompt_request: models::PromptRequest,
+    params: StagesPromptPromptsPreviewCreateParams,
 ) -> Result<models::PromptChallenge, Error<StagesPromptPromptsPreviewCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_prompt_request = prompt_request;
-
     let uri_str = format!("{}/stages/prompt/prompts/preview/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -11001,7 +11958,7 @@ pub async fn stages_prompt_prompts_preview_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_prompt_request);
+    req_builder = req_builder.json(&params.prompt_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11017,7 +11974,9 @@ pub async fn stages_prompt_prompts_preview_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PromptChallenge`",
@@ -11041,15 +12000,12 @@ pub async fn stages_prompt_prompts_preview_create(
 /// Prompt Viewset
 pub async fn stages_prompt_prompts_retrieve(
     configuration: &configuration::Configuration,
-    prompt_uuid: &str,
+    params: StagesPromptPromptsRetrieveParams,
 ) -> Result<models::Prompt, Error<StagesPromptPromptsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_prompt_uuid = prompt_uuid;
-
     let uri_str = format!(
         "{}/stages/prompt/prompts/{prompt_uuid}/",
         configuration.base_path,
-        prompt_uuid = crate::apis::urlencode(p_path_prompt_uuid)
+        prompt_uuid = crate::apis::urlencode(params.prompt_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -11074,7 +12030,9 @@ pub async fn stages_prompt_prompts_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Prompt`",
@@ -11100,17 +12058,12 @@ pub async fn stages_prompt_prompts_retrieve(
 /// Prompt Viewset
 pub async fn stages_prompt_prompts_update(
     configuration: &configuration::Configuration,
-    prompt_uuid: &str,
-    prompt_request: models::PromptRequest,
+    params: StagesPromptPromptsUpdateParams,
 ) -> Result<models::Prompt, Error<StagesPromptPromptsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_prompt_uuid = prompt_uuid;
-    let p_body_prompt_request = prompt_request;
-
     let uri_str = format!(
         "{}/stages/prompt/prompts/{prompt_uuid}/",
         configuration.base_path,
-        prompt_uuid = crate::apis::urlencode(p_path_prompt_uuid)
+        prompt_uuid = crate::apis::urlencode(params.prompt_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -11120,7 +12073,7 @@ pub async fn stages_prompt_prompts_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_prompt_request);
+    req_builder = req_builder.json(&params.prompt_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11136,7 +12089,9 @@ pub async fn stages_prompt_prompts_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Prompt`",
@@ -11162,15 +12117,12 @@ pub async fn stages_prompt_prompts_update(
 /// Get a list of all objects that use this object
 pub async fn stages_prompt_prompts_used_by_list(
     configuration: &configuration::Configuration,
-    prompt_uuid: &str,
+    params: StagesPromptPromptsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesPromptPromptsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_prompt_uuid = prompt_uuid;
-
     let uri_str = format!(
         "{}/stages/prompt/prompts/{prompt_uuid}/used_by/",
         configuration.base_path,
-        prompt_uuid = crate::apis::urlencode(p_path_prompt_uuid)
+        prompt_uuid = crate::apis::urlencode(params.prompt_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -11195,7 +12147,7 @@ pub async fn stages_prompt_prompts_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -11213,11 +12165,8 @@ pub async fn stages_prompt_prompts_used_by_list(
 /// PromptStage Viewset
 pub async fn stages_prompt_stages_create(
     configuration: &configuration::Configuration,
-    prompt_stage_request: models::PromptStageRequest,
+    params: StagesPromptStagesCreateParams,
 ) -> Result<models::PromptStage, Error<StagesPromptStagesCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_prompt_stage_request = prompt_stage_request;
-
     let uri_str = format!("{}/stages/prompt/stages/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -11227,7 +12176,7 @@ pub async fn stages_prompt_stages_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_prompt_stage_request);
+    req_builder = req_builder.json(&params.prompt_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11243,7 +12192,9 @@ pub async fn stages_prompt_stages_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PromptStage`",
@@ -11269,15 +12220,12 @@ pub async fn stages_prompt_stages_create(
 /// PromptStage Viewset
 pub async fn stages_prompt_stages_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesPromptStagesDestroyParams,
 ) -> Result<(), Error<StagesPromptStagesDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/prompt/stages/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -11309,29 +12257,12 @@ pub async fn stages_prompt_stages_destroy(
 /// PromptStage Viewset
 pub async fn stages_prompt_stages_list(
     configuration: &configuration::Configuration,
-    fields: Option<Vec<uuid::Uuid>>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
-    validation_policies: Option<Vec<uuid::Uuid>>,
+    params: StagesPromptStagesListParams,
 ) -> Result<models::PaginatedPromptStageList, Error<StagesPromptStagesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_fields = fields;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-    let p_query_validation_policies = validation_policies;
-
     let uri_str = format!("{}/stages/prompt/stages/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_fields {
+    if let Some(ref param_value) = params.fields {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -11350,25 +12281,25 @@ pub async fn stages_prompt_stages_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_validation_policies {
+    if let Some(ref param_value) = params.validation_policies {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -11408,7 +12339,7 @@ pub async fn stages_prompt_stages_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedPromptStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedPromptStageList`")))),
         }
@@ -11426,17 +12357,12 @@ pub async fn stages_prompt_stages_list(
 /// PromptStage Viewset
 pub async fn stages_prompt_stages_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_prompt_stage_request: Option<models::PatchedPromptStageRequest>,
+    params: StagesPromptStagesPartialUpdateParams,
 ) -> Result<models::PromptStage, Error<StagesPromptStagesPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_prompt_stage_request = patched_prompt_stage_request;
-
     let uri_str = format!(
         "{}/stages/prompt/stages/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -11446,7 +12372,7 @@ pub async fn stages_prompt_stages_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_prompt_stage_request);
+    req_builder = req_builder.json(&params.patched_prompt_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11462,7 +12388,9 @@ pub async fn stages_prompt_stages_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PromptStage`",
@@ -11488,15 +12416,12 @@ pub async fn stages_prompt_stages_partial_update(
 /// PromptStage Viewset
 pub async fn stages_prompt_stages_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesPromptStagesRetrieveParams,
 ) -> Result<models::PromptStage, Error<StagesPromptStagesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/prompt/stages/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -11521,7 +12446,9 @@ pub async fn stages_prompt_stages_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PromptStage`",
@@ -11547,17 +12474,12 @@ pub async fn stages_prompt_stages_retrieve(
 /// PromptStage Viewset
 pub async fn stages_prompt_stages_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    prompt_stage_request: models::PromptStageRequest,
+    params: StagesPromptStagesUpdateParams,
 ) -> Result<models::PromptStage, Error<StagesPromptStagesUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_prompt_stage_request = prompt_stage_request;
-
     let uri_str = format!(
         "{}/stages/prompt/stages/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -11567,7 +12489,7 @@ pub async fn stages_prompt_stages_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_prompt_stage_request);
+    req_builder = req_builder.json(&params.prompt_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11583,7 +12505,9 @@ pub async fn stages_prompt_stages_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PromptStage`",
@@ -11609,15 +12533,12 @@ pub async fn stages_prompt_stages_update(
 /// Get a list of all objects that use this object
 pub async fn stages_prompt_stages_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesPromptStagesUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesPromptStagesUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/prompt/stages/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -11642,7 +12563,7 @@ pub async fn stages_prompt_stages_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -11660,11 +12581,8 @@ pub async fn stages_prompt_stages_used_by_list(
 /// RedirectStage Viewset
 pub async fn stages_redirect_create(
     configuration: &configuration::Configuration,
-    redirect_stage_request: models::RedirectStageRequest,
+    params: StagesRedirectCreateParams,
 ) -> Result<models::RedirectStage, Error<StagesRedirectCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_redirect_stage_request = redirect_stage_request;
-
     let uri_str = format!("{}/stages/redirect/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -11674,7 +12592,7 @@ pub async fn stages_redirect_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_redirect_stage_request);
+    req_builder = req_builder.json(&params.redirect_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11690,7 +12608,9 @@ pub async fn stages_redirect_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RedirectStage`",
@@ -11714,15 +12634,12 @@ pub async fn stages_redirect_create(
 /// RedirectStage Viewset
 pub async fn stages_redirect_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesRedirectDestroyParams,
 ) -> Result<(), Error<StagesRedirectDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/redirect/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -11754,35 +12671,24 @@ pub async fn stages_redirect_destroy(
 /// RedirectStage Viewset
 pub async fn stages_redirect_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: StagesRedirectListParams,
 ) -> Result<models::PaginatedRedirectStageList, Error<StagesRedirectListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/stages/redirect/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -11806,7 +12712,7 @@ pub async fn stages_redirect_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRedirectStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRedirectStageList`")))),
         }
@@ -11824,17 +12730,12 @@ pub async fn stages_redirect_list(
 /// RedirectStage Viewset
 pub async fn stages_redirect_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_redirect_stage_request: Option<models::PatchedRedirectStageRequest>,
+    params: StagesRedirectPartialUpdateParams,
 ) -> Result<models::RedirectStage, Error<StagesRedirectPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_redirect_stage_request = patched_redirect_stage_request;
-
     let uri_str = format!(
         "{}/stages/redirect/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -11844,7 +12745,7 @@ pub async fn stages_redirect_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_redirect_stage_request);
+    req_builder = req_builder.json(&params.patched_redirect_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11860,7 +12761,9 @@ pub async fn stages_redirect_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RedirectStage`",
@@ -11884,15 +12787,12 @@ pub async fn stages_redirect_partial_update(
 /// RedirectStage Viewset
 pub async fn stages_redirect_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesRedirectRetrieveParams,
 ) -> Result<models::RedirectStage, Error<StagesRedirectRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/redirect/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -11917,7 +12817,9 @@ pub async fn stages_redirect_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RedirectStage`",
@@ -11941,17 +12843,12 @@ pub async fn stages_redirect_retrieve(
 /// RedirectStage Viewset
 pub async fn stages_redirect_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    redirect_stage_request: models::RedirectStageRequest,
+    params: StagesRedirectUpdateParams,
 ) -> Result<models::RedirectStage, Error<StagesRedirectUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_redirect_stage_request = redirect_stage_request;
-
     let uri_str = format!(
         "{}/stages/redirect/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -11961,7 +12858,7 @@ pub async fn stages_redirect_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_redirect_stage_request);
+    req_builder = req_builder.json(&params.redirect_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11977,7 +12874,9 @@ pub async fn stages_redirect_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RedirectStage`",
@@ -12001,15 +12900,12 @@ pub async fn stages_redirect_update(
 /// Get a list of all objects that use this object
 pub async fn stages_redirect_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesRedirectUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesRedirectUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/redirect/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -12034,7 +12930,7 @@ pub async fn stages_redirect_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -12052,11 +12948,8 @@ pub async fn stages_redirect_used_by_list(
 /// SourceStage Viewset
 pub async fn stages_source_create(
     configuration: &configuration::Configuration,
-    source_stage_request: models::SourceStageRequest,
+    params: StagesSourceCreateParams,
 ) -> Result<models::SourceStage, Error<StagesSourceCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_source_stage_request = source_stage_request;
-
     let uri_str = format!("{}/stages/source/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -12066,7 +12959,7 @@ pub async fn stages_source_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_source_stage_request);
+    req_builder = req_builder.json(&params.source_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -12082,7 +12975,9 @@ pub async fn stages_source_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SourceStage`",
@@ -12108,15 +13003,12 @@ pub async fn stages_source_create(
 /// SourceStage Viewset
 pub async fn stages_source_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesSourceDestroyParams,
 ) -> Result<(), Error<StagesSourceDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/source/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -12148,50 +13040,33 @@ pub async fn stages_source_destroy(
 /// SourceStage Viewset
 pub async fn stages_source_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    resume_timeout: Option<&str>,
-    search: Option<&str>,
-    source: Option<&str>,
-    stage_uuid: Option<&str>,
+    params: StagesSourceListParams,
 ) -> Result<models::PaginatedSourceStageList, Error<StagesSourceListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_resume_timeout = resume_timeout;
-    let p_query_search = search;
-    let p_query_source = source;
-    let p_query_stage_uuid = stage_uuid;
-
     let uri_str = format!("{}/stages/source/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_resume_timeout {
+    if let Some(ref param_value) = params.resume_timeout {
         req_builder = req_builder.query(&[("resume_timeout", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source {
+    if let Some(ref param_value) = params.source {
         req_builder = req_builder.query(&[("source", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -12215,7 +13090,7 @@ pub async fn stages_source_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedSourceStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedSourceStageList`")))),
         }
@@ -12233,17 +13108,12 @@ pub async fn stages_source_list(
 /// SourceStage Viewset
 pub async fn stages_source_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_source_stage_request: Option<models::PatchedSourceStageRequest>,
+    params: StagesSourcePartialUpdateParams,
 ) -> Result<models::SourceStage, Error<StagesSourcePartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_source_stage_request = patched_source_stage_request;
-
     let uri_str = format!(
         "{}/stages/source/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -12253,7 +13123,7 @@ pub async fn stages_source_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_source_stage_request);
+    req_builder = req_builder.json(&params.patched_source_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -12269,7 +13139,9 @@ pub async fn stages_source_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SourceStage`",
@@ -12295,15 +13167,12 @@ pub async fn stages_source_partial_update(
 /// SourceStage Viewset
 pub async fn stages_source_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesSourceRetrieveParams,
 ) -> Result<models::SourceStage, Error<StagesSourceRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/source/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -12328,7 +13197,9 @@ pub async fn stages_source_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SourceStage`",
@@ -12354,17 +13225,12 @@ pub async fn stages_source_retrieve(
 /// SourceStage Viewset
 pub async fn stages_source_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    source_stage_request: models::SourceStageRequest,
+    params: StagesSourceUpdateParams,
 ) -> Result<models::SourceStage, Error<StagesSourceUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_source_stage_request = source_stage_request;
-
     let uri_str = format!(
         "{}/stages/source/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -12374,7 +13240,7 @@ pub async fn stages_source_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_source_stage_request);
+    req_builder = req_builder.json(&params.source_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -12390,7 +13256,9 @@ pub async fn stages_source_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SourceStage`",
@@ -12416,15 +13284,12 @@ pub async fn stages_source_update(
 /// Get a list of all objects that use this object
 pub async fn stages_source_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesSourceUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesSourceUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/source/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -12449,7 +13314,7 @@ pub async fn stages_source_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -12467,11 +13332,8 @@ pub async fn stages_source_used_by_list(
 /// UserDeleteStage Viewset
 pub async fn stages_user_delete_create(
     configuration: &configuration::Configuration,
-    user_delete_stage_request: models::UserDeleteStageRequest,
+    params: StagesUserDeleteCreateParams,
 ) -> Result<models::UserDeleteStage, Error<StagesUserDeleteCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_delete_stage_request = user_delete_stage_request;
-
     let uri_str = format!("{}/stages/user_delete/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -12481,7 +13343,7 @@ pub async fn stages_user_delete_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_delete_stage_request);
+    req_builder = req_builder.json(&params.user_delete_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -12497,7 +13359,9 @@ pub async fn stages_user_delete_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserDeleteStage`",
@@ -12521,15 +13385,12 @@ pub async fn stages_user_delete_create(
 /// UserDeleteStage Viewset
 pub async fn stages_user_delete_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesUserDeleteDestroyParams,
 ) -> Result<(), Error<StagesUserDeleteDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/user_delete/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -12561,40 +13422,27 @@ pub async fn stages_user_delete_destroy(
 /// UserDeleteStage Viewset
 pub async fn stages_user_delete_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
+    params: StagesUserDeleteListParams,
 ) -> Result<models::PaginatedUserDeleteStageList, Error<StagesUserDeleteListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-
     let uri_str = format!("{}/stages/user_delete/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -12618,7 +13466,7 @@ pub async fn stages_user_delete_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserDeleteStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserDeleteStageList`")))),
         }
@@ -12636,17 +13484,12 @@ pub async fn stages_user_delete_list(
 /// UserDeleteStage Viewset
 pub async fn stages_user_delete_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_user_delete_stage_request: Option<models::PatchedUserDeleteStageRequest>,
+    params: StagesUserDeletePartialUpdateParams,
 ) -> Result<models::UserDeleteStage, Error<StagesUserDeletePartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_user_delete_stage_request = patched_user_delete_stage_request;
-
     let uri_str = format!(
         "{}/stages/user_delete/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -12656,7 +13499,7 @@ pub async fn stages_user_delete_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_user_delete_stage_request);
+    req_builder = req_builder.json(&params.patched_user_delete_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -12672,7 +13515,9 @@ pub async fn stages_user_delete_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserDeleteStage`",
@@ -12696,15 +13541,12 @@ pub async fn stages_user_delete_partial_update(
 /// UserDeleteStage Viewset
 pub async fn stages_user_delete_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesUserDeleteRetrieveParams,
 ) -> Result<models::UserDeleteStage, Error<StagesUserDeleteRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/user_delete/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -12729,7 +13571,9 @@ pub async fn stages_user_delete_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserDeleteStage`",
@@ -12753,17 +13597,12 @@ pub async fn stages_user_delete_retrieve(
 /// UserDeleteStage Viewset
 pub async fn stages_user_delete_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    user_delete_stage_request: models::UserDeleteStageRequest,
+    params: StagesUserDeleteUpdateParams,
 ) -> Result<models::UserDeleteStage, Error<StagesUserDeleteUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_user_delete_stage_request = user_delete_stage_request;
-
     let uri_str = format!(
         "{}/stages/user_delete/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -12773,7 +13612,7 @@ pub async fn stages_user_delete_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_delete_stage_request);
+    req_builder = req_builder.json(&params.user_delete_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -12789,7 +13628,9 @@ pub async fn stages_user_delete_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserDeleteStage`",
@@ -12813,15 +13654,12 @@ pub async fn stages_user_delete_update(
 /// Get a list of all objects that use this object
 pub async fn stages_user_delete_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesUserDeleteUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesUserDeleteUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/user_delete/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -12846,7 +13684,7 @@ pub async fn stages_user_delete_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -12864,11 +13702,8 @@ pub async fn stages_user_delete_used_by_list(
 /// UserLoginStage Viewset
 pub async fn stages_user_login_create(
     configuration: &configuration::Configuration,
-    user_login_stage_request: models::UserLoginStageRequest,
+    params: StagesUserLoginCreateParams,
 ) -> Result<models::UserLoginStage, Error<StagesUserLoginCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_login_stage_request = user_login_stage_request;
-
     let uri_str = format!("{}/stages/user_login/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -12878,7 +13713,7 @@ pub async fn stages_user_login_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_login_stage_request);
+    req_builder = req_builder.json(&params.user_login_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -12894,7 +13729,9 @@ pub async fn stages_user_login_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserLoginStage`",
@@ -12918,15 +13755,12 @@ pub async fn stages_user_login_create(
 /// UserLoginStage Viewset
 pub async fn stages_user_login_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesUserLoginDestroyParams,
 ) -> Result<(), Error<StagesUserLoginDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/user_login/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -12958,70 +13792,45 @@ pub async fn stages_user_login_destroy(
 /// UserLoginStage Viewset
 pub async fn stages_user_login_list(
     configuration: &configuration::Configuration,
-    geoip_binding: Option<&str>,
-    name: Option<&str>,
-    network_binding: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    remember_device: Option<&str>,
-    remember_me_offset: Option<&str>,
-    search: Option<&str>,
-    session_duration: Option<&str>,
-    stage_uuid: Option<&str>,
-    terminate_other_sessions: Option<bool>,
+    params: StagesUserLoginListParams,
 ) -> Result<models::PaginatedUserLoginStageList, Error<StagesUserLoginListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_geoip_binding = geoip_binding;
-    let p_query_name = name;
-    let p_query_network_binding = network_binding;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_remember_device = remember_device;
-    let p_query_remember_me_offset = remember_me_offset;
-    let p_query_search = search;
-    let p_query_session_duration = session_duration;
-    let p_query_stage_uuid = stage_uuid;
-    let p_query_terminate_other_sessions = terminate_other_sessions;
-
     let uri_str = format!("{}/stages/user_login/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_geoip_binding {
+    if let Some(ref param_value) = params.geoip_binding {
         req_builder = req_builder.query(&[("geoip_binding", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_network_binding {
+    if let Some(ref param_value) = params.network_binding {
         req_builder = req_builder.query(&[("network_binding", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_remember_device {
+    if let Some(ref param_value) = params.remember_device {
         req_builder = req_builder.query(&[("remember_device", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_remember_me_offset {
+    if let Some(ref param_value) = params.remember_me_offset {
         req_builder = req_builder.query(&[("remember_me_offset", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_session_duration {
+    if let Some(ref param_value) = params.session_duration {
         req_builder = req_builder.query(&[("session_duration", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_terminate_other_sessions {
+    if let Some(ref param_value) = params.terminate_other_sessions {
         req_builder = req_builder.query(&[("terminate_other_sessions", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -13045,7 +13854,7 @@ pub async fn stages_user_login_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserLoginStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserLoginStageList`")))),
         }
@@ -13063,17 +13872,12 @@ pub async fn stages_user_login_list(
 /// UserLoginStage Viewset
 pub async fn stages_user_login_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_user_login_stage_request: Option<models::PatchedUserLoginStageRequest>,
+    params: StagesUserLoginPartialUpdateParams,
 ) -> Result<models::UserLoginStage, Error<StagesUserLoginPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_user_login_stage_request = patched_user_login_stage_request;
-
     let uri_str = format!(
         "{}/stages/user_login/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -13083,7 +13887,7 @@ pub async fn stages_user_login_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_user_login_stage_request);
+    req_builder = req_builder.json(&params.patched_user_login_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -13099,7 +13903,9 @@ pub async fn stages_user_login_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserLoginStage`",
@@ -13123,15 +13929,12 @@ pub async fn stages_user_login_partial_update(
 /// UserLoginStage Viewset
 pub async fn stages_user_login_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesUserLoginRetrieveParams,
 ) -> Result<models::UserLoginStage, Error<StagesUserLoginRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/user_login/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -13156,7 +13959,9 @@ pub async fn stages_user_login_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserLoginStage`",
@@ -13180,17 +13985,12 @@ pub async fn stages_user_login_retrieve(
 /// UserLoginStage Viewset
 pub async fn stages_user_login_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    user_login_stage_request: models::UserLoginStageRequest,
+    params: StagesUserLoginUpdateParams,
 ) -> Result<models::UserLoginStage, Error<StagesUserLoginUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_user_login_stage_request = user_login_stage_request;
-
     let uri_str = format!(
         "{}/stages/user_login/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -13200,7 +14000,7 @@ pub async fn stages_user_login_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_login_stage_request);
+    req_builder = req_builder.json(&params.user_login_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -13216,7 +14016,9 @@ pub async fn stages_user_login_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserLoginStage`",
@@ -13240,15 +14042,12 @@ pub async fn stages_user_login_update(
 /// Get a list of all objects that use this object
 pub async fn stages_user_login_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesUserLoginUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesUserLoginUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/user_login/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -13273,7 +14072,7 @@ pub async fn stages_user_login_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -13291,11 +14090,8 @@ pub async fn stages_user_login_used_by_list(
 /// UserLogoutStage Viewset
 pub async fn stages_user_logout_create(
     configuration: &configuration::Configuration,
-    user_logout_stage_request: models::UserLogoutStageRequest,
+    params: StagesUserLogoutCreateParams,
 ) -> Result<models::UserLogoutStage, Error<StagesUserLogoutCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_logout_stage_request = user_logout_stage_request;
-
     let uri_str = format!("{}/stages/user_logout/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -13305,7 +14101,7 @@ pub async fn stages_user_logout_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_logout_stage_request);
+    req_builder = req_builder.json(&params.user_logout_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -13321,7 +14117,9 @@ pub async fn stages_user_logout_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserLogoutStage`",
@@ -13345,15 +14143,12 @@ pub async fn stages_user_logout_create(
 /// UserLogoutStage Viewset
 pub async fn stages_user_logout_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesUserLogoutDestroyParams,
 ) -> Result<(), Error<StagesUserLogoutDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/user_logout/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -13385,40 +14180,27 @@ pub async fn stages_user_logout_destroy(
 /// UserLogoutStage Viewset
 pub async fn stages_user_logout_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
+    params: StagesUserLogoutListParams,
 ) -> Result<models::PaginatedUserLogoutStageList, Error<StagesUserLogoutListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-
     let uri_str = format!("{}/stages/user_logout/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -13442,7 +14224,7 @@ pub async fn stages_user_logout_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserLogoutStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserLogoutStageList`")))),
         }
@@ -13460,17 +14242,12 @@ pub async fn stages_user_logout_list(
 /// UserLogoutStage Viewset
 pub async fn stages_user_logout_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_user_logout_stage_request: Option<models::PatchedUserLogoutStageRequest>,
+    params: StagesUserLogoutPartialUpdateParams,
 ) -> Result<models::UserLogoutStage, Error<StagesUserLogoutPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_user_logout_stage_request = patched_user_logout_stage_request;
-
     let uri_str = format!(
         "{}/stages/user_logout/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -13480,7 +14257,7 @@ pub async fn stages_user_logout_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_user_logout_stage_request);
+    req_builder = req_builder.json(&params.patched_user_logout_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -13496,7 +14273,9 @@ pub async fn stages_user_logout_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserLogoutStage`",
@@ -13520,15 +14299,12 @@ pub async fn stages_user_logout_partial_update(
 /// UserLogoutStage Viewset
 pub async fn stages_user_logout_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesUserLogoutRetrieveParams,
 ) -> Result<models::UserLogoutStage, Error<StagesUserLogoutRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/user_logout/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -13553,7 +14329,9 @@ pub async fn stages_user_logout_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserLogoutStage`",
@@ -13577,17 +14355,12 @@ pub async fn stages_user_logout_retrieve(
 /// UserLogoutStage Viewset
 pub async fn stages_user_logout_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    user_logout_stage_request: models::UserLogoutStageRequest,
+    params: StagesUserLogoutUpdateParams,
 ) -> Result<models::UserLogoutStage, Error<StagesUserLogoutUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_user_logout_stage_request = user_logout_stage_request;
-
     let uri_str = format!(
         "{}/stages/user_logout/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -13597,7 +14370,7 @@ pub async fn stages_user_logout_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_logout_stage_request);
+    req_builder = req_builder.json(&params.user_logout_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -13613,7 +14386,9 @@ pub async fn stages_user_logout_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserLogoutStage`",
@@ -13637,15 +14412,12 @@ pub async fn stages_user_logout_update(
 /// Get a list of all objects that use this object
 pub async fn stages_user_logout_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesUserLogoutUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesUserLogoutUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/user_logout/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -13670,7 +14442,7 @@ pub async fn stages_user_logout_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -13688,11 +14460,8 @@ pub async fn stages_user_logout_used_by_list(
 /// UserWriteStage Viewset
 pub async fn stages_user_write_create(
     configuration: &configuration::Configuration,
-    user_write_stage_request: models::UserWriteStageRequest,
+    params: StagesUserWriteCreateParams,
 ) -> Result<models::UserWriteStage, Error<StagesUserWriteCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_write_stage_request = user_write_stage_request;
-
     let uri_str = format!("{}/stages/user_write/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -13702,7 +14471,7 @@ pub async fn stages_user_write_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_write_stage_request);
+    req_builder = req_builder.json(&params.user_write_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -13718,7 +14487,9 @@ pub async fn stages_user_write_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserWriteStage`",
@@ -13742,15 +14513,12 @@ pub async fn stages_user_write_create(
 /// UserWriteStage Viewset
 pub async fn stages_user_write_destroy(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesUserWriteDestroyParams,
 ) -> Result<(), Error<StagesUserWriteDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/user_write/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -13782,65 +14550,42 @@ pub async fn stages_user_write_destroy(
 /// UserWriteStage Viewset
 pub async fn stages_user_write_list(
     configuration: &configuration::Configuration,
-    create_users_as_inactive: Option<bool>,
-    create_users_group: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    stage_uuid: Option<&str>,
-    user_creation_mode: Option<models::UserCreationModeEnum>,
-    user_path_template: Option<&str>,
-    user_type: Option<models::UserTypeEnum>,
+    params: StagesUserWriteListParams,
 ) -> Result<models::PaginatedUserWriteStageList, Error<StagesUserWriteListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_create_users_as_inactive = create_users_as_inactive;
-    let p_query_create_users_group = create_users_group;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_stage_uuid = stage_uuid;
-    let p_query_user_creation_mode = user_creation_mode;
-    let p_query_user_path_template = user_path_template;
-    let p_query_user_type = user_type;
-
     let uri_str = format!("{}/stages/user_write/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_create_users_as_inactive {
+    if let Some(ref param_value) = params.create_users_as_inactive {
         req_builder = req_builder.query(&[("create_users_as_inactive", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_create_users_group {
+    if let Some(ref param_value) = params.create_users_group {
         req_builder = req_builder.query(&[("create_users_group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage_uuid {
+    if let Some(ref param_value) = params.stage_uuid {
         req_builder = req_builder.query(&[("stage_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_creation_mode {
+    if let Some(ref param_value) = params.user_creation_mode {
         req_builder = req_builder.query(&[("user_creation_mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_path_template {
+    if let Some(ref param_value) = params.user_path_template {
         req_builder = req_builder.query(&[("user_path_template", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_type {
+    if let Some(ref param_value) = params.user_type {
         req_builder = req_builder.query(&[("user_type", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -13864,7 +14609,7 @@ pub async fn stages_user_write_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserWriteStageList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserWriteStageList`")))),
         }
@@ -13882,17 +14627,12 @@ pub async fn stages_user_write_list(
 /// UserWriteStage Viewset
 pub async fn stages_user_write_partial_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    patched_user_write_stage_request: Option<models::PatchedUserWriteStageRequest>,
+    params: StagesUserWritePartialUpdateParams,
 ) -> Result<models::UserWriteStage, Error<StagesUserWritePartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_patched_user_write_stage_request = patched_user_write_stage_request;
-
     let uri_str = format!(
         "{}/stages/user_write/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -13902,7 +14642,7 @@ pub async fn stages_user_write_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_user_write_stage_request);
+    req_builder = req_builder.json(&params.patched_user_write_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -13918,7 +14658,9 @@ pub async fn stages_user_write_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserWriteStage`",
@@ -13942,15 +14684,12 @@ pub async fn stages_user_write_partial_update(
 /// UserWriteStage Viewset
 pub async fn stages_user_write_retrieve(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesUserWriteRetrieveParams,
 ) -> Result<models::UserWriteStage, Error<StagesUserWriteRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/user_write/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -13975,7 +14714,9 @@ pub async fn stages_user_write_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserWriteStage`",
@@ -13999,17 +14740,12 @@ pub async fn stages_user_write_retrieve(
 /// UserWriteStage Viewset
 pub async fn stages_user_write_update(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
-    user_write_stage_request: models::UserWriteStageRequest,
+    params: StagesUserWriteUpdateParams,
 ) -> Result<models::UserWriteStage, Error<StagesUserWriteUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-    let p_body_user_write_stage_request = user_write_stage_request;
-
     let uri_str = format!(
         "{}/stages/user_write/{stage_uuid}/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -14019,7 +14755,7 @@ pub async fn stages_user_write_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_write_stage_request);
+    req_builder = req_builder.json(&params.user_write_stage_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -14035,7 +14771,9 @@ pub async fn stages_user_write_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserWriteStage`",
@@ -14059,15 +14797,12 @@ pub async fn stages_user_write_update(
 /// Get a list of all objects that use this object
 pub async fn stages_user_write_used_by_list(
     configuration: &configuration::Configuration,
-    stage_uuid: &str,
+    params: StagesUserWriteUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<StagesUserWriteUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_stage_uuid = stage_uuid;
-
     let uri_str = format!(
         "{}/stages/user_write/{stage_uuid}/used_by/",
         configuration.base_path,
-        stage_uuid = crate::apis::urlencode(p_path_stage_uuid)
+        stage_uuid = crate::apis::urlencode(params.stage_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -14092,7 +14827,7 @@ pub async fn stages_user_write_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

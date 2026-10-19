@@ -13,6 +13,93 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`tasks_schedules_list`]
+#[derive(Clone, Debug)]
+pub struct TasksSchedulesListParams {
+    pub actor_name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub paused: Option<bool>,
+    pub rel_obj_content_type__app_label: Option<String>,
+    pub rel_obj_content_type__model: Option<String>,
+    pub rel_obj_id: Option<String>,
+    pub rel_obj_id__isnull: Option<bool>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`tasks_schedules_partial_update`]
+#[derive(Clone, Debug)]
+pub struct TasksSchedulesPartialUpdateParams {
+    /// A UUID string identifying this Schedule.
+    pub id: String,
+    pub patched_schedule_request: Option<models::PatchedScheduleRequest>,
+}
+
+/// struct for passing parameters to the method [`tasks_schedules_retrieve`]
+#[derive(Clone, Debug)]
+pub struct TasksSchedulesRetrieveParams {
+    /// A UUID string identifying this Schedule.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`tasks_schedules_send_create`]
+#[derive(Clone, Debug)]
+pub struct TasksSchedulesSendCreateParams {
+    /// A UUID string identifying this Schedule.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`tasks_schedules_update`]
+#[derive(Clone, Debug)]
+pub struct TasksSchedulesUpdateParams {
+    /// A UUID string identifying this Schedule.
+    pub id: String,
+    pub schedule_request: models::ScheduleRequest,
+}
+
+/// struct for passing parameters to the method [`tasks_tasks_list`]
+#[derive(Clone, Debug)]
+pub struct TasksTasksListParams {
+    pub actor_name: Option<String>,
+    pub aggregated_status: Option<Vec<models::TaskAggregatedStatusEnum>>,
+    pub message_id: Option<String>,
+    /// Multiple values may be separated by commas.
+    pub message_id__in: Option<Vec<uuid::Uuid>>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub queue_name: Option<String>,
+    pub rel_obj_content_type__app_label: Option<String>,
+    pub rel_obj_content_type__model: Option<String>,
+    pub rel_obj_id: Option<String>,
+    pub rel_obj_id__isnull: Option<bool>,
+    /// A search term.
+    pub search: Option<String>,
+    pub state: Option<String>,
+}
+
+/// struct for passing parameters to the method [`tasks_tasks_retrieve`]
+#[derive(Clone, Debug)]
+pub struct TasksTasksRetrieveParams {
+    /// A UUID string identifying this Task.
+    pub message_id: String,
+}
+
+/// struct for passing parameters to the method [`tasks_tasks_retry_create`]
+#[derive(Clone, Debug)]
+pub struct TasksTasksRetryCreateParams {
+    /// A UUID string identifying this Task.
+    pub message_id: String,
+}
+
 /// struct for typed errors of method [`tasks_schedules_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -108,60 +195,39 @@ pub enum TasksWorkersListError {
 
 pub async fn tasks_schedules_list(
     configuration: &configuration::Configuration,
-    actor_name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    paused: Option<bool>,
-    rel_obj_content_type__app_label: Option<&str>,
-    rel_obj_content_type__model: Option<&str>,
-    rel_obj_id: Option<&str>,
-    rel_obj_id__isnull: Option<bool>,
-    search: Option<&str>,
+    params: TasksSchedulesListParams,
 ) -> Result<models::PaginatedScheduleList, Error<TasksSchedulesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_actor_name = actor_name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_paused = paused;
-    let p_query_rel_obj_content_type__app_label = rel_obj_content_type__app_label;
-    let p_query_rel_obj_content_type__model = rel_obj_content_type__model;
-    let p_query_rel_obj_id = rel_obj_id;
-    let p_query_rel_obj_id__isnull = rel_obj_id__isnull;
-    let p_query_search = search;
-
     let uri_str = format!("{}/tasks/schedules/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_actor_name {
+    if let Some(ref param_value) = params.actor_name {
         req_builder = req_builder.query(&[("actor_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_paused {
+    if let Some(ref param_value) = params.paused {
         req_builder = req_builder.query(&[("paused", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_rel_obj_content_type__app_label {
+    if let Some(ref param_value) = params.rel_obj_content_type__app_label {
         req_builder = req_builder.query(&[("rel_obj_content_type__app_label", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_rel_obj_content_type__model {
+    if let Some(ref param_value) = params.rel_obj_content_type__model {
         req_builder = req_builder.query(&[("rel_obj_content_type__model", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_rel_obj_id {
+    if let Some(ref param_value) = params.rel_obj_id {
         req_builder = req_builder.query(&[("rel_obj_id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_rel_obj_id__isnull {
+    if let Some(ref param_value) = params.rel_obj_id__isnull {
         req_builder = req_builder.query(&[("rel_obj_id__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -185,7 +251,7 @@ pub async fn tasks_schedules_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedScheduleList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedScheduleList`")))),
         }
@@ -202,17 +268,12 @@ pub async fn tasks_schedules_list(
 
 pub async fn tasks_schedules_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    patched_schedule_request: Option<models::PatchedScheduleRequest>,
+    params: TasksSchedulesPartialUpdateParams,
 ) -> Result<models::Schedule, Error<TasksSchedulesPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_schedule_request = patched_schedule_request;
-
     let uri_str = format!(
         "{}/tasks/schedules/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -222,7 +283,7 @@ pub async fn tasks_schedules_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_schedule_request);
+    req_builder = req_builder.json(&params.patched_schedule_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -238,7 +299,9 @@ pub async fn tasks_schedules_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Schedule`",
@@ -263,15 +326,12 @@ pub async fn tasks_schedules_partial_update(
 
 pub async fn tasks_schedules_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: TasksSchedulesRetrieveParams,
 ) -> Result<models::Schedule, Error<TasksSchedulesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/tasks/schedules/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -296,7 +356,9 @@ pub async fn tasks_schedules_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Schedule`",
@@ -322,15 +384,12 @@ pub async fn tasks_schedules_retrieve(
 /// Trigger this schedule now
 pub async fn tasks_schedules_send_create(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: TasksSchedulesSendCreateParams,
 ) -> Result<(), Error<TasksSchedulesSendCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/tasks/schedules/{id}/send/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -361,17 +420,12 @@ pub async fn tasks_schedules_send_create(
 
 pub async fn tasks_schedules_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    schedule_request: models::ScheduleRequest,
+    params: TasksSchedulesUpdateParams,
 ) -> Result<models::Schedule, Error<TasksSchedulesUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_schedule_request = schedule_request;
-
     let uri_str = format!(
         "{}/tasks/schedules/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -381,7 +435,7 @@ pub async fn tasks_schedules_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_schedule_request);
+    req_builder = req_builder.json(&params.schedule_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -397,7 +451,9 @@ pub async fn tasks_schedules_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Schedule`",
@@ -422,44 +478,15 @@ pub async fn tasks_schedules_update(
 
 pub async fn tasks_tasks_list(
     configuration: &configuration::Configuration,
-    actor_name: Option<&str>,
-    aggregated_status: Option<Vec<models::TaskAggregatedStatusEnum>>,
-    message_id: Option<&str>,
-    message_id__in: Option<Vec<uuid::Uuid>>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    queue_name: Option<&str>,
-    rel_obj_content_type__app_label: Option<&str>,
-    rel_obj_content_type__model: Option<&str>,
-    rel_obj_id: Option<&str>,
-    rel_obj_id__isnull: Option<bool>,
-    search: Option<&str>,
-    state: Option<&str>,
+    params: TasksTasksListParams,
 ) -> Result<models::PaginatedTaskList, Error<TasksTasksListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_actor_name = actor_name;
-    let p_query_aggregated_status = aggregated_status;
-    let p_query_message_id = message_id;
-    let p_query_message_id__in = message_id__in;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_queue_name = queue_name;
-    let p_query_rel_obj_content_type__app_label = rel_obj_content_type__app_label;
-    let p_query_rel_obj_content_type__model = rel_obj_content_type__model;
-    let p_query_rel_obj_id = rel_obj_id;
-    let p_query_rel_obj_id__isnull = rel_obj_id__isnull;
-    let p_query_search = search;
-    let p_query_state = state;
-
     let uri_str = format!("{}/tasks/tasks/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_actor_name {
+    if let Some(ref param_value) = params.actor_name {
         req_builder = req_builder.query(&[("actor_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_aggregated_status {
+    if let Some(ref param_value) = params.aggregated_status {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -478,10 +505,10 @@ pub async fn tasks_tasks_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_message_id {
+    if let Some(ref param_value) = params.message_id {
         req_builder = req_builder.query(&[("message_id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_message_id__in {
+    if let Some(ref param_value) = params.message_id__in {
         req_builder = match "csv" {
             "multi" => req_builder.query(
                 &param_value
@@ -500,34 +527,34 @@ pub async fn tasks_tasks_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_queue_name {
+    if let Some(ref param_value) = params.queue_name {
         req_builder = req_builder.query(&[("queue_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_rel_obj_content_type__app_label {
+    if let Some(ref param_value) = params.rel_obj_content_type__app_label {
         req_builder = req_builder.query(&[("rel_obj_content_type__app_label", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_rel_obj_content_type__model {
+    if let Some(ref param_value) = params.rel_obj_content_type__model {
         req_builder = req_builder.query(&[("rel_obj_content_type__model", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_rel_obj_id {
+    if let Some(ref param_value) = params.rel_obj_id {
         req_builder = req_builder.query(&[("rel_obj_id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_rel_obj_id__isnull {
+    if let Some(ref param_value) = params.rel_obj_id__isnull {
         req_builder = req_builder.query(&[("rel_obj_id__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_state {
+    if let Some(ref param_value) = params.state {
         req_builder = req_builder.query(&[("state", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -551,7 +578,7 @@ pub async fn tasks_tasks_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedTaskList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedTaskList`")))),
         }
@@ -568,15 +595,12 @@ pub async fn tasks_tasks_list(
 
 pub async fn tasks_tasks_retrieve(
     configuration: &configuration::Configuration,
-    message_id: &str,
+    params: TasksTasksRetrieveParams,
 ) -> Result<models::Task, Error<TasksTasksRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_message_id = message_id;
-
     let uri_str = format!(
         "{}/tasks/tasks/{message_id}/",
         configuration.base_path,
-        message_id = crate::apis::urlencode(p_path_message_id)
+        message_id = crate::apis::urlencode(params.message_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -601,7 +625,9 @@ pub async fn tasks_tasks_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Task`",
@@ -627,15 +653,12 @@ pub async fn tasks_tasks_retrieve(
 /// Retry task
 pub async fn tasks_tasks_retry_create(
     configuration: &configuration::Configuration,
-    message_id: &str,
+    params: TasksTasksRetryCreateParams,
 ) -> Result<(), Error<TasksTasksRetryCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_message_id = message_id;
-
     let uri_str = format!(
         "{}/tasks/tasks/{message_id}/retry/",
         configuration.base_path,
-        message_id = crate::apis::urlencode(p_path_message_id)
+        message_id = crate::apis::urlencode(params.message_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -692,7 +715,7 @@ pub async fn tasks_tasks_status_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GlobalTaskStatus`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GlobalTaskStatus`")))),
         }
@@ -735,7 +758,7 @@ pub async fn tasks_workers_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Worker&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::Worker&gt;`")))),
         }

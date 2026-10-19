@@ -13,6 +13,211 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`rbac_initial_permissions_create`]
+#[derive(Clone, Debug)]
+pub struct RbacInitialPermissionsCreateParams {
+    pub initial_permissions_request: models::InitialPermissionsRequest,
+}
+
+/// struct for passing parameters to the method [`rbac_initial_permissions_destroy`]
+#[derive(Clone, Debug)]
+pub struct RbacInitialPermissionsDestroyParams {
+    /// A unique integer value identifying this Initial Permissions.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`rbac_initial_permissions_list`]
+#[derive(Clone, Debug)]
+pub struct RbacInitialPermissionsListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`rbac_initial_permissions_partial_update`]
+#[derive(Clone, Debug)]
+pub struct RbacInitialPermissionsPartialUpdateParams {
+    /// A unique integer value identifying this Initial Permissions.
+    pub id: i32,
+    pub patched_initial_permissions_request: Option<models::PatchedInitialPermissionsRequest>,
+}
+
+/// struct for passing parameters to the method [`rbac_initial_permissions_retrieve`]
+#[derive(Clone, Debug)]
+pub struct RbacInitialPermissionsRetrieveParams {
+    /// A unique integer value identifying this Initial Permissions.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`rbac_initial_permissions_update`]
+#[derive(Clone, Debug)]
+pub struct RbacInitialPermissionsUpdateParams {
+    /// A unique integer value identifying this Initial Permissions.
+    pub id: i32,
+    pub initial_permissions_request: models::InitialPermissionsRequest,
+}
+
+/// struct for passing parameters to the method [`rbac_initial_permissions_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct RbacInitialPermissionsUsedByListParams {
+    /// A unique integer value identifying this Initial Permissions.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`rbac_permissions_assigned_by_roles_assign`]
+#[derive(Clone, Debug)]
+pub struct RbacPermissionsAssignedByRolesAssignParams {
+    /// A UUID string identifying this Role.
+    pub uuid: String,
+    pub permission_assign_request: models::PermissionAssignRequest,
+}
+
+/// struct for passing parameters to the method [`rbac_permissions_assigned_by_roles_list`]
+#[derive(Clone, Debug)]
+pub struct RbacPermissionsAssignedByRolesListParams {
+    pub model: String,
+    pub object_pk: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`rbac_permissions_assigned_by_roles_unassign_partial_update`]
+#[derive(Clone, Debug)]
+pub struct RbacPermissionsAssignedByRolesUnassignPartialUpdateParams {
+    /// A UUID string identifying this Role.
+    pub uuid: String,
+    pub patched_permission_assign_request: Option<models::PatchedPermissionAssignRequest>,
+}
+
+/// struct for passing parameters to the method [`rbac_permissions_list`]
+#[derive(Clone, Debug)]
+pub struct RbacPermissionsListParams {
+    pub codename: Option<String>,
+    pub content_type__app_label: Option<String>,
+    pub content_type__model: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub role: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`rbac_permissions_retrieve`]
+#[derive(Clone, Debug)]
+pub struct RbacPermissionsRetrieveParams {
+    /// A unique integer value identifying this permission.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`rbac_permissions_roles_list`]
+#[derive(Clone, Debug)]
+pub struct RbacPermissionsRolesListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`rbac_roles_add_user_create`]
+#[derive(Clone, Debug)]
+pub struct RbacRolesAddUserCreateParams {
+    /// A UUID string identifying this Role.
+    pub uuid: String,
+    pub user_account_serializer_for_role_request: models::UserAccountSerializerForRoleRequest,
+}
+
+/// struct for passing parameters to the method [`rbac_roles_create`]
+#[derive(Clone, Debug)]
+pub struct RbacRolesCreateParams {
+    pub role_request: models::RoleRequest,
+}
+
+/// struct for passing parameters to the method [`rbac_roles_destroy`]
+#[derive(Clone, Debug)]
+pub struct RbacRolesDestroyParams {
+    /// A UUID string identifying this Role.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`rbac_roles_list`]
+#[derive(Clone, Debug)]
+pub struct RbacRolesListParams {
+    pub groups: Option<String>,
+    /// Include inherited roles (requires users or groups filter)
+    pub inherited: Option<bool>,
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub users: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`rbac_roles_partial_update`]
+#[derive(Clone, Debug)]
+pub struct RbacRolesPartialUpdateParams {
+    /// A UUID string identifying this Role.
+    pub uuid: String,
+    pub patched_role_request: Option<models::PatchedRoleRequest>,
+}
+
+/// struct for passing parameters to the method [`rbac_roles_remove_user_create`]
+#[derive(Clone, Debug)]
+pub struct RbacRolesRemoveUserCreateParams {
+    /// A UUID string identifying this Role.
+    pub uuid: String,
+    pub user_account_serializer_for_role_request: models::UserAccountSerializerForRoleRequest,
+}
+
+/// struct for passing parameters to the method [`rbac_roles_retrieve`]
+#[derive(Clone, Debug)]
+pub struct RbacRolesRetrieveParams {
+    /// A UUID string identifying this Role.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`rbac_roles_update`]
+#[derive(Clone, Debug)]
+pub struct RbacRolesUpdateParams {
+    /// A UUID string identifying this Role.
+    pub uuid: String,
+    pub role_request: models::RoleRequest,
+}
+
+/// struct for passing parameters to the method [`rbac_roles_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct RbacRolesUsedByListParams {
+    /// A UUID string identifying this Role.
+    pub uuid: String,
+}
+
 /// struct for typed errors of method [`rbac_initial_permissions_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -216,11 +421,8 @@ pub enum RbacRolesUsedByListError {
 /// InitialPermissions viewset
 pub async fn rbac_initial_permissions_create(
     configuration: &configuration::Configuration,
-    initial_permissions_request: models::InitialPermissionsRequest,
+    params: RbacInitialPermissionsCreateParams,
 ) -> Result<models::InitialPermissions, Error<RbacInitialPermissionsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_initial_permissions_request = initial_permissions_request;
-
     let uri_str = format!("{}/rbac/initial_permissions/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -230,7 +432,7 @@ pub async fn rbac_initial_permissions_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_initial_permissions_request);
+    req_builder = req_builder.json(&params.initial_permissions_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -246,7 +448,7 @@ pub async fn rbac_initial_permissions_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InitialPermissions`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::InitialPermissions`")))),
         }
@@ -264,15 +466,12 @@ pub async fn rbac_initial_permissions_create(
 /// InitialPermissions viewset
 pub async fn rbac_initial_permissions_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: RbacInitialPermissionsDestroyParams,
 ) -> Result<(), Error<RbacInitialPermissionsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/rbac/initial_permissions/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -304,35 +503,24 @@ pub async fn rbac_initial_permissions_destroy(
 /// InitialPermissions viewset
 pub async fn rbac_initial_permissions_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: RbacInitialPermissionsListParams,
 ) -> Result<models::PaginatedInitialPermissionsList, Error<RbacInitialPermissionsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/rbac/initial_permissions/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -356,7 +544,7 @@ pub async fn rbac_initial_permissions_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedInitialPermissionsList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedInitialPermissionsList`")))),
         }
@@ -374,17 +562,12 @@ pub async fn rbac_initial_permissions_list(
 /// InitialPermissions viewset
 pub async fn rbac_initial_permissions_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_initial_permissions_request: Option<models::PatchedInitialPermissionsRequest>,
+    params: RbacInitialPermissionsPartialUpdateParams,
 ) -> Result<models::InitialPermissions, Error<RbacInitialPermissionsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_initial_permissions_request = patched_initial_permissions_request;
-
     let uri_str = format!(
         "{}/rbac/initial_permissions/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -394,7 +577,7 @@ pub async fn rbac_initial_permissions_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_initial_permissions_request);
+    req_builder = req_builder.json(&params.patched_initial_permissions_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -410,7 +593,7 @@ pub async fn rbac_initial_permissions_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InitialPermissions`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::InitialPermissions`")))),
         }
@@ -428,15 +611,12 @@ pub async fn rbac_initial_permissions_partial_update(
 /// InitialPermissions viewset
 pub async fn rbac_initial_permissions_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: RbacInitialPermissionsRetrieveParams,
 ) -> Result<models::InitialPermissions, Error<RbacInitialPermissionsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/rbac/initial_permissions/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -461,7 +641,7 @@ pub async fn rbac_initial_permissions_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InitialPermissions`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::InitialPermissions`")))),
         }
@@ -479,17 +659,12 @@ pub async fn rbac_initial_permissions_retrieve(
 /// InitialPermissions viewset
 pub async fn rbac_initial_permissions_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    initial_permissions_request: models::InitialPermissionsRequest,
+    params: RbacInitialPermissionsUpdateParams,
 ) -> Result<models::InitialPermissions, Error<RbacInitialPermissionsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_initial_permissions_request = initial_permissions_request;
-
     let uri_str = format!(
         "{}/rbac/initial_permissions/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -499,7 +674,7 @@ pub async fn rbac_initial_permissions_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_initial_permissions_request);
+    req_builder = req_builder.json(&params.initial_permissions_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -515,7 +690,7 @@ pub async fn rbac_initial_permissions_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InitialPermissions`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::InitialPermissions`")))),
         }
@@ -533,15 +708,12 @@ pub async fn rbac_initial_permissions_update(
 /// Get a list of all objects that use this object
 pub async fn rbac_initial_permissions_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: RbacInitialPermissionsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<RbacInitialPermissionsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/rbac/initial_permissions/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -566,7 +738,7 @@ pub async fn rbac_initial_permissions_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -584,17 +756,12 @@ pub async fn rbac_initial_permissions_used_by_list(
 /// Assign permission(s) to role. When `object_pk` is set, the permissions are only assigned to the specific object, otherwise they are assigned globally.
 pub async fn rbac_permissions_assigned_by_roles_assign(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    permission_assign_request: models::PermissionAssignRequest,
+    params: RbacPermissionsAssignedByRolesAssignParams,
 ) -> Result<Vec<models::PermissionAssignResult>, Error<RbacPermissionsAssignedByRolesAssignError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_permission_assign_request = permission_assign_request;
-
     let uri_str = format!(
         "{}/rbac/permissions/assigned_by_roles/{uuid}/assign/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -604,7 +771,7 @@ pub async fn rbac_permissions_assigned_by_roles_assign(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_permission_assign_request);
+    req_builder = req_builder.json(&params.permission_assign_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -620,7 +787,7 @@ pub async fn rbac_permissions_assigned_by_roles_assign(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::PermissionAssignResult&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::PermissionAssignResult&gt;`")))),
         }
@@ -638,38 +805,25 @@ pub async fn rbac_permissions_assigned_by_roles_assign(
 /// Get assigned object permissions for a single object
 pub async fn rbac_permissions_assigned_by_roles_list(
     configuration: &configuration::Configuration,
-    model: &str,
-    object_pk: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: RbacPermissionsAssignedByRolesListParams,
 ) -> Result<models::PaginatedRoleAssignedObjectPermissionList, Error<RbacPermissionsAssignedByRolesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_model = model;
-    let p_query_object_pk = object_pk;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/rbac/permissions/assigned_by_roles/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    req_builder = req_builder.query(&[("model", &p_query_model.to_string())]);
-    if let Some(ref param_value) = p_query_object_pk {
+    req_builder = req_builder.query(&[("model", &params.model.to_string())]);
+    if let Some(ref param_value) = params.object_pk {
         req_builder = req_builder.query(&[("object_pk", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -693,7 +847,7 @@ pub async fn rbac_permissions_assigned_by_roles_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRoleAssignedObjectPermissionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRoleAssignedObjectPermissionList`")))),
         }
@@ -711,17 +865,12 @@ pub async fn rbac_permissions_assigned_by_roles_list(
 /// Unassign permission(s) to role. When `object_pk` is set, the permissions are only assigned to the specific object, otherwise they are assigned globally.
 pub async fn rbac_permissions_assigned_by_roles_unassign_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_permission_assign_request: Option<models::PatchedPermissionAssignRequest>,
+    params: RbacPermissionsAssignedByRolesUnassignPartialUpdateParams,
 ) -> Result<(), Error<RbacPermissionsAssignedByRolesUnassignPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_permission_assign_request = patched_permission_assign_request;
-
     let uri_str = format!(
         "{}/rbac/permissions/assigned_by_roles/{uuid}/unassign/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -731,7 +880,7 @@ pub async fn rbac_permissions_assigned_by_roles_unassign_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_permission_assign_request);
+    req_builder = req_builder.json(&params.patched_permission_assign_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -755,50 +904,33 @@ pub async fn rbac_permissions_assigned_by_roles_unassign_partial_update(
 /// Read-only list of all permissions, filterable by model and app
 pub async fn rbac_permissions_list(
     configuration: &configuration::Configuration,
-    codename: Option<&str>,
-    content_type__app_label: Option<&str>,
-    content_type__model: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    role: Option<&str>,
-    search: Option<&str>,
+    params: RbacPermissionsListParams,
 ) -> Result<models::PaginatedPermissionList, Error<RbacPermissionsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_codename = codename;
-    let p_query_content_type__app_label = content_type__app_label;
-    let p_query_content_type__model = content_type__model;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_role = role;
-    let p_query_search = search;
-
     let uri_str = format!("{}/rbac/permissions/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_codename {
+    if let Some(ref param_value) = params.codename {
         req_builder = req_builder.query(&[("codename", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_content_type__app_label {
+    if let Some(ref param_value) = params.content_type__app_label {
         req_builder = req_builder.query(&[("content_type__app_label", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_content_type__model {
+    if let Some(ref param_value) = params.content_type__model {
         req_builder = req_builder.query(&[("content_type__model", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_role {
+    if let Some(ref param_value) = params.role {
         req_builder = req_builder.query(&[("role", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -822,7 +954,7 @@ pub async fn rbac_permissions_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedPermissionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedPermissionList`")))),
         }
@@ -840,12 +972,9 @@ pub async fn rbac_permissions_list(
 /// Read-only list of all permissions, filterable by model and app
 pub async fn rbac_permissions_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: RbacPermissionsRetrieveParams,
 ) -> Result<models::Permission, Error<RbacPermissionsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/rbac/permissions/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/rbac/permissions/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -869,7 +998,9 @@ pub async fn rbac_permissions_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Permission`",
@@ -895,35 +1026,24 @@ pub async fn rbac_permissions_retrieve(
 /// Get a role's assigned object permissions
 pub async fn rbac_permissions_roles_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    uuid: Option<&str>,
+    params: RbacPermissionsRolesListParams,
 ) -> Result<models::PaginatedExtraRoleObjectPermissionList, Error<RbacPermissionsRolesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_uuid = uuid;
-
     let uri_str = format!("{}/rbac/permissions/roles/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_uuid {
+    if let Some(ref param_value) = params.uuid {
         req_builder = req_builder.query(&[("uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -947,7 +1067,7 @@ pub async fn rbac_permissions_roles_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedExtraRoleObjectPermissionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedExtraRoleObjectPermissionList`")))),
         }
@@ -965,17 +1085,12 @@ pub async fn rbac_permissions_roles_list(
 /// Add user to role
 pub async fn rbac_roles_add_user_create(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    user_account_serializer_for_role_request: models::UserAccountSerializerForRoleRequest,
+    params: RbacRolesAddUserCreateParams,
 ) -> Result<(), Error<RbacRolesAddUserCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_user_account_serializer_for_role_request = user_account_serializer_for_role_request;
-
     let uri_str = format!(
         "{}/rbac/roles/{uuid}/add_user/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -985,7 +1100,7 @@ pub async fn rbac_roles_add_user_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_account_serializer_for_role_request);
+    req_builder = req_builder.json(&params.user_account_serializer_for_role_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1008,11 +1123,8 @@ pub async fn rbac_roles_add_user_create(
 /// Role viewset
 pub async fn rbac_roles_create(
     configuration: &configuration::Configuration,
-    role_request: models::RoleRequest,
+    params: RbacRolesCreateParams,
 ) -> Result<models::Role, Error<RbacRolesCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_role_request = role_request;
-
     let uri_str = format!("{}/rbac/roles/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1022,7 +1134,7 @@ pub async fn rbac_roles_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_role_request);
+    req_builder = req_builder.json(&params.role_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1038,7 +1150,9 @@ pub async fn rbac_roles_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Role`",
@@ -1064,15 +1178,12 @@ pub async fn rbac_roles_create(
 /// Role viewset
 pub async fn rbac_roles_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RbacRolesDestroyParams,
 ) -> Result<(), Error<RbacRolesDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/rbac/roles/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1104,39 +1215,18 @@ pub async fn rbac_roles_destroy(
 /// Role viewset
 pub async fn rbac_roles_list(
     configuration: &configuration::Configuration,
-    groups: Option<&str>,
-    inherited: Option<bool>,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    users: Option<i32>,
+    params: RbacRolesListParams,
 ) -> Result<models::PaginatedRoleList, Error<RbacRolesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_groups = groups;
-    let p_query_inherited = inherited;
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_users = users;
-
     let uri_str = format!("{}/rbac/roles/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_groups {
+    if let Some(ref param_value) = params.groups {
         req_builder = req_builder.query(&[("groups", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_inherited {
+    if let Some(ref param_value) = params.inherited {
         req_builder = req_builder.query(&[("inherited", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -1155,25 +1245,25 @@ pub async fn rbac_roles_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_users {
+    if let Some(ref param_value) = params.users {
         req_builder = req_builder.query(&[("users", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1197,7 +1287,7 @@ pub async fn rbac_roles_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRoleList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRoleList`")))),
         }
@@ -1215,17 +1305,12 @@ pub async fn rbac_roles_list(
 /// Role viewset
 pub async fn rbac_roles_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_role_request: Option<models::PatchedRoleRequest>,
+    params: RbacRolesPartialUpdateParams,
 ) -> Result<models::Role, Error<RbacRolesPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_role_request = patched_role_request;
-
     let uri_str = format!(
         "{}/rbac/roles/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1235,7 +1320,7 @@ pub async fn rbac_roles_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_role_request);
+    req_builder = req_builder.json(&params.patched_role_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1251,7 +1336,9 @@ pub async fn rbac_roles_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Role`",
@@ -1277,17 +1364,12 @@ pub async fn rbac_roles_partial_update(
 /// Remove user from role
 pub async fn rbac_roles_remove_user_create(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    user_account_serializer_for_role_request: models::UserAccountSerializerForRoleRequest,
+    params: RbacRolesRemoveUserCreateParams,
 ) -> Result<(), Error<RbacRolesRemoveUserCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_user_account_serializer_for_role_request = user_account_serializer_for_role_request;
-
     let uri_str = format!(
         "{}/rbac/roles/{uuid}/remove_user/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1297,7 +1379,7 @@ pub async fn rbac_roles_remove_user_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_account_serializer_for_role_request);
+    req_builder = req_builder.json(&params.user_account_serializer_for_role_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1320,15 +1402,12 @@ pub async fn rbac_roles_remove_user_create(
 /// Role viewset
 pub async fn rbac_roles_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RbacRolesRetrieveParams,
 ) -> Result<models::Role, Error<RbacRolesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/rbac/roles/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1353,7 +1432,9 @@ pub async fn rbac_roles_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Role`",
@@ -1379,17 +1460,12 @@ pub async fn rbac_roles_retrieve(
 /// Role viewset
 pub async fn rbac_roles_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    role_request: models::RoleRequest,
+    params: RbacRolesUpdateParams,
 ) -> Result<models::Role, Error<RbacRolesUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_role_request = role_request;
-
     let uri_str = format!(
         "{}/rbac/roles/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1399,7 +1475,7 @@ pub async fn rbac_roles_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_role_request);
+    req_builder = req_builder.json(&params.role_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1415,7 +1491,9 @@ pub async fn rbac_roles_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Role`",
@@ -1441,15 +1519,12 @@ pub async fn rbac_roles_update(
 /// Get a list of all objects that use this object
 pub async fn rbac_roles_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: RbacRolesUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<RbacRolesUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/rbac/roles/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1474,7 +1549,7 @@ pub async fn rbac_roles_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

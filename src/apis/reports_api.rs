@@ -13,6 +13,33 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`reports_exports_destroy`]
+#[derive(Clone, Debug)]
+pub struct ReportsExportsDestroyParams {
+    /// A UUID string identifying this Data Export.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`reports_exports_list`]
+#[derive(Clone, Debug)]
+pub struct ReportsExportsListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`reports_exports_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ReportsExportsRetrieveParams {
+    /// A UUID string identifying this Data Export.
+    pub id: String,
+}
+
 /// struct for typed errors of method [`reports_exports_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -42,15 +69,12 @@ pub enum ReportsExportsRetrieveError {
 
 pub async fn reports_exports_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ReportsExportsDestroyParams,
 ) -> Result<(), Error<ReportsExportsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/reports/exports/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -81,30 +105,21 @@ pub async fn reports_exports_destroy(
 
 pub async fn reports_exports_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: ReportsExportsListParams,
 ) -> Result<models::PaginatedDataExportList, Error<ReportsExportsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/reports/exports/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -128,7 +143,7 @@ pub async fn reports_exports_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedDataExportList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedDataExportList`")))),
         }
@@ -145,15 +160,12 @@ pub async fn reports_exports_list(
 
 pub async fn reports_exports_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ReportsExportsRetrieveParams,
 ) -> Result<models::DataExport, Error<ReportsExportsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/reports/exports/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -178,7 +190,9 @@ pub async fn reports_exports_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DataExport`",

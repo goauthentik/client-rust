@@ -13,6 +13,362 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`events_events_create`]
+#[derive(Clone, Debug)]
+pub struct EventsEventsCreateParams {
+    pub event_request: models::EventRequest,
+}
+
+/// struct for passing parameters to the method [`events_events_destroy`]
+#[derive(Clone, Debug)]
+pub struct EventsEventsDestroyParams {
+    /// A UUID string identifying this Event.
+    pub event_uuid: String,
+}
+
+/// struct for passing parameters to the method [`events_events_export_create`]
+#[derive(Clone, Debug)]
+pub struct EventsEventsExportCreateParams {
+    pub action: Option<String>,
+    pub actions: Option<Vec<models::EventActions>>,
+    /// Brand name
+    pub brand_name: Option<String>,
+    pub client_ip: Option<String>,
+    /// Context Authorized application
+    pub context_authorized_app: Option<String>,
+    /// Context Device Primary Key
+    pub context_device: Option<String>,
+    /// Context Model App
+    pub context_model_app: Option<String>,
+    /// Context Model Name
+    pub context_model_name: Option<String>,
+    /// Context Model Primary Key
+    pub context_model_pk: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    /// Username
+    pub username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`events_events_list`]
+#[derive(Clone, Debug)]
+pub struct EventsEventsListParams {
+    pub action: Option<String>,
+    pub actions: Option<Vec<models::EventActions>>,
+    /// Brand name
+    pub brand_name: Option<String>,
+    pub client_ip: Option<String>,
+    /// Context Authorized application
+    pub context_authorized_app: Option<String>,
+    /// Context Device Primary Key
+    pub context_device: Option<String>,
+    /// Context Model App
+    pub context_model_app: Option<String>,
+    /// Context Model Name
+    pub context_model_name: Option<String>,
+    /// Context Model Primary Key
+    pub context_model_pk: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    /// Username
+    pub username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`events_events_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EventsEventsPartialUpdateParams {
+    /// A UUID string identifying this Event.
+    pub event_uuid: String,
+    pub patched_event_request: Option<models::PatchedEventRequest>,
+}
+
+/// struct for passing parameters to the method [`events_events_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EventsEventsRetrieveParams {
+    /// A UUID string identifying this Event.
+    pub event_uuid: String,
+}
+
+/// struct for passing parameters to the method [`events_events_stats_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EventsEventsStatsRetrieveParams {
+    /// Timedelta, format of 'weeks=3;days=2;hours=3,seconds=2'
+    pub count_steps: Vec<String>,
+    pub action: Option<String>,
+    pub actions: Option<Vec<models::EventActions>>,
+    /// Brand name
+    pub brand_name: Option<String>,
+    pub client_ip: Option<String>,
+    /// Context Authorized application
+    pub context_authorized_app: Option<String>,
+    /// Context Device Primary Key
+    pub context_device: Option<String>,
+    /// Context Model App
+    pub context_model_app: Option<String>,
+    /// Context Model Name
+    pub context_model_name: Option<String>,
+    /// Context Model Primary Key
+    pub context_model_pk: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    /// Username
+    pub username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`events_events_top_per_user_list`]
+#[derive(Clone, Debug)]
+pub struct EventsEventsTopPerUserListParams {
+    pub action: Option<String>,
+    pub actions: Option<Vec<models::EventActions>>,
+    /// Brand name
+    pub brand_name: Option<String>,
+    pub client_ip: Option<String>,
+    /// Context Authorized application
+    pub context_authorized_app: Option<String>,
+    /// Context Device Primary Key
+    pub context_device: Option<String>,
+    /// Context Model App
+    pub context_model_app: Option<String>,
+    /// Context Model Name
+    pub context_model_name: Option<String>,
+    /// Context Model Primary Key
+    pub context_model_pk: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub top_n: Option<i32>,
+    /// Username
+    pub username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`events_events_update`]
+#[derive(Clone, Debug)]
+pub struct EventsEventsUpdateParams {
+    /// A UUID string identifying this Event.
+    pub event_uuid: String,
+    pub event_request: models::EventRequest,
+}
+
+/// struct for passing parameters to the method [`events_events_volume_list`]
+#[derive(Clone, Debug)]
+pub struct EventsEventsVolumeListParams {
+    pub action: Option<String>,
+    pub actions: Option<Vec<models::EventActions>>,
+    /// Brand name
+    pub brand_name: Option<String>,
+    pub client_ip: Option<String>,
+    /// Context Authorized application
+    pub context_authorized_app: Option<String>,
+    /// Context Device Primary Key
+    pub context_device: Option<String>,
+    /// Context Model App
+    pub context_model_app: Option<String>,
+    /// Context Model Name
+    pub context_model_name: Option<String>,
+    /// Context Model Primary Key
+    pub context_model_pk: Option<String>,
+    pub history_days: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    /// Username
+    pub username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`events_notifications_destroy`]
+#[derive(Clone, Debug)]
+pub struct EventsNotificationsDestroyParams {
+    /// A UUID string identifying this Notification.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`events_notifications_list`]
+#[derive(Clone, Debug)]
+pub struct EventsNotificationsListParams {
+    pub body: Option<String>,
+    pub created: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub event: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub seen: Option<bool>,
+    pub severity: Option<models::SeverityEnum>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`events_notifications_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EventsNotificationsPartialUpdateParams {
+    /// A UUID string identifying this Notification.
+    pub uuid: String,
+    pub patched_notification_request: Option<models::PatchedNotificationRequest>,
+}
+
+/// struct for passing parameters to the method [`events_notifications_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EventsNotificationsRetrieveParams {
+    /// A UUID string identifying this Notification.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`events_notifications_update`]
+#[derive(Clone, Debug)]
+pub struct EventsNotificationsUpdateParams {
+    /// A UUID string identifying this Notification.
+    pub uuid: String,
+    pub notification_request: Option<models::NotificationRequest>,
+}
+
+/// struct for passing parameters to the method [`events_notifications_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EventsNotificationsUsedByListParams {
+    /// A UUID string identifying this Notification.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`events_rules_create`]
+#[derive(Clone, Debug)]
+pub struct EventsRulesCreateParams {
+    pub notification_rule_request: models::NotificationRuleRequest,
+}
+
+/// struct for passing parameters to the method [`events_rules_destroy`]
+#[derive(Clone, Debug)]
+pub struct EventsRulesDestroyParams {
+    /// A UUID string identifying this Notification Rule.
+    pub pbm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`events_rules_list`]
+#[derive(Clone, Debug)]
+pub struct EventsRulesListParams {
+    pub destination_group__name: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub severity: Option<String>,
+}
+
+/// struct for passing parameters to the method [`events_rules_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EventsRulesPartialUpdateParams {
+    /// A UUID string identifying this Notification Rule.
+    pub pbm_uuid: String,
+    pub patched_notification_rule_request: Option<models::PatchedNotificationRuleRequest>,
+}
+
+/// struct for passing parameters to the method [`events_rules_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EventsRulesRetrieveParams {
+    /// A UUID string identifying this Notification Rule.
+    pub pbm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`events_rules_update`]
+#[derive(Clone, Debug)]
+pub struct EventsRulesUpdateParams {
+    /// A UUID string identifying this Notification Rule.
+    pub pbm_uuid: String,
+    pub notification_rule_request: models::NotificationRuleRequest,
+}
+
+/// struct for passing parameters to the method [`events_rules_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EventsRulesUsedByListParams {
+    /// A UUID string identifying this Notification Rule.
+    pub pbm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`events_transports_create`]
+#[derive(Clone, Debug)]
+pub struct EventsTransportsCreateParams {
+    pub notification_transport_request: models::NotificationTransportRequest,
+}
+
+/// struct for passing parameters to the method [`events_transports_destroy`]
+#[derive(Clone, Debug)]
+pub struct EventsTransportsDestroyParams {
+    /// A UUID string identifying this Notification Transport.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`events_transports_list`]
+#[derive(Clone, Debug)]
+pub struct EventsTransportsListParams {
+    pub mode: Option<models::TransportModeEnum>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub send_once: Option<bool>,
+    pub webhook_url: Option<String>,
+}
+
+/// struct for passing parameters to the method [`events_transports_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EventsTransportsPartialUpdateParams {
+    /// A UUID string identifying this Notification Transport.
+    pub uuid: String,
+    pub patched_notification_transport_request: Option<models::PatchedNotificationTransportRequest>,
+}
+
+/// struct for passing parameters to the method [`events_transports_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EventsTransportsRetrieveParams {
+    /// A UUID string identifying this Notification Transport.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`events_transports_test_create`]
+#[derive(Clone, Debug)]
+pub struct EventsTransportsTestCreateParams {
+    /// A UUID string identifying this Notification Transport.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`events_transports_update`]
+#[derive(Clone, Debug)]
+pub struct EventsTransportsUpdateParams {
+    /// A UUID string identifying this Notification Transport.
+    pub uuid: String,
+    pub notification_transport_request: models::NotificationTransportRequest,
+}
+
+/// struct for passing parameters to the method [`events_transports_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EventsTransportsUsedByListParams {
+    /// A UUID string identifying this Notification Transport.
+    pub uuid: String,
+}
+
 /// struct for typed errors of method [`events_events_actions_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -339,7 +695,7 @@ pub async fn events_events_actions_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`")))),
         }
@@ -357,11 +713,8 @@ pub async fn events_events_actions_list(
 /// Event Read-Only Viewset
 pub async fn events_events_create(
     configuration: &configuration::Configuration,
-    event_request: models::EventRequest,
+    params: EventsEventsCreateParams,
 ) -> Result<models::Event, Error<EventsEventsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_event_request = event_request;
-
     let uri_str = format!("{}/events/events/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -371,7 +724,7 @@ pub async fn events_events_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_event_request);
+    req_builder = req_builder.json(&params.event_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -387,7 +740,9 @@ pub async fn events_events_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Event`",
@@ -413,15 +768,12 @@ pub async fn events_events_create(
 /// Event Read-Only Viewset
 pub async fn events_events_destroy(
     configuration: &configuration::Configuration,
-    event_uuid: &str,
+    params: EventsEventsDestroyParams,
 ) -> Result<(), Error<EventsEventsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_event_uuid = event_uuid;
-
     let uri_str = format!(
         "{}/events/events/{event_uuid}/",
         configuration.base_path,
-        event_uuid = crate::apis::urlencode(p_path_event_uuid)
+        event_uuid = crate::apis::urlencode(params.event_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -453,40 +805,15 @@ pub async fn events_events_destroy(
 /// Create a data export for this data type. Note that the export is generated asynchronously: this method returns a `DataExport` object that will initially have `completed=false` as well as the permanent URL to that object in the `Location` header. You can poll that URL until `completed=true`, at which point the `file_url` property will contain a URL to download
 pub async fn events_events_export_create(
     configuration: &configuration::Configuration,
-    action: Option<&str>,
-    actions: Option<Vec<models::EventActions>>,
-    brand_name: Option<&str>,
-    client_ip: Option<&str>,
-    context_authorized_app: Option<&str>,
-    context_device: Option<&str>,
-    context_model_app: Option<&str>,
-    context_model_name: Option<&str>,
-    context_model_pk: Option<&str>,
-    ordering: Option<&str>,
-    search: Option<&str>,
-    username: Option<&str>,
+    params: EventsEventsExportCreateParams,
 ) -> Result<models::DataExport, Error<EventsEventsExportCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_action = action;
-    let p_query_actions = actions;
-    let p_query_brand_name = brand_name;
-    let p_query_client_ip = client_ip;
-    let p_query_context_authorized_app = context_authorized_app;
-    let p_query_context_device = context_device;
-    let p_query_context_model_app = context_model_app;
-    let p_query_context_model_name = context_model_name;
-    let p_query_context_model_pk = context_model_pk;
-    let p_query_ordering = ordering;
-    let p_query_search = search;
-    let p_query_username = username;
-
     let uri_str = format!("{}/events/events/export/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_query_action {
+    if let Some(ref param_value) = params.action {
         req_builder = req_builder.query(&[("action", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_actions {
+    if let Some(ref param_value) = params.actions {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -505,34 +832,34 @@ pub async fn events_events_export_create(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_brand_name {
+    if let Some(ref param_value) = params.brand_name {
         req_builder = req_builder.query(&[("brand_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_ip {
+    if let Some(ref param_value) = params.client_ip {
         req_builder = req_builder.query(&[("client_ip", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_authorized_app {
+    if let Some(ref param_value) = params.context_authorized_app {
         req_builder = req_builder.query(&[("context_authorized_app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_device {
+    if let Some(ref param_value) = params.context_device {
         req_builder = req_builder.query(&[("context_device", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_app {
+    if let Some(ref param_value) = params.context_model_app {
         req_builder = req_builder.query(&[("context_model_app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_name {
+    if let Some(ref param_value) = params.context_model_name {
         req_builder = req_builder.query(&[("context_model_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_pk {
+    if let Some(ref param_value) = params.context_model_pk {
         req_builder = req_builder.query(&[("context_model_pk", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_username {
+    if let Some(ref param_value) = params.username {
         req_builder = req_builder.query(&[("username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -556,7 +883,9 @@ pub async fn events_events_export_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DataExport`",
@@ -582,44 +911,15 @@ pub async fn events_events_export_create(
 /// Event Read-Only Viewset
 pub async fn events_events_list(
     configuration: &configuration::Configuration,
-    action: Option<&str>,
-    actions: Option<Vec<models::EventActions>>,
-    brand_name: Option<&str>,
-    client_ip: Option<&str>,
-    context_authorized_app: Option<&str>,
-    context_device: Option<&str>,
-    context_model_app: Option<&str>,
-    context_model_name: Option<&str>,
-    context_model_pk: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    username: Option<&str>,
+    params: EventsEventsListParams,
 ) -> Result<models::PaginatedEventList, Error<EventsEventsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_action = action;
-    let p_query_actions = actions;
-    let p_query_brand_name = brand_name;
-    let p_query_client_ip = client_ip;
-    let p_query_context_authorized_app = context_authorized_app;
-    let p_query_context_device = context_device;
-    let p_query_context_model_app = context_model_app;
-    let p_query_context_model_name = context_model_name;
-    let p_query_context_model_pk = context_model_pk;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_username = username;
-
     let uri_str = format!("{}/events/events/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_action {
+    if let Some(ref param_value) = params.action {
         req_builder = req_builder.query(&[("action", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_actions {
+    if let Some(ref param_value) = params.actions {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -638,40 +938,40 @@ pub async fn events_events_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_brand_name {
+    if let Some(ref param_value) = params.brand_name {
         req_builder = req_builder.query(&[("brand_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_ip {
+    if let Some(ref param_value) = params.client_ip {
         req_builder = req_builder.query(&[("client_ip", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_authorized_app {
+    if let Some(ref param_value) = params.context_authorized_app {
         req_builder = req_builder.query(&[("context_authorized_app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_device {
+    if let Some(ref param_value) = params.context_device {
         req_builder = req_builder.query(&[("context_device", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_app {
+    if let Some(ref param_value) = params.context_model_app {
         req_builder = req_builder.query(&[("context_model_app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_name {
+    if let Some(ref param_value) = params.context_model_name {
         req_builder = req_builder.query(&[("context_model_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_pk {
+    if let Some(ref param_value) = params.context_model_pk {
         req_builder = req_builder.query(&[("context_model_pk", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_username {
+    if let Some(ref param_value) = params.username {
         req_builder = req_builder.query(&[("username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -695,7 +995,7 @@ pub async fn events_events_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedEventList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedEventList`")))),
         }
@@ -713,17 +1013,12 @@ pub async fn events_events_list(
 /// Event Read-Only Viewset
 pub async fn events_events_partial_update(
     configuration: &configuration::Configuration,
-    event_uuid: &str,
-    patched_event_request: Option<models::PatchedEventRequest>,
+    params: EventsEventsPartialUpdateParams,
 ) -> Result<models::Event, Error<EventsEventsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_event_uuid = event_uuid;
-    let p_body_patched_event_request = patched_event_request;
-
     let uri_str = format!(
         "{}/events/events/{event_uuid}/",
         configuration.base_path,
-        event_uuid = crate::apis::urlencode(p_path_event_uuid)
+        event_uuid = crate::apis::urlencode(params.event_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -733,7 +1028,7 @@ pub async fn events_events_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_event_request);
+    req_builder = req_builder.json(&params.patched_event_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -749,7 +1044,9 @@ pub async fn events_events_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Event`",
@@ -775,15 +1072,12 @@ pub async fn events_events_partial_update(
 /// Event Read-Only Viewset
 pub async fn events_events_retrieve(
     configuration: &configuration::Configuration,
-    event_uuid: &str,
+    params: EventsEventsRetrieveParams,
 ) -> Result<models::Event, Error<EventsEventsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_event_uuid = event_uuid;
-
     let uri_str = format!(
         "{}/events/events/{event_uuid}/",
         configuration.base_path,
-        event_uuid = crate::apis::urlencode(p_path_event_uuid)
+        event_uuid = crate::apis::urlencode(params.event_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -808,7 +1102,9 @@ pub async fn events_events_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Event`",
@@ -834,42 +1130,15 @@ pub async fn events_events_retrieve(
 /// Get event stats for specified filters and count steps
 pub async fn events_events_stats_retrieve(
     configuration: &configuration::Configuration,
-    count_steps: Vec<String>,
-    action: Option<&str>,
-    actions: Option<Vec<models::EventActions>>,
-    brand_name: Option<&str>,
-    client_ip: Option<&str>,
-    context_authorized_app: Option<&str>,
-    context_device: Option<&str>,
-    context_model_app: Option<&str>,
-    context_model_name: Option<&str>,
-    context_model_pk: Option<&str>,
-    ordering: Option<&str>,
-    search: Option<&str>,
-    username: Option<&str>,
+    params: EventsEventsStatsRetrieveParams,
 ) -> Result<models::EventStats, Error<EventsEventsStatsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_count_steps = count_steps;
-    let p_query_action = action;
-    let p_query_actions = actions;
-    let p_query_brand_name = brand_name;
-    let p_query_client_ip = client_ip;
-    let p_query_context_authorized_app = context_authorized_app;
-    let p_query_context_device = context_device;
-    let p_query_context_model_app = context_model_app;
-    let p_query_context_model_name = context_model_name;
-    let p_query_context_model_pk = context_model_pk;
-    let p_query_ordering = ordering;
-    let p_query_search = search;
-    let p_query_username = username;
-
     let uri_str = format!("{}/events/events/stats/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_action {
+    if let Some(ref param_value) = params.action {
         req_builder = req_builder.query(&[("action", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_actions {
+    if let Some(ref param_value) = params.actions {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -888,37 +1157,39 @@ pub async fn events_events_stats_retrieve(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_brand_name {
+    if let Some(ref param_value) = params.brand_name {
         req_builder = req_builder.query(&[("brand_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_ip {
+    if let Some(ref param_value) = params.client_ip {
         req_builder = req_builder.query(&[("client_ip", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_authorized_app {
+    if let Some(ref param_value) = params.context_authorized_app {
         req_builder = req_builder.query(&[("context_authorized_app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_device {
+    if let Some(ref param_value) = params.context_device {
         req_builder = req_builder.query(&[("context_device", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_app {
+    if let Some(ref param_value) = params.context_model_app {
         req_builder = req_builder.query(&[("context_model_app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_name {
+    if let Some(ref param_value) = params.context_model_name {
         req_builder = req_builder.query(&[("context_model_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_pk {
+    if let Some(ref param_value) = params.context_model_pk {
         req_builder = req_builder.query(&[("context_model_pk", &param_value.to_string())]);
     }
     req_builder = match "multi" {
         "multi" => req_builder.query(
-            &p_query_count_steps
+            &params
+                .count_steps
                 .into_iter()
                 .map(|p| ("count_steps".to_owned(), p.to_string()))
                 .collect::<Vec<(std::string::String, std::string::String)>>(),
         ),
         _ => req_builder.query(&[(
             "count_steps",
-            &p_query_count_steps
+            &params
+                .count_steps
                 .into_iter()
                 .map(|p| p.to_string())
                 .collect::<Vec<String>>()
@@ -926,13 +1197,13 @@ pub async fn events_events_stats_retrieve(
                 .to_string(),
         )]),
     };
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_username {
+    if let Some(ref param_value) = params.username {
         req_builder = req_builder.query(&[("username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -956,7 +1227,9 @@ pub async fn events_events_stats_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EventStats`",
@@ -982,42 +1255,15 @@ pub async fn events_events_stats_retrieve(
 /// Get the top_n events grouped by user count
 pub async fn events_events_top_per_user_list(
     configuration: &configuration::Configuration,
-    action: Option<&str>,
-    actions: Option<Vec<models::EventActions>>,
-    brand_name: Option<&str>,
-    client_ip: Option<&str>,
-    context_authorized_app: Option<&str>,
-    context_device: Option<&str>,
-    context_model_app: Option<&str>,
-    context_model_name: Option<&str>,
-    context_model_pk: Option<&str>,
-    ordering: Option<&str>,
-    search: Option<&str>,
-    top_n: Option<i32>,
-    username: Option<&str>,
+    params: EventsEventsTopPerUserListParams,
 ) -> Result<Vec<models::EventTopPerUser>, Error<EventsEventsTopPerUserListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_action = action;
-    let p_query_actions = actions;
-    let p_query_brand_name = brand_name;
-    let p_query_client_ip = client_ip;
-    let p_query_context_authorized_app = context_authorized_app;
-    let p_query_context_device = context_device;
-    let p_query_context_model_app = context_model_app;
-    let p_query_context_model_name = context_model_name;
-    let p_query_context_model_pk = context_model_pk;
-    let p_query_ordering = ordering;
-    let p_query_search = search;
-    let p_query_top_n = top_n;
-    let p_query_username = username;
-
     let uri_str = format!("{}/events/events/top_per_user/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_action {
+    if let Some(ref param_value) = params.action {
         req_builder = req_builder.query(&[("action", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_actions {
+    if let Some(ref param_value) = params.actions {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -1036,37 +1282,37 @@ pub async fn events_events_top_per_user_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_brand_name {
+    if let Some(ref param_value) = params.brand_name {
         req_builder = req_builder.query(&[("brand_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_ip {
+    if let Some(ref param_value) = params.client_ip {
         req_builder = req_builder.query(&[("client_ip", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_authorized_app {
+    if let Some(ref param_value) = params.context_authorized_app {
         req_builder = req_builder.query(&[("context_authorized_app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_device {
+    if let Some(ref param_value) = params.context_device {
         req_builder = req_builder.query(&[("context_device", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_app {
+    if let Some(ref param_value) = params.context_model_app {
         req_builder = req_builder.query(&[("context_model_app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_name {
+    if let Some(ref param_value) = params.context_model_name {
         req_builder = req_builder.query(&[("context_model_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_pk {
+    if let Some(ref param_value) = params.context_model_pk {
         req_builder = req_builder.query(&[("context_model_pk", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_top_n {
+    if let Some(ref param_value) = params.top_n {
         req_builder = req_builder.query(&[("top_n", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_username {
+    if let Some(ref param_value) = params.username {
         req_builder = req_builder.query(&[("username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1090,7 +1336,7 @@ pub async fn events_events_top_per_user_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::EventTopPerUser&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::EventTopPerUser&gt;`")))),
         }
@@ -1108,17 +1354,12 @@ pub async fn events_events_top_per_user_list(
 /// Event Read-Only Viewset
 pub async fn events_events_update(
     configuration: &configuration::Configuration,
-    event_uuid: &str,
-    event_request: models::EventRequest,
+    params: EventsEventsUpdateParams,
 ) -> Result<models::Event, Error<EventsEventsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_event_uuid = event_uuid;
-    let p_body_event_request = event_request;
-
     let uri_str = format!(
         "{}/events/events/{event_uuid}/",
         configuration.base_path,
-        event_uuid = crate::apis::urlencode(p_path_event_uuid)
+        event_uuid = crate::apis::urlencode(params.event_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1128,7 +1369,7 @@ pub async fn events_events_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_event_request);
+    req_builder = req_builder.json(&params.event_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1144,7 +1385,9 @@ pub async fn events_events_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Event`",
@@ -1170,42 +1413,15 @@ pub async fn events_events_update(
 /// Get event volume for specified filters and timeframe
 pub async fn events_events_volume_list(
     configuration: &configuration::Configuration,
-    action: Option<&str>,
-    actions: Option<Vec<models::EventActions>>,
-    brand_name: Option<&str>,
-    client_ip: Option<&str>,
-    context_authorized_app: Option<&str>,
-    context_device: Option<&str>,
-    context_model_app: Option<&str>,
-    context_model_name: Option<&str>,
-    context_model_pk: Option<&str>,
-    history_days: Option<i32>,
-    ordering: Option<&str>,
-    search: Option<&str>,
-    username: Option<&str>,
+    params: EventsEventsVolumeListParams,
 ) -> Result<Vec<models::EventVolume>, Error<EventsEventsVolumeListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_action = action;
-    let p_query_actions = actions;
-    let p_query_brand_name = brand_name;
-    let p_query_client_ip = client_ip;
-    let p_query_context_authorized_app = context_authorized_app;
-    let p_query_context_device = context_device;
-    let p_query_context_model_app = context_model_app;
-    let p_query_context_model_name = context_model_name;
-    let p_query_context_model_pk = context_model_pk;
-    let p_query_history_days = history_days;
-    let p_query_ordering = ordering;
-    let p_query_search = search;
-    let p_query_username = username;
-
     let uri_str = format!("{}/events/events/volume/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_action {
+    if let Some(ref param_value) = params.action {
         req_builder = req_builder.query(&[("action", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_actions {
+    if let Some(ref param_value) = params.actions {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -1224,37 +1440,37 @@ pub async fn events_events_volume_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_brand_name {
+    if let Some(ref param_value) = params.brand_name {
         req_builder = req_builder.query(&[("brand_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_ip {
+    if let Some(ref param_value) = params.client_ip {
         req_builder = req_builder.query(&[("client_ip", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_authorized_app {
+    if let Some(ref param_value) = params.context_authorized_app {
         req_builder = req_builder.query(&[("context_authorized_app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_device {
+    if let Some(ref param_value) = params.context_device {
         req_builder = req_builder.query(&[("context_device", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_app {
+    if let Some(ref param_value) = params.context_model_app {
         req_builder = req_builder.query(&[("context_model_app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_name {
+    if let Some(ref param_value) = params.context_model_name {
         req_builder = req_builder.query(&[("context_model_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_context_model_pk {
+    if let Some(ref param_value) = params.context_model_pk {
         req_builder = req_builder.query(&[("context_model_pk", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_history_days {
+    if let Some(ref param_value) = params.history_days {
         req_builder = req_builder.query(&[("history_days", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_username {
+    if let Some(ref param_value) = params.username {
         req_builder = req_builder.query(&[("username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1278,7 +1494,7 @@ pub async fn events_events_volume_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::EventVolume&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::EventVolume&gt;`")))),
         }
@@ -1296,15 +1512,12 @@ pub async fn events_events_volume_list(
 /// Notification Viewset
 pub async fn events_notifications_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: EventsNotificationsDestroyParams,
 ) -> Result<(), Error<EventsNotificationsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/events/notifications/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1336,60 +1549,39 @@ pub async fn events_notifications_destroy(
 /// Notification Viewset
 pub async fn events_notifications_list(
     configuration: &configuration::Configuration,
-    body: Option<&str>,
-    created: Option<chrono::DateTime<chrono::FixedOffset>>,
-    event: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    seen: Option<bool>,
-    severity: Option<models::SeverityEnum>,
-    user: Option<i32>,
+    params: EventsNotificationsListParams,
 ) -> Result<models::PaginatedNotificationList, Error<EventsNotificationsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_body = body;
-    let p_query_created = created;
-    let p_query_event = event;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_seen = seen;
-    let p_query_severity = severity;
-    let p_query_user = user;
-
     let uri_str = format!("{}/events/notifications/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_body {
+    if let Some(ref param_value) = params.body {
         req_builder = req_builder.query(&[("body", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_created {
+    if let Some(ref param_value) = params.created {
         req_builder = req_builder.query(&[("created", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_event {
+    if let Some(ref param_value) = params.event {
         req_builder = req_builder.query(&[("event", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_seen {
+    if let Some(ref param_value) = params.seen {
         req_builder = req_builder.query(&[("seen", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_severity {
+    if let Some(ref param_value) = params.severity {
         req_builder = req_builder.query(&[("severity", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1413,7 +1605,7 @@ pub async fn events_notifications_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedNotificationList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedNotificationList`")))),
         }
@@ -1463,17 +1655,12 @@ pub async fn events_notifications_mark_all_seen_create(
 /// Notification Viewset
 pub async fn events_notifications_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_notification_request: Option<models::PatchedNotificationRequest>,
+    params: EventsNotificationsPartialUpdateParams,
 ) -> Result<models::Notification, Error<EventsNotificationsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_notification_request = patched_notification_request;
-
     let uri_str = format!(
         "{}/events/notifications/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1483,7 +1670,7 @@ pub async fn events_notifications_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_notification_request);
+    req_builder = req_builder.json(&params.patched_notification_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1499,7 +1686,9 @@ pub async fn events_notifications_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Notification`",
@@ -1523,15 +1712,12 @@ pub async fn events_notifications_partial_update(
 /// Notification Viewset
 pub async fn events_notifications_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: EventsNotificationsRetrieveParams,
 ) -> Result<models::Notification, Error<EventsNotificationsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/events/notifications/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1556,7 +1742,9 @@ pub async fn events_notifications_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Notification`",
@@ -1580,17 +1768,12 @@ pub async fn events_notifications_retrieve(
 /// Notification Viewset
 pub async fn events_notifications_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    notification_request: Option<models::NotificationRequest>,
+    params: EventsNotificationsUpdateParams,
 ) -> Result<models::Notification, Error<EventsNotificationsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_notification_request = notification_request;
-
     let uri_str = format!(
         "{}/events/notifications/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1600,7 +1783,7 @@ pub async fn events_notifications_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_notification_request);
+    req_builder = req_builder.json(&params.notification_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1616,7 +1799,9 @@ pub async fn events_notifications_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Notification`",
@@ -1640,15 +1825,12 @@ pub async fn events_notifications_update(
 /// Get a list of all objects that use this object
 pub async fn events_notifications_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: EventsNotificationsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EventsNotificationsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/events/notifications/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1673,7 +1855,7 @@ pub async fn events_notifications_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1691,11 +1873,8 @@ pub async fn events_notifications_used_by_list(
 /// NotificationRule Viewset
 pub async fn events_rules_create(
     configuration: &configuration::Configuration,
-    notification_rule_request: models::NotificationRuleRequest,
+    params: EventsRulesCreateParams,
 ) -> Result<models::NotificationRule, Error<EventsRulesCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_notification_rule_request = notification_rule_request;
-
     let uri_str = format!("{}/events/rules/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1705,7 +1884,7 @@ pub async fn events_rules_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_notification_rule_request);
+    req_builder = req_builder.json(&params.notification_rule_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1721,7 +1900,7 @@ pub async fn events_rules_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationRule`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationRule`")))),
         }
@@ -1739,15 +1918,12 @@ pub async fn events_rules_create(
 /// NotificationRule Viewset
 pub async fn events_rules_destroy(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
+    params: EventsRulesDestroyParams,
 ) -> Result<(), Error<EventsRulesDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
     let uri_str = format!(
         "{}/events/rules/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1779,45 +1955,30 @@ pub async fn events_rules_destroy(
 /// NotificationRule Viewset
 pub async fn events_rules_list(
     configuration: &configuration::Configuration,
-    destination_group__name: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    severity: Option<&str>,
+    params: EventsRulesListParams,
 ) -> Result<models::PaginatedNotificationRuleList, Error<EventsRulesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_destination_group__name = destination_group__name;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_severity = severity;
-
     let uri_str = format!("{}/events/rules/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_destination_group__name {
+    if let Some(ref param_value) = params.destination_group__name {
         req_builder = req_builder.query(&[("destination_group__name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_severity {
+    if let Some(ref param_value) = params.severity {
         req_builder = req_builder.query(&[("severity", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1841,7 +2002,7 @@ pub async fn events_rules_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedNotificationRuleList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedNotificationRuleList`")))),
         }
@@ -1859,17 +2020,12 @@ pub async fn events_rules_list(
 /// NotificationRule Viewset
 pub async fn events_rules_partial_update(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-    patched_notification_rule_request: Option<models::PatchedNotificationRuleRequest>,
+    params: EventsRulesPartialUpdateParams,
 ) -> Result<models::NotificationRule, Error<EventsRulesPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-    let p_body_patched_notification_rule_request = patched_notification_rule_request;
-
     let uri_str = format!(
         "{}/events/rules/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1879,7 +2035,7 @@ pub async fn events_rules_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_notification_rule_request);
+    req_builder = req_builder.json(&params.patched_notification_rule_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1895,7 +2051,7 @@ pub async fn events_rules_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationRule`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationRule`")))),
         }
@@ -1913,15 +2069,12 @@ pub async fn events_rules_partial_update(
 /// NotificationRule Viewset
 pub async fn events_rules_retrieve(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
+    params: EventsRulesRetrieveParams,
 ) -> Result<models::NotificationRule, Error<EventsRulesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
     let uri_str = format!(
         "{}/events/rules/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1946,7 +2099,7 @@ pub async fn events_rules_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationRule`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationRule`")))),
         }
@@ -1964,17 +2117,12 @@ pub async fn events_rules_retrieve(
 /// NotificationRule Viewset
 pub async fn events_rules_update(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-    notification_rule_request: models::NotificationRuleRequest,
+    params: EventsRulesUpdateParams,
 ) -> Result<models::NotificationRule, Error<EventsRulesUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-    let p_body_notification_rule_request = notification_rule_request;
-
     let uri_str = format!(
         "{}/events/rules/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1984,7 +2132,7 @@ pub async fn events_rules_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_notification_rule_request);
+    req_builder = req_builder.json(&params.notification_rule_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2000,7 +2148,7 @@ pub async fn events_rules_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationRule`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationRule`")))),
         }
@@ -2018,15 +2166,12 @@ pub async fn events_rules_update(
 /// Get a list of all objects that use this object
 pub async fn events_rules_used_by_list(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
+    params: EventsRulesUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EventsRulesUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
     let uri_str = format!(
         "{}/events/rules/{pbm_uuid}/used_by/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2051,7 +2196,7 @@ pub async fn events_rules_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2069,11 +2214,8 @@ pub async fn events_rules_used_by_list(
 /// NotificationTransport Viewset
 pub async fn events_transports_create(
     configuration: &configuration::Configuration,
-    notification_transport_request: models::NotificationTransportRequest,
+    params: EventsTransportsCreateParams,
 ) -> Result<models::NotificationTransport, Error<EventsTransportsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_notification_transport_request = notification_transport_request;
-
     let uri_str = format!("{}/events/transports/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2083,7 +2225,7 @@ pub async fn events_transports_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_notification_transport_request);
+    req_builder = req_builder.json(&params.notification_transport_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2099,7 +2241,7 @@ pub async fn events_transports_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationTransport`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationTransport`")))),
         }
@@ -2117,15 +2259,12 @@ pub async fn events_transports_create(
 /// NotificationTransport Viewset
 pub async fn events_transports_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: EventsTransportsDestroyParams,
 ) -> Result<(), Error<EventsTransportsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/events/transports/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2157,50 +2296,33 @@ pub async fn events_transports_destroy(
 /// NotificationTransport Viewset
 pub async fn events_transports_list(
     configuration: &configuration::Configuration,
-    mode: Option<models::TransportModeEnum>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    send_once: Option<bool>,
-    webhook_url: Option<&str>,
+    params: EventsTransportsListParams,
 ) -> Result<models::PaginatedNotificationTransportList, Error<EventsTransportsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_mode = mode;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_send_once = send_once;
-    let p_query_webhook_url = webhook_url;
-
     let uri_str = format!("{}/events/transports/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_mode {
+    if let Some(ref param_value) = params.mode {
         req_builder = req_builder.query(&[("mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_send_once {
+    if let Some(ref param_value) = params.send_once {
         req_builder = req_builder.query(&[("send_once", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_webhook_url {
+    if let Some(ref param_value) = params.webhook_url {
         req_builder = req_builder.query(&[("webhook_url", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2224,7 +2346,7 @@ pub async fn events_transports_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedNotificationTransportList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedNotificationTransportList`")))),
         }
@@ -2242,17 +2364,12 @@ pub async fn events_transports_list(
 /// NotificationTransport Viewset
 pub async fn events_transports_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_notification_transport_request: Option<models::PatchedNotificationTransportRequest>,
+    params: EventsTransportsPartialUpdateParams,
 ) -> Result<models::NotificationTransport, Error<EventsTransportsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_notification_transport_request = patched_notification_transport_request;
-
     let uri_str = format!(
         "{}/events/transports/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2262,7 +2379,7 @@ pub async fn events_transports_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_notification_transport_request);
+    req_builder = req_builder.json(&params.patched_notification_transport_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2278,7 +2395,7 @@ pub async fn events_transports_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationTransport`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationTransport`")))),
         }
@@ -2296,15 +2413,12 @@ pub async fn events_transports_partial_update(
 /// NotificationTransport Viewset
 pub async fn events_transports_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: EventsTransportsRetrieveParams,
 ) -> Result<models::NotificationTransport, Error<EventsTransportsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/events/transports/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2329,7 +2443,7 @@ pub async fn events_transports_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationTransport`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationTransport`")))),
         }
@@ -2347,15 +2461,12 @@ pub async fn events_transports_retrieve(
 /// Send example notification using selected transport. Requires Modify permissions.
 pub async fn events_transports_test_create(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: EventsTransportsTestCreateParams,
 ) -> Result<models::NotificationTransportTest, Error<EventsTransportsTestCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/events/transports/{uuid}/test/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2380,7 +2491,7 @@ pub async fn events_transports_test_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationTransportTest`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationTransportTest`")))),
         }
@@ -2398,17 +2509,12 @@ pub async fn events_transports_test_create(
 /// NotificationTransport Viewset
 pub async fn events_transports_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    notification_transport_request: models::NotificationTransportRequest,
+    params: EventsTransportsUpdateParams,
 ) -> Result<models::NotificationTransport, Error<EventsTransportsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_notification_transport_request = notification_transport_request;
-
     let uri_str = format!(
         "{}/events/transports/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2418,7 +2524,7 @@ pub async fn events_transports_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_notification_transport_request);
+    req_builder = req_builder.json(&params.notification_transport_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2434,7 +2540,7 @@ pub async fn events_transports_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationTransport`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationTransport`")))),
         }
@@ -2452,15 +2558,12 @@ pub async fn events_transports_update(
 /// Get a list of all objects that use this object
 pub async fn events_transports_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: EventsTransportsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EventsTransportsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/events/transports/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2485,7 +2588,7 @@ pub async fn events_transports_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

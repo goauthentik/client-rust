@@ -13,6 +13,114 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`oauth2_access_tokens_destroy`]
+#[derive(Clone, Debug)]
+pub struct Oauth2AccessTokensDestroyParams {
+    /// A unique integer value identifying this OAuth2 Access Token.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`oauth2_access_tokens_list`]
+#[derive(Clone, Debug)]
+pub struct Oauth2AccessTokensListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub provider: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`oauth2_access_tokens_retrieve`]
+#[derive(Clone, Debug)]
+pub struct Oauth2AccessTokensRetrieveParams {
+    /// A unique integer value identifying this OAuth2 Access Token.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`oauth2_access_tokens_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct Oauth2AccessTokensUsedByListParams {
+    /// A unique integer value identifying this OAuth2 Access Token.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`oauth2_authorization_codes_destroy`]
+#[derive(Clone, Debug)]
+pub struct Oauth2AuthorizationCodesDestroyParams {
+    /// A unique integer value identifying this Authorization Code.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`oauth2_authorization_codes_list`]
+#[derive(Clone, Debug)]
+pub struct Oauth2AuthorizationCodesListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub provider: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`oauth2_authorization_codes_retrieve`]
+#[derive(Clone, Debug)]
+pub struct Oauth2AuthorizationCodesRetrieveParams {
+    /// A unique integer value identifying this Authorization Code.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`oauth2_authorization_codes_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct Oauth2AuthorizationCodesUsedByListParams {
+    /// A unique integer value identifying this Authorization Code.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`oauth2_refresh_tokens_destroy`]
+#[derive(Clone, Debug)]
+pub struct Oauth2RefreshTokensDestroyParams {
+    /// A unique integer value identifying this OAuth2 Refresh Token.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`oauth2_refresh_tokens_list`]
+#[derive(Clone, Debug)]
+pub struct Oauth2RefreshTokensListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub provider: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`oauth2_refresh_tokens_retrieve`]
+#[derive(Clone, Debug)]
+pub struct Oauth2RefreshTokensRetrieveParams {
+    /// A unique integer value identifying this OAuth2 Refresh Token.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`oauth2_refresh_tokens_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct Oauth2RefreshTokensUsedByListParams {
+    /// A unique integer value identifying this OAuth2 Refresh Token.
+    pub id: i32,
+}
+
 /// struct for typed errors of method [`oauth2_access_tokens_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -124,12 +232,9 @@ pub enum Oauth2RefreshTokensUsedByListError {
 /// AccessToken Viewset
 pub async fn oauth2_access_tokens_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: Oauth2AccessTokensDestroyParams,
 ) -> Result<(), Error<Oauth2AccessTokensDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/oauth2/access_tokens/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/oauth2/access_tokens/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -160,40 +265,27 @@ pub async fn oauth2_access_tokens_destroy(
 /// AccessToken Viewset
 pub async fn oauth2_access_tokens_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    provider: Option<i32>,
-    search: Option<&str>,
-    user: Option<i32>,
+    params: Oauth2AccessTokensListParams,
 ) -> Result<models::PaginatedTokenModelList, Error<Oauth2AccessTokensListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_provider = provider;
-    let p_query_search = search;
-    let p_query_user = user;
-
     let uri_str = format!("{}/oauth2/access_tokens/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider {
+    if let Some(ref param_value) = params.provider {
         req_builder = req_builder.query(&[("provider", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -217,7 +309,7 @@ pub async fn oauth2_access_tokens_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedTokenModelList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedTokenModelList`")))),
         }
@@ -235,12 +327,9 @@ pub async fn oauth2_access_tokens_list(
 /// AccessToken Viewset
 pub async fn oauth2_access_tokens_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: Oauth2AccessTokensRetrieveParams,
 ) -> Result<models::TokenModel, Error<Oauth2AccessTokensRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/oauth2/access_tokens/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/oauth2/access_tokens/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -264,7 +353,9 @@ pub async fn oauth2_access_tokens_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TokenModel`",
@@ -290,15 +381,12 @@ pub async fn oauth2_access_tokens_retrieve(
 /// Get a list of all objects that use this object
 pub async fn oauth2_access_tokens_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: Oauth2AccessTokensUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<Oauth2AccessTokensUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/oauth2/access_tokens/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -323,7 +411,7 @@ pub async fn oauth2_access_tokens_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -341,15 +429,12 @@ pub async fn oauth2_access_tokens_used_by_list(
 /// AuthorizationCode Viewset
 pub async fn oauth2_authorization_codes_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: Oauth2AuthorizationCodesDestroyParams,
 ) -> Result<(), Error<Oauth2AuthorizationCodesDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/oauth2/authorization_codes/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -381,40 +466,27 @@ pub async fn oauth2_authorization_codes_destroy(
 /// AuthorizationCode Viewset
 pub async fn oauth2_authorization_codes_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    provider: Option<i32>,
-    search: Option<&str>,
-    user: Option<i32>,
+    params: Oauth2AuthorizationCodesListParams,
 ) -> Result<models::PaginatedExpiringBaseGrantModelList, Error<Oauth2AuthorizationCodesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_provider = provider;
-    let p_query_search = search;
-    let p_query_user = user;
-
     let uri_str = format!("{}/oauth2/authorization_codes/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider {
+    if let Some(ref param_value) = params.provider {
         req_builder = req_builder.query(&[("provider", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -438,7 +510,7 @@ pub async fn oauth2_authorization_codes_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedExpiringBaseGrantModelList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedExpiringBaseGrantModelList`")))),
         }
@@ -456,15 +528,12 @@ pub async fn oauth2_authorization_codes_list(
 /// AuthorizationCode Viewset
 pub async fn oauth2_authorization_codes_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: Oauth2AuthorizationCodesRetrieveParams,
 ) -> Result<models::ExpiringBaseGrantModel, Error<Oauth2AuthorizationCodesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/oauth2/authorization_codes/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -489,7 +558,7 @@ pub async fn oauth2_authorization_codes_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ExpiringBaseGrantModel`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ExpiringBaseGrantModel`")))),
         }
@@ -507,15 +576,12 @@ pub async fn oauth2_authorization_codes_retrieve(
 /// Get a list of all objects that use this object
 pub async fn oauth2_authorization_codes_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: Oauth2AuthorizationCodesUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<Oauth2AuthorizationCodesUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/oauth2/authorization_codes/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -540,7 +606,7 @@ pub async fn oauth2_authorization_codes_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -558,15 +624,12 @@ pub async fn oauth2_authorization_codes_used_by_list(
 /// RefreshToken Viewset
 pub async fn oauth2_refresh_tokens_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: Oauth2RefreshTokensDestroyParams,
 ) -> Result<(), Error<Oauth2RefreshTokensDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/oauth2/refresh_tokens/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -598,40 +661,27 @@ pub async fn oauth2_refresh_tokens_destroy(
 /// RefreshToken Viewset
 pub async fn oauth2_refresh_tokens_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    provider: Option<i32>,
-    search: Option<&str>,
-    user: Option<i32>,
+    params: Oauth2RefreshTokensListParams,
 ) -> Result<models::PaginatedTokenModelList, Error<Oauth2RefreshTokensListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_provider = provider;
-    let p_query_search = search;
-    let p_query_user = user;
-
     let uri_str = format!("{}/oauth2/refresh_tokens/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider {
+    if let Some(ref param_value) = params.provider {
         req_builder = req_builder.query(&[("provider", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -655,7 +705,7 @@ pub async fn oauth2_refresh_tokens_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedTokenModelList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedTokenModelList`")))),
         }
@@ -673,15 +723,12 @@ pub async fn oauth2_refresh_tokens_list(
 /// RefreshToken Viewset
 pub async fn oauth2_refresh_tokens_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: Oauth2RefreshTokensRetrieveParams,
 ) -> Result<models::TokenModel, Error<Oauth2RefreshTokensRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/oauth2/refresh_tokens/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -706,7 +753,9 @@ pub async fn oauth2_refresh_tokens_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TokenModel`",
@@ -732,15 +781,12 @@ pub async fn oauth2_refresh_tokens_retrieve(
 /// Get a list of all objects that use this object
 pub async fn oauth2_refresh_tokens_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: Oauth2RefreshTokensUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<Oauth2RefreshTokensUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/oauth2/refresh_tokens/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -765,7 +811,7 @@ pub async fn oauth2_refresh_tokens_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

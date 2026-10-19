@@ -13,6 +13,73 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`rac_connection_tokens_destroy`]
+#[derive(Clone, Debug)]
+pub struct RacConnectionTokensDestroyParams {
+    /// A UUID string identifying this RAC Connection token.
+    pub connection_token_uuid: String,
+}
+
+/// struct for passing parameters to the method [`rac_connection_tokens_list`]
+#[derive(Clone, Debug)]
+pub struct RacConnectionTokensListParams {
+    pub device: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub provider: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub session__user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`rac_connection_tokens_partial_update`]
+#[derive(Clone, Debug)]
+pub struct RacConnectionTokensPartialUpdateParams {
+    /// A UUID string identifying this RAC Connection token.
+    pub connection_token_uuid: String,
+    pub patched_connection_token_request: Option<models::PatchedConnectionTokenRequest>,
+}
+
+/// struct for passing parameters to the method [`rac_connection_tokens_retrieve`]
+#[derive(Clone, Debug)]
+pub struct RacConnectionTokensRetrieveParams {
+    /// A UUID string identifying this RAC Connection token.
+    pub connection_token_uuid: String,
+}
+
+/// struct for passing parameters to the method [`rac_connection_tokens_update`]
+#[derive(Clone, Debug)]
+pub struct RacConnectionTokensUpdateParams {
+    /// A UUID string identifying this RAC Connection token.
+    pub connection_token_uuid: String,
+    pub connection_token_request: models::ConnectionTokenRequest,
+}
+
+/// struct for passing parameters to the method [`rac_connection_tokens_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct RacConnectionTokensUsedByListParams {
+    /// A UUID string identifying this RAC Connection token.
+    pub connection_token_uuid: String,
+}
+
+/// struct for passing parameters to the method [`rac_devices_list`]
+#[derive(Clone, Debug)]
+pub struct RacDevicesListParams {
+    pub provider: i32,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
 /// struct for typed errors of method [`rac_connection_tokens_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -79,15 +146,12 @@ pub enum RacDevicesListError {
 /// ConnectionToken Viewset
 pub async fn rac_connection_tokens_destroy(
     configuration: &configuration::Configuration,
-    connection_token_uuid: &str,
+    params: RacConnectionTokensDestroyParams,
 ) -> Result<(), Error<RacConnectionTokensDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connection_token_uuid = connection_token_uuid;
-
     let uri_str = format!(
         "{}/rac/connection_tokens/{connection_token_uuid}/",
         configuration.base_path,
-        connection_token_uuid = crate::apis::urlencode(p_path_connection_token_uuid)
+        connection_token_uuid = crate::apis::urlencode(params.connection_token_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -119,45 +183,30 @@ pub async fn rac_connection_tokens_destroy(
 /// ConnectionToken Viewset
 pub async fn rac_connection_tokens_list(
     configuration: &configuration::Configuration,
-    device: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    provider: Option<i32>,
-    search: Option<&str>,
-    session__user: Option<i32>,
+    params: RacConnectionTokensListParams,
 ) -> Result<models::PaginatedConnectionTokenList, Error<RacConnectionTokensListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_device = device;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_provider = provider;
-    let p_query_search = search;
-    let p_query_session__user = session__user;
-
     let uri_str = format!("{}/rac/connection_tokens/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_device {
+    if let Some(ref param_value) = params.device {
         req_builder = req_builder.query(&[("device", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider {
+    if let Some(ref param_value) = params.provider {
         req_builder = req_builder.query(&[("provider", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_session__user {
+    if let Some(ref param_value) = params.session__user {
         req_builder = req_builder.query(&[("session__user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -181,7 +230,7 @@ pub async fn rac_connection_tokens_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedConnectionTokenList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedConnectionTokenList`")))),
         }
@@ -199,17 +248,12 @@ pub async fn rac_connection_tokens_list(
 /// ConnectionToken Viewset
 pub async fn rac_connection_tokens_partial_update(
     configuration: &configuration::Configuration,
-    connection_token_uuid: &str,
-    patched_connection_token_request: Option<models::PatchedConnectionTokenRequest>,
+    params: RacConnectionTokensPartialUpdateParams,
 ) -> Result<models::ConnectionToken, Error<RacConnectionTokensPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connection_token_uuid = connection_token_uuid;
-    let p_body_patched_connection_token_request = patched_connection_token_request;
-
     let uri_str = format!(
         "{}/rac/connection_tokens/{connection_token_uuid}/",
         configuration.base_path,
-        connection_token_uuid = crate::apis::urlencode(p_path_connection_token_uuid)
+        connection_token_uuid = crate::apis::urlencode(params.connection_token_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -219,7 +263,7 @@ pub async fn rac_connection_tokens_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_connection_token_request);
+    req_builder = req_builder.json(&params.patched_connection_token_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -235,7 +279,9 @@ pub async fn rac_connection_tokens_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ConnectionToken`",
@@ -259,15 +305,12 @@ pub async fn rac_connection_tokens_partial_update(
 /// ConnectionToken Viewset
 pub async fn rac_connection_tokens_retrieve(
     configuration: &configuration::Configuration,
-    connection_token_uuid: &str,
+    params: RacConnectionTokensRetrieveParams,
 ) -> Result<models::ConnectionToken, Error<RacConnectionTokensRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connection_token_uuid = connection_token_uuid;
-
     let uri_str = format!(
         "{}/rac/connection_tokens/{connection_token_uuid}/",
         configuration.base_path,
-        connection_token_uuid = crate::apis::urlencode(p_path_connection_token_uuid)
+        connection_token_uuid = crate::apis::urlencode(params.connection_token_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -292,7 +335,9 @@ pub async fn rac_connection_tokens_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ConnectionToken`",
@@ -316,17 +361,12 @@ pub async fn rac_connection_tokens_retrieve(
 /// ConnectionToken Viewset
 pub async fn rac_connection_tokens_update(
     configuration: &configuration::Configuration,
-    connection_token_uuid: &str,
-    connection_token_request: models::ConnectionTokenRequest,
+    params: RacConnectionTokensUpdateParams,
 ) -> Result<models::ConnectionToken, Error<RacConnectionTokensUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connection_token_uuid = connection_token_uuid;
-    let p_body_connection_token_request = connection_token_request;
-
     let uri_str = format!(
         "{}/rac/connection_tokens/{connection_token_uuid}/",
         configuration.base_path,
-        connection_token_uuid = crate::apis::urlencode(p_path_connection_token_uuid)
+        connection_token_uuid = crate::apis::urlencode(params.connection_token_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -336,7 +376,7 @@ pub async fn rac_connection_tokens_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_connection_token_request);
+    req_builder = req_builder.json(&params.connection_token_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -352,7 +392,9 @@ pub async fn rac_connection_tokens_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ConnectionToken`",
@@ -376,15 +418,12 @@ pub async fn rac_connection_tokens_update(
 /// Get a list of all objects that use this object
 pub async fn rac_connection_tokens_used_by_list(
     configuration: &configuration::Configuration,
-    connection_token_uuid: &str,
+    params: RacConnectionTokensUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<RacConnectionTokensUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connection_token_uuid = connection_token_uuid;
-
     let uri_str = format!(
         "{}/rac/connection_tokens/{connection_token_uuid}/used_by/",
         configuration.base_path,
-        connection_token_uuid = crate::apis::urlencode(p_path_connection_token_uuid)
+        connection_token_uuid = crate::apis::urlencode(params.connection_token_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -409,7 +448,7 @@ pub async fn rac_connection_tokens_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -427,33 +466,22 @@ pub async fn rac_connection_tokens_used_by_list(
 /// List devices accessible through a RAC provider
 pub async fn rac_devices_list(
     configuration: &configuration::Configuration,
-    provider: i32,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: RacDevicesListParams,
 ) -> Result<models::PaginatedRacDeviceList, Error<RacDevicesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_provider = provider;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/rac/devices/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    req_builder = req_builder.query(&[("provider", &p_query_provider.to_string())]);
-    if let Some(ref param_value) = p_query_search {
+    req_builder = req_builder.query(&[("provider", &params.provider.to_string())]);
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -477,7 +505,7 @@ pub async fn rac_devices_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRacDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRacDeviceList`")))),
         }
