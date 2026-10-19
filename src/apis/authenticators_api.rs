@@ -13,6 +13,696 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`authenticators_admin_all_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminAllListParams {
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_duo_create`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminDuoCreateParams {
+    pub duo_device_request: models::DuoDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_duo_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminDuoDestroyParams {
+    /// A unique integer value identifying this Duo Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_duo_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminDuoListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_duo_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminDuoPartialUpdateParams {
+    /// A unique integer value identifying this Duo Device.
+    pub id: i32,
+    pub patched_duo_device_request: Option<models::PatchedDuoDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_duo_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminDuoRetrieveParams {
+    /// A unique integer value identifying this Duo Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_duo_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminDuoUpdateParams {
+    /// A unique integer value identifying this Duo Device.
+    pub id: i32,
+    pub duo_device_request: models::DuoDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_email_create`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminEmailCreateParams {
+    pub email_device_request: models::EmailDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_email_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminEmailDestroyParams {
+    /// A unique integer value identifying this Email Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_email_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminEmailListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_email_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminEmailPartialUpdateParams {
+    /// A unique integer value identifying this Email Device.
+    pub id: i32,
+    pub patched_email_device_request: Option<models::PatchedEmailDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_email_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminEmailRetrieveParams {
+    /// A unique integer value identifying this Email Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_email_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminEmailUpdateParams {
+    /// A unique integer value identifying this Email Device.
+    pub id: i32,
+    pub email_device_request: models::EmailDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_endpoint_create`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminEndpointCreateParams {
+    pub google_endpoint_device_request: models::GoogleEndpointDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_endpoint_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminEndpointDestroyParams {
+    /// A UUID string identifying this Endpoint Device.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_endpoint_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminEndpointListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_endpoint_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminEndpointPartialUpdateParams {
+    /// A UUID string identifying this Endpoint Device.
+    pub uuid: String,
+    pub patched_google_endpoint_device_request: Option<models::PatchedGoogleEndpointDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_endpoint_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminEndpointRetrieveParams {
+    /// A UUID string identifying this Endpoint Device.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_endpoint_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminEndpointUpdateParams {
+    /// A UUID string identifying this Endpoint Device.
+    pub uuid: String,
+    pub google_endpoint_device_request: models::GoogleEndpointDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_sms_create`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminSmsCreateParams {
+    pub sms_device_request: models::SmsDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_sms_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminSmsDestroyParams {
+    /// A unique integer value identifying this SMS Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_sms_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminSmsListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_sms_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminSmsPartialUpdateParams {
+    /// A unique integer value identifying this SMS Device.
+    pub id: i32,
+    pub patched_sms_device_request: Option<models::PatchedSmsDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_sms_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminSmsRetrieveParams {
+    /// A unique integer value identifying this SMS Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_sms_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminSmsUpdateParams {
+    /// A unique integer value identifying this SMS Device.
+    pub id: i32,
+    pub sms_device_request: models::SmsDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_static_create`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminStaticCreateParams {
+    pub static_device_request: models::StaticDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_static_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminStaticDestroyParams {
+    /// A unique integer value identifying this Static Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_static_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminStaticListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_static_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminStaticPartialUpdateParams {
+    /// A unique integer value identifying this Static Device.
+    pub id: i32,
+    pub patched_static_device_request: Option<models::PatchedStaticDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_static_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminStaticRetrieveParams {
+    /// A unique integer value identifying this Static Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_static_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminStaticUpdateParams {
+    /// A unique integer value identifying this Static Device.
+    pub id: i32,
+    pub static_device_request: models::StaticDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_totp_create`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminTotpCreateParams {
+    pub totp_device_request: models::TotpDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_totp_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminTotpDestroyParams {
+    /// A unique integer value identifying this TOTP Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_totp_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminTotpListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_totp_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminTotpPartialUpdateParams {
+    /// A unique integer value identifying this TOTP Device.
+    pub id: i32,
+    pub patched_totp_device_request: Option<models::PatchedTotpDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_totp_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminTotpRetrieveParams {
+    /// A unique integer value identifying this TOTP Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_totp_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminTotpUpdateParams {
+    /// A unique integer value identifying this TOTP Device.
+    pub id: i32,
+    pub totp_device_request: models::TotpDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_webauthn_create`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminWebauthnCreateParams {
+    pub web_authn_device_request: models::WebAuthnDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_webauthn_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminWebauthnDestroyParams {
+    /// A unique integer value identifying this WebAuthn Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_webauthn_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminWebauthnListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_webauthn_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminWebauthnPartialUpdateParams {
+    /// A unique integer value identifying this WebAuthn Device.
+    pub id: i32,
+    pub patched_web_authn_device_request: Option<models::PatchedWebAuthnDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_webauthn_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminWebauthnRetrieveParams {
+    /// A unique integer value identifying this WebAuthn Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_admin_webauthn_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsAdminWebauthnUpdateParams {
+    /// A unique integer value identifying this WebAuthn Device.
+    pub id: i32,
+    pub web_authn_device_request: models::WebAuthnDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_duo_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsDuoDestroyParams {
+    /// A unique integer value identifying this Duo Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_duo_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsDuoListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_duo_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsDuoPartialUpdateParams {
+    /// A unique integer value identifying this Duo Device.
+    pub id: i32,
+    pub patched_duo_device_request: Option<models::PatchedDuoDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_duo_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsDuoRetrieveParams {
+    /// A unique integer value identifying this Duo Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_duo_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsDuoUpdateParams {
+    /// A unique integer value identifying this Duo Device.
+    pub id: i32,
+    pub duo_device_request: models::DuoDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_duo_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsDuoUsedByListParams {
+    /// A unique integer value identifying this Duo Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_email_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsEmailDestroyParams {
+    /// A unique integer value identifying this Email Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_email_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsEmailListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_email_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsEmailPartialUpdateParams {
+    /// A unique integer value identifying this Email Device.
+    pub id: i32,
+    pub patched_email_device_request: Option<models::PatchedEmailDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_email_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsEmailRetrieveParams {
+    /// A unique integer value identifying this Email Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_email_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsEmailUpdateParams {
+    /// A unique integer value identifying this Email Device.
+    pub id: i32,
+    pub email_device_request: models::EmailDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_email_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsEmailUsedByListParams {
+    /// A unique integer value identifying this Email Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_endpoint_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsEndpointListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_endpoint_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsEndpointRetrieveParams {
+    /// A UUID string identifying this Endpoint Device.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`authenticators_endpoint_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsEndpointUsedByListParams {
+    /// A UUID string identifying this Endpoint Device.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`authenticators_sms_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsSmsDestroyParams {
+    /// A unique integer value identifying this SMS Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_sms_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsSmsListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_sms_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsSmsPartialUpdateParams {
+    /// A unique integer value identifying this SMS Device.
+    pub id: i32,
+    pub patched_sms_device_request: Option<models::PatchedSmsDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_sms_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsSmsRetrieveParams {
+    /// A unique integer value identifying this SMS Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_sms_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsSmsUpdateParams {
+    /// A unique integer value identifying this SMS Device.
+    pub id: i32,
+    pub sms_device_request: models::SmsDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_sms_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsSmsUsedByListParams {
+    /// A unique integer value identifying this SMS Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_static_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsStaticDestroyParams {
+    /// A unique integer value identifying this Static Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_static_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsStaticListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_static_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsStaticPartialUpdateParams {
+    /// A unique integer value identifying this Static Device.
+    pub id: i32,
+    pub patched_static_device_request: Option<models::PatchedStaticDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_static_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsStaticRetrieveParams {
+    /// A unique integer value identifying this Static Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_static_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsStaticUpdateParams {
+    /// A unique integer value identifying this Static Device.
+    pub id: i32,
+    pub static_device_request: models::StaticDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_static_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsStaticUsedByListParams {
+    /// A unique integer value identifying this Static Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_totp_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsTotpDestroyParams {
+    /// A unique integer value identifying this TOTP Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_totp_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsTotpListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_totp_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsTotpPartialUpdateParams {
+    /// A unique integer value identifying this TOTP Device.
+    pub id: i32,
+    pub patched_totp_device_request: Option<models::PatchedTotpDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_totp_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsTotpRetrieveParams {
+    /// A unique integer value identifying this TOTP Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_totp_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsTotpUpdateParams {
+    /// A unique integer value identifying this TOTP Device.
+    pub id: i32,
+    pub totp_device_request: models::TotpDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_totp_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsTotpUsedByListParams {
+    /// A unique integer value identifying this TOTP Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_webauthn_destroy`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsWebauthnDestroyParams {
+    /// A unique integer value identifying this WebAuthn Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_webauthn_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsWebauthnListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`authenticators_webauthn_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsWebauthnPartialUpdateParams {
+    /// A unique integer value identifying this WebAuthn Device.
+    pub id: i32,
+    pub patched_web_authn_device_request: Option<models::PatchedWebAuthnDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`authenticators_webauthn_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsWebauthnRetrieveParams {
+    /// A unique integer value identifying this WebAuthn Device.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`authenticators_webauthn_update`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsWebauthnUpdateParams {
+    /// A unique integer value identifying this WebAuthn Device.
+    pub id: i32,
+    pub web_authn_device_request: models::WebAuthnDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`authenticators_webauthn_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct AuthenticatorsWebauthnUsedByListParams {
+    /// A unique integer value identifying this WebAuthn Device.
+    pub id: i32,
+}
+
 /// struct for typed errors of method [`authenticators_admin_all_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -763,15 +1453,12 @@ pub enum AuthenticatorsWebauthnUsedByListError {
 /// Get all devices for current user
 pub async fn authenticators_admin_all_list(
     configuration: &configuration::Configuration,
-    user: Option<i32>,
+    params: AuthenticatorsAdminAllListParams,
 ) -> Result<Vec<models::Device>, Error<AuthenticatorsAdminAllListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_user = user;
-
     let uri_str = format!("{}/authenticators/admin/all/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -795,7 +1482,7 @@ pub async fn authenticators_admin_all_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Device&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::Device&gt;`")))),
         }
@@ -813,11 +1500,8 @@ pub async fn authenticators_admin_all_list(
 /// Viewset for Duo authenticator devices (for admins)
 pub async fn authenticators_admin_duo_create(
     configuration: &configuration::Configuration,
-    duo_device_request: models::DuoDeviceRequest,
+    params: AuthenticatorsAdminDuoCreateParams,
 ) -> Result<models::DuoDevice, Error<AuthenticatorsAdminDuoCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_duo_device_request = duo_device_request;
-
     let uri_str = format!("{}/authenticators/admin/duo/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -827,7 +1511,7 @@ pub async fn authenticators_admin_duo_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_duo_device_request);
+    req_builder = req_builder.json(&params.duo_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -843,7 +1527,9 @@ pub async fn authenticators_admin_duo_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DuoDevice`",
@@ -869,15 +1555,12 @@ pub async fn authenticators_admin_duo_create(
 /// Viewset for Duo authenticator devices (for admins)
 pub async fn authenticators_admin_duo_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsAdminDuoDestroyParams,
 ) -> Result<(), Error<AuthenticatorsAdminDuoDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/admin/duo/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -909,35 +1592,24 @@ pub async fn authenticators_admin_duo_destroy(
 /// Viewset for Duo authenticator devices (for admins)
 pub async fn authenticators_admin_duo_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsAdminDuoListParams,
 ) -> Result<models::PaginatedDuoDeviceList, Error<AuthenticatorsAdminDuoListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/admin/duo/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -961,7 +1633,7 @@ pub async fn authenticators_admin_duo_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedDuoDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedDuoDeviceList`")))),
         }
@@ -979,17 +1651,12 @@ pub async fn authenticators_admin_duo_list(
 /// Viewset for Duo authenticator devices (for admins)
 pub async fn authenticators_admin_duo_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_duo_device_request: Option<models::PatchedDuoDeviceRequest>,
+    params: AuthenticatorsAdminDuoPartialUpdateParams,
 ) -> Result<models::DuoDevice, Error<AuthenticatorsAdminDuoPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_duo_device_request = patched_duo_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/duo/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -999,7 +1666,7 @@ pub async fn authenticators_admin_duo_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_duo_device_request);
+    req_builder = req_builder.json(&params.patched_duo_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1015,7 +1682,9 @@ pub async fn authenticators_admin_duo_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DuoDevice`",
@@ -1041,15 +1710,12 @@ pub async fn authenticators_admin_duo_partial_update(
 /// Viewset for Duo authenticator devices (for admins)
 pub async fn authenticators_admin_duo_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsAdminDuoRetrieveParams,
 ) -> Result<models::DuoDevice, Error<AuthenticatorsAdminDuoRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/admin/duo/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1074,7 +1740,9 @@ pub async fn authenticators_admin_duo_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DuoDevice`",
@@ -1100,17 +1768,12 @@ pub async fn authenticators_admin_duo_retrieve(
 /// Viewset for Duo authenticator devices (for admins)
 pub async fn authenticators_admin_duo_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    duo_device_request: models::DuoDeviceRequest,
+    params: AuthenticatorsAdminDuoUpdateParams,
 ) -> Result<models::DuoDevice, Error<AuthenticatorsAdminDuoUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_duo_device_request = duo_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/duo/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1120,7 +1783,7 @@ pub async fn authenticators_admin_duo_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_duo_device_request);
+    req_builder = req_builder.json(&params.duo_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1136,7 +1799,9 @@ pub async fn authenticators_admin_duo_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DuoDevice`",
@@ -1162,11 +1827,8 @@ pub async fn authenticators_admin_duo_update(
 /// Viewset for email authenticator devices (for admins)
 pub async fn authenticators_admin_email_create(
     configuration: &configuration::Configuration,
-    email_device_request: models::EmailDeviceRequest,
+    params: AuthenticatorsAdminEmailCreateParams,
 ) -> Result<models::EmailDevice, Error<AuthenticatorsAdminEmailCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_email_device_request = email_device_request;
-
     let uri_str = format!("{}/authenticators/admin/email/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1176,7 +1838,7 @@ pub async fn authenticators_admin_email_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_email_device_request);
+    req_builder = req_builder.json(&params.email_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1192,7 +1854,9 @@ pub async fn authenticators_admin_email_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EmailDevice`",
@@ -1218,15 +1882,12 @@ pub async fn authenticators_admin_email_create(
 /// Viewset for email authenticator devices (for admins)
 pub async fn authenticators_admin_email_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsAdminEmailDestroyParams,
 ) -> Result<(), Error<AuthenticatorsAdminEmailDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/admin/email/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1258,35 +1919,24 @@ pub async fn authenticators_admin_email_destroy(
 /// Viewset for email authenticator devices (for admins)
 pub async fn authenticators_admin_email_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsAdminEmailListParams,
 ) -> Result<models::PaginatedEmailDeviceList, Error<AuthenticatorsAdminEmailListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/admin/email/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1310,7 +1960,7 @@ pub async fn authenticators_admin_email_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedEmailDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedEmailDeviceList`")))),
         }
@@ -1328,17 +1978,12 @@ pub async fn authenticators_admin_email_list(
 /// Viewset for email authenticator devices (for admins)
 pub async fn authenticators_admin_email_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_email_device_request: Option<models::PatchedEmailDeviceRequest>,
+    params: AuthenticatorsAdminEmailPartialUpdateParams,
 ) -> Result<models::EmailDevice, Error<AuthenticatorsAdminEmailPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_email_device_request = patched_email_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/email/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1348,7 +1993,7 @@ pub async fn authenticators_admin_email_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_email_device_request);
+    req_builder = req_builder.json(&params.patched_email_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1364,7 +2009,9 @@ pub async fn authenticators_admin_email_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EmailDevice`",
@@ -1390,15 +2037,12 @@ pub async fn authenticators_admin_email_partial_update(
 /// Viewset for email authenticator devices (for admins)
 pub async fn authenticators_admin_email_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsAdminEmailRetrieveParams,
 ) -> Result<models::EmailDevice, Error<AuthenticatorsAdminEmailRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/admin/email/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1423,7 +2067,9 @@ pub async fn authenticators_admin_email_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EmailDevice`",
@@ -1449,17 +2095,12 @@ pub async fn authenticators_admin_email_retrieve(
 /// Viewset for email authenticator devices (for admins)
 pub async fn authenticators_admin_email_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    email_device_request: models::EmailDeviceRequest,
+    params: AuthenticatorsAdminEmailUpdateParams,
 ) -> Result<models::EmailDevice, Error<AuthenticatorsAdminEmailUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_email_device_request = email_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/email/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1469,7 +2110,7 @@ pub async fn authenticators_admin_email_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_email_device_request);
+    req_builder = req_builder.json(&params.email_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1485,7 +2126,9 @@ pub async fn authenticators_admin_email_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EmailDevice`",
@@ -1511,11 +2154,8 @@ pub async fn authenticators_admin_email_update(
 /// Viewset for Endpoint authenticator devices (for admins)
 pub async fn authenticators_admin_endpoint_create(
     configuration: &configuration::Configuration,
-    google_endpoint_device_request: models::GoogleEndpointDeviceRequest,
+    params: AuthenticatorsAdminEndpointCreateParams,
 ) -> Result<models::GoogleEndpointDevice, Error<AuthenticatorsAdminEndpointCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_google_endpoint_device_request = google_endpoint_device_request;
-
     let uri_str = format!("{}/authenticators/admin/endpoint/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1525,7 +2165,7 @@ pub async fn authenticators_admin_endpoint_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_google_endpoint_device_request);
+    req_builder = req_builder.json(&params.google_endpoint_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1541,7 +2181,7 @@ pub async fn authenticators_admin_endpoint_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleEndpointDevice`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleEndpointDevice`")))),
         }
@@ -1559,15 +2199,12 @@ pub async fn authenticators_admin_endpoint_create(
 /// Viewset for Endpoint authenticator devices (for admins)
 pub async fn authenticators_admin_endpoint_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: AuthenticatorsAdminEndpointDestroyParams,
 ) -> Result<(), Error<AuthenticatorsAdminEndpointDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/authenticators/admin/endpoint/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1599,35 +2236,24 @@ pub async fn authenticators_admin_endpoint_destroy(
 /// Viewset for Endpoint authenticator devices (for admins)
 pub async fn authenticators_admin_endpoint_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsAdminEndpointListParams,
 ) -> Result<models::PaginatedGoogleEndpointDeviceList, Error<AuthenticatorsAdminEndpointListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/admin/endpoint/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1651,7 +2277,7 @@ pub async fn authenticators_admin_endpoint_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGoogleEndpointDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGoogleEndpointDeviceList`")))),
         }
@@ -1669,17 +2295,12 @@ pub async fn authenticators_admin_endpoint_list(
 /// Viewset for Endpoint authenticator devices (for admins)
 pub async fn authenticators_admin_endpoint_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_google_endpoint_device_request: Option<models::PatchedGoogleEndpointDeviceRequest>,
+    params: AuthenticatorsAdminEndpointPartialUpdateParams,
 ) -> Result<models::GoogleEndpointDevice, Error<AuthenticatorsAdminEndpointPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_google_endpoint_device_request = patched_google_endpoint_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/endpoint/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1689,7 +2310,7 @@ pub async fn authenticators_admin_endpoint_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_google_endpoint_device_request);
+    req_builder = req_builder.json(&params.patched_google_endpoint_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1705,7 +2326,7 @@ pub async fn authenticators_admin_endpoint_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleEndpointDevice`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleEndpointDevice`")))),
         }
@@ -1723,15 +2344,12 @@ pub async fn authenticators_admin_endpoint_partial_update(
 /// Viewset for Endpoint authenticator devices (for admins)
 pub async fn authenticators_admin_endpoint_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: AuthenticatorsAdminEndpointRetrieveParams,
 ) -> Result<models::GoogleEndpointDevice, Error<AuthenticatorsAdminEndpointRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/authenticators/admin/endpoint/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1756,7 +2374,7 @@ pub async fn authenticators_admin_endpoint_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleEndpointDevice`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleEndpointDevice`")))),
         }
@@ -1774,17 +2392,12 @@ pub async fn authenticators_admin_endpoint_retrieve(
 /// Viewset for Endpoint authenticator devices (for admins)
 pub async fn authenticators_admin_endpoint_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    google_endpoint_device_request: models::GoogleEndpointDeviceRequest,
+    params: AuthenticatorsAdminEndpointUpdateParams,
 ) -> Result<models::GoogleEndpointDevice, Error<AuthenticatorsAdminEndpointUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_google_endpoint_device_request = google_endpoint_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/endpoint/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1794,7 +2407,7 @@ pub async fn authenticators_admin_endpoint_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_google_endpoint_device_request);
+    req_builder = req_builder.json(&params.google_endpoint_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1810,7 +2423,7 @@ pub async fn authenticators_admin_endpoint_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleEndpointDevice`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleEndpointDevice`")))),
         }
@@ -1828,11 +2441,8 @@ pub async fn authenticators_admin_endpoint_update(
 /// Viewset for sms authenticator devices (for admins)
 pub async fn authenticators_admin_sms_create(
     configuration: &configuration::Configuration,
-    sms_device_request: models::SmsDeviceRequest,
+    params: AuthenticatorsAdminSmsCreateParams,
 ) -> Result<models::SmsDevice, Error<AuthenticatorsAdminSmsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_sms_device_request = sms_device_request;
-
     let uri_str = format!("{}/authenticators/admin/sms/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1842,7 +2452,7 @@ pub async fn authenticators_admin_sms_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_sms_device_request);
+    req_builder = req_builder.json(&params.sms_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1858,7 +2468,9 @@ pub async fn authenticators_admin_sms_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SmsDevice`",
@@ -1884,15 +2496,12 @@ pub async fn authenticators_admin_sms_create(
 /// Viewset for sms authenticator devices (for admins)
 pub async fn authenticators_admin_sms_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsAdminSmsDestroyParams,
 ) -> Result<(), Error<AuthenticatorsAdminSmsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/admin/sms/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1924,35 +2533,24 @@ pub async fn authenticators_admin_sms_destroy(
 /// Viewset for sms authenticator devices (for admins)
 pub async fn authenticators_admin_sms_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsAdminSmsListParams,
 ) -> Result<models::PaginatedSmsDeviceList, Error<AuthenticatorsAdminSmsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/admin/sms/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1976,7 +2574,7 @@ pub async fn authenticators_admin_sms_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedSmsDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedSmsDeviceList`")))),
         }
@@ -1994,17 +2592,12 @@ pub async fn authenticators_admin_sms_list(
 /// Viewset for sms authenticator devices (for admins)
 pub async fn authenticators_admin_sms_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_sms_device_request: Option<models::PatchedSmsDeviceRequest>,
+    params: AuthenticatorsAdminSmsPartialUpdateParams,
 ) -> Result<models::SmsDevice, Error<AuthenticatorsAdminSmsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_sms_device_request = patched_sms_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/sms/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2014,7 +2607,7 @@ pub async fn authenticators_admin_sms_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_sms_device_request);
+    req_builder = req_builder.json(&params.patched_sms_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2030,7 +2623,9 @@ pub async fn authenticators_admin_sms_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SmsDevice`",
@@ -2056,15 +2651,12 @@ pub async fn authenticators_admin_sms_partial_update(
 /// Viewset for sms authenticator devices (for admins)
 pub async fn authenticators_admin_sms_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsAdminSmsRetrieveParams,
 ) -> Result<models::SmsDevice, Error<AuthenticatorsAdminSmsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/admin/sms/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2089,7 +2681,9 @@ pub async fn authenticators_admin_sms_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SmsDevice`",
@@ -2115,17 +2709,12 @@ pub async fn authenticators_admin_sms_retrieve(
 /// Viewset for sms authenticator devices (for admins)
 pub async fn authenticators_admin_sms_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    sms_device_request: models::SmsDeviceRequest,
+    params: AuthenticatorsAdminSmsUpdateParams,
 ) -> Result<models::SmsDevice, Error<AuthenticatorsAdminSmsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_sms_device_request = sms_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/sms/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2135,7 +2724,7 @@ pub async fn authenticators_admin_sms_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_sms_device_request);
+    req_builder = req_builder.json(&params.sms_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2151,7 +2740,9 @@ pub async fn authenticators_admin_sms_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SmsDevice`",
@@ -2177,11 +2768,8 @@ pub async fn authenticators_admin_sms_update(
 /// Viewset for static authenticator devices (for admins)
 pub async fn authenticators_admin_static_create(
     configuration: &configuration::Configuration,
-    static_device_request: models::StaticDeviceRequest,
+    params: AuthenticatorsAdminStaticCreateParams,
 ) -> Result<models::StaticDevice, Error<AuthenticatorsAdminStaticCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_static_device_request = static_device_request;
-
     let uri_str = format!("{}/authenticators/admin/static/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2191,7 +2779,7 @@ pub async fn authenticators_admin_static_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_static_device_request);
+    req_builder = req_builder.json(&params.static_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2207,7 +2795,9 @@ pub async fn authenticators_admin_static_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::StaticDevice`",
@@ -2231,15 +2821,12 @@ pub async fn authenticators_admin_static_create(
 /// Viewset for static authenticator devices (for admins)
 pub async fn authenticators_admin_static_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsAdminStaticDestroyParams,
 ) -> Result<(), Error<AuthenticatorsAdminStaticDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/admin/static/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2271,35 +2858,24 @@ pub async fn authenticators_admin_static_destroy(
 /// Viewset for static authenticator devices (for admins)
 pub async fn authenticators_admin_static_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsAdminStaticListParams,
 ) -> Result<models::PaginatedStaticDeviceList, Error<AuthenticatorsAdminStaticListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/admin/static/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2323,7 +2899,7 @@ pub async fn authenticators_admin_static_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedStaticDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedStaticDeviceList`")))),
         }
@@ -2341,17 +2917,12 @@ pub async fn authenticators_admin_static_list(
 /// Viewset for static authenticator devices (for admins)
 pub async fn authenticators_admin_static_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_static_device_request: Option<models::PatchedStaticDeviceRequest>,
+    params: AuthenticatorsAdminStaticPartialUpdateParams,
 ) -> Result<models::StaticDevice, Error<AuthenticatorsAdminStaticPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_static_device_request = patched_static_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/static/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2361,7 +2932,7 @@ pub async fn authenticators_admin_static_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_static_device_request);
+    req_builder = req_builder.json(&params.patched_static_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2377,7 +2948,9 @@ pub async fn authenticators_admin_static_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::StaticDevice`",
@@ -2401,15 +2974,12 @@ pub async fn authenticators_admin_static_partial_update(
 /// Viewset for static authenticator devices (for admins)
 pub async fn authenticators_admin_static_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsAdminStaticRetrieveParams,
 ) -> Result<models::StaticDevice, Error<AuthenticatorsAdminStaticRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/admin/static/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2434,7 +3004,9 @@ pub async fn authenticators_admin_static_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::StaticDevice`",
@@ -2458,17 +3030,12 @@ pub async fn authenticators_admin_static_retrieve(
 /// Viewset for static authenticator devices (for admins)
 pub async fn authenticators_admin_static_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    static_device_request: models::StaticDeviceRequest,
+    params: AuthenticatorsAdminStaticUpdateParams,
 ) -> Result<models::StaticDevice, Error<AuthenticatorsAdminStaticUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_static_device_request = static_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/static/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2478,7 +3045,7 @@ pub async fn authenticators_admin_static_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_static_device_request);
+    req_builder = req_builder.json(&params.static_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2494,7 +3061,9 @@ pub async fn authenticators_admin_static_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::StaticDevice`",
@@ -2518,11 +3087,8 @@ pub async fn authenticators_admin_static_update(
 /// Viewset for totp authenticator devices (for admins)
 pub async fn authenticators_admin_totp_create(
     configuration: &configuration::Configuration,
-    totp_device_request: models::TotpDeviceRequest,
+    params: AuthenticatorsAdminTotpCreateParams,
 ) -> Result<models::TotpDevice, Error<AuthenticatorsAdminTotpCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_totp_device_request = totp_device_request;
-
     let uri_str = format!("{}/authenticators/admin/totp/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2532,7 +3098,7 @@ pub async fn authenticators_admin_totp_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_totp_device_request);
+    req_builder = req_builder.json(&params.totp_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2548,7 +3114,9 @@ pub async fn authenticators_admin_totp_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TotpDevice`",
@@ -2574,15 +3142,12 @@ pub async fn authenticators_admin_totp_create(
 /// Viewset for totp authenticator devices (for admins)
 pub async fn authenticators_admin_totp_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsAdminTotpDestroyParams,
 ) -> Result<(), Error<AuthenticatorsAdminTotpDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/admin/totp/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2614,35 +3179,24 @@ pub async fn authenticators_admin_totp_destroy(
 /// Viewset for totp authenticator devices (for admins)
 pub async fn authenticators_admin_totp_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsAdminTotpListParams,
 ) -> Result<models::PaginatedTotpDeviceList, Error<AuthenticatorsAdminTotpListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/admin/totp/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2666,7 +3220,7 @@ pub async fn authenticators_admin_totp_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedTotpDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedTotpDeviceList`")))),
         }
@@ -2684,17 +3238,12 @@ pub async fn authenticators_admin_totp_list(
 /// Viewset for totp authenticator devices (for admins)
 pub async fn authenticators_admin_totp_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_totp_device_request: Option<models::PatchedTotpDeviceRequest>,
+    params: AuthenticatorsAdminTotpPartialUpdateParams,
 ) -> Result<models::TotpDevice, Error<AuthenticatorsAdminTotpPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_totp_device_request = patched_totp_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/totp/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2704,7 +3253,7 @@ pub async fn authenticators_admin_totp_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_totp_device_request);
+    req_builder = req_builder.json(&params.patched_totp_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2720,7 +3269,9 @@ pub async fn authenticators_admin_totp_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TotpDevice`",
@@ -2746,15 +3297,12 @@ pub async fn authenticators_admin_totp_partial_update(
 /// Viewset for totp authenticator devices (for admins)
 pub async fn authenticators_admin_totp_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsAdminTotpRetrieveParams,
 ) -> Result<models::TotpDevice, Error<AuthenticatorsAdminTotpRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/admin/totp/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2779,7 +3327,9 @@ pub async fn authenticators_admin_totp_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TotpDevice`",
@@ -2805,17 +3355,12 @@ pub async fn authenticators_admin_totp_retrieve(
 /// Viewset for totp authenticator devices (for admins)
 pub async fn authenticators_admin_totp_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    totp_device_request: models::TotpDeviceRequest,
+    params: AuthenticatorsAdminTotpUpdateParams,
 ) -> Result<models::TotpDevice, Error<AuthenticatorsAdminTotpUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_totp_device_request = totp_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/totp/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2825,7 +3370,7 @@ pub async fn authenticators_admin_totp_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_totp_device_request);
+    req_builder = req_builder.json(&params.totp_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2841,7 +3386,9 @@ pub async fn authenticators_admin_totp_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TotpDevice`",
@@ -2867,11 +3414,8 @@ pub async fn authenticators_admin_totp_update(
 /// Viewset for WebAuthn authenticator devices (for admins)
 pub async fn authenticators_admin_webauthn_create(
     configuration: &configuration::Configuration,
-    web_authn_device_request: models::WebAuthnDeviceRequest,
+    params: AuthenticatorsAdminWebauthnCreateParams,
 ) -> Result<models::WebAuthnDevice, Error<AuthenticatorsAdminWebauthnCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_web_authn_device_request = web_authn_device_request;
-
     let uri_str = format!("{}/authenticators/admin/webauthn/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2881,7 +3425,7 @@ pub async fn authenticators_admin_webauthn_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_web_authn_device_request);
+    req_builder = req_builder.json(&params.web_authn_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2897,7 +3441,9 @@ pub async fn authenticators_admin_webauthn_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::WebAuthnDevice`",
@@ -2921,15 +3467,12 @@ pub async fn authenticators_admin_webauthn_create(
 /// Viewset for WebAuthn authenticator devices (for admins)
 pub async fn authenticators_admin_webauthn_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsAdminWebauthnDestroyParams,
 ) -> Result<(), Error<AuthenticatorsAdminWebauthnDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/admin/webauthn/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2961,35 +3504,24 @@ pub async fn authenticators_admin_webauthn_destroy(
 /// Viewset for WebAuthn authenticator devices (for admins)
 pub async fn authenticators_admin_webauthn_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsAdminWebauthnListParams,
 ) -> Result<models::PaginatedWebAuthnDeviceList, Error<AuthenticatorsAdminWebauthnListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/admin/webauthn/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3013,7 +3545,7 @@ pub async fn authenticators_admin_webauthn_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedWebAuthnDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedWebAuthnDeviceList`")))),
         }
@@ -3031,17 +3563,12 @@ pub async fn authenticators_admin_webauthn_list(
 /// Viewset for WebAuthn authenticator devices (for admins)
 pub async fn authenticators_admin_webauthn_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_web_authn_device_request: Option<models::PatchedWebAuthnDeviceRequest>,
+    params: AuthenticatorsAdminWebauthnPartialUpdateParams,
 ) -> Result<models::WebAuthnDevice, Error<AuthenticatorsAdminWebauthnPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_web_authn_device_request = patched_web_authn_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/webauthn/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3051,7 +3578,7 @@ pub async fn authenticators_admin_webauthn_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_web_authn_device_request);
+    req_builder = req_builder.json(&params.patched_web_authn_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3067,7 +3594,9 @@ pub async fn authenticators_admin_webauthn_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::WebAuthnDevice`",
@@ -3091,15 +3620,12 @@ pub async fn authenticators_admin_webauthn_partial_update(
 /// Viewset for WebAuthn authenticator devices (for admins)
 pub async fn authenticators_admin_webauthn_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsAdminWebauthnRetrieveParams,
 ) -> Result<models::WebAuthnDevice, Error<AuthenticatorsAdminWebauthnRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/admin/webauthn/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3124,7 +3650,9 @@ pub async fn authenticators_admin_webauthn_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::WebAuthnDevice`",
@@ -3148,17 +3676,12 @@ pub async fn authenticators_admin_webauthn_retrieve(
 /// Viewset for WebAuthn authenticator devices (for admins)
 pub async fn authenticators_admin_webauthn_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    web_authn_device_request: models::WebAuthnDeviceRequest,
+    params: AuthenticatorsAdminWebauthnUpdateParams,
 ) -> Result<models::WebAuthnDevice, Error<AuthenticatorsAdminWebauthnUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_web_authn_device_request = web_authn_device_request;
-
     let uri_str = format!(
         "{}/authenticators/admin/webauthn/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3168,7 +3691,7 @@ pub async fn authenticators_admin_webauthn_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_web_authn_device_request);
+    req_builder = req_builder.json(&params.web_authn_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3184,7 +3707,9 @@ pub async fn authenticators_admin_webauthn_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::WebAuthnDevice`",
@@ -3233,7 +3758,7 @@ pub async fn authenticators_all_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Device&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::Device&gt;`")))),
         }
@@ -3251,12 +3776,9 @@ pub async fn authenticators_all_list(
 /// Viewset for Duo authenticator devices
 pub async fn authenticators_duo_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsDuoDestroyParams,
 ) -> Result<(), Error<AuthenticatorsDuoDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/authenticators/duo/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/duo/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3287,35 +3809,24 @@ pub async fn authenticators_duo_destroy(
 /// Viewset for Duo authenticator devices
 pub async fn authenticators_duo_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsDuoListParams,
 ) -> Result<models::PaginatedDuoDeviceList, Error<AuthenticatorsDuoListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/duo/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3339,7 +3850,7 @@ pub async fn authenticators_duo_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedDuoDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedDuoDeviceList`")))),
         }
@@ -3357,14 +3868,9 @@ pub async fn authenticators_duo_list(
 /// Viewset for Duo authenticator devices
 pub async fn authenticators_duo_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_duo_device_request: Option<models::PatchedDuoDeviceRequest>,
+    params: AuthenticatorsDuoPartialUpdateParams,
 ) -> Result<models::DuoDevice, Error<AuthenticatorsDuoPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_duo_device_request = patched_duo_device_request;
-
-    let uri_str = format!("{}/authenticators/duo/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/duo/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3373,7 +3879,7 @@ pub async fn authenticators_duo_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_duo_device_request);
+    req_builder = req_builder.json(&params.patched_duo_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3389,7 +3895,9 @@ pub async fn authenticators_duo_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DuoDevice`",
@@ -3415,12 +3923,9 @@ pub async fn authenticators_duo_partial_update(
 /// Viewset for Duo authenticator devices
 pub async fn authenticators_duo_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsDuoRetrieveParams,
 ) -> Result<models::DuoDevice, Error<AuthenticatorsDuoRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/authenticators/duo/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/duo/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3444,7 +3949,9 @@ pub async fn authenticators_duo_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DuoDevice`",
@@ -3470,14 +3977,9 @@ pub async fn authenticators_duo_retrieve(
 /// Viewset for Duo authenticator devices
 pub async fn authenticators_duo_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    duo_device_request: models::DuoDeviceRequest,
+    params: AuthenticatorsDuoUpdateParams,
 ) -> Result<models::DuoDevice, Error<AuthenticatorsDuoUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_duo_device_request = duo_device_request;
-
-    let uri_str = format!("{}/authenticators/duo/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/duo/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3486,7 +3988,7 @@ pub async fn authenticators_duo_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_duo_device_request);
+    req_builder = req_builder.json(&params.duo_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3502,7 +4004,9 @@ pub async fn authenticators_duo_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DuoDevice`",
@@ -3528,15 +4032,12 @@ pub async fn authenticators_duo_update(
 /// Get a list of all objects that use this object
 pub async fn authenticators_duo_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsDuoUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<AuthenticatorsDuoUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/duo/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3561,7 +4062,7 @@ pub async fn authenticators_duo_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3579,12 +4080,9 @@ pub async fn authenticators_duo_used_by_list(
 /// Viewset for email authenticator devices
 pub async fn authenticators_email_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsEmailDestroyParams,
 ) -> Result<(), Error<AuthenticatorsEmailDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/authenticators/email/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/email/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3615,35 +4113,24 @@ pub async fn authenticators_email_destroy(
 /// Viewset for email authenticator devices
 pub async fn authenticators_email_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsEmailListParams,
 ) -> Result<models::PaginatedEmailDeviceList, Error<AuthenticatorsEmailListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/email/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3667,7 +4154,7 @@ pub async fn authenticators_email_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedEmailDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedEmailDeviceList`")))),
         }
@@ -3685,14 +4172,9 @@ pub async fn authenticators_email_list(
 /// Viewset for email authenticator devices
 pub async fn authenticators_email_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_email_device_request: Option<models::PatchedEmailDeviceRequest>,
+    params: AuthenticatorsEmailPartialUpdateParams,
 ) -> Result<models::EmailDevice, Error<AuthenticatorsEmailPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_email_device_request = patched_email_device_request;
-
-    let uri_str = format!("{}/authenticators/email/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/email/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3701,7 +4183,7 @@ pub async fn authenticators_email_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_email_device_request);
+    req_builder = req_builder.json(&params.patched_email_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3717,7 +4199,9 @@ pub async fn authenticators_email_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EmailDevice`",
@@ -3743,12 +4227,9 @@ pub async fn authenticators_email_partial_update(
 /// Viewset for email authenticator devices
 pub async fn authenticators_email_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsEmailRetrieveParams,
 ) -> Result<models::EmailDevice, Error<AuthenticatorsEmailRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/authenticators/email/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/email/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3772,7 +4253,9 @@ pub async fn authenticators_email_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EmailDevice`",
@@ -3798,14 +4281,9 @@ pub async fn authenticators_email_retrieve(
 /// Viewset for email authenticator devices
 pub async fn authenticators_email_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    email_device_request: models::EmailDeviceRequest,
+    params: AuthenticatorsEmailUpdateParams,
 ) -> Result<models::EmailDevice, Error<AuthenticatorsEmailUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_email_device_request = email_device_request;
-
-    let uri_str = format!("{}/authenticators/email/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/email/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3814,7 +4292,7 @@ pub async fn authenticators_email_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_email_device_request);
+    req_builder = req_builder.json(&params.email_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3830,7 +4308,9 @@ pub async fn authenticators_email_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EmailDevice`",
@@ -3856,15 +4336,12 @@ pub async fn authenticators_email_update(
 /// Get a list of all objects that use this object
 pub async fn authenticators_email_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsEmailUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<AuthenticatorsEmailUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/email/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3889,7 +4366,7 @@ pub async fn authenticators_email_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3907,35 +4384,24 @@ pub async fn authenticators_email_used_by_list(
 /// Viewset for Endpoint authenticator devices
 pub async fn authenticators_endpoint_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsEndpointListParams,
 ) -> Result<models::PaginatedGoogleEndpointDeviceList, Error<AuthenticatorsEndpointListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/endpoint/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3959,7 +4425,7 @@ pub async fn authenticators_endpoint_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGoogleEndpointDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGoogleEndpointDeviceList`")))),
         }
@@ -3977,15 +4443,12 @@ pub async fn authenticators_endpoint_list(
 /// Viewset for Endpoint authenticator devices
 pub async fn authenticators_endpoint_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: AuthenticatorsEndpointRetrieveParams,
 ) -> Result<models::GoogleEndpointDevice, Error<AuthenticatorsEndpointRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/authenticators/endpoint/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4010,7 +4473,7 @@ pub async fn authenticators_endpoint_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleEndpointDevice`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleEndpointDevice`")))),
         }
@@ -4028,15 +4491,12 @@ pub async fn authenticators_endpoint_retrieve(
 /// Get a list of all objects that use this object
 pub async fn authenticators_endpoint_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: AuthenticatorsEndpointUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<AuthenticatorsEndpointUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/authenticators/endpoint/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4061,7 +4521,7 @@ pub async fn authenticators_endpoint_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4079,12 +4539,9 @@ pub async fn authenticators_endpoint_used_by_list(
 /// Viewset for sms authenticator devices
 pub async fn authenticators_sms_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsSmsDestroyParams,
 ) -> Result<(), Error<AuthenticatorsSmsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/authenticators/sms/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/sms/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4115,35 +4572,24 @@ pub async fn authenticators_sms_destroy(
 /// Viewset for sms authenticator devices
 pub async fn authenticators_sms_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsSmsListParams,
 ) -> Result<models::PaginatedSmsDeviceList, Error<AuthenticatorsSmsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/sms/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4167,7 +4613,7 @@ pub async fn authenticators_sms_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedSmsDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedSmsDeviceList`")))),
         }
@@ -4185,14 +4631,9 @@ pub async fn authenticators_sms_list(
 /// Viewset for sms authenticator devices
 pub async fn authenticators_sms_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_sms_device_request: Option<models::PatchedSmsDeviceRequest>,
+    params: AuthenticatorsSmsPartialUpdateParams,
 ) -> Result<models::SmsDevice, Error<AuthenticatorsSmsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_sms_device_request = patched_sms_device_request;
-
-    let uri_str = format!("{}/authenticators/sms/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/sms/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4201,7 +4642,7 @@ pub async fn authenticators_sms_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_sms_device_request);
+    req_builder = req_builder.json(&params.patched_sms_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4217,7 +4658,9 @@ pub async fn authenticators_sms_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SmsDevice`",
@@ -4243,12 +4686,9 @@ pub async fn authenticators_sms_partial_update(
 /// Viewset for sms authenticator devices
 pub async fn authenticators_sms_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsSmsRetrieveParams,
 ) -> Result<models::SmsDevice, Error<AuthenticatorsSmsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/authenticators/sms/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/sms/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4272,7 +4712,9 @@ pub async fn authenticators_sms_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SmsDevice`",
@@ -4298,14 +4740,9 @@ pub async fn authenticators_sms_retrieve(
 /// Viewset for sms authenticator devices
 pub async fn authenticators_sms_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    sms_device_request: models::SmsDeviceRequest,
+    params: AuthenticatorsSmsUpdateParams,
 ) -> Result<models::SmsDevice, Error<AuthenticatorsSmsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_sms_device_request = sms_device_request;
-
-    let uri_str = format!("{}/authenticators/sms/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/sms/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4314,7 +4751,7 @@ pub async fn authenticators_sms_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_sms_device_request);
+    req_builder = req_builder.json(&params.sms_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4330,7 +4767,9 @@ pub async fn authenticators_sms_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SmsDevice`",
@@ -4356,15 +4795,12 @@ pub async fn authenticators_sms_update(
 /// Get a list of all objects that use this object
 pub async fn authenticators_sms_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsSmsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<AuthenticatorsSmsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/sms/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4389,7 +4825,7 @@ pub async fn authenticators_sms_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4407,15 +4843,12 @@ pub async fn authenticators_sms_used_by_list(
 /// Viewset for static authenticator devices
 pub async fn authenticators_static_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsStaticDestroyParams,
 ) -> Result<(), Error<AuthenticatorsStaticDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/static/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4447,35 +4880,24 @@ pub async fn authenticators_static_destroy(
 /// Viewset for static authenticator devices
 pub async fn authenticators_static_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsStaticListParams,
 ) -> Result<models::PaginatedStaticDeviceList, Error<AuthenticatorsStaticListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/static/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4499,7 +4921,7 @@ pub async fn authenticators_static_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedStaticDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedStaticDeviceList`")))),
         }
@@ -4517,17 +4939,12 @@ pub async fn authenticators_static_list(
 /// Viewset for static authenticator devices
 pub async fn authenticators_static_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_static_device_request: Option<models::PatchedStaticDeviceRequest>,
+    params: AuthenticatorsStaticPartialUpdateParams,
 ) -> Result<models::StaticDevice, Error<AuthenticatorsStaticPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_static_device_request = patched_static_device_request;
-
     let uri_str = format!(
         "{}/authenticators/static/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -4537,7 +4954,7 @@ pub async fn authenticators_static_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_static_device_request);
+    req_builder = req_builder.json(&params.patched_static_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4553,7 +4970,9 @@ pub async fn authenticators_static_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::StaticDevice`",
@@ -4577,15 +4996,12 @@ pub async fn authenticators_static_partial_update(
 /// Viewset for static authenticator devices
 pub async fn authenticators_static_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsStaticRetrieveParams,
 ) -> Result<models::StaticDevice, Error<AuthenticatorsStaticRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/static/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4610,7 +5026,9 @@ pub async fn authenticators_static_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::StaticDevice`",
@@ -4634,17 +5052,12 @@ pub async fn authenticators_static_retrieve(
 /// Viewset for static authenticator devices
 pub async fn authenticators_static_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    static_device_request: models::StaticDeviceRequest,
+    params: AuthenticatorsStaticUpdateParams,
 ) -> Result<models::StaticDevice, Error<AuthenticatorsStaticUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_static_device_request = static_device_request;
-
     let uri_str = format!(
         "{}/authenticators/static/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4654,7 +5067,7 @@ pub async fn authenticators_static_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_static_device_request);
+    req_builder = req_builder.json(&params.static_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4670,7 +5083,9 @@ pub async fn authenticators_static_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::StaticDevice`",
@@ -4694,15 +5109,12 @@ pub async fn authenticators_static_update(
 /// Get a list of all objects that use this object
 pub async fn authenticators_static_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsStaticUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<AuthenticatorsStaticUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/static/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4727,7 +5139,7 @@ pub async fn authenticators_static_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4745,12 +5157,9 @@ pub async fn authenticators_static_used_by_list(
 /// Viewset for totp authenticator devices
 pub async fn authenticators_totp_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsTotpDestroyParams,
 ) -> Result<(), Error<AuthenticatorsTotpDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/authenticators/totp/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/totp/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4781,35 +5190,24 @@ pub async fn authenticators_totp_destroy(
 /// Viewset for totp authenticator devices
 pub async fn authenticators_totp_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsTotpListParams,
 ) -> Result<models::PaginatedTotpDeviceList, Error<AuthenticatorsTotpListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/totp/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4833,7 +5231,7 @@ pub async fn authenticators_totp_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedTotpDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedTotpDeviceList`")))),
         }
@@ -4851,14 +5249,9 @@ pub async fn authenticators_totp_list(
 /// Viewset for totp authenticator devices
 pub async fn authenticators_totp_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_totp_device_request: Option<models::PatchedTotpDeviceRequest>,
+    params: AuthenticatorsTotpPartialUpdateParams,
 ) -> Result<models::TotpDevice, Error<AuthenticatorsTotpPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_totp_device_request = patched_totp_device_request;
-
-    let uri_str = format!("{}/authenticators/totp/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/totp/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4867,7 +5260,7 @@ pub async fn authenticators_totp_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_totp_device_request);
+    req_builder = req_builder.json(&params.patched_totp_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4883,7 +5276,9 @@ pub async fn authenticators_totp_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TotpDevice`",
@@ -4909,12 +5304,9 @@ pub async fn authenticators_totp_partial_update(
 /// Viewset for totp authenticator devices
 pub async fn authenticators_totp_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsTotpRetrieveParams,
 ) -> Result<models::TotpDevice, Error<AuthenticatorsTotpRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/authenticators/totp/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/totp/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4938,7 +5330,9 @@ pub async fn authenticators_totp_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TotpDevice`",
@@ -4964,14 +5358,9 @@ pub async fn authenticators_totp_retrieve(
 /// Viewset for totp authenticator devices
 pub async fn authenticators_totp_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    totp_device_request: models::TotpDeviceRequest,
+    params: AuthenticatorsTotpUpdateParams,
 ) -> Result<models::TotpDevice, Error<AuthenticatorsTotpUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_totp_device_request = totp_device_request;
-
-    let uri_str = format!("{}/authenticators/totp/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/authenticators/totp/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4980,7 +5369,7 @@ pub async fn authenticators_totp_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_totp_device_request);
+    req_builder = req_builder.json(&params.totp_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4996,7 +5385,9 @@ pub async fn authenticators_totp_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TotpDevice`",
@@ -5022,15 +5413,12 @@ pub async fn authenticators_totp_update(
 /// Get a list of all objects that use this object
 pub async fn authenticators_totp_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsTotpUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<AuthenticatorsTotpUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/totp/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5055,7 +5443,7 @@ pub async fn authenticators_totp_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -5073,15 +5461,12 @@ pub async fn authenticators_totp_used_by_list(
 /// Viewset for WebAuthn authenticator devices
 pub async fn authenticators_webauthn_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsWebauthnDestroyParams,
 ) -> Result<(), Error<AuthenticatorsWebauthnDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/webauthn/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -5113,35 +5498,24 @@ pub async fn authenticators_webauthn_destroy(
 /// Viewset for WebAuthn authenticator devices
 pub async fn authenticators_webauthn_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: AuthenticatorsWebauthnListParams,
 ) -> Result<models::PaginatedWebAuthnDeviceList, Error<AuthenticatorsWebauthnListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/authenticators/webauthn/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5165,7 +5539,7 @@ pub async fn authenticators_webauthn_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedWebAuthnDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedWebAuthnDeviceList`")))),
         }
@@ -5183,17 +5557,12 @@ pub async fn authenticators_webauthn_list(
 /// Viewset for WebAuthn authenticator devices
 pub async fn authenticators_webauthn_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_web_authn_device_request: Option<models::PatchedWebAuthnDeviceRequest>,
+    params: AuthenticatorsWebauthnPartialUpdateParams,
 ) -> Result<models::WebAuthnDevice, Error<AuthenticatorsWebauthnPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_web_authn_device_request = patched_web_authn_device_request;
-
     let uri_str = format!(
         "{}/authenticators/webauthn/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -5203,7 +5572,7 @@ pub async fn authenticators_webauthn_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_web_authn_device_request);
+    req_builder = req_builder.json(&params.patched_web_authn_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5219,7 +5588,9 @@ pub async fn authenticators_webauthn_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::WebAuthnDevice`",
@@ -5243,15 +5614,12 @@ pub async fn authenticators_webauthn_partial_update(
 /// Viewset for WebAuthn authenticator devices
 pub async fn authenticators_webauthn_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsWebauthnRetrieveParams,
 ) -> Result<models::WebAuthnDevice, Error<AuthenticatorsWebauthnRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/webauthn/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5276,7 +5644,9 @@ pub async fn authenticators_webauthn_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::WebAuthnDevice`",
@@ -5300,17 +5670,12 @@ pub async fn authenticators_webauthn_retrieve(
 /// Viewset for WebAuthn authenticator devices
 pub async fn authenticators_webauthn_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    web_authn_device_request: models::WebAuthnDeviceRequest,
+    params: AuthenticatorsWebauthnUpdateParams,
 ) -> Result<models::WebAuthnDevice, Error<AuthenticatorsWebauthnUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_web_authn_device_request = web_authn_device_request;
-
     let uri_str = format!(
         "{}/authenticators/webauthn/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -5320,7 +5685,7 @@ pub async fn authenticators_webauthn_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_web_authn_device_request);
+    req_builder = req_builder.json(&params.web_authn_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5336,7 +5701,9 @@ pub async fn authenticators_webauthn_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::WebAuthnDevice`",
@@ -5360,15 +5727,12 @@ pub async fn authenticators_webauthn_update(
 /// Get a list of all objects that use this object
 pub async fn authenticators_webauthn_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AuthenticatorsWebauthnUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<AuthenticatorsWebauthnUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/authenticators/webauthn/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5393,7 +5757,7 @@ pub async fn authenticators_webauthn_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

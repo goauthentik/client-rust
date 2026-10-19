@@ -13,6 +13,308 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`outposts_instances_create`]
+#[derive(Clone, Debug)]
+pub struct OutpostsInstancesCreateParams {
+    pub outpost_request: models::OutpostRequest,
+}
+
+/// struct for passing parameters to the method [`outposts_instances_destroy`]
+#[derive(Clone, Debug)]
+pub struct OutpostsInstancesDestroyParams {
+    /// A UUID string identifying this Outpost.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`outposts_instances_health_list`]
+#[derive(Clone, Debug)]
+pub struct OutpostsInstancesHealthListParams {
+    /// A UUID string identifying this Outpost.
+    pub uuid: String,
+    pub managed__icontains: Option<String>,
+    pub managed__iexact: Option<String>,
+    pub name__icontains: Option<String>,
+    pub name__iexact: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    pub providers__isnull: Option<bool>,
+    pub providers_by_pk: Option<Vec<i32>>,
+    /// A search term.
+    pub search: Option<String>,
+    pub service_connection__name__icontains: Option<String>,
+    pub service_connection__name__iexact: Option<String>,
+}
+
+/// struct for passing parameters to the method [`outposts_instances_list`]
+#[derive(Clone, Debug)]
+pub struct OutpostsInstancesListParams {
+    pub managed__icontains: Option<String>,
+    pub managed__iexact: Option<String>,
+    pub name__icontains: Option<String>,
+    pub name__iexact: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub providers__isnull: Option<bool>,
+    pub providers_by_pk: Option<Vec<i32>>,
+    /// A search term.
+    pub search: Option<String>,
+    pub service_connection__name__icontains: Option<String>,
+    pub service_connection__name__iexact: Option<String>,
+}
+
+/// struct for passing parameters to the method [`outposts_instances_partial_update`]
+#[derive(Clone, Debug)]
+pub struct OutpostsInstancesPartialUpdateParams {
+    /// A UUID string identifying this Outpost.
+    pub uuid: String,
+    pub patched_outpost_request: Option<models::PatchedOutpostRequest>,
+}
+
+/// struct for passing parameters to the method [`outposts_instances_retrieve`]
+#[derive(Clone, Debug)]
+pub struct OutpostsInstancesRetrieveParams {
+    /// A UUID string identifying this Outpost.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`outposts_instances_update`]
+#[derive(Clone, Debug)]
+pub struct OutpostsInstancesUpdateParams {
+    /// A UUID string identifying this Outpost.
+    pub uuid: String,
+    pub outpost_request: models::OutpostRequest,
+}
+
+/// struct for passing parameters to the method [`outposts_instances_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct OutpostsInstancesUsedByListParams {
+    /// A UUID string identifying this Outpost.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`outposts_ldap_access_check`]
+#[derive(Clone, Debug)]
+pub struct OutpostsLdapAccessCheckParams {
+    /// A unique integer value identifying this LDAP Provider.
+    pub id: i32,
+    pub app_slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`outposts_ldap_list`]
+#[derive(Clone, Debug)]
+pub struct OutpostsLdapListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`outposts_proxy_list`]
+#[derive(Clone, Debug)]
+pub struct OutpostsProxyListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`outposts_radius_access_check`]
+#[derive(Clone, Debug)]
+pub struct OutpostsRadiusAccessCheckParams {
+    /// A unique integer value identifying this Radius Provider.
+    pub id: i32,
+    pub app_slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`outposts_radius_list`]
+#[derive(Clone, Debug)]
+pub struct OutpostsRadiusListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_all_destroy`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsAllDestroyParams {
+    /// A UUID string identifying this Outpost Service-Connection.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_all_list`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsAllListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_all_retrieve`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsAllRetrieveParams {
+    /// A UUID string identifying this Outpost Service-Connection.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_all_state_retrieve`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsAllStateRetrieveParams {
+    /// A UUID string identifying this Outpost Service-Connection.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_all_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsAllUsedByListParams {
+    /// A UUID string identifying this Outpost Service-Connection.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_docker_create`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsDockerCreateParams {
+    pub docker_service_connection_request: models::DockerServiceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_docker_destroy`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsDockerDestroyParams {
+    /// A UUID string identifying this Docker Service-Connection.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_docker_list`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsDockerListParams {
+    pub local: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub tls_authentication: Option<String>,
+    pub tls_verification: Option<String>,
+    pub url: Option<String>,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_docker_partial_update`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsDockerPartialUpdateParams {
+    /// A UUID string identifying this Docker Service-Connection.
+    pub uuid: String,
+    pub patched_docker_service_connection_request: Option<models::PatchedDockerServiceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_docker_retrieve`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsDockerRetrieveParams {
+    /// A UUID string identifying this Docker Service-Connection.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_docker_update`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsDockerUpdateParams {
+    /// A UUID string identifying this Docker Service-Connection.
+    pub uuid: String,
+    pub docker_service_connection_request: models::DockerServiceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_docker_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsDockerUsedByListParams {
+    /// A UUID string identifying this Docker Service-Connection.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_kubernetes_create`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsKubernetesCreateParams {
+    pub kubernetes_service_connection_request: models::KubernetesServiceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_kubernetes_destroy`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsKubernetesDestroyParams {
+    /// A UUID string identifying this Kubernetes Service-Connection.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_kubernetes_list`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsKubernetesListParams {
+    pub local: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_kubernetes_partial_update`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsKubernetesPartialUpdateParams {
+    /// A UUID string identifying this Kubernetes Service-Connection.
+    pub uuid: String,
+    pub patched_kubernetes_service_connection_request: Option<models::PatchedKubernetesServiceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_kubernetes_retrieve`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsKubernetesRetrieveParams {
+    /// A UUID string identifying this Kubernetes Service-Connection.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_kubernetes_update`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsKubernetesUpdateParams {
+    /// A UUID string identifying this Kubernetes Service-Connection.
+    pub uuid: String,
+    pub kubernetes_service_connection_request: models::KubernetesServiceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`outposts_service_connections_kubernetes_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct OutpostsServiceConnectionsKubernetesUsedByListParams {
+    /// A UUID string identifying this Kubernetes Service-Connection.
+    pub uuid: String,
+}
+
 /// struct for typed errors of method [`outposts_instances_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -322,11 +624,8 @@ pub enum OutpostsServiceConnectionsKubernetesUsedByListError {
 /// Outpost Viewset
 pub async fn outposts_instances_create(
     configuration: &configuration::Configuration,
-    outpost_request: models::OutpostRequest,
+    params: OutpostsInstancesCreateParams,
 ) -> Result<models::Outpost, Error<OutpostsInstancesCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_outpost_request = outpost_request;
-
     let uri_str = format!("{}/outposts/instances/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -336,7 +635,7 @@ pub async fn outposts_instances_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_outpost_request);
+    req_builder = req_builder.json(&params.outpost_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -352,7 +651,9 @@ pub async fn outposts_instances_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Outpost`",
@@ -403,7 +704,7 @@ pub async fn outposts_instances_default_settings_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OutpostDefaultConfig`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OutpostDefaultConfig`")))),
         }
@@ -421,15 +722,12 @@ pub async fn outposts_instances_default_settings_retrieve(
 /// Outpost Viewset
 pub async fn outposts_instances_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsInstancesDestroyParams,
 ) -> Result<(), Error<OutpostsInstancesDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/instances/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -461,57 +759,34 @@ pub async fn outposts_instances_destroy(
 /// Get outposts current health
 pub async fn outposts_instances_health_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    managed__icontains: Option<&str>,
-    managed__iexact: Option<&str>,
-    name__icontains: Option<&str>,
-    name__iexact: Option<&str>,
-    ordering: Option<&str>,
-    providers__isnull: Option<bool>,
-    providers_by_pk: Option<Vec<i32>>,
-    search: Option<&str>,
-    service_connection__name__icontains: Option<&str>,
-    service_connection__name__iexact: Option<&str>,
+    params: OutpostsInstancesHealthListParams,
 ) -> Result<Vec<models::OutpostHealth>, Error<OutpostsInstancesHealthListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_query_managed__icontains = managed__icontains;
-    let p_query_managed__iexact = managed__iexact;
-    let p_query_name__icontains = name__icontains;
-    let p_query_name__iexact = name__iexact;
-    let p_query_ordering = ordering;
-    let p_query_providers__isnull = providers__isnull;
-    let p_query_providers_by_pk = providers_by_pk;
-    let p_query_search = search;
-    let p_query_service_connection__name__icontains = service_connection__name__icontains;
-    let p_query_service_connection__name__iexact = service_connection__name__iexact;
-
     let uri_str = format!(
         "{}/outposts/instances/{uuid}/health/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed__icontains {
+    if let Some(ref param_value) = params.managed__icontains {
         req_builder = req_builder.query(&[("managed__icontains", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_managed__iexact {
+    if let Some(ref param_value) = params.managed__iexact {
         req_builder = req_builder.query(&[("managed__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name__icontains {
+    if let Some(ref param_value) = params.name__icontains {
         req_builder = req_builder.query(&[("name__icontains", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name__iexact {
+    if let Some(ref param_value) = params.name__iexact {
         req_builder = req_builder.query(&[("name__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_providers__isnull {
+    if let Some(ref param_value) = params.providers__isnull {
         req_builder = req_builder.query(&[("providers__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_providers_by_pk {
+    if let Some(ref param_value) = params.providers_by_pk {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -530,13 +805,13 @@ pub async fn outposts_instances_health_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_service_connection__name__icontains {
+    if let Some(ref param_value) = params.service_connection__name__icontains {
         req_builder = req_builder.query(&[("service_connection__name__icontains", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_service_connection__name__iexact {
+    if let Some(ref param_value) = params.service_connection__name__iexact {
         req_builder = req_builder.query(&[("service_connection__name__iexact", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -560,7 +835,7 @@ pub async fn outposts_instances_health_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::OutpostHealth&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::OutpostHealth&gt;`")))),
         }
@@ -578,61 +853,36 @@ pub async fn outposts_instances_health_list(
 /// Outpost Viewset
 pub async fn outposts_instances_list(
     configuration: &configuration::Configuration,
-    managed__icontains: Option<&str>,
-    managed__iexact: Option<&str>,
-    name__icontains: Option<&str>,
-    name__iexact: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    providers__isnull: Option<bool>,
-    providers_by_pk: Option<Vec<i32>>,
-    search: Option<&str>,
-    service_connection__name__icontains: Option<&str>,
-    service_connection__name__iexact: Option<&str>,
+    params: OutpostsInstancesListParams,
 ) -> Result<models::PaginatedOutpostList, Error<OutpostsInstancesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed__icontains = managed__icontains;
-    let p_query_managed__iexact = managed__iexact;
-    let p_query_name__icontains = name__icontains;
-    let p_query_name__iexact = name__iexact;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_providers__isnull = providers__isnull;
-    let p_query_providers_by_pk = providers_by_pk;
-    let p_query_search = search;
-    let p_query_service_connection__name__icontains = service_connection__name__icontains;
-    let p_query_service_connection__name__iexact = service_connection__name__iexact;
-
     let uri_str = format!("{}/outposts/instances/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed__icontains {
+    if let Some(ref param_value) = params.managed__icontains {
         req_builder = req_builder.query(&[("managed__icontains", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_managed__iexact {
+    if let Some(ref param_value) = params.managed__iexact {
         req_builder = req_builder.query(&[("managed__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name__icontains {
+    if let Some(ref param_value) = params.name__icontains {
         req_builder = req_builder.query(&[("name__icontains", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name__iexact {
+    if let Some(ref param_value) = params.name__iexact {
         req_builder = req_builder.query(&[("name__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_providers__isnull {
+    if let Some(ref param_value) = params.providers__isnull {
         req_builder = req_builder.query(&[("providers__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_providers_by_pk {
+    if let Some(ref param_value) = params.providers_by_pk {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -651,13 +901,13 @@ pub async fn outposts_instances_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_service_connection__name__icontains {
+    if let Some(ref param_value) = params.service_connection__name__icontains {
         req_builder = req_builder.query(&[("service_connection__name__icontains", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_service_connection__name__iexact {
+    if let Some(ref param_value) = params.service_connection__name__iexact {
         req_builder = req_builder.query(&[("service_connection__name__iexact", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -681,7 +931,7 @@ pub async fn outposts_instances_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedOutpostList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedOutpostList`")))),
         }
@@ -699,17 +949,12 @@ pub async fn outposts_instances_list(
 /// Outpost Viewset
 pub async fn outposts_instances_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_outpost_request: Option<models::PatchedOutpostRequest>,
+    params: OutpostsInstancesPartialUpdateParams,
 ) -> Result<models::Outpost, Error<OutpostsInstancesPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_outpost_request = patched_outpost_request;
-
     let uri_str = format!(
         "{}/outposts/instances/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -719,7 +964,7 @@ pub async fn outposts_instances_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_outpost_request);
+    req_builder = req_builder.json(&params.patched_outpost_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -735,7 +980,9 @@ pub async fn outposts_instances_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Outpost`",
@@ -761,15 +1008,12 @@ pub async fn outposts_instances_partial_update(
 /// Outpost Viewset
 pub async fn outposts_instances_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsInstancesRetrieveParams,
 ) -> Result<models::Outpost, Error<OutpostsInstancesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/instances/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -794,7 +1038,9 @@ pub async fn outposts_instances_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Outpost`",
@@ -820,17 +1066,12 @@ pub async fn outposts_instances_retrieve(
 /// Outpost Viewset
 pub async fn outposts_instances_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    outpost_request: models::OutpostRequest,
+    params: OutpostsInstancesUpdateParams,
 ) -> Result<models::Outpost, Error<OutpostsInstancesUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_outpost_request = outpost_request;
-
     let uri_str = format!(
         "{}/outposts/instances/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -840,7 +1081,7 @@ pub async fn outposts_instances_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_outpost_request);
+    req_builder = req_builder.json(&params.outpost_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -856,7 +1097,9 @@ pub async fn outposts_instances_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Outpost`",
@@ -882,15 +1125,12 @@ pub async fn outposts_instances_update(
 /// Get a list of all objects that use this object
 pub async fn outposts_instances_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsInstancesUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<OutpostsInstancesUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/instances/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -915,7 +1155,7 @@ pub async fn outposts_instances_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -933,21 +1173,16 @@ pub async fn outposts_instances_used_by_list(
 /// Check access to a single application by slug
 pub async fn outposts_ldap_access_check(
     configuration: &configuration::Configuration,
-    id: i32,
-    app_slug: Option<&str>,
+    params: OutpostsLdapAccessCheckParams,
 ) -> Result<models::LdapCheckAccess, Error<OutpostsLdapAccessCheckError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_query_app_slug = app_slug;
-
     let uri_str = format!(
         "{}/outposts/ldap/{id}/check_access/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_app_slug {
+    if let Some(ref param_value) = params.app_slug {
         req_builder = req_builder.query(&[("app_slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -971,7 +1206,9 @@ pub async fn outposts_ldap_access_check(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LdapCheckAccess`",
@@ -995,35 +1232,24 @@ pub async fn outposts_ldap_access_check(
 /// LDAPProvider Viewset
 pub async fn outposts_ldap_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: OutpostsLdapListParams,
 ) -> Result<models::PaginatedLdapOutpostConfigList, Error<OutpostsLdapListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/outposts/ldap/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1047,7 +1273,7 @@ pub async fn outposts_ldap_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedLdapOutpostConfigList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedLdapOutpostConfigList`")))),
         }
@@ -1065,35 +1291,24 @@ pub async fn outposts_ldap_list(
 /// ProxyProvider Viewset
 pub async fn outposts_proxy_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: OutpostsProxyListParams,
 ) -> Result<models::PaginatedProxyOutpostConfigList, Error<OutpostsProxyListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/outposts/proxy/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1117,7 +1332,7 @@ pub async fn outposts_proxy_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedProxyOutpostConfigList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedProxyOutpostConfigList`")))),
         }
@@ -1135,21 +1350,16 @@ pub async fn outposts_proxy_list(
 /// Check access to a single application by slug
 pub async fn outposts_radius_access_check(
     configuration: &configuration::Configuration,
-    id: i32,
-    app_slug: Option<&str>,
+    params: OutpostsRadiusAccessCheckParams,
 ) -> Result<models::RadiusCheckAccess, Error<OutpostsRadiusAccessCheckError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_query_app_slug = app_slug;
-
     let uri_str = format!(
         "{}/outposts/radius/{id}/check_access/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_app_slug {
+    if let Some(ref param_value) = params.app_slug {
         req_builder = req_builder.query(&[("app_slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1173,7 +1383,7 @@ pub async fn outposts_radius_access_check(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RadiusCheckAccess`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RadiusCheckAccess`")))),
         }
@@ -1191,35 +1401,24 @@ pub async fn outposts_radius_access_check(
 /// RadiusProvider Viewset
 pub async fn outposts_radius_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: OutpostsRadiusListParams,
 ) -> Result<models::PaginatedRadiusOutpostConfigList, Error<OutpostsRadiusListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/outposts/radius/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1243,7 +1442,7 @@ pub async fn outposts_radius_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRadiusOutpostConfigList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRadiusOutpostConfigList`")))),
         }
@@ -1261,15 +1460,12 @@ pub async fn outposts_radius_list(
 /// ServiceConnection Viewset
 pub async fn outposts_service_connections_all_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsServiceConnectionsAllDestroyParams,
 ) -> Result<(), Error<OutpostsServiceConnectionsAllDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/service_connections/all/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1301,35 +1497,24 @@ pub async fn outposts_service_connections_all_destroy(
 /// ServiceConnection Viewset
 pub async fn outposts_service_connections_all_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: OutpostsServiceConnectionsAllListParams,
 ) -> Result<models::PaginatedServiceConnectionList, Error<OutpostsServiceConnectionsAllListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/outposts/service_connections/all/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1353,7 +1538,7 @@ pub async fn outposts_service_connections_all_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedServiceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedServiceConnectionList`")))),
         }
@@ -1371,15 +1556,12 @@ pub async fn outposts_service_connections_all_list(
 /// ServiceConnection Viewset
 pub async fn outposts_service_connections_all_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsServiceConnectionsAllRetrieveParams,
 ) -> Result<models::ServiceConnection, Error<OutpostsServiceConnectionsAllRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/service_connections/all/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1404,7 +1586,7 @@ pub async fn outposts_service_connections_all_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ServiceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ServiceConnection`")))),
         }
@@ -1422,15 +1604,12 @@ pub async fn outposts_service_connections_all_retrieve(
 /// Get the service connection's state
 pub async fn outposts_service_connections_all_state_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsServiceConnectionsAllStateRetrieveParams,
 ) -> Result<models::ServiceConnectionState, Error<OutpostsServiceConnectionsAllStateRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/service_connections/all/{uuid}/state/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1455,7 +1634,7 @@ pub async fn outposts_service_connections_all_state_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ServiceConnectionState`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ServiceConnectionState`")))),
         }
@@ -1498,7 +1677,7 @@ pub async fn outposts_service_connections_all_types_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`")))),
         }
@@ -1516,15 +1695,12 @@ pub async fn outposts_service_connections_all_types_list(
 /// Get a list of all objects that use this object
 pub async fn outposts_service_connections_all_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsServiceConnectionsAllUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<OutpostsServiceConnectionsAllUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/service_connections/all/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1549,7 +1725,7 @@ pub async fn outposts_service_connections_all_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1567,11 +1743,8 @@ pub async fn outposts_service_connections_all_used_by_list(
 /// DockerServiceConnection Viewset
 pub async fn outposts_service_connections_docker_create(
     configuration: &configuration::Configuration,
-    docker_service_connection_request: models::DockerServiceConnectionRequest,
+    params: OutpostsServiceConnectionsDockerCreateParams,
 ) -> Result<models::DockerServiceConnection, Error<OutpostsServiceConnectionsDockerCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_docker_service_connection_request = docker_service_connection_request;
-
     let uri_str = format!("{}/outposts/service_connections/docker/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1581,7 +1754,7 @@ pub async fn outposts_service_connections_docker_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_docker_service_connection_request);
+    req_builder = req_builder.json(&params.docker_service_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1597,7 +1770,7 @@ pub async fn outposts_service_connections_docker_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DockerServiceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DockerServiceConnection`")))),
         }
@@ -1615,15 +1788,12 @@ pub async fn outposts_service_connections_docker_create(
 /// DockerServiceConnection Viewset
 pub async fn outposts_service_connections_docker_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsServiceConnectionsDockerDestroyParams,
 ) -> Result<(), Error<OutpostsServiceConnectionsDockerDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/service_connections/docker/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1655,55 +1825,36 @@ pub async fn outposts_service_connections_docker_destroy(
 /// DockerServiceConnection Viewset
 pub async fn outposts_service_connections_docker_list(
     configuration: &configuration::Configuration,
-    local: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    tls_authentication: Option<&str>,
-    tls_verification: Option<&str>,
-    url: Option<&str>,
+    params: OutpostsServiceConnectionsDockerListParams,
 ) -> Result<models::PaginatedDockerServiceConnectionList, Error<OutpostsServiceConnectionsDockerListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_local = local;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_tls_authentication = tls_authentication;
-    let p_query_tls_verification = tls_verification;
-    let p_query_url = url;
-
     let uri_str = format!("{}/outposts/service_connections/docker/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_local {
+    if let Some(ref param_value) = params.local {
         req_builder = req_builder.query(&[("local", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_tls_authentication {
+    if let Some(ref param_value) = params.tls_authentication {
         req_builder = req_builder.query(&[("tls_authentication", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_tls_verification {
+    if let Some(ref param_value) = params.tls_verification {
         req_builder = req_builder.query(&[("tls_verification", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_url {
+    if let Some(ref param_value) = params.url {
         req_builder = req_builder.query(&[("url", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1727,7 +1878,7 @@ pub async fn outposts_service_connections_docker_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedDockerServiceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedDockerServiceConnectionList`")))),
         }
@@ -1745,17 +1896,12 @@ pub async fn outposts_service_connections_docker_list(
 /// DockerServiceConnection Viewset
 pub async fn outposts_service_connections_docker_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_docker_service_connection_request: Option<models::PatchedDockerServiceConnectionRequest>,
+    params: OutpostsServiceConnectionsDockerPartialUpdateParams,
 ) -> Result<models::DockerServiceConnection, Error<OutpostsServiceConnectionsDockerPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_docker_service_connection_request = patched_docker_service_connection_request;
-
     let uri_str = format!(
         "{}/outposts/service_connections/docker/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1765,7 +1911,7 @@ pub async fn outposts_service_connections_docker_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_docker_service_connection_request);
+    req_builder = req_builder.json(&params.patched_docker_service_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1781,7 +1927,7 @@ pub async fn outposts_service_connections_docker_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DockerServiceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DockerServiceConnection`")))),
         }
@@ -1799,15 +1945,12 @@ pub async fn outposts_service_connections_docker_partial_update(
 /// DockerServiceConnection Viewset
 pub async fn outposts_service_connections_docker_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsServiceConnectionsDockerRetrieveParams,
 ) -> Result<models::DockerServiceConnection, Error<OutpostsServiceConnectionsDockerRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/service_connections/docker/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1832,7 +1975,7 @@ pub async fn outposts_service_connections_docker_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DockerServiceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DockerServiceConnection`")))),
         }
@@ -1850,17 +1993,12 @@ pub async fn outposts_service_connections_docker_retrieve(
 /// DockerServiceConnection Viewset
 pub async fn outposts_service_connections_docker_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    docker_service_connection_request: models::DockerServiceConnectionRequest,
+    params: OutpostsServiceConnectionsDockerUpdateParams,
 ) -> Result<models::DockerServiceConnection, Error<OutpostsServiceConnectionsDockerUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_docker_service_connection_request = docker_service_connection_request;
-
     let uri_str = format!(
         "{}/outposts/service_connections/docker/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1870,7 +2008,7 @@ pub async fn outposts_service_connections_docker_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_docker_service_connection_request);
+    req_builder = req_builder.json(&params.docker_service_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1886,7 +2024,7 @@ pub async fn outposts_service_connections_docker_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DockerServiceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DockerServiceConnection`")))),
         }
@@ -1904,15 +2042,12 @@ pub async fn outposts_service_connections_docker_update(
 /// Get a list of all objects that use this object
 pub async fn outposts_service_connections_docker_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsServiceConnectionsDockerUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<OutpostsServiceConnectionsDockerUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/service_connections/docker/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1937,7 +2072,7 @@ pub async fn outposts_service_connections_docker_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1955,11 +2090,8 @@ pub async fn outposts_service_connections_docker_used_by_list(
 /// KubernetesServiceConnection Viewset
 pub async fn outposts_service_connections_kubernetes_create(
     configuration: &configuration::Configuration,
-    kubernetes_service_connection_request: models::KubernetesServiceConnectionRequest,
+    params: OutpostsServiceConnectionsKubernetesCreateParams,
 ) -> Result<models::KubernetesServiceConnection, Error<OutpostsServiceConnectionsKubernetesCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_kubernetes_service_connection_request = kubernetes_service_connection_request;
-
     let uri_str = format!("{}/outposts/service_connections/kubernetes/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1969,7 +2101,7 @@ pub async fn outposts_service_connections_kubernetes_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_kubernetes_service_connection_request);
+    req_builder = req_builder.json(&params.kubernetes_service_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1985,7 +2117,7 @@ pub async fn outposts_service_connections_kubernetes_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::KubernetesServiceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::KubernetesServiceConnection`")))),
         }
@@ -2003,15 +2135,12 @@ pub async fn outposts_service_connections_kubernetes_create(
 /// KubernetesServiceConnection Viewset
 pub async fn outposts_service_connections_kubernetes_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsServiceConnectionsKubernetesDestroyParams,
 ) -> Result<(), Error<OutpostsServiceConnectionsKubernetesDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/service_connections/kubernetes/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2043,40 +2172,27 @@ pub async fn outposts_service_connections_kubernetes_destroy(
 /// KubernetesServiceConnection Viewset
 pub async fn outposts_service_connections_kubernetes_list(
     configuration: &configuration::Configuration,
-    local: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: OutpostsServiceConnectionsKubernetesListParams,
 ) -> Result<models::PaginatedKubernetesServiceConnectionList, Error<OutpostsServiceConnectionsKubernetesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_local = local;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/outposts/service_connections/kubernetes/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_local {
+    if let Some(ref param_value) = params.local {
         req_builder = req_builder.query(&[("local", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2100,7 +2216,7 @@ pub async fn outposts_service_connections_kubernetes_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedKubernetesServiceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedKubernetesServiceConnectionList`")))),
         }
@@ -2118,17 +2234,12 @@ pub async fn outposts_service_connections_kubernetes_list(
 /// KubernetesServiceConnection Viewset
 pub async fn outposts_service_connections_kubernetes_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_kubernetes_service_connection_request: Option<models::PatchedKubernetesServiceConnectionRequest>,
+    params: OutpostsServiceConnectionsKubernetesPartialUpdateParams,
 ) -> Result<models::KubernetesServiceConnection, Error<OutpostsServiceConnectionsKubernetesPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_kubernetes_service_connection_request = patched_kubernetes_service_connection_request;
-
     let uri_str = format!(
         "{}/outposts/service_connections/kubernetes/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2138,7 +2249,7 @@ pub async fn outposts_service_connections_kubernetes_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_kubernetes_service_connection_request);
+    req_builder = req_builder.json(&params.patched_kubernetes_service_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2154,7 +2265,7 @@ pub async fn outposts_service_connections_kubernetes_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::KubernetesServiceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::KubernetesServiceConnection`")))),
         }
@@ -2173,15 +2284,12 @@ pub async fn outposts_service_connections_kubernetes_partial_update(
 /// KubernetesServiceConnection Viewset
 pub async fn outposts_service_connections_kubernetes_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsServiceConnectionsKubernetesRetrieveParams,
 ) -> Result<models::KubernetesServiceConnection, Error<OutpostsServiceConnectionsKubernetesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/service_connections/kubernetes/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2206,7 +2314,7 @@ pub async fn outposts_service_connections_kubernetes_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::KubernetesServiceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::KubernetesServiceConnection`")))),
         }
@@ -2224,17 +2332,12 @@ pub async fn outposts_service_connections_kubernetes_retrieve(
 /// KubernetesServiceConnection Viewset
 pub async fn outposts_service_connections_kubernetes_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    kubernetes_service_connection_request: models::KubernetesServiceConnectionRequest,
+    params: OutpostsServiceConnectionsKubernetesUpdateParams,
 ) -> Result<models::KubernetesServiceConnection, Error<OutpostsServiceConnectionsKubernetesUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_kubernetes_service_connection_request = kubernetes_service_connection_request;
-
     let uri_str = format!(
         "{}/outposts/service_connections/kubernetes/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2244,7 +2347,7 @@ pub async fn outposts_service_connections_kubernetes_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_kubernetes_service_connection_request);
+    req_builder = req_builder.json(&params.kubernetes_service_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2260,7 +2363,7 @@ pub async fn outposts_service_connections_kubernetes_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::KubernetesServiceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::KubernetesServiceConnection`")))),
         }
@@ -2278,15 +2381,12 @@ pub async fn outposts_service_connections_kubernetes_update(
 /// Get a list of all objects that use this object
 pub async fn outposts_service_connections_kubernetes_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: OutpostsServiceConnectionsKubernetesUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<OutpostsServiceConnectionsKubernetesUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/outposts/service_connections/kubernetes/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2311,7 +2411,7 @@ pub async fn outposts_service_connections_kubernetes_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

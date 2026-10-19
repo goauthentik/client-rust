@@ -15,6 +15,72 @@ use serde::{de::Error as _, Deserialize, Serialize};
 use tokio::fs::File as TokioFile;
 use tokio_util::codec::{BytesCodec, FramedRead};
 
+/// struct for passing parameters to the method [`admin_file_create`]
+#[derive(Clone, Debug)]
+pub struct AdminFileCreateParams {
+    pub file: std::path::PathBuf,
+    pub name: Option<String>,
+    pub usage: Option<String>,
+}
+
+/// struct for passing parameters to the method [`admin_file_destroy`]
+#[derive(Clone, Debug)]
+pub struct AdminFileDestroyParams {
+    pub name: Option<String>,
+    pub usage: Option<String>,
+}
+
+/// struct for passing parameters to the method [`admin_file_list`]
+#[derive(Clone, Debug)]
+pub struct AdminFileListParams {
+    pub manageable_only: Option<bool>,
+    /// A search term.
+    pub search: Option<String>,
+    pub usage: Option<String>,
+}
+
+/// struct for passing parameters to the method [`admin_file_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct AdminFileUsedByListParams {
+    pub name: Option<String>,
+}
+
+/// struct for passing parameters to the method [`admin_models_list`]
+#[derive(Clone, Debug)]
+pub struct AdminModelsListParams {
+    pub filter_has_attributes: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`admin_settings_partial_update`]
+#[derive(Clone, Debug)]
+pub struct AdminSettingsPartialUpdateParams {
+    pub patched_settings_request: Option<models::PatchedSettingsRequest>,
+}
+
+/// struct for passing parameters to the method [`admin_settings_update`]
+#[derive(Clone, Debug)]
+pub struct AdminSettingsUpdateParams {
+    pub settings_request: models::SettingsRequest,
+}
+
+/// struct for passing parameters to the method [`admin_version_history_list`]
+#[derive(Clone, Debug)]
+pub struct AdminVersionHistoryListParams {
+    pub build: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub version: Option<String>,
+}
+
+/// struct for passing parameters to the method [`admin_version_history_retrieve`]
+#[derive(Clone, Debug)]
+pub struct AdminVersionHistoryRetrieveParams {
+    /// A unique integer value identifying this Version history.
+    pub id: i32,
+}
+
 /// struct for typed errors of method [`admin_apps_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -169,7 +235,9 @@ pub async fn admin_apps_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `Vec&lt;models::App&gt;`",
@@ -193,15 +261,8 @@ pub async fn admin_apps_list(
 /// Upload file to storage backend.
 pub async fn admin_file_create(
     configuration: &configuration::Configuration,
-    file: std::path::PathBuf,
-    name: Option<&str>,
-    usage: Option<&str>,
+    params: AdminFileCreateParams,
 ) -> Result<(), Error<AdminFileCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_form_file = file;
-    let p_form_name = name;
-    let p_form_usage = usage;
-
     let uri_str = format!("{}/admin/file/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -212,18 +273,19 @@ pub async fn admin_file_create(
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
     let mut multipart_form = reqwest::multipart::Form::new();
-    let file = TokioFile::open(&p_form_file).await?;
+    let file = TokioFile::open(&params.file).await?;
     let stream = FramedRead::new(file, BytesCodec::new());
-    let file_name = p_form_file
+    let file_name = params
+        .file
         .file_name()
         .map(|n| n.to_string_lossy().to_string())
         .unwrap_or_default();
     let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
     multipart_form = multipart_form.part("file", file_part);
-    if let Some(param_value) = p_form_name {
+    if let Some(param_value) = params.name {
         multipart_form = multipart_form.text("name", param_value.to_string());
     }
-    if let Some(param_value) = p_form_usage {
+    if let Some(param_value) = params.usage {
         multipart_form = multipart_form.text("usage", param_value.to_string());
     }
     req_builder = req_builder.multipart(multipart_form);
@@ -249,20 +311,15 @@ pub async fn admin_file_create(
 /// Delete file from storage backend.
 pub async fn admin_file_destroy(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    usage: Option<&str>,
+    params: AdminFileDestroyParams,
 ) -> Result<(), Error<AdminFileDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_usage = usage;
-
     let uri_str = format!("{}/admin/file/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_usage {
+    if let Some(ref param_value) = params.usage {
         req_builder = req_builder.query(&[("usage", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -293,25 +350,18 @@ pub async fn admin_file_destroy(
 /// List files from storage backend.
 pub async fn admin_file_list(
     configuration: &configuration::Configuration,
-    manageable_only: Option<bool>,
-    search: Option<&str>,
-    usage: Option<&str>,
+    params: AdminFileListParams,
 ) -> Result<Vec<models::FileList>, Error<AdminFileListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_manageable_only = manageable_only;
-    let p_query_search = search;
-    let p_query_usage = usage;
-
     let uri_str = format!("{}/admin/file/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_manageable_only {
+    if let Some(ref param_value) = params.manageable_only {
         req_builder = req_builder.query(&[("manageable_only", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_usage {
+    if let Some(ref param_value) = params.usage {
         req_builder = req_builder.query(&[("usage", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -335,7 +385,7 @@ pub async fn admin_file_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::FileList&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::FileList&gt;`")))),
         }
@@ -352,15 +402,12 @@ pub async fn admin_file_list(
 
 pub async fn admin_file_used_by_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
+    params: AdminFileUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<AdminFileUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-
     let uri_str = format!("{}/admin/file/used_by/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -384,7 +431,7 @@ pub async fn admin_file_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -402,15 +449,12 @@ pub async fn admin_file_used_by_list(
 /// Read-only view list all installed models
 pub async fn admin_models_list(
     configuration: &configuration::Configuration,
-    filter_has_attributes: Option<bool>,
+    params: AdminModelsListParams,
 ) -> Result<Vec<models::App>, Error<AdminModelsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_filter_has_attributes = filter_has_attributes;
-
     let uri_str = format!("{}/admin/models/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_filter_has_attributes {
+    if let Some(ref param_value) = params.filter_has_attributes {
         req_builder = req_builder.query(&[("filter_has_attributes", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -434,7 +478,9 @@ pub async fn admin_models_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `Vec&lt;models::App&gt;`",
@@ -458,11 +504,8 @@ pub async fn admin_models_list(
 /// Settings view
 pub async fn admin_settings_partial_update(
     configuration: &configuration::Configuration,
-    patched_settings_request: Option<models::PatchedSettingsRequest>,
+    params: AdminSettingsPartialUpdateParams,
 ) -> Result<models::Settings, Error<AdminSettingsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_patched_settings_request = patched_settings_request;
-
     let uri_str = format!("{}/admin/settings/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -472,7 +515,7 @@ pub async fn admin_settings_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_settings_request);
+    req_builder = req_builder.json(&params.patched_settings_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -488,7 +531,9 @@ pub async fn admin_settings_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Settings`",
@@ -539,7 +584,9 @@ pub async fn admin_settings_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Settings`",
@@ -565,11 +612,8 @@ pub async fn admin_settings_retrieve(
 /// Settings view
 pub async fn admin_settings_update(
     configuration: &configuration::Configuration,
-    settings_request: models::SettingsRequest,
+    params: AdminSettingsUpdateParams,
 ) -> Result<models::Settings, Error<AdminSettingsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_settings_request = settings_request;
-
     let uri_str = format!("{}/admin/settings/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -579,7 +623,7 @@ pub async fn admin_settings_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_settings_request);
+    req_builder = req_builder.json(&params.settings_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -595,7 +639,9 @@ pub async fn admin_settings_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Settings`",
@@ -646,7 +692,9 @@ pub async fn admin_system_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SystemInfo`",
@@ -697,7 +745,9 @@ pub async fn admin_system_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SystemInfo`",
@@ -723,30 +773,21 @@ pub async fn admin_system_retrieve(
 /// VersionHistory Viewset
 pub async fn admin_version_history_list(
     configuration: &configuration::Configuration,
-    build: Option<&str>,
-    ordering: Option<&str>,
-    search: Option<&str>,
-    version: Option<&str>,
+    params: AdminVersionHistoryListParams,
 ) -> Result<Vec<models::VersionHistory>, Error<AdminVersionHistoryListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_build = build;
-    let p_query_ordering = ordering;
-    let p_query_search = search;
-    let p_query_version = version;
-
     let uri_str = format!("{}/admin/version/history/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_build {
+    if let Some(ref param_value) = params.build {
         req_builder = req_builder.query(&[("build", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_version {
+    if let Some(ref param_value) = params.version {
         req_builder = req_builder.query(&[("version", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -770,7 +811,7 @@ pub async fn admin_version_history_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::VersionHistory&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::VersionHistory&gt;`")))),
         }
@@ -788,15 +829,12 @@ pub async fn admin_version_history_list(
 /// VersionHistory Viewset
 pub async fn admin_version_history_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: AdminVersionHistoryRetrieveParams,
 ) -> Result<models::VersionHistory, Error<AdminVersionHistoryRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/admin/version/history/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -821,7 +859,9 @@ pub async fn admin_version_history_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::VersionHistory`",
@@ -870,7 +910,9 @@ pub async fn admin_version_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Version`",

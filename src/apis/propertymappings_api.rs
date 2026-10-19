@@ -13,6 +13,939 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`propertymappings_all_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsAllDestroyParams {
+    /// A UUID string identifying this Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_all_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsAllListParams {
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_all_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsAllRetrieveParams {
+    /// A UUID string identifying this Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_all_test_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsAllTestCreateParams {
+    /// A UUID string identifying this Property Mapping.
+    pub pm_uuid: String,
+    pub format_result: Option<bool>,
+    pub property_mapping_test_request: Option<models::PropertyMappingTestRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_all_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsAllUsedByListParams {
+    /// A UUID string identifying this Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_notification_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsNotificationCreateParams {
+    pub notification_webhook_mapping_request: models::NotificationWebhookMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_notification_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsNotificationDestroyParams {
+    /// A UUID string identifying this Webhook Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_notification_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsNotificationListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_notification_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsNotificationPartialUpdateParams {
+    /// A UUID string identifying this Webhook Mapping.
+    pub pm_uuid: String,
+    pub patched_notification_webhook_mapping_request: Option<models::PatchedNotificationWebhookMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_notification_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsNotificationRetrieveParams {
+    /// A UUID string identifying this Webhook Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_notification_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsNotificationUpdateParams {
+    /// A UUID string identifying this Webhook Mapping.
+    pub pm_uuid: String,
+    pub notification_webhook_mapping_request: models::NotificationWebhookMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_notification_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsNotificationUsedByListParams {
+    /// A UUID string identifying this Webhook Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_google_workspace_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderGoogleWorkspaceCreateParams {
+    pub google_workspace_provider_mapping_request: models::GoogleWorkspaceProviderMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_google_workspace_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderGoogleWorkspaceDestroyParams {
+    /// A UUID string identifying this Google Workspace Provider Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_google_workspace_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderGoogleWorkspaceListParams {
+    pub expression: Option<String>,
+    pub managed: Option<Vec<String>>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pm_uuid: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_google_workspace_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderGoogleWorkspacePartialUpdateParams {
+    /// A UUID string identifying this Google Workspace Provider Mapping.
+    pub pm_uuid: String,
+    pub patched_google_workspace_provider_mapping_request: Option<models::PatchedGoogleWorkspaceProviderMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_google_workspace_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderGoogleWorkspaceRetrieveParams {
+    /// A UUID string identifying this Google Workspace Provider Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_google_workspace_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderGoogleWorkspaceUpdateParams {
+    /// A UUID string identifying this Google Workspace Provider Mapping.
+    pub pm_uuid: String,
+    pub google_workspace_provider_mapping_request: models::GoogleWorkspaceProviderMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_google_workspace_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderGoogleWorkspaceUsedByListParams {
+    /// A UUID string identifying this Google Workspace Provider Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_microsoft_entra_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderMicrosoftEntraCreateParams {
+    pub microsoft_entra_provider_mapping_request: models::MicrosoftEntraProviderMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_microsoft_entra_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderMicrosoftEntraDestroyParams {
+    /// A UUID string identifying this Microsoft Entra Provider Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_microsoft_entra_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderMicrosoftEntraListParams {
+    pub expression: Option<String>,
+    pub managed: Option<Vec<String>>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pm_uuid: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_microsoft_entra_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderMicrosoftEntraPartialUpdateParams {
+    /// A UUID string identifying this Microsoft Entra Provider Mapping.
+    pub pm_uuid: String,
+    pub patched_microsoft_entra_provider_mapping_request: Option<models::PatchedMicrosoftEntraProviderMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_microsoft_entra_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderMicrosoftEntraRetrieveParams {
+    /// A UUID string identifying this Microsoft Entra Provider Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_microsoft_entra_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderMicrosoftEntraUpdateParams {
+    /// A UUID string identifying this Microsoft Entra Provider Mapping.
+    pub pm_uuid: String,
+    pub microsoft_entra_provider_mapping_request: models::MicrosoftEntraProviderMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_microsoft_entra_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderMicrosoftEntraUsedByListParams {
+    /// A UUID string identifying this Microsoft Entra Provider Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_rac_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRacCreateParams {
+    pub rac_property_mapping_request: models::RacPropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_rac_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRacDestroyParams {
+    /// A UUID string identifying this RAC Provider Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_rac_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRacListParams {
+    pub managed: Option<Vec<String>>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_rac_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRacPartialUpdateParams {
+    /// A UUID string identifying this RAC Provider Property Mapping.
+    pub pm_uuid: String,
+    pub patched_rac_property_mapping_request: Option<models::PatchedRacPropertyMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_rac_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRacRetrieveParams {
+    /// A UUID string identifying this RAC Provider Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_rac_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRacUpdateParams {
+    /// A UUID string identifying this RAC Provider Property Mapping.
+    pub pm_uuid: String,
+    pub rac_property_mapping_request: models::RacPropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_rac_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRacUsedByListParams {
+    /// A UUID string identifying this RAC Provider Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_radius_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRadiusCreateParams {
+    pub radius_provider_property_mapping_request: models::RadiusProviderPropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_radius_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRadiusDestroyParams {
+    /// A UUID string identifying this Radius Provider Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_radius_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRadiusListParams {
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_radius_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRadiusPartialUpdateParams {
+    /// A UUID string identifying this Radius Provider Property Mapping.
+    pub pm_uuid: String,
+    pub patched_radius_provider_property_mapping_request: Option<models::PatchedRadiusProviderPropertyMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_radius_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRadiusRetrieveParams {
+    /// A UUID string identifying this Radius Provider Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_radius_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRadiusUpdateParams {
+    /// A UUID string identifying this Radius Provider Property Mapping.
+    pub pm_uuid: String,
+    pub radius_provider_property_mapping_request: models::RadiusProviderPropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_radius_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderRadiusUsedByListParams {
+    /// A UUID string identifying this Radius Provider Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_saml_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderSamlCreateParams {
+    pub saml_property_mapping_request: models::SamlPropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_saml_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderSamlDestroyParams {
+    /// A UUID string identifying this SAML Provider Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_saml_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderSamlListParams {
+    pub friendly_name: Option<String>,
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub saml_name: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_saml_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderSamlPartialUpdateParams {
+    /// A UUID string identifying this SAML Provider Property Mapping.
+    pub pm_uuid: String,
+    pub patched_saml_property_mapping_request: Option<models::PatchedSamlPropertyMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_saml_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderSamlRetrieveParams {
+    /// A UUID string identifying this SAML Provider Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_saml_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderSamlUpdateParams {
+    /// A UUID string identifying this SAML Provider Property Mapping.
+    pub pm_uuid: String,
+    pub saml_property_mapping_request: models::SamlPropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_saml_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderSamlUsedByListParams {
+    /// A UUID string identifying this SAML Provider Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scim_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScimCreateParams {
+    pub scim_mapping_request: models::ScimMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scim_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScimDestroyParams {
+    /// A UUID string identifying this SCIM Provider Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scim_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScimListParams {
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scim_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScimPartialUpdateParams {
+    /// A UUID string identifying this SCIM Provider Mapping.
+    pub pm_uuid: String,
+    pub patched_scim_mapping_request: Option<models::PatchedScimMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scim_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScimRetrieveParams {
+    /// A UUID string identifying this SCIM Provider Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scim_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScimUpdateParams {
+    /// A UUID string identifying this SCIM Provider Mapping.
+    pub pm_uuid: String,
+    pub scim_mapping_request: models::ScimMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scim_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScimUsedByListParams {
+    /// A UUID string identifying this SCIM Provider Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scope_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScopeCreateParams {
+    pub scope_mapping_request: models::ScopeMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scope_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScopeDestroyParams {
+    /// A UUID string identifying this Scope Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scope_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScopeListParams {
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub scope_name: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scope_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScopePartialUpdateParams {
+    /// A UUID string identifying this Scope Mapping.
+    pub pm_uuid: String,
+    pub patched_scope_mapping_request: Option<models::PatchedScopeMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scope_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScopeRetrieveParams {
+    /// A UUID string identifying this Scope Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scope_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScopeUpdateParams {
+    /// A UUID string identifying this Scope Mapping.
+    pub pm_uuid: String,
+    pub scope_mapping_request: models::ScopeMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_provider_scope_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsProviderScopeUsedByListParams {
+    /// A UUID string identifying this Scope Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_kerberos_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceKerberosCreateParams {
+    pub kerberos_source_property_mapping_request: models::KerberosSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_kerberos_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceKerberosDestroyParams {
+    /// A UUID string identifying this Kerberos Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_kerberos_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceKerberosListParams {
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_kerberos_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceKerberosPartialUpdateParams {
+    /// A UUID string identifying this Kerberos Source Property Mapping.
+    pub pm_uuid: String,
+    pub patched_kerberos_source_property_mapping_request: Option<models::PatchedKerberosSourcePropertyMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_kerberos_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceKerberosRetrieveParams {
+    /// A UUID string identifying this Kerberos Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_kerberos_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceKerberosUpdateParams {
+    /// A UUID string identifying this Kerberos Source Property Mapping.
+    pub pm_uuid: String,
+    pub kerberos_source_property_mapping_request: models::KerberosSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_kerberos_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceKerberosUsedByListParams {
+    /// A UUID string identifying this Kerberos Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_ldap_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceLdapCreateParams {
+    pub ldap_source_property_mapping_request: models::LdapSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_ldap_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceLdapDestroyParams {
+    /// A UUID string identifying this LDAP Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_ldap_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceLdapListParams {
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_ldap_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceLdapPartialUpdateParams {
+    /// A UUID string identifying this LDAP Source Property Mapping.
+    pub pm_uuid: String,
+    pub patched_ldap_source_property_mapping_request: Option<models::PatchedLdapSourcePropertyMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_ldap_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceLdapRetrieveParams {
+    /// A UUID string identifying this LDAP Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_ldap_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceLdapUpdateParams {
+    /// A UUID string identifying this LDAP Source Property Mapping.
+    pub pm_uuid: String,
+    pub ldap_source_property_mapping_request: models::LdapSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_ldap_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceLdapUsedByListParams {
+    /// A UUID string identifying this LDAP Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_oauth_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceOauthCreateParams {
+    pub o_auth_source_property_mapping_request: models::OAuthSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_oauth_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceOauthDestroyParams {
+    /// A UUID string identifying this OAuth Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_oauth_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceOauthListParams {
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_oauth_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceOauthPartialUpdateParams {
+    /// A UUID string identifying this OAuth Source Property Mapping.
+    pub pm_uuid: String,
+    pub patched_o_auth_source_property_mapping_request: Option<models::PatchedOAuthSourcePropertyMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_oauth_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceOauthRetrieveParams {
+    /// A UUID string identifying this OAuth Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_oauth_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceOauthUpdateParams {
+    /// A UUID string identifying this OAuth Source Property Mapping.
+    pub pm_uuid: String,
+    pub o_auth_source_property_mapping_request: models::OAuthSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_oauth_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceOauthUsedByListParams {
+    /// A UUID string identifying this OAuth Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_plex_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourcePlexCreateParams {
+    pub plex_source_property_mapping_request: models::PlexSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_plex_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourcePlexDestroyParams {
+    /// A UUID string identifying this Plex Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_plex_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourcePlexListParams {
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_plex_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourcePlexPartialUpdateParams {
+    /// A UUID string identifying this Plex Source Property Mapping.
+    pub pm_uuid: String,
+    pub patched_plex_source_property_mapping_request: Option<models::PatchedPlexSourcePropertyMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_plex_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourcePlexRetrieveParams {
+    /// A UUID string identifying this Plex Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_plex_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourcePlexUpdateParams {
+    /// A UUID string identifying this Plex Source Property Mapping.
+    pub pm_uuid: String,
+    pub plex_source_property_mapping_request: models::PlexSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_plex_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourcePlexUsedByListParams {
+    /// A UUID string identifying this Plex Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_saml_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceSamlCreateParams {
+    pub saml_source_property_mapping_request: models::SamlSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_saml_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceSamlDestroyParams {
+    /// A UUID string identifying this SAML Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_saml_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceSamlListParams {
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_saml_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceSamlPartialUpdateParams {
+    /// A UUID string identifying this SAML Source Property Mapping.
+    pub pm_uuid: String,
+    pub patched_saml_source_property_mapping_request: Option<models::PatchedSamlSourcePropertyMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_saml_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceSamlRetrieveParams {
+    /// A UUID string identifying this SAML Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_saml_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceSamlUpdateParams {
+    /// A UUID string identifying this SAML Source Property Mapping.
+    pub pm_uuid: String,
+    pub saml_source_property_mapping_request: models::SamlSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_saml_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceSamlUsedByListParams {
+    /// A UUID string identifying this SAML Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_scim_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceScimCreateParams {
+    pub scim_source_property_mapping_request: models::ScimSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_scim_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceScimDestroyParams {
+    /// A UUID string identifying this SCIM Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_scim_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceScimListParams {
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_scim_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceScimPartialUpdateParams {
+    /// A UUID string identifying this SCIM Source Property Mapping.
+    pub pm_uuid: String,
+    pub patched_scim_source_property_mapping_request: Option<models::PatchedScimSourcePropertyMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_scim_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceScimRetrieveParams {
+    /// A UUID string identifying this SCIM Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_scim_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceScimUpdateParams {
+    /// A UUID string identifying this SCIM Source Property Mapping.
+    pub pm_uuid: String,
+    pub scim_source_property_mapping_request: models::ScimSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_scim_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceScimUsedByListParams {
+    /// A UUID string identifying this SCIM Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_telegram_create`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceTelegramCreateParams {
+    pub telegram_source_property_mapping_request: models::TelegramSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_telegram_destroy`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceTelegramDestroyParams {
+    /// A UUID string identifying this Telegram Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_telegram_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceTelegramListParams {
+    pub managed: Option<Vec<String>>,
+    pub managed__isnull: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_telegram_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceTelegramPartialUpdateParams {
+    /// A UUID string identifying this Telegram Source Property Mapping.
+    pub pm_uuid: String,
+    pub patched_telegram_source_property_mapping_request: Option<models::PatchedTelegramSourcePropertyMappingRequest>,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_telegram_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceTelegramRetrieveParams {
+    /// A UUID string identifying this Telegram Source Property Mapping.
+    pub pm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_telegram_update`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceTelegramUpdateParams {
+    /// A UUID string identifying this Telegram Source Property Mapping.
+    pub pm_uuid: String,
+    pub telegram_source_property_mapping_request: models::TelegramSourcePropertyMappingRequest,
+}
+
+/// struct for passing parameters to the method [`propertymappings_source_telegram_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PropertymappingsSourceTelegramUsedByListParams {
+    /// A UUID string identifying this Telegram Source Property Mapping.
+    pub pm_uuid: String,
+}
+
 /// struct for typed errors of method [`propertymappings_all_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -1015,15 +1948,12 @@ pub enum PropertymappingsSourceTelegramUsedByListError {
 /// PropertyMapping Viewset
 pub async fn propertymappings_all_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsAllDestroyParams,
 ) -> Result<(), Error<PropertymappingsAllDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/all/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1055,27 +1985,12 @@ pub async fn propertymappings_all_destroy(
 /// PropertyMapping Viewset
 pub async fn propertymappings_all_list(
     configuration: &configuration::Configuration,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PropertymappingsAllListParams,
 ) -> Result<models::PaginatedPropertyMappingList, Error<PropertymappingsAllListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/all/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -1094,22 +2009,22 @@ pub async fn propertymappings_all_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1133,7 +2048,7 @@ pub async fn propertymappings_all_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedPropertyMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedPropertyMappingList`")))),
         }
@@ -1151,15 +2066,12 @@ pub async fn propertymappings_all_list(
 /// PropertyMapping Viewset
 pub async fn propertymappings_all_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsAllRetrieveParams,
 ) -> Result<models::PropertyMapping, Error<PropertymappingsAllRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/all/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1184,7 +2096,9 @@ pub async fn propertymappings_all_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PropertyMapping`",
@@ -1208,23 +2122,16 @@ pub async fn propertymappings_all_retrieve(
 /// Test Property Mapping
 pub async fn propertymappings_all_test_create(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    format_result: Option<bool>,
-    property_mapping_test_request: Option<models::PropertyMappingTestRequest>,
+    params: PropertymappingsAllTestCreateParams,
 ) -> Result<models::PropertyMappingTestResult, Error<PropertymappingsAllTestCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_query_format_result = format_result;
-    let p_body_property_mapping_test_request = property_mapping_test_request;
-
     let uri_str = format!(
         "{}/propertymappings/all/{pm_uuid}/test/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_query_format_result {
+    if let Some(ref param_value) = params.format_result {
         req_builder = req_builder.query(&[("format_result", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1233,7 +2140,7 @@ pub async fn propertymappings_all_test_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_property_mapping_test_request);
+    req_builder = req_builder.json(&params.property_mapping_test_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1249,7 +2156,7 @@ pub async fn propertymappings_all_test_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PropertyMappingTestResult`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PropertyMappingTestResult`")))),
         }
@@ -1292,7 +2199,7 @@ pub async fn propertymappings_all_types_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`")))),
         }
@@ -1310,15 +2217,12 @@ pub async fn propertymappings_all_types_list(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_all_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsAllUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsAllUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/all/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1343,7 +2247,7 @@ pub async fn propertymappings_all_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1361,11 +2265,8 @@ pub async fn propertymappings_all_used_by_list(
 /// NotificationWebhookMapping Viewset
 pub async fn propertymappings_notification_create(
     configuration: &configuration::Configuration,
-    notification_webhook_mapping_request: models::NotificationWebhookMappingRequest,
+    params: PropertymappingsNotificationCreateParams,
 ) -> Result<models::NotificationWebhookMapping, Error<PropertymappingsNotificationCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_notification_webhook_mapping_request = notification_webhook_mapping_request;
-
     let uri_str = format!("{}/propertymappings/notification/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1375,7 +2276,7 @@ pub async fn propertymappings_notification_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_notification_webhook_mapping_request);
+    req_builder = req_builder.json(&params.notification_webhook_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1391,7 +2292,7 @@ pub async fn propertymappings_notification_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationWebhookMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationWebhookMapping`")))),
         }
@@ -1409,15 +2310,12 @@ pub async fn propertymappings_notification_create(
 /// NotificationWebhookMapping Viewset
 pub async fn propertymappings_notification_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsNotificationDestroyParams,
 ) -> Result<(), Error<PropertymappingsNotificationDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/notification/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1449,35 +2347,24 @@ pub async fn propertymappings_notification_destroy(
 /// NotificationWebhookMapping Viewset
 pub async fn propertymappings_notification_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PropertymappingsNotificationListParams,
 ) -> Result<models::PaginatedNotificationWebhookMappingList, Error<PropertymappingsNotificationListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/notification/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1501,7 +2388,7 @@ pub async fn propertymappings_notification_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedNotificationWebhookMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedNotificationWebhookMappingList`")))),
         }
@@ -1519,17 +2406,12 @@ pub async fn propertymappings_notification_list(
 /// NotificationWebhookMapping Viewset
 pub async fn propertymappings_notification_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_notification_webhook_mapping_request: Option<models::PatchedNotificationWebhookMappingRequest>,
+    params: PropertymappingsNotificationPartialUpdateParams,
 ) -> Result<models::NotificationWebhookMapping, Error<PropertymappingsNotificationPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_notification_webhook_mapping_request = patched_notification_webhook_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/notification/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1539,7 +2421,7 @@ pub async fn propertymappings_notification_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_notification_webhook_mapping_request);
+    req_builder = req_builder.json(&params.patched_notification_webhook_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1555,7 +2437,7 @@ pub async fn propertymappings_notification_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationWebhookMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationWebhookMapping`")))),
         }
@@ -1573,15 +2455,12 @@ pub async fn propertymappings_notification_partial_update(
 /// NotificationWebhookMapping Viewset
 pub async fn propertymappings_notification_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsNotificationRetrieveParams,
 ) -> Result<models::NotificationWebhookMapping, Error<PropertymappingsNotificationRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/notification/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1606,7 +2485,7 @@ pub async fn propertymappings_notification_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationWebhookMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationWebhookMapping`")))),
         }
@@ -1624,17 +2503,12 @@ pub async fn propertymappings_notification_retrieve(
 /// NotificationWebhookMapping Viewset
 pub async fn propertymappings_notification_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    notification_webhook_mapping_request: models::NotificationWebhookMappingRequest,
+    params: PropertymappingsNotificationUpdateParams,
 ) -> Result<models::NotificationWebhookMapping, Error<PropertymappingsNotificationUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_notification_webhook_mapping_request = notification_webhook_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/notification/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1644,7 +2518,7 @@ pub async fn propertymappings_notification_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_notification_webhook_mapping_request);
+    req_builder = req_builder.json(&params.notification_webhook_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1660,7 +2534,7 @@ pub async fn propertymappings_notification_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationWebhookMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationWebhookMapping`")))),
         }
@@ -1678,15 +2552,12 @@ pub async fn propertymappings_notification_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_notification_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsNotificationUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsNotificationUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/notification/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1711,7 +2582,7 @@ pub async fn propertymappings_notification_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1729,11 +2600,8 @@ pub async fn propertymappings_notification_used_by_list(
 /// GoogleWorkspaceProviderMapping Viewset
 pub async fn propertymappings_provider_google_workspace_create(
     configuration: &configuration::Configuration,
-    google_workspace_provider_mapping_request: models::GoogleWorkspaceProviderMappingRequest,
+    params: PropertymappingsProviderGoogleWorkspaceCreateParams,
 ) -> Result<models::GoogleWorkspaceProviderMapping, Error<PropertymappingsProviderGoogleWorkspaceCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_google_workspace_provider_mapping_request = google_workspace_provider_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/google_workspace/",
         configuration.base_path
@@ -1746,7 +2614,7 @@ pub async fn propertymappings_provider_google_workspace_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_google_workspace_provider_mapping_request);
+    req_builder = req_builder.json(&params.google_workspace_provider_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1762,7 +2630,7 @@ pub async fn propertymappings_provider_google_workspace_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleWorkspaceProviderMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleWorkspaceProviderMapping`")))),
         }
@@ -1780,15 +2648,12 @@ pub async fn propertymappings_provider_google_workspace_create(
 /// GoogleWorkspaceProviderMapping Viewset
 pub async fn propertymappings_provider_google_workspace_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderGoogleWorkspaceDestroyParams,
 ) -> Result<(), Error<PropertymappingsProviderGoogleWorkspaceDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/google_workspace/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1820,36 +2685,19 @@ pub async fn propertymappings_provider_google_workspace_destroy(
 /// GoogleWorkspaceProviderMapping Viewset
 pub async fn propertymappings_provider_google_workspace_list(
     configuration: &configuration::Configuration,
-    expression: Option<&str>,
-    managed: Option<Vec<String>>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pm_uuid: Option<&str>,
-    search: Option<&str>,
+    params: PropertymappingsProviderGoogleWorkspaceListParams,
 ) -> Result<models::PaginatedGoogleWorkspaceProviderMappingList, Error<PropertymappingsProviderGoogleWorkspaceListError>>
 {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_expression = expression;
-    let p_query_managed = managed;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pm_uuid = pm_uuid;
-    let p_query_search = search;
-
     let uri_str = format!(
         "{}/propertymappings/provider/google_workspace/",
         configuration.base_path
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_expression {
+    if let Some(ref param_value) = params.expression {
         req_builder = req_builder.query(&[("expression", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -1868,22 +2716,22 @@ pub async fn propertymappings_provider_google_workspace_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pm_uuid {
+    if let Some(ref param_value) = params.pm_uuid {
         req_builder = req_builder.query(&[("pm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1907,7 +2755,7 @@ pub async fn propertymappings_provider_google_workspace_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGoogleWorkspaceProviderMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGoogleWorkspaceProviderMappingList`")))),
         }
@@ -1925,17 +2773,12 @@ pub async fn propertymappings_provider_google_workspace_list(
 /// GoogleWorkspaceProviderMapping Viewset
 pub async fn propertymappings_provider_google_workspace_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_google_workspace_provider_mapping_request: Option<models::PatchedGoogleWorkspaceProviderMappingRequest>,
+    params: PropertymappingsProviderGoogleWorkspacePartialUpdateParams,
 ) -> Result<models::GoogleWorkspaceProviderMapping, Error<PropertymappingsProviderGoogleWorkspacePartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_google_workspace_provider_mapping_request = patched_google_workspace_provider_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/google_workspace/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1945,7 +2788,7 @@ pub async fn propertymappings_provider_google_workspace_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_google_workspace_provider_mapping_request);
+    req_builder = req_builder.json(&params.patched_google_workspace_provider_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1961,7 +2804,7 @@ pub async fn propertymappings_provider_google_workspace_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleWorkspaceProviderMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleWorkspaceProviderMapping`")))),
         }
@@ -1980,15 +2823,12 @@ pub async fn propertymappings_provider_google_workspace_partial_update(
 /// GoogleWorkspaceProviderMapping Viewset
 pub async fn propertymappings_provider_google_workspace_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderGoogleWorkspaceRetrieveParams,
 ) -> Result<models::GoogleWorkspaceProviderMapping, Error<PropertymappingsProviderGoogleWorkspaceRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/google_workspace/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2013,7 +2853,7 @@ pub async fn propertymappings_provider_google_workspace_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleWorkspaceProviderMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleWorkspaceProviderMapping`")))),
         }
@@ -2031,17 +2871,12 @@ pub async fn propertymappings_provider_google_workspace_retrieve(
 /// GoogleWorkspaceProviderMapping Viewset
 pub async fn propertymappings_provider_google_workspace_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    google_workspace_provider_mapping_request: models::GoogleWorkspaceProviderMappingRequest,
+    params: PropertymappingsProviderGoogleWorkspaceUpdateParams,
 ) -> Result<models::GoogleWorkspaceProviderMapping, Error<PropertymappingsProviderGoogleWorkspaceUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_google_workspace_provider_mapping_request = google_workspace_provider_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/google_workspace/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2051,7 +2886,7 @@ pub async fn propertymappings_provider_google_workspace_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_google_workspace_provider_mapping_request);
+    req_builder = req_builder.json(&params.google_workspace_provider_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2067,7 +2902,7 @@ pub async fn propertymappings_provider_google_workspace_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleWorkspaceProviderMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleWorkspaceProviderMapping`")))),
         }
@@ -2085,15 +2920,12 @@ pub async fn propertymappings_provider_google_workspace_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_provider_google_workspace_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderGoogleWorkspaceUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsProviderGoogleWorkspaceUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/google_workspace/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2118,7 +2950,7 @@ pub async fn propertymappings_provider_google_workspace_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2137,11 +2969,8 @@ pub async fn propertymappings_provider_google_workspace_used_by_list(
 /// MicrosoftEntraProviderMapping Viewset
 pub async fn propertymappings_provider_microsoft_entra_create(
     configuration: &configuration::Configuration,
-    microsoft_entra_provider_mapping_request: models::MicrosoftEntraProviderMappingRequest,
+    params: PropertymappingsProviderMicrosoftEntraCreateParams,
 ) -> Result<models::MicrosoftEntraProviderMapping, Error<PropertymappingsProviderMicrosoftEntraCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_microsoft_entra_provider_mapping_request = microsoft_entra_provider_mapping_request;
-
     let uri_str = format!("{}/propertymappings/provider/microsoft_entra/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2151,7 +2980,7 @@ pub async fn propertymappings_provider_microsoft_entra_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_microsoft_entra_provider_mapping_request);
+    req_builder = req_builder.json(&params.microsoft_entra_provider_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2167,7 +2996,7 @@ pub async fn propertymappings_provider_microsoft_entra_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MicrosoftEntraProviderMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MicrosoftEntraProviderMapping`")))),
         }
@@ -2185,15 +3014,12 @@ pub async fn propertymappings_provider_microsoft_entra_create(
 /// MicrosoftEntraProviderMapping Viewset
 pub async fn propertymappings_provider_microsoft_entra_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderMicrosoftEntraDestroyParams,
 ) -> Result<(), Error<PropertymappingsProviderMicrosoftEntraDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/microsoft_entra/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2225,33 +3051,16 @@ pub async fn propertymappings_provider_microsoft_entra_destroy(
 /// MicrosoftEntraProviderMapping Viewset
 pub async fn propertymappings_provider_microsoft_entra_list(
     configuration: &configuration::Configuration,
-    expression: Option<&str>,
-    managed: Option<Vec<String>>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pm_uuid: Option<&str>,
-    search: Option<&str>,
+    params: PropertymappingsProviderMicrosoftEntraListParams,
 ) -> Result<models::PaginatedMicrosoftEntraProviderMappingList, Error<PropertymappingsProviderMicrosoftEntraListError>>
 {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_expression = expression;
-    let p_query_managed = managed;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pm_uuid = pm_uuid;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/provider/microsoft_entra/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_expression {
+    if let Some(ref param_value) = params.expression {
         req_builder = req_builder.query(&[("expression", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -2270,22 +3079,22 @@ pub async fn propertymappings_provider_microsoft_entra_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pm_uuid {
+    if let Some(ref param_value) = params.pm_uuid {
         req_builder = req_builder.query(&[("pm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2309,7 +3118,7 @@ pub async fn propertymappings_provider_microsoft_entra_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedMicrosoftEntraProviderMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedMicrosoftEntraProviderMappingList`")))),
         }
@@ -2327,17 +3136,12 @@ pub async fn propertymappings_provider_microsoft_entra_list(
 /// MicrosoftEntraProviderMapping Viewset
 pub async fn propertymappings_provider_microsoft_entra_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_microsoft_entra_provider_mapping_request: Option<models::PatchedMicrosoftEntraProviderMappingRequest>,
+    params: PropertymappingsProviderMicrosoftEntraPartialUpdateParams,
 ) -> Result<models::MicrosoftEntraProviderMapping, Error<PropertymappingsProviderMicrosoftEntraPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_microsoft_entra_provider_mapping_request = patched_microsoft_entra_provider_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/microsoft_entra/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2347,7 +3151,7 @@ pub async fn propertymappings_provider_microsoft_entra_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_microsoft_entra_provider_mapping_request);
+    req_builder = req_builder.json(&params.patched_microsoft_entra_provider_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2363,7 +3167,7 @@ pub async fn propertymappings_provider_microsoft_entra_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MicrosoftEntraProviderMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MicrosoftEntraProviderMapping`")))),
         }
@@ -2382,15 +3186,12 @@ pub async fn propertymappings_provider_microsoft_entra_partial_update(
 /// MicrosoftEntraProviderMapping Viewset
 pub async fn propertymappings_provider_microsoft_entra_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderMicrosoftEntraRetrieveParams,
 ) -> Result<models::MicrosoftEntraProviderMapping, Error<PropertymappingsProviderMicrosoftEntraRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/microsoft_entra/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2415,7 +3216,7 @@ pub async fn propertymappings_provider_microsoft_entra_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MicrosoftEntraProviderMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MicrosoftEntraProviderMapping`")))),
         }
@@ -2433,17 +3234,12 @@ pub async fn propertymappings_provider_microsoft_entra_retrieve(
 /// MicrosoftEntraProviderMapping Viewset
 pub async fn propertymappings_provider_microsoft_entra_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    microsoft_entra_provider_mapping_request: models::MicrosoftEntraProviderMappingRequest,
+    params: PropertymappingsProviderMicrosoftEntraUpdateParams,
 ) -> Result<models::MicrosoftEntraProviderMapping, Error<PropertymappingsProviderMicrosoftEntraUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_microsoft_entra_provider_mapping_request = microsoft_entra_provider_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/microsoft_entra/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2453,7 +3249,7 @@ pub async fn propertymappings_provider_microsoft_entra_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_microsoft_entra_provider_mapping_request);
+    req_builder = req_builder.json(&params.microsoft_entra_provider_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2469,7 +3265,7 @@ pub async fn propertymappings_provider_microsoft_entra_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MicrosoftEntraProviderMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MicrosoftEntraProviderMapping`")))),
         }
@@ -2487,15 +3283,12 @@ pub async fn propertymappings_provider_microsoft_entra_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_provider_microsoft_entra_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderMicrosoftEntraUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsProviderMicrosoftEntraUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/microsoft_entra/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2520,7 +3313,7 @@ pub async fn propertymappings_provider_microsoft_entra_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2538,11 +3331,8 @@ pub async fn propertymappings_provider_microsoft_entra_used_by_list(
 /// RACPropertyMapping Viewset
 pub async fn propertymappings_provider_rac_create(
     configuration: &configuration::Configuration,
-    rac_property_mapping_request: models::RacPropertyMappingRequest,
+    params: PropertymappingsProviderRacCreateParams,
 ) -> Result<models::RacPropertyMapping, Error<PropertymappingsProviderRacCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_rac_property_mapping_request = rac_property_mapping_request;
-
     let uri_str = format!("{}/propertymappings/provider/rac/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2552,7 +3342,7 @@ pub async fn propertymappings_provider_rac_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_rac_property_mapping_request);
+    req_builder = req_builder.json(&params.rac_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2568,7 +3358,7 @@ pub async fn propertymappings_provider_rac_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RacPropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RacPropertyMapping`")))),
         }
@@ -2586,15 +3376,12 @@ pub async fn propertymappings_provider_rac_create(
 /// RACPropertyMapping Viewset
 pub async fn propertymappings_provider_rac_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderRacDestroyParams,
 ) -> Result<(), Error<PropertymappingsProviderRacDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/rac/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2626,25 +3413,12 @@ pub async fn propertymappings_provider_rac_destroy(
 /// RACPropertyMapping Viewset
 pub async fn propertymappings_provider_rac_list(
     configuration: &configuration::Configuration,
-    managed: Option<Vec<String>>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PropertymappingsProviderRacListParams,
 ) -> Result<models::PaginatedRacPropertyMappingList, Error<PropertymappingsProviderRacListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/provider/rac/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -2663,19 +3437,19 @@ pub async fn propertymappings_provider_rac_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2699,7 +3473,7 @@ pub async fn propertymappings_provider_rac_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRacPropertyMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRacPropertyMappingList`")))),
         }
@@ -2717,17 +3491,12 @@ pub async fn propertymappings_provider_rac_list(
 /// RACPropertyMapping Viewset
 pub async fn propertymappings_provider_rac_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_rac_property_mapping_request: Option<models::PatchedRacPropertyMappingRequest>,
+    params: PropertymappingsProviderRacPartialUpdateParams,
 ) -> Result<models::RacPropertyMapping, Error<PropertymappingsProviderRacPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_rac_property_mapping_request = patched_rac_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/rac/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2737,7 +3506,7 @@ pub async fn propertymappings_provider_rac_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_rac_property_mapping_request);
+    req_builder = req_builder.json(&params.patched_rac_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2753,7 +3522,7 @@ pub async fn propertymappings_provider_rac_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RacPropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RacPropertyMapping`")))),
         }
@@ -2771,15 +3540,12 @@ pub async fn propertymappings_provider_rac_partial_update(
 /// RACPropertyMapping Viewset
 pub async fn propertymappings_provider_rac_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderRacRetrieveParams,
 ) -> Result<models::RacPropertyMapping, Error<PropertymappingsProviderRacRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/rac/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2804,7 +3570,7 @@ pub async fn propertymappings_provider_rac_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RacPropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RacPropertyMapping`")))),
         }
@@ -2822,17 +3588,12 @@ pub async fn propertymappings_provider_rac_retrieve(
 /// RACPropertyMapping Viewset
 pub async fn propertymappings_provider_rac_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    rac_property_mapping_request: models::RacPropertyMappingRequest,
+    params: PropertymappingsProviderRacUpdateParams,
 ) -> Result<models::RacPropertyMapping, Error<PropertymappingsProviderRacUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_rac_property_mapping_request = rac_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/rac/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2842,7 +3603,7 @@ pub async fn propertymappings_provider_rac_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_rac_property_mapping_request);
+    req_builder = req_builder.json(&params.rac_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2858,7 +3619,7 @@ pub async fn propertymappings_provider_rac_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RacPropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RacPropertyMapping`")))),
         }
@@ -2876,15 +3637,12 @@ pub async fn propertymappings_provider_rac_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_provider_rac_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderRacUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsProviderRacUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/rac/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2909,7 +3667,7 @@ pub async fn propertymappings_provider_rac_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2927,11 +3685,8 @@ pub async fn propertymappings_provider_rac_used_by_list(
 /// RadiusProviderPropertyMapping Viewset
 pub async fn propertymappings_provider_radius_create(
     configuration: &configuration::Configuration,
-    radius_provider_property_mapping_request: models::RadiusProviderPropertyMappingRequest,
+    params: PropertymappingsProviderRadiusCreateParams,
 ) -> Result<models::RadiusProviderPropertyMapping, Error<PropertymappingsProviderRadiusCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_radius_provider_property_mapping_request = radius_provider_property_mapping_request;
-
     let uri_str = format!("{}/propertymappings/provider/radius/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2941,7 +3696,7 @@ pub async fn propertymappings_provider_radius_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_radius_provider_property_mapping_request);
+    req_builder = req_builder.json(&params.radius_provider_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2957,7 +3712,7 @@ pub async fn propertymappings_provider_radius_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RadiusProviderPropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RadiusProviderPropertyMapping`")))),
         }
@@ -2975,15 +3730,12 @@ pub async fn propertymappings_provider_radius_create(
 /// RadiusProviderPropertyMapping Viewset
 pub async fn propertymappings_provider_radius_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderRadiusDestroyParams,
 ) -> Result<(), Error<PropertymappingsProviderRadiusDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/radius/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3015,27 +3767,12 @@ pub async fn propertymappings_provider_radius_destroy(
 /// RadiusProviderPropertyMapping Viewset
 pub async fn propertymappings_provider_radius_list(
     configuration: &configuration::Configuration,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PropertymappingsProviderRadiusListParams,
 ) -> Result<models::PaginatedRadiusProviderPropertyMappingList, Error<PropertymappingsProviderRadiusListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/provider/radius/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -3054,22 +3791,22 @@ pub async fn propertymappings_provider_radius_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3093,7 +3830,7 @@ pub async fn propertymappings_provider_radius_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRadiusProviderPropertyMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRadiusProviderPropertyMappingList`")))),
         }
@@ -3111,17 +3848,12 @@ pub async fn propertymappings_provider_radius_list(
 /// RadiusProviderPropertyMapping Viewset
 pub async fn propertymappings_provider_radius_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_radius_provider_property_mapping_request: Option<models::PatchedRadiusProviderPropertyMappingRequest>,
+    params: PropertymappingsProviderRadiusPartialUpdateParams,
 ) -> Result<models::RadiusProviderPropertyMapping, Error<PropertymappingsProviderRadiusPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_radius_provider_property_mapping_request = patched_radius_provider_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/radius/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3131,7 +3863,7 @@ pub async fn propertymappings_provider_radius_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_radius_provider_property_mapping_request);
+    req_builder = req_builder.json(&params.patched_radius_provider_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3147,7 +3879,7 @@ pub async fn propertymappings_provider_radius_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RadiusProviderPropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RadiusProviderPropertyMapping`")))),
         }
@@ -3165,15 +3897,12 @@ pub async fn propertymappings_provider_radius_partial_update(
 /// RadiusProviderPropertyMapping Viewset
 pub async fn propertymappings_provider_radius_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderRadiusRetrieveParams,
 ) -> Result<models::RadiusProviderPropertyMapping, Error<PropertymappingsProviderRadiusRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/radius/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3198,7 +3927,7 @@ pub async fn propertymappings_provider_radius_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RadiusProviderPropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RadiusProviderPropertyMapping`")))),
         }
@@ -3216,17 +3945,12 @@ pub async fn propertymappings_provider_radius_retrieve(
 /// RadiusProviderPropertyMapping Viewset
 pub async fn propertymappings_provider_radius_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    radius_provider_property_mapping_request: models::RadiusProviderPropertyMappingRequest,
+    params: PropertymappingsProviderRadiusUpdateParams,
 ) -> Result<models::RadiusProviderPropertyMapping, Error<PropertymappingsProviderRadiusUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_radius_provider_property_mapping_request = radius_provider_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/radius/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3236,7 +3960,7 @@ pub async fn propertymappings_provider_radius_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_radius_provider_property_mapping_request);
+    req_builder = req_builder.json(&params.radius_provider_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3252,7 +3976,7 @@ pub async fn propertymappings_provider_radius_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RadiusProviderPropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RadiusProviderPropertyMapping`")))),
         }
@@ -3270,15 +3994,12 @@ pub async fn propertymappings_provider_radius_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_provider_radius_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderRadiusUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsProviderRadiusUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/radius/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3303,7 +4024,7 @@ pub async fn propertymappings_provider_radius_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3321,11 +4042,8 @@ pub async fn propertymappings_provider_radius_used_by_list(
 /// SAMLPropertyMapping Viewset
 pub async fn propertymappings_provider_saml_create(
     configuration: &configuration::Configuration,
-    saml_property_mapping_request: models::SamlPropertyMappingRequest,
+    params: PropertymappingsProviderSamlCreateParams,
 ) -> Result<models::SamlPropertyMapping, Error<PropertymappingsProviderSamlCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_saml_property_mapping_request = saml_property_mapping_request;
-
     let uri_str = format!("{}/propertymappings/provider/saml/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3335,7 +4053,7 @@ pub async fn propertymappings_provider_saml_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_saml_property_mapping_request);
+    req_builder = req_builder.json(&params.saml_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3351,7 +4069,7 @@ pub async fn propertymappings_provider_saml_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SamlPropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SamlPropertyMapping`")))),
         }
@@ -3369,15 +4087,12 @@ pub async fn propertymappings_provider_saml_create(
 /// SAMLPropertyMapping Viewset
 pub async fn propertymappings_provider_saml_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderSamlDestroyParams,
 ) -> Result<(), Error<PropertymappingsProviderSamlDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/saml/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3409,34 +4124,15 @@ pub async fn propertymappings_provider_saml_destroy(
 /// SAMLPropertyMapping Viewset
 pub async fn propertymappings_provider_saml_list(
     configuration: &configuration::Configuration,
-    friendly_name: Option<&str>,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    saml_name: Option<&str>,
-    search: Option<&str>,
+    params: PropertymappingsProviderSamlListParams,
 ) -> Result<models::PaginatedSamlPropertyMappingList, Error<PropertymappingsProviderSamlListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_friendly_name = friendly_name;
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_saml_name = saml_name;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/provider/saml/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_friendly_name {
+    if let Some(ref param_value) = params.friendly_name {
         req_builder = req_builder.query(&[("friendly_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -3455,25 +4151,25 @@ pub async fn propertymappings_provider_saml_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_saml_name {
+    if let Some(ref param_value) = params.saml_name {
         req_builder = req_builder.query(&[("saml_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3497,7 +4193,7 @@ pub async fn propertymappings_provider_saml_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedSamlPropertyMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedSamlPropertyMappingList`")))),
         }
@@ -3515,17 +4211,12 @@ pub async fn propertymappings_provider_saml_list(
 /// SAMLPropertyMapping Viewset
 pub async fn propertymappings_provider_saml_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_saml_property_mapping_request: Option<models::PatchedSamlPropertyMappingRequest>,
+    params: PropertymappingsProviderSamlPartialUpdateParams,
 ) -> Result<models::SamlPropertyMapping, Error<PropertymappingsProviderSamlPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_saml_property_mapping_request = patched_saml_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/saml/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3535,7 +4226,7 @@ pub async fn propertymappings_provider_saml_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_saml_property_mapping_request);
+    req_builder = req_builder.json(&params.patched_saml_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3551,7 +4242,7 @@ pub async fn propertymappings_provider_saml_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SamlPropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SamlPropertyMapping`")))),
         }
@@ -3569,15 +4260,12 @@ pub async fn propertymappings_provider_saml_partial_update(
 /// SAMLPropertyMapping Viewset
 pub async fn propertymappings_provider_saml_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderSamlRetrieveParams,
 ) -> Result<models::SamlPropertyMapping, Error<PropertymappingsProviderSamlRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/saml/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3602,7 +4290,7 @@ pub async fn propertymappings_provider_saml_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SamlPropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SamlPropertyMapping`")))),
         }
@@ -3620,17 +4308,12 @@ pub async fn propertymappings_provider_saml_retrieve(
 /// SAMLPropertyMapping Viewset
 pub async fn propertymappings_provider_saml_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    saml_property_mapping_request: models::SamlPropertyMappingRequest,
+    params: PropertymappingsProviderSamlUpdateParams,
 ) -> Result<models::SamlPropertyMapping, Error<PropertymappingsProviderSamlUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_saml_property_mapping_request = saml_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/saml/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3640,7 +4323,7 @@ pub async fn propertymappings_provider_saml_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_saml_property_mapping_request);
+    req_builder = req_builder.json(&params.saml_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3656,7 +4339,7 @@ pub async fn propertymappings_provider_saml_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SamlPropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SamlPropertyMapping`")))),
         }
@@ -3674,15 +4357,12 @@ pub async fn propertymappings_provider_saml_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_provider_saml_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderSamlUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsProviderSamlUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/saml/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3707,7 +4387,7 @@ pub async fn propertymappings_provider_saml_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3725,11 +4405,8 @@ pub async fn propertymappings_provider_saml_used_by_list(
 /// SCIMMapping Viewset
 pub async fn propertymappings_provider_scim_create(
     configuration: &configuration::Configuration,
-    scim_mapping_request: models::ScimMappingRequest,
+    params: PropertymappingsProviderScimCreateParams,
 ) -> Result<models::ScimMapping, Error<PropertymappingsProviderScimCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_scim_mapping_request = scim_mapping_request;
-
     let uri_str = format!("{}/propertymappings/provider/scim/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3739,7 +4416,7 @@ pub async fn propertymappings_provider_scim_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_mapping_request);
+    req_builder = req_builder.json(&params.scim_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3755,7 +4432,9 @@ pub async fn propertymappings_provider_scim_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimMapping`",
@@ -3781,15 +4460,12 @@ pub async fn propertymappings_provider_scim_create(
 /// SCIMMapping Viewset
 pub async fn propertymappings_provider_scim_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderScimDestroyParams,
 ) -> Result<(), Error<PropertymappingsProviderScimDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/scim/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3821,27 +4497,12 @@ pub async fn propertymappings_provider_scim_destroy(
 /// SCIMMapping Viewset
 pub async fn propertymappings_provider_scim_list(
     configuration: &configuration::Configuration,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PropertymappingsProviderScimListParams,
 ) -> Result<models::PaginatedScimMappingList, Error<PropertymappingsProviderScimListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/provider/scim/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -3860,22 +4521,22 @@ pub async fn propertymappings_provider_scim_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3899,7 +4560,7 @@ pub async fn propertymappings_provider_scim_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedScimMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedScimMappingList`")))),
         }
@@ -3917,17 +4578,12 @@ pub async fn propertymappings_provider_scim_list(
 /// SCIMMapping Viewset
 pub async fn propertymappings_provider_scim_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_scim_mapping_request: Option<models::PatchedScimMappingRequest>,
+    params: PropertymappingsProviderScimPartialUpdateParams,
 ) -> Result<models::ScimMapping, Error<PropertymappingsProviderScimPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_scim_mapping_request = patched_scim_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/scim/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3937,7 +4593,7 @@ pub async fn propertymappings_provider_scim_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_scim_mapping_request);
+    req_builder = req_builder.json(&params.patched_scim_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3953,7 +4609,9 @@ pub async fn propertymappings_provider_scim_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimMapping`",
@@ -3979,15 +4637,12 @@ pub async fn propertymappings_provider_scim_partial_update(
 /// SCIMMapping Viewset
 pub async fn propertymappings_provider_scim_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderScimRetrieveParams,
 ) -> Result<models::ScimMapping, Error<PropertymappingsProviderScimRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/scim/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4012,7 +4667,9 @@ pub async fn propertymappings_provider_scim_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimMapping`",
@@ -4038,17 +4695,12 @@ pub async fn propertymappings_provider_scim_retrieve(
 /// SCIMMapping Viewset
 pub async fn propertymappings_provider_scim_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    scim_mapping_request: models::ScimMappingRequest,
+    params: PropertymappingsProviderScimUpdateParams,
 ) -> Result<models::ScimMapping, Error<PropertymappingsProviderScimUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_scim_mapping_request = scim_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/scim/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4058,7 +4710,7 @@ pub async fn propertymappings_provider_scim_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_mapping_request);
+    req_builder = req_builder.json(&params.scim_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4074,7 +4726,9 @@ pub async fn propertymappings_provider_scim_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimMapping`",
@@ -4100,15 +4754,12 @@ pub async fn propertymappings_provider_scim_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_provider_scim_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderScimUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsProviderScimUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/scim/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4133,7 +4784,7 @@ pub async fn propertymappings_provider_scim_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4151,11 +4802,8 @@ pub async fn propertymappings_provider_scim_used_by_list(
 /// ScopeMapping Viewset
 pub async fn propertymappings_provider_scope_create(
     configuration: &configuration::Configuration,
-    scope_mapping_request: models::ScopeMappingRequest,
+    params: PropertymappingsProviderScopeCreateParams,
 ) -> Result<models::ScopeMapping, Error<PropertymappingsProviderScopeCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_scope_mapping_request = scope_mapping_request;
-
     let uri_str = format!("{}/propertymappings/provider/scope/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4165,7 +4813,7 @@ pub async fn propertymappings_provider_scope_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scope_mapping_request);
+    req_builder = req_builder.json(&params.scope_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4181,7 +4829,9 @@ pub async fn propertymappings_provider_scope_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScopeMapping`",
@@ -4205,15 +4855,12 @@ pub async fn propertymappings_provider_scope_create(
 /// ScopeMapping Viewset
 pub async fn propertymappings_provider_scope_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderScopeDestroyParams,
 ) -> Result<(), Error<PropertymappingsProviderScopeDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/scope/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4245,29 +4892,12 @@ pub async fn propertymappings_provider_scope_destroy(
 /// ScopeMapping Viewset
 pub async fn propertymappings_provider_scope_list(
     configuration: &configuration::Configuration,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    scope_name: Option<&str>,
-    search: Option<&str>,
+    params: PropertymappingsProviderScopeListParams,
 ) -> Result<models::PaginatedScopeMappingList, Error<PropertymappingsProviderScopeListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_scope_name = scope_name;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/provider/scope/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -4286,25 +4916,25 @@ pub async fn propertymappings_provider_scope_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_scope_name {
+    if let Some(ref param_value) = params.scope_name {
         req_builder = req_builder.query(&[("scope_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4328,7 +4958,7 @@ pub async fn propertymappings_provider_scope_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedScopeMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedScopeMappingList`")))),
         }
@@ -4346,17 +4976,12 @@ pub async fn propertymappings_provider_scope_list(
 /// ScopeMapping Viewset
 pub async fn propertymappings_provider_scope_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_scope_mapping_request: Option<models::PatchedScopeMappingRequest>,
+    params: PropertymappingsProviderScopePartialUpdateParams,
 ) -> Result<models::ScopeMapping, Error<PropertymappingsProviderScopePartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_scope_mapping_request = patched_scope_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/scope/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -4366,7 +4991,7 @@ pub async fn propertymappings_provider_scope_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_scope_mapping_request);
+    req_builder = req_builder.json(&params.patched_scope_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4382,7 +5007,9 @@ pub async fn propertymappings_provider_scope_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScopeMapping`",
@@ -4406,15 +5033,12 @@ pub async fn propertymappings_provider_scope_partial_update(
 /// ScopeMapping Viewset
 pub async fn propertymappings_provider_scope_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderScopeRetrieveParams,
 ) -> Result<models::ScopeMapping, Error<PropertymappingsProviderScopeRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/scope/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4439,7 +5063,9 @@ pub async fn propertymappings_provider_scope_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScopeMapping`",
@@ -4463,17 +5089,12 @@ pub async fn propertymappings_provider_scope_retrieve(
 /// ScopeMapping Viewset
 pub async fn propertymappings_provider_scope_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    scope_mapping_request: models::ScopeMappingRequest,
+    params: PropertymappingsProviderScopeUpdateParams,
 ) -> Result<models::ScopeMapping, Error<PropertymappingsProviderScopeUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_scope_mapping_request = scope_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/provider/scope/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4483,7 +5104,7 @@ pub async fn propertymappings_provider_scope_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scope_mapping_request);
+    req_builder = req_builder.json(&params.scope_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4499,7 +5120,9 @@ pub async fn propertymappings_provider_scope_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScopeMapping`",
@@ -4523,15 +5146,12 @@ pub async fn propertymappings_provider_scope_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_provider_scope_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsProviderScopeUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsProviderScopeUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/provider/scope/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4556,7 +5176,7 @@ pub async fn propertymappings_provider_scope_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4574,11 +5194,8 @@ pub async fn propertymappings_provider_scope_used_by_list(
 /// KerberosSource PropertyMapping Viewset
 pub async fn propertymappings_source_kerberos_create(
     configuration: &configuration::Configuration,
-    kerberos_source_property_mapping_request: models::KerberosSourcePropertyMappingRequest,
+    params: PropertymappingsSourceKerberosCreateParams,
 ) -> Result<models::KerberosSourcePropertyMapping, Error<PropertymappingsSourceKerberosCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_kerberos_source_property_mapping_request = kerberos_source_property_mapping_request;
-
     let uri_str = format!("{}/propertymappings/source/kerberos/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4588,7 +5205,7 @@ pub async fn propertymappings_source_kerberos_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_kerberos_source_property_mapping_request);
+    req_builder = req_builder.json(&params.kerberos_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4604,7 +5221,7 @@ pub async fn propertymappings_source_kerberos_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::KerberosSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::KerberosSourcePropertyMapping`")))),
         }
@@ -4622,15 +5239,12 @@ pub async fn propertymappings_source_kerberos_create(
 /// KerberosSource PropertyMapping Viewset
 pub async fn propertymappings_source_kerberos_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceKerberosDestroyParams,
 ) -> Result<(), Error<PropertymappingsSourceKerberosDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/kerberos/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4662,27 +5276,12 @@ pub async fn propertymappings_source_kerberos_destroy(
 /// KerberosSource PropertyMapping Viewset
 pub async fn propertymappings_source_kerberos_list(
     configuration: &configuration::Configuration,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PropertymappingsSourceKerberosListParams,
 ) -> Result<models::PaginatedKerberosSourcePropertyMappingList, Error<PropertymappingsSourceKerberosListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/source/kerberos/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -4701,22 +5300,22 @@ pub async fn propertymappings_source_kerberos_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4740,7 +5339,7 @@ pub async fn propertymappings_source_kerberos_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedKerberosSourcePropertyMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedKerberosSourcePropertyMappingList`")))),
         }
@@ -4758,17 +5357,12 @@ pub async fn propertymappings_source_kerberos_list(
 /// KerberosSource PropertyMapping Viewset
 pub async fn propertymappings_source_kerberos_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_kerberos_source_property_mapping_request: Option<models::PatchedKerberosSourcePropertyMappingRequest>,
+    params: PropertymappingsSourceKerberosPartialUpdateParams,
 ) -> Result<models::KerberosSourcePropertyMapping, Error<PropertymappingsSourceKerberosPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_kerberos_source_property_mapping_request = patched_kerberos_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/kerberos/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -4778,7 +5372,7 @@ pub async fn propertymappings_source_kerberos_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_kerberos_source_property_mapping_request);
+    req_builder = req_builder.json(&params.patched_kerberos_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4794,7 +5388,7 @@ pub async fn propertymappings_source_kerberos_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::KerberosSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::KerberosSourcePropertyMapping`")))),
         }
@@ -4812,15 +5406,12 @@ pub async fn propertymappings_source_kerberos_partial_update(
 /// KerberosSource PropertyMapping Viewset
 pub async fn propertymappings_source_kerberos_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceKerberosRetrieveParams,
 ) -> Result<models::KerberosSourcePropertyMapping, Error<PropertymappingsSourceKerberosRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/kerberos/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4845,7 +5436,7 @@ pub async fn propertymappings_source_kerberos_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::KerberosSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::KerberosSourcePropertyMapping`")))),
         }
@@ -4863,17 +5454,12 @@ pub async fn propertymappings_source_kerberos_retrieve(
 /// KerberosSource PropertyMapping Viewset
 pub async fn propertymappings_source_kerberos_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    kerberos_source_property_mapping_request: models::KerberosSourcePropertyMappingRequest,
+    params: PropertymappingsSourceKerberosUpdateParams,
 ) -> Result<models::KerberosSourcePropertyMapping, Error<PropertymappingsSourceKerberosUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_kerberos_source_property_mapping_request = kerberos_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/kerberos/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4883,7 +5469,7 @@ pub async fn propertymappings_source_kerberos_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_kerberos_source_property_mapping_request);
+    req_builder = req_builder.json(&params.kerberos_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4899,7 +5485,7 @@ pub async fn propertymappings_source_kerberos_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::KerberosSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::KerberosSourcePropertyMapping`")))),
         }
@@ -4917,15 +5503,12 @@ pub async fn propertymappings_source_kerberos_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_source_kerberos_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceKerberosUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsSourceKerberosUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/kerberos/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4950,7 +5533,7 @@ pub async fn propertymappings_source_kerberos_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4968,11 +5551,8 @@ pub async fn propertymappings_source_kerberos_used_by_list(
 /// LDAP PropertyMapping Viewset
 pub async fn propertymappings_source_ldap_create(
     configuration: &configuration::Configuration,
-    ldap_source_property_mapping_request: models::LdapSourcePropertyMappingRequest,
+    params: PropertymappingsSourceLdapCreateParams,
 ) -> Result<models::LdapSourcePropertyMapping, Error<PropertymappingsSourceLdapCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_ldap_source_property_mapping_request = ldap_source_property_mapping_request;
-
     let uri_str = format!("{}/propertymappings/source/ldap/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4982,7 +5562,7 @@ pub async fn propertymappings_source_ldap_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_ldap_source_property_mapping_request);
+    req_builder = req_builder.json(&params.ldap_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4998,7 +5578,7 @@ pub async fn propertymappings_source_ldap_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::LdapSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::LdapSourcePropertyMapping`")))),
         }
@@ -5016,15 +5596,12 @@ pub async fn propertymappings_source_ldap_create(
 /// LDAP PropertyMapping Viewset
 pub async fn propertymappings_source_ldap_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceLdapDestroyParams,
 ) -> Result<(), Error<PropertymappingsSourceLdapDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/ldap/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -5056,27 +5633,12 @@ pub async fn propertymappings_source_ldap_destroy(
 /// LDAP PropertyMapping Viewset
 pub async fn propertymappings_source_ldap_list(
     configuration: &configuration::Configuration,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PropertymappingsSourceLdapListParams,
 ) -> Result<models::PaginatedLdapSourcePropertyMappingList, Error<PropertymappingsSourceLdapListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/source/ldap/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5095,22 +5657,22 @@ pub async fn propertymappings_source_ldap_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5134,7 +5696,7 @@ pub async fn propertymappings_source_ldap_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedLdapSourcePropertyMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedLdapSourcePropertyMappingList`")))),
         }
@@ -5152,17 +5714,12 @@ pub async fn propertymappings_source_ldap_list(
 /// LDAP PropertyMapping Viewset
 pub async fn propertymappings_source_ldap_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_ldap_source_property_mapping_request: Option<models::PatchedLdapSourcePropertyMappingRequest>,
+    params: PropertymappingsSourceLdapPartialUpdateParams,
 ) -> Result<models::LdapSourcePropertyMapping, Error<PropertymappingsSourceLdapPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_ldap_source_property_mapping_request = patched_ldap_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/ldap/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -5172,7 +5729,7 @@ pub async fn propertymappings_source_ldap_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_ldap_source_property_mapping_request);
+    req_builder = req_builder.json(&params.patched_ldap_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5188,7 +5745,7 @@ pub async fn propertymappings_source_ldap_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::LdapSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::LdapSourcePropertyMapping`")))),
         }
@@ -5206,15 +5763,12 @@ pub async fn propertymappings_source_ldap_partial_update(
 /// LDAP PropertyMapping Viewset
 pub async fn propertymappings_source_ldap_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceLdapRetrieveParams,
 ) -> Result<models::LdapSourcePropertyMapping, Error<PropertymappingsSourceLdapRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/ldap/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5239,7 +5793,7 @@ pub async fn propertymappings_source_ldap_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::LdapSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::LdapSourcePropertyMapping`")))),
         }
@@ -5257,17 +5811,12 @@ pub async fn propertymappings_source_ldap_retrieve(
 /// LDAP PropertyMapping Viewset
 pub async fn propertymappings_source_ldap_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    ldap_source_property_mapping_request: models::LdapSourcePropertyMappingRequest,
+    params: PropertymappingsSourceLdapUpdateParams,
 ) -> Result<models::LdapSourcePropertyMapping, Error<PropertymappingsSourceLdapUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_ldap_source_property_mapping_request = ldap_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/ldap/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -5277,7 +5826,7 @@ pub async fn propertymappings_source_ldap_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_ldap_source_property_mapping_request);
+    req_builder = req_builder.json(&params.ldap_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5293,7 +5842,7 @@ pub async fn propertymappings_source_ldap_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::LdapSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::LdapSourcePropertyMapping`")))),
         }
@@ -5311,15 +5860,12 @@ pub async fn propertymappings_source_ldap_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_source_ldap_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceLdapUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsSourceLdapUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/ldap/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5344,7 +5890,7 @@ pub async fn propertymappings_source_ldap_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -5362,11 +5908,8 @@ pub async fn propertymappings_source_ldap_used_by_list(
 /// OAuthSourcePropertyMapping Viewset
 pub async fn propertymappings_source_oauth_create(
     configuration: &configuration::Configuration,
-    o_auth_source_property_mapping_request: models::OAuthSourcePropertyMappingRequest,
+    params: PropertymappingsSourceOauthCreateParams,
 ) -> Result<models::OAuthSourcePropertyMapping, Error<PropertymappingsSourceOauthCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_o_auth_source_property_mapping_request = o_auth_source_property_mapping_request;
-
     let uri_str = format!("{}/propertymappings/source/oauth/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -5376,7 +5919,7 @@ pub async fn propertymappings_source_oauth_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_o_auth_source_property_mapping_request);
+    req_builder = req_builder.json(&params.o_auth_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5392,7 +5935,7 @@ pub async fn propertymappings_source_oauth_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuthSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuthSourcePropertyMapping`")))),
         }
@@ -5410,15 +5953,12 @@ pub async fn propertymappings_source_oauth_create(
 /// OAuthSourcePropertyMapping Viewset
 pub async fn propertymappings_source_oauth_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceOauthDestroyParams,
 ) -> Result<(), Error<PropertymappingsSourceOauthDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/oauth/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -5450,27 +5990,12 @@ pub async fn propertymappings_source_oauth_destroy(
 /// OAuthSourcePropertyMapping Viewset
 pub async fn propertymappings_source_oauth_list(
     configuration: &configuration::Configuration,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PropertymappingsSourceOauthListParams,
 ) -> Result<models::PaginatedOAuthSourcePropertyMappingList, Error<PropertymappingsSourceOauthListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/source/oauth/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5489,22 +6014,22 @@ pub async fn propertymappings_source_oauth_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5528,7 +6053,7 @@ pub async fn propertymappings_source_oauth_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedOAuthSourcePropertyMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedOAuthSourcePropertyMappingList`")))),
         }
@@ -5546,17 +6071,12 @@ pub async fn propertymappings_source_oauth_list(
 /// OAuthSourcePropertyMapping Viewset
 pub async fn propertymappings_source_oauth_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_o_auth_source_property_mapping_request: Option<models::PatchedOAuthSourcePropertyMappingRequest>,
+    params: PropertymappingsSourceOauthPartialUpdateParams,
 ) -> Result<models::OAuthSourcePropertyMapping, Error<PropertymappingsSourceOauthPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_o_auth_source_property_mapping_request = patched_o_auth_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/oauth/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -5566,7 +6086,7 @@ pub async fn propertymappings_source_oauth_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_o_auth_source_property_mapping_request);
+    req_builder = req_builder.json(&params.patched_o_auth_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5582,7 +6102,7 @@ pub async fn propertymappings_source_oauth_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuthSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuthSourcePropertyMapping`")))),
         }
@@ -5600,15 +6120,12 @@ pub async fn propertymappings_source_oauth_partial_update(
 /// OAuthSourcePropertyMapping Viewset
 pub async fn propertymappings_source_oauth_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceOauthRetrieveParams,
 ) -> Result<models::OAuthSourcePropertyMapping, Error<PropertymappingsSourceOauthRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/oauth/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5633,7 +6150,7 @@ pub async fn propertymappings_source_oauth_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuthSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuthSourcePropertyMapping`")))),
         }
@@ -5651,17 +6168,12 @@ pub async fn propertymappings_source_oauth_retrieve(
 /// OAuthSourcePropertyMapping Viewset
 pub async fn propertymappings_source_oauth_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    o_auth_source_property_mapping_request: models::OAuthSourcePropertyMappingRequest,
+    params: PropertymappingsSourceOauthUpdateParams,
 ) -> Result<models::OAuthSourcePropertyMapping, Error<PropertymappingsSourceOauthUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_o_auth_source_property_mapping_request = o_auth_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/oauth/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -5671,7 +6183,7 @@ pub async fn propertymappings_source_oauth_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_o_auth_source_property_mapping_request);
+    req_builder = req_builder.json(&params.o_auth_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5687,7 +6199,7 @@ pub async fn propertymappings_source_oauth_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuthSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuthSourcePropertyMapping`")))),
         }
@@ -5705,15 +6217,12 @@ pub async fn propertymappings_source_oauth_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_source_oauth_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceOauthUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsSourceOauthUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/oauth/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5738,7 +6247,7 @@ pub async fn propertymappings_source_oauth_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -5756,11 +6265,8 @@ pub async fn propertymappings_source_oauth_used_by_list(
 /// PlexSourcePropertyMapping Viewset
 pub async fn propertymappings_source_plex_create(
     configuration: &configuration::Configuration,
-    plex_source_property_mapping_request: models::PlexSourcePropertyMappingRequest,
+    params: PropertymappingsSourcePlexCreateParams,
 ) -> Result<models::PlexSourcePropertyMapping, Error<PropertymappingsSourcePlexCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_plex_source_property_mapping_request = plex_source_property_mapping_request;
-
     let uri_str = format!("{}/propertymappings/source/plex/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -5770,7 +6276,7 @@ pub async fn propertymappings_source_plex_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_plex_source_property_mapping_request);
+    req_builder = req_builder.json(&params.plex_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5786,7 +6292,7 @@ pub async fn propertymappings_source_plex_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PlexSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PlexSourcePropertyMapping`")))),
         }
@@ -5804,15 +6310,12 @@ pub async fn propertymappings_source_plex_create(
 /// PlexSourcePropertyMapping Viewset
 pub async fn propertymappings_source_plex_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourcePlexDestroyParams,
 ) -> Result<(), Error<PropertymappingsSourcePlexDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/plex/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -5844,27 +6347,12 @@ pub async fn propertymappings_source_plex_destroy(
 /// PlexSourcePropertyMapping Viewset
 pub async fn propertymappings_source_plex_list(
     configuration: &configuration::Configuration,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PropertymappingsSourcePlexListParams,
 ) -> Result<models::PaginatedPlexSourcePropertyMappingList, Error<PropertymappingsSourcePlexListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/source/plex/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5883,22 +6371,22 @@ pub async fn propertymappings_source_plex_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5922,7 +6410,7 @@ pub async fn propertymappings_source_plex_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedPlexSourcePropertyMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedPlexSourcePropertyMappingList`")))),
         }
@@ -5940,17 +6428,12 @@ pub async fn propertymappings_source_plex_list(
 /// PlexSourcePropertyMapping Viewset
 pub async fn propertymappings_source_plex_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_plex_source_property_mapping_request: Option<models::PatchedPlexSourcePropertyMappingRequest>,
+    params: PropertymappingsSourcePlexPartialUpdateParams,
 ) -> Result<models::PlexSourcePropertyMapping, Error<PropertymappingsSourcePlexPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_plex_source_property_mapping_request = patched_plex_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/plex/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -5960,7 +6443,7 @@ pub async fn propertymappings_source_plex_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_plex_source_property_mapping_request);
+    req_builder = req_builder.json(&params.patched_plex_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5976,7 +6459,7 @@ pub async fn propertymappings_source_plex_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PlexSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PlexSourcePropertyMapping`")))),
         }
@@ -5994,15 +6477,12 @@ pub async fn propertymappings_source_plex_partial_update(
 /// PlexSourcePropertyMapping Viewset
 pub async fn propertymappings_source_plex_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourcePlexRetrieveParams,
 ) -> Result<models::PlexSourcePropertyMapping, Error<PropertymappingsSourcePlexRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/plex/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6027,7 +6507,7 @@ pub async fn propertymappings_source_plex_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PlexSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PlexSourcePropertyMapping`")))),
         }
@@ -6045,17 +6525,12 @@ pub async fn propertymappings_source_plex_retrieve(
 /// PlexSourcePropertyMapping Viewset
 pub async fn propertymappings_source_plex_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    plex_source_property_mapping_request: models::PlexSourcePropertyMappingRequest,
+    params: PropertymappingsSourcePlexUpdateParams,
 ) -> Result<models::PlexSourcePropertyMapping, Error<PropertymappingsSourcePlexUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_plex_source_property_mapping_request = plex_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/plex/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -6065,7 +6540,7 @@ pub async fn propertymappings_source_plex_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_plex_source_property_mapping_request);
+    req_builder = req_builder.json(&params.plex_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6081,7 +6556,7 @@ pub async fn propertymappings_source_plex_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PlexSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PlexSourcePropertyMapping`")))),
         }
@@ -6099,15 +6574,12 @@ pub async fn propertymappings_source_plex_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_source_plex_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourcePlexUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsSourcePlexUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/plex/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6132,7 +6604,7 @@ pub async fn propertymappings_source_plex_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -6150,11 +6622,8 @@ pub async fn propertymappings_source_plex_used_by_list(
 /// SAMLSourcePropertyMapping Viewset
 pub async fn propertymappings_source_saml_create(
     configuration: &configuration::Configuration,
-    saml_source_property_mapping_request: models::SamlSourcePropertyMappingRequest,
+    params: PropertymappingsSourceSamlCreateParams,
 ) -> Result<models::SamlSourcePropertyMapping, Error<PropertymappingsSourceSamlCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_saml_source_property_mapping_request = saml_source_property_mapping_request;
-
     let uri_str = format!("{}/propertymappings/source/saml/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -6164,7 +6633,7 @@ pub async fn propertymappings_source_saml_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_saml_source_property_mapping_request);
+    req_builder = req_builder.json(&params.saml_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6180,7 +6649,7 @@ pub async fn propertymappings_source_saml_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SamlSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SamlSourcePropertyMapping`")))),
         }
@@ -6198,15 +6667,12 @@ pub async fn propertymappings_source_saml_create(
 /// SAMLSourcePropertyMapping Viewset
 pub async fn propertymappings_source_saml_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceSamlDestroyParams,
 ) -> Result<(), Error<PropertymappingsSourceSamlDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/saml/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -6238,27 +6704,12 @@ pub async fn propertymappings_source_saml_destroy(
 /// SAMLSourcePropertyMapping Viewset
 pub async fn propertymappings_source_saml_list(
     configuration: &configuration::Configuration,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PropertymappingsSourceSamlListParams,
 ) -> Result<models::PaginatedSamlSourcePropertyMappingList, Error<PropertymappingsSourceSamlListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/source/saml/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -6277,22 +6728,22 @@ pub async fn propertymappings_source_saml_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6316,7 +6767,7 @@ pub async fn propertymappings_source_saml_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedSamlSourcePropertyMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedSamlSourcePropertyMappingList`")))),
         }
@@ -6334,17 +6785,12 @@ pub async fn propertymappings_source_saml_list(
 /// SAMLSourcePropertyMapping Viewset
 pub async fn propertymappings_source_saml_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_saml_source_property_mapping_request: Option<models::PatchedSamlSourcePropertyMappingRequest>,
+    params: PropertymappingsSourceSamlPartialUpdateParams,
 ) -> Result<models::SamlSourcePropertyMapping, Error<PropertymappingsSourceSamlPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_saml_source_property_mapping_request = patched_saml_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/saml/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -6354,7 +6800,7 @@ pub async fn propertymappings_source_saml_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_saml_source_property_mapping_request);
+    req_builder = req_builder.json(&params.patched_saml_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6370,7 +6816,7 @@ pub async fn propertymappings_source_saml_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SamlSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SamlSourcePropertyMapping`")))),
         }
@@ -6388,15 +6834,12 @@ pub async fn propertymappings_source_saml_partial_update(
 /// SAMLSourcePropertyMapping Viewset
 pub async fn propertymappings_source_saml_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceSamlRetrieveParams,
 ) -> Result<models::SamlSourcePropertyMapping, Error<PropertymappingsSourceSamlRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/saml/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6421,7 +6864,7 @@ pub async fn propertymappings_source_saml_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SamlSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SamlSourcePropertyMapping`")))),
         }
@@ -6439,17 +6882,12 @@ pub async fn propertymappings_source_saml_retrieve(
 /// SAMLSourcePropertyMapping Viewset
 pub async fn propertymappings_source_saml_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    saml_source_property_mapping_request: models::SamlSourcePropertyMappingRequest,
+    params: PropertymappingsSourceSamlUpdateParams,
 ) -> Result<models::SamlSourcePropertyMapping, Error<PropertymappingsSourceSamlUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_saml_source_property_mapping_request = saml_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/saml/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -6459,7 +6897,7 @@ pub async fn propertymappings_source_saml_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_saml_source_property_mapping_request);
+    req_builder = req_builder.json(&params.saml_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6475,7 +6913,7 @@ pub async fn propertymappings_source_saml_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SamlSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SamlSourcePropertyMapping`")))),
         }
@@ -6493,15 +6931,12 @@ pub async fn propertymappings_source_saml_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_source_saml_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceSamlUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsSourceSamlUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/saml/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6526,7 +6961,7 @@ pub async fn propertymappings_source_saml_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -6544,11 +6979,8 @@ pub async fn propertymappings_source_saml_used_by_list(
 /// SCIMSourcePropertyMapping Viewset
 pub async fn propertymappings_source_scim_create(
     configuration: &configuration::Configuration,
-    scim_source_property_mapping_request: models::ScimSourcePropertyMappingRequest,
+    params: PropertymappingsSourceScimCreateParams,
 ) -> Result<models::ScimSourcePropertyMapping, Error<PropertymappingsSourceScimCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_scim_source_property_mapping_request = scim_source_property_mapping_request;
-
     let uri_str = format!("{}/propertymappings/source/scim/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -6558,7 +6990,7 @@ pub async fn propertymappings_source_scim_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_source_property_mapping_request);
+    req_builder = req_builder.json(&params.scim_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6574,7 +7006,7 @@ pub async fn propertymappings_source_scim_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ScimSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ScimSourcePropertyMapping`")))),
         }
@@ -6592,15 +7024,12 @@ pub async fn propertymappings_source_scim_create(
 /// SCIMSourcePropertyMapping Viewset
 pub async fn propertymappings_source_scim_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceScimDestroyParams,
 ) -> Result<(), Error<PropertymappingsSourceScimDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/scim/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -6632,27 +7061,12 @@ pub async fn propertymappings_source_scim_destroy(
 /// SCIMSourcePropertyMapping Viewset
 pub async fn propertymappings_source_scim_list(
     configuration: &configuration::Configuration,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PropertymappingsSourceScimListParams,
 ) -> Result<models::PaginatedScimSourcePropertyMappingList, Error<PropertymappingsSourceScimListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/source/scim/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -6671,22 +7085,22 @@ pub async fn propertymappings_source_scim_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6710,7 +7124,7 @@ pub async fn propertymappings_source_scim_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedScimSourcePropertyMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedScimSourcePropertyMappingList`")))),
         }
@@ -6728,17 +7142,12 @@ pub async fn propertymappings_source_scim_list(
 /// SCIMSourcePropertyMapping Viewset
 pub async fn propertymappings_source_scim_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_scim_source_property_mapping_request: Option<models::PatchedScimSourcePropertyMappingRequest>,
+    params: PropertymappingsSourceScimPartialUpdateParams,
 ) -> Result<models::ScimSourcePropertyMapping, Error<PropertymappingsSourceScimPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_scim_source_property_mapping_request = patched_scim_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/scim/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -6748,7 +7157,7 @@ pub async fn propertymappings_source_scim_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_scim_source_property_mapping_request);
+    req_builder = req_builder.json(&params.patched_scim_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6764,7 +7173,7 @@ pub async fn propertymappings_source_scim_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ScimSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ScimSourcePropertyMapping`")))),
         }
@@ -6782,15 +7191,12 @@ pub async fn propertymappings_source_scim_partial_update(
 /// SCIMSourcePropertyMapping Viewset
 pub async fn propertymappings_source_scim_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceScimRetrieveParams,
 ) -> Result<models::ScimSourcePropertyMapping, Error<PropertymappingsSourceScimRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/scim/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6815,7 +7221,7 @@ pub async fn propertymappings_source_scim_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ScimSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ScimSourcePropertyMapping`")))),
         }
@@ -6833,17 +7239,12 @@ pub async fn propertymappings_source_scim_retrieve(
 /// SCIMSourcePropertyMapping Viewset
 pub async fn propertymappings_source_scim_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    scim_source_property_mapping_request: models::ScimSourcePropertyMappingRequest,
+    params: PropertymappingsSourceScimUpdateParams,
 ) -> Result<models::ScimSourcePropertyMapping, Error<PropertymappingsSourceScimUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_scim_source_property_mapping_request = scim_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/scim/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -6853,7 +7254,7 @@ pub async fn propertymappings_source_scim_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_source_property_mapping_request);
+    req_builder = req_builder.json(&params.scim_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6869,7 +7270,7 @@ pub async fn propertymappings_source_scim_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ScimSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ScimSourcePropertyMapping`")))),
         }
@@ -6887,15 +7288,12 @@ pub async fn propertymappings_source_scim_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_source_scim_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceScimUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsSourceScimUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/scim/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6920,7 +7318,7 @@ pub async fn propertymappings_source_scim_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -6938,11 +7336,8 @@ pub async fn propertymappings_source_scim_used_by_list(
 /// TelegramSourcePropertyMapping Viewset
 pub async fn propertymappings_source_telegram_create(
     configuration: &configuration::Configuration,
-    telegram_source_property_mapping_request: models::TelegramSourcePropertyMappingRequest,
+    params: PropertymappingsSourceTelegramCreateParams,
 ) -> Result<models::TelegramSourcePropertyMapping, Error<PropertymappingsSourceTelegramCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_telegram_source_property_mapping_request = telegram_source_property_mapping_request;
-
     let uri_str = format!("{}/propertymappings/source/telegram/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -6952,7 +7347,7 @@ pub async fn propertymappings_source_telegram_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_telegram_source_property_mapping_request);
+    req_builder = req_builder.json(&params.telegram_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6968,7 +7363,7 @@ pub async fn propertymappings_source_telegram_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::TelegramSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::TelegramSourcePropertyMapping`")))),
         }
@@ -6986,15 +7381,12 @@ pub async fn propertymappings_source_telegram_create(
 /// TelegramSourcePropertyMapping Viewset
 pub async fn propertymappings_source_telegram_destroy(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceTelegramDestroyParams,
 ) -> Result<(), Error<PropertymappingsSourceTelegramDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/telegram/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -7026,27 +7418,12 @@ pub async fn propertymappings_source_telegram_destroy(
 /// TelegramSourcePropertyMapping Viewset
 pub async fn propertymappings_source_telegram_list(
     configuration: &configuration::Configuration,
-    managed: Option<Vec<String>>,
-    managed__isnull: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PropertymappingsSourceTelegramListParams,
 ) -> Result<models::PaginatedTelegramSourcePropertyMappingList, Error<PropertymappingsSourceTelegramListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_managed__isnull = managed__isnull;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/propertymappings/source/telegram/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -7065,22 +7442,22 @@ pub async fn propertymappings_source_telegram_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_managed__isnull {
+    if let Some(ref param_value) = params.managed__isnull {
         req_builder = req_builder.query(&[("managed__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7104,7 +7481,7 @@ pub async fn propertymappings_source_telegram_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedTelegramSourcePropertyMappingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedTelegramSourcePropertyMappingList`")))),
         }
@@ -7122,17 +7499,12 @@ pub async fn propertymappings_source_telegram_list(
 /// TelegramSourcePropertyMapping Viewset
 pub async fn propertymappings_source_telegram_partial_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    patched_telegram_source_property_mapping_request: Option<models::PatchedTelegramSourcePropertyMappingRequest>,
+    params: PropertymappingsSourceTelegramPartialUpdateParams,
 ) -> Result<models::TelegramSourcePropertyMapping, Error<PropertymappingsSourceTelegramPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_patched_telegram_source_property_mapping_request = patched_telegram_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/telegram/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -7142,7 +7514,7 @@ pub async fn propertymappings_source_telegram_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_telegram_source_property_mapping_request);
+    req_builder = req_builder.json(&params.patched_telegram_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7158,7 +7530,7 @@ pub async fn propertymappings_source_telegram_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::TelegramSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::TelegramSourcePropertyMapping`")))),
         }
@@ -7176,15 +7548,12 @@ pub async fn propertymappings_source_telegram_partial_update(
 /// TelegramSourcePropertyMapping Viewset
 pub async fn propertymappings_source_telegram_retrieve(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceTelegramRetrieveParams,
 ) -> Result<models::TelegramSourcePropertyMapping, Error<PropertymappingsSourceTelegramRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/telegram/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7209,7 +7578,7 @@ pub async fn propertymappings_source_telegram_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::TelegramSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::TelegramSourcePropertyMapping`")))),
         }
@@ -7227,17 +7596,12 @@ pub async fn propertymappings_source_telegram_retrieve(
 /// TelegramSourcePropertyMapping Viewset
 pub async fn propertymappings_source_telegram_update(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
-    telegram_source_property_mapping_request: models::TelegramSourcePropertyMappingRequest,
+    params: PropertymappingsSourceTelegramUpdateParams,
 ) -> Result<models::TelegramSourcePropertyMapping, Error<PropertymappingsSourceTelegramUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-    let p_body_telegram_source_property_mapping_request = telegram_source_property_mapping_request;
-
     let uri_str = format!(
         "{}/propertymappings/source/telegram/{pm_uuid}/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -7247,7 +7611,7 @@ pub async fn propertymappings_source_telegram_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_telegram_source_property_mapping_request);
+    req_builder = req_builder.json(&params.telegram_source_property_mapping_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7263,7 +7627,7 @@ pub async fn propertymappings_source_telegram_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::TelegramSourcePropertyMapping`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::TelegramSourcePropertyMapping`")))),
         }
@@ -7281,15 +7645,12 @@ pub async fn propertymappings_source_telegram_update(
 /// Get a list of all objects that use this object
 pub async fn propertymappings_source_telegram_used_by_list(
     configuration: &configuration::Configuration,
-    pm_uuid: &str,
+    params: PropertymappingsSourceTelegramUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PropertymappingsSourceTelegramUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pm_uuid = pm_uuid;
-
     let uri_str = format!(
         "{}/propertymappings/source/telegram/{pm_uuid}/used_by/",
         configuration.base_path,
-        pm_uuid = crate::apis::urlencode(p_path_pm_uuid)
+        pm_uuid = crate::apis::urlencode(params.pm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7314,7 +7675,7 @@ pub async fn propertymappings_source_telegram_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

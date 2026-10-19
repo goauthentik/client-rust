@@ -13,6 +13,80 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`enterprise_license_create`]
+#[derive(Clone, Debug)]
+pub struct EnterpriseLicenseCreateParams {
+    pub license_request: models::LicenseRequest,
+}
+
+/// struct for passing parameters to the method [`enterprise_license_destroy`]
+#[derive(Clone, Debug)]
+pub struct EnterpriseLicenseDestroyParams {
+    /// A UUID string identifying this License.
+    pub license_uuid: String,
+}
+
+/// struct for passing parameters to the method [`enterprise_license_list`]
+#[derive(Clone, Debug)]
+pub struct EnterpriseLicenseListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`enterprise_license_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EnterpriseLicensePartialUpdateParams {
+    /// A UUID string identifying this License.
+    pub license_uuid: String,
+    pub patched_license_request: Option<models::PatchedLicenseRequest>,
+}
+
+/// struct for passing parameters to the method [`enterprise_license_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EnterpriseLicenseRetrieveParams {
+    /// A UUID string identifying this License.
+    pub license_uuid: String,
+}
+
+/// struct for passing parameters to the method [`enterprise_license_summary_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EnterpriseLicenseSummaryRetrieveParams {
+    pub cached: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`enterprise_license_update`]
+#[derive(Clone, Debug)]
+pub struct EnterpriseLicenseUpdateParams {
+    /// A UUID string identifying this License.
+    pub license_uuid: String,
+    pub license_request: models::LicenseRequest,
+}
+
+/// struct for passing parameters to the method [`enterprise_license_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EnterpriseLicenseUsedByListParams {
+    /// A UUID string identifying this License.
+    pub license_uuid: String,
+}
+
+/// struct for passing parameters to the method [`enterprise_license_user_counts_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EnterpriseLicenseUserCountsRetrieveParams {
+    /// Positive relative periods, such as 'days=30' or 'weeks=3;days=2'.
+    pub count_steps: Option<Vec<String>>,
+    /// Exclusive end of an absolute range; must be provided with start.
+    pub end: Option<chrono::DateTime<chrono::FixedOffset>>,
+    /// Inclusive start of an absolute range; must be provided with end.
+    pub start: Option<chrono::DateTime<chrono::FixedOffset>>,
+}
+
 /// struct for typed errors of method [`enterprise_license_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -106,11 +180,8 @@ pub enum EnterpriseLicenseUserCountsRetrieveError {
 /// License Viewset
 pub async fn enterprise_license_create(
     configuration: &configuration::Configuration,
-    license_request: models::LicenseRequest,
+    params: EnterpriseLicenseCreateParams,
 ) -> Result<models::License, Error<EnterpriseLicenseCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_license_request = license_request;
-
     let uri_str = format!("{}/enterprise/license/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -120,7 +191,7 @@ pub async fn enterprise_license_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_license_request);
+    req_builder = req_builder.json(&params.license_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -136,7 +207,9 @@ pub async fn enterprise_license_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::License`",
@@ -162,15 +235,12 @@ pub async fn enterprise_license_create(
 /// License Viewset
 pub async fn enterprise_license_destroy(
     configuration: &configuration::Configuration,
-    license_uuid: &str,
+    params: EnterpriseLicenseDestroyParams,
 ) -> Result<(), Error<EnterpriseLicenseDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_license_uuid = license_uuid;
-
     let uri_str = format!(
         "{}/enterprise/license/{license_uuid}/",
         configuration.base_path,
-        license_uuid = crate::apis::urlencode(p_path_license_uuid)
+        license_uuid = crate::apis::urlencode(params.license_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -227,7 +297,9 @@ pub async fn enterprise_license_install_id_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::InstallId`",
@@ -253,35 +325,24 @@ pub async fn enterprise_license_install_id_retrieve(
 /// License Viewset
 pub async fn enterprise_license_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: EnterpriseLicenseListParams,
 ) -> Result<models::PaginatedLicenseList, Error<EnterpriseLicenseListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/enterprise/license/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -305,7 +366,7 @@ pub async fn enterprise_license_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedLicenseList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedLicenseList`")))),
         }
@@ -323,17 +384,12 @@ pub async fn enterprise_license_list(
 /// License Viewset
 pub async fn enterprise_license_partial_update(
     configuration: &configuration::Configuration,
-    license_uuid: &str,
-    patched_license_request: Option<models::PatchedLicenseRequest>,
+    params: EnterpriseLicensePartialUpdateParams,
 ) -> Result<models::License, Error<EnterpriseLicensePartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_license_uuid = license_uuid;
-    let p_body_patched_license_request = patched_license_request;
-
     let uri_str = format!(
         "{}/enterprise/license/{license_uuid}/",
         configuration.base_path,
-        license_uuid = crate::apis::urlencode(p_path_license_uuid)
+        license_uuid = crate::apis::urlencode(params.license_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -343,7 +399,7 @@ pub async fn enterprise_license_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_license_request);
+    req_builder = req_builder.json(&params.patched_license_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -359,7 +415,9 @@ pub async fn enterprise_license_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::License`",
@@ -385,15 +443,12 @@ pub async fn enterprise_license_partial_update(
 /// License Viewset
 pub async fn enterprise_license_retrieve(
     configuration: &configuration::Configuration,
-    license_uuid: &str,
+    params: EnterpriseLicenseRetrieveParams,
 ) -> Result<models::License, Error<EnterpriseLicenseRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_license_uuid = license_uuid;
-
     let uri_str = format!(
         "{}/enterprise/license/{license_uuid}/",
         configuration.base_path,
-        license_uuid = crate::apis::urlencode(p_path_license_uuid)
+        license_uuid = crate::apis::urlencode(params.license_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -418,7 +473,9 @@ pub async fn enterprise_license_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::License`",
@@ -444,15 +501,12 @@ pub async fn enterprise_license_retrieve(
 /// Get the total license status
 pub async fn enterprise_license_summary_retrieve(
     configuration: &configuration::Configuration,
-    cached: Option<bool>,
+    params: EnterpriseLicenseSummaryRetrieveParams,
 ) -> Result<models::LicenseSummary, Error<EnterpriseLicenseSummaryRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_cached = cached;
-
     let uri_str = format!("{}/enterprise/license/summary/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_cached {
+    if let Some(ref param_value) = params.cached {
         req_builder = req_builder.query(&[("cached", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -476,7 +530,9 @@ pub async fn enterprise_license_summary_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LicenseSummary`",
@@ -500,17 +556,12 @@ pub async fn enterprise_license_summary_retrieve(
 /// License Viewset
 pub async fn enterprise_license_update(
     configuration: &configuration::Configuration,
-    license_uuid: &str,
-    license_request: models::LicenseRequest,
+    params: EnterpriseLicenseUpdateParams,
 ) -> Result<models::License, Error<EnterpriseLicenseUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_license_uuid = license_uuid;
-    let p_body_license_request = license_request;
-
     let uri_str = format!(
         "{}/enterprise/license/{license_uuid}/",
         configuration.base_path,
-        license_uuid = crate::apis::urlencode(p_path_license_uuid)
+        license_uuid = crate::apis::urlencode(params.license_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -520,7 +571,7 @@ pub async fn enterprise_license_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_license_request);
+    req_builder = req_builder.json(&params.license_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -536,7 +587,9 @@ pub async fn enterprise_license_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::License`",
@@ -562,15 +615,12 @@ pub async fn enterprise_license_update(
 /// Get a list of all objects that use this object
 pub async fn enterprise_license_used_by_list(
     configuration: &configuration::Configuration,
-    license_uuid: &str,
+    params: EnterpriseLicenseUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EnterpriseLicenseUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_license_uuid = license_uuid;
-
     let uri_str = format!(
         "{}/enterprise/license/{license_uuid}/used_by/",
         configuration.base_path,
-        license_uuid = crate::apis::urlencode(p_path_license_uuid)
+        license_uuid = crate::apis::urlencode(params.license_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -595,7 +645,7 @@ pub async fn enterprise_license_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -613,19 +663,12 @@ pub async fn enterprise_license_used_by_list(
 /// Get active user totals and counts for relative or absolute date ranges.  At least one positive relative count step or a complete absolute range is required. Relative and absolute ranges may be combined. Range starts are inclusive and ends are exclusive. Counts include currently active, non-anonymous accounts.
 pub async fn enterprise_license_user_counts_retrieve(
     configuration: &configuration::Configuration,
-    count_steps: Option<Vec<String>>,
-    end: Option<chrono::DateTime<chrono::FixedOffset>>,
-    start: Option<chrono::DateTime<chrono::FixedOffset>>,
+    params: EnterpriseLicenseUserCountsRetrieveParams,
 ) -> Result<models::LicenseUserCounts, Error<EnterpriseLicenseUserCountsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_count_steps = count_steps;
-    let p_query_end = end;
-    let p_query_start = start;
-
     let uri_str = format!("{}/enterprise/license/user_counts/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_count_steps {
+    if let Some(ref param_value) = params.count_steps {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -644,10 +687,10 @@ pub async fn enterprise_license_user_counts_retrieve(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_end {
+    if let Some(ref param_value) = params.end {
         req_builder = req_builder.query(&[("end", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_start {
+    if let Some(ref param_value) = params.start {
         req_builder = req_builder.query(&[("start", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -671,7 +714,7 @@ pub async fn enterprise_license_user_counts_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::LicenseUserCounts`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::LicenseUserCounts`")))),
         }

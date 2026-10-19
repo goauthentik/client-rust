@@ -13,6 +13,558 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`endpoints_agents_connectors_auth_fed_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsConnectorsAuthFedCreateParams {
+    pub device: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_connectors_auth_ia_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsConnectorsAuthIaCreateParams {
+    pub login_hint: Option<String>,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_connectors_check_in_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsConnectorsCheckInCreateParams {
+    pub device_facts_request: Option<models::DeviceFactsRequest>,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_connectors_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsConnectorsCreateParams {
+    pub agent_connector_request: models::AgentConnectorRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_connectors_destroy`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsConnectorsDestroyParams {
+    /// A UUID string identifying this Agent Connector.
+    pub connector_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_connectors_enroll_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsConnectorsEnrollCreateParams {
+    pub enroll_request: models::EnrollRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_connectors_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsConnectorsListParams {
+    pub enabled: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_connectors_mdm_config_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsConnectorsMdmConfigCreateParams {
+    /// A UUID string identifying this Agent Connector.
+    pub connector_uuid: String,
+    pub mdm_config_request: models::MdmConfigRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_connectors_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsConnectorsPartialUpdateParams {
+    /// A UUID string identifying this Agent Connector.
+    pub connector_uuid: String,
+    pub patched_agent_connector_request: Option<models::PatchedAgentConnectorRequest>,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_connectors_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsConnectorsRetrieveParams {
+    /// A UUID string identifying this Agent Connector.
+    pub connector_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_connectors_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsConnectorsUpdateParams {
+    /// A UUID string identifying this Agent Connector.
+    pub connector_uuid: String,
+    pub agent_connector_request: models::AgentConnectorRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_connectors_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsConnectorsUsedByListParams {
+    /// A UUID string identifying this Agent Connector.
+    pub connector_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_enrollment_tokens_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsEnrollmentTokensCreateParams {
+    pub enrollment_token_request: models::EnrollmentTokenRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_enrollment_tokens_destroy`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsEnrollmentTokensDestroyParams {
+    /// A UUID string identifying this Enrollment Token.
+    pub token_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_enrollment_tokens_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsEnrollmentTokensListParams {
+    pub connector: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub token_uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_enrollment_tokens_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsEnrollmentTokensPartialUpdateParams {
+    /// A UUID string identifying this Enrollment Token.
+    pub token_uuid: String,
+    pub patched_enrollment_token_request: Option<models::PatchedEnrollmentTokenRequest>,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_enrollment_tokens_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsEnrollmentTokensRetrieveParams {
+    /// A UUID string identifying this Enrollment Token.
+    pub token_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_enrollment_tokens_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsEnrollmentTokensUpdateParams {
+    /// A UUID string identifying this Enrollment Token.
+    pub token_uuid: String,
+    pub enrollment_token_request: models::EnrollmentTokenRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_enrollment_tokens_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsEnrollmentTokensUsedByListParams {
+    /// A UUID string identifying this Enrollment Token.
+    pub token_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_enrollment_tokens_view_key_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsEnrollmentTokensViewKeyRetrieveParams {
+    /// A UUID string identifying this Enrollment Token.
+    pub token_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_psso_ise_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsPssoIseCreateParams {
+    pub apple_independent_secure_enclave_request: models::AppleIndependentSecureEnclaveRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_psso_ise_destroy`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsPssoIseDestroyParams {
+    /// A UUID string identifying this Apple Independent Secure Enclave.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_psso_ise_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsPssoIseListParams {
+    pub apple_enclave_key_id: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_psso_ise_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsPssoIsePartialUpdateParams {
+    /// A UUID string identifying this Apple Independent Secure Enclave.
+    pub uuid: String,
+    pub patched_apple_independent_secure_enclave_request: Option<models::PatchedAppleIndependentSecureEnclaveRequest>,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_psso_ise_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsPssoIseRetrieveParams {
+    /// A UUID string identifying this Apple Independent Secure Enclave.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_psso_ise_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsPssoIseUpdateParams {
+    /// A UUID string identifying this Apple Independent Secure Enclave.
+    pub uuid: String,
+    pub apple_independent_secure_enclave_request: models::AppleIndependentSecureEnclaveRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_psso_ise_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsPssoIseUsedByListParams {
+    /// A UUID string identifying this Apple Independent Secure Enclave.
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_psso_register_device_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsPssoRegisterDeviceCreateParams {
+    pub agent_psso_device_registration_request: models::AgentPssoDeviceRegistrationRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_agents_psso_register_user_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsAgentsPssoRegisterUserCreateParams {
+    pub agent_psso_user_registration_request: models::AgentPssoUserRegistrationRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_connectors_destroy`]
+#[derive(Clone, Debug)]
+pub struct EndpointsConnectorsDestroyParams {
+    /// A UUID string identifying this connector.
+    pub connector_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_connectors_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsConnectorsListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`endpoints_connectors_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EndpointsConnectorsRetrieveParams {
+    /// A UUID string identifying this connector.
+    pub connector_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_connectors_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsConnectorsUsedByListParams {
+    /// A UUID string identifying this connector.
+    pub connector_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_access_groups_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceAccessGroupsCreateParams {
+    pub device_access_group_request: models::DeviceAccessGroupRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_access_groups_destroy`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceAccessGroupsDestroyParams {
+    /// A UUID string identifying this Device access group.
+    pub pbm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_access_groups_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceAccessGroupsListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pbm_uuid: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_access_groups_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceAccessGroupsPartialUpdateParams {
+    /// A UUID string identifying this Device access group.
+    pub pbm_uuid: String,
+    pub patched_device_access_group_request: Option<models::PatchedDeviceAccessGroupRequest>,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_access_groups_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceAccessGroupsRetrieveParams {
+    /// A UUID string identifying this Device access group.
+    pub pbm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_access_groups_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceAccessGroupsUpdateParams {
+    /// A UUID string identifying this Device access group.
+    pub pbm_uuid: String,
+    pub device_access_group_request: models::DeviceAccessGroupRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_access_groups_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceAccessGroupsUsedByListParams {
+    /// A UUID string identifying this Device access group.
+    pub pbm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_bindings_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceBindingsCreateParams {
+    pub device_user_binding_request: models::DeviceUserBindingRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_bindings_destroy`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceBindingsDestroyParams {
+    /// A UUID string identifying this Device User binding.
+    pub policy_binding_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_bindings_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceBindingsListParams {
+    pub enabled: Option<bool>,
+    pub order: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub policy: Option<String>,
+    pub policy__isnull: Option<bool>,
+    /// A search term.
+    pub search: Option<String>,
+    pub target: Option<String>,
+    pub target_in: Option<Vec<uuid::Uuid>>,
+    pub timeout: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_bindings_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceBindingsPartialUpdateParams {
+    /// A UUID string identifying this Device User binding.
+    pub policy_binding_uuid: String,
+    pub patched_device_user_binding_request: Option<models::PatchedDeviceUserBindingRequest>,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_bindings_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceBindingsRetrieveParams {
+    /// A UUID string identifying this Device User binding.
+    pub policy_binding_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_bindings_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceBindingsUpdateParams {
+    /// A UUID string identifying this Device User binding.
+    pub policy_binding_uuid: String,
+    pub device_user_binding_request: models::DeviceUserBindingRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_device_bindings_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDeviceBindingsUsedByListParams {
+    /// A UUID string identifying this Device User binding.
+    pub policy_binding_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_devices_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDevicesCreateParams {
+    pub endpoint_device_request: models::EndpointDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_devices_destroy`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDevicesDestroyParams {
+    /// A UUID string identifying this Device.
+    pub device_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_devices_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDevicesListParams {
+    pub identifier: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`endpoints_devices_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDevicesPartialUpdateParams {
+    /// A UUID string identifying this Device.
+    pub device_uuid: String,
+    pub patched_endpoint_device_request: Option<models::PatchedEndpointDeviceRequest>,
+}
+
+/// struct for passing parameters to the method [`endpoints_devices_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDevicesRetrieveParams {
+    /// A UUID string identifying this Device.
+    pub device_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_devices_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDevicesUpdateParams {
+    /// A UUID string identifying this Device.
+    pub device_uuid: String,
+    pub endpoint_device_request: models::EndpointDeviceRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_devices_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsDevicesUsedByListParams {
+    /// A UUID string identifying this Device.
+    pub device_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_fleet_connectors_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsFleetConnectorsCreateParams {
+    pub fleet_connector_request: models::FleetConnectorRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_fleet_connectors_destroy`]
+#[derive(Clone, Debug)]
+pub struct EndpointsFleetConnectorsDestroyParams {
+    /// A UUID string identifying this Fleet Connector.
+    pub connector_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_fleet_connectors_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsFleetConnectorsListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`endpoints_fleet_connectors_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsFleetConnectorsPartialUpdateParams {
+    /// A UUID string identifying this Fleet Connector.
+    pub connector_uuid: String,
+    pub patched_fleet_connector_request: Option<models::PatchedFleetConnectorRequest>,
+}
+
+/// struct for passing parameters to the method [`endpoints_fleet_connectors_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EndpointsFleetConnectorsRetrieveParams {
+    /// A UUID string identifying this Fleet Connector.
+    pub connector_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_fleet_connectors_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsFleetConnectorsUpdateParams {
+    /// A UUID string identifying this Fleet Connector.
+    pub connector_uuid: String,
+    pub fleet_connector_request: models::FleetConnectorRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_fleet_connectors_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsFleetConnectorsUsedByListParams {
+    /// A UUID string identifying this Fleet Connector.
+    pub connector_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_google_chrome_connectors_create`]
+#[derive(Clone, Debug)]
+pub struct EndpointsGoogleChromeConnectorsCreateParams {
+    pub google_chrome_connector_request: models::GoogleChromeConnectorRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_google_chrome_connectors_destroy`]
+#[derive(Clone, Debug)]
+pub struct EndpointsGoogleChromeConnectorsDestroyParams {
+    /// A UUID string identifying this Google Device Trust Connector.
+    pub connector_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_google_chrome_connectors_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsGoogleChromeConnectorsListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`endpoints_google_chrome_connectors_partial_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsGoogleChromeConnectorsPartialUpdateParams {
+    /// A UUID string identifying this Google Device Trust Connector.
+    pub connector_uuid: String,
+    pub patched_google_chrome_connector_request: Option<models::PatchedGoogleChromeConnectorRequest>,
+}
+
+/// struct for passing parameters to the method [`endpoints_google_chrome_connectors_retrieve`]
+#[derive(Clone, Debug)]
+pub struct EndpointsGoogleChromeConnectorsRetrieveParams {
+    /// A UUID string identifying this Google Device Trust Connector.
+    pub connector_uuid: String,
+}
+
+/// struct for passing parameters to the method [`endpoints_google_chrome_connectors_update`]
+#[derive(Clone, Debug)]
+pub struct EndpointsGoogleChromeConnectorsUpdateParams {
+    /// A UUID string identifying this Google Device Trust Connector.
+    pub connector_uuid: String,
+    pub google_chrome_connector_request: models::GoogleChromeConnectorRequest,
+}
+
+/// struct for passing parameters to the method [`endpoints_google_chrome_connectors_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct EndpointsGoogleChromeConnectorsUsedByListParams {
+    /// A UUID string identifying this Google Device Trust Connector.
+    pub connector_uuid: String,
+}
+
 /// struct for typed errors of method [`endpoints_agents_connectors_agent_config_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -679,7 +1231,9 @@ pub async fn endpoints_agents_connectors_agent_config_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::AgentConfig`",
@@ -705,15 +1259,12 @@ pub async fn endpoints_agents_connectors_agent_config_retrieve(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_connectors_auth_fed_create(
     configuration: &configuration::Configuration,
-    device: &str,
+    params: EndpointsAgentsConnectorsAuthFedCreateParams,
 ) -> Result<models::AgentTokenResponse, Error<EndpointsAgentsConnectorsAuthFedCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_device = device;
-
     let uri_str = format!("{}/endpoints/agents/connectors/auth_fed/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    req_builder = req_builder.query(&[("device", &p_query_device.to_string())]);
+    req_builder = req_builder.query(&[("device", &params.device.to_string())]);
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
@@ -735,7 +1286,7 @@ pub async fn endpoints_agents_connectors_auth_fed_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AgentTokenResponse`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AgentTokenResponse`")))),
         }
@@ -753,15 +1304,12 @@ pub async fn endpoints_agents_connectors_auth_fed_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_connectors_auth_ia_create(
     configuration: &configuration::Configuration,
-    login_hint: Option<&str>,
+    params: EndpointsAgentsConnectorsAuthIaCreateParams,
 ) -> Result<models::AgentAuthenticationResponse, Error<EndpointsAgentsConnectorsAuthIaCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_login_hint = login_hint;
-
     let uri_str = format!("{}/endpoints/agents/connectors/auth_ia/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_query_login_hint {
+    if let Some(ref param_value) = params.login_hint {
         req_builder = req_builder.query(&[("login_hint", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -782,7 +1330,7 @@ pub async fn endpoints_agents_connectors_auth_ia_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AgentAuthenticationResponse`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AgentAuthenticationResponse`")))),
         }
@@ -800,18 +1348,15 @@ pub async fn endpoints_agents_connectors_auth_ia_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_connectors_check_in_create(
     configuration: &configuration::Configuration,
-    device_facts_request: Option<models::DeviceFactsRequest>,
+    params: EndpointsAgentsConnectorsCheckInCreateParams,
 ) -> Result<(), Error<EndpointsAgentsConnectorsCheckInCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_device_facts_request = device_facts_request;
-
     let uri_str = format!("{}/endpoints/agents/connectors/check_in/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
-    req_builder = req_builder.json(&p_body_device_facts_request);
+    req_builder = req_builder.json(&params.device_facts_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -834,11 +1379,8 @@ pub async fn endpoints_agents_connectors_check_in_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_connectors_create(
     configuration: &configuration::Configuration,
-    agent_connector_request: models::AgentConnectorRequest,
+    params: EndpointsAgentsConnectorsCreateParams,
 ) -> Result<models::AgentConnector, Error<EndpointsAgentsConnectorsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_agent_connector_request = agent_connector_request;
-
     let uri_str = format!("{}/endpoints/agents/connectors/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -848,7 +1390,7 @@ pub async fn endpoints_agents_connectors_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_agent_connector_request);
+    req_builder = req_builder.json(&params.agent_connector_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -864,7 +1406,9 @@ pub async fn endpoints_agents_connectors_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::AgentConnector`",
@@ -888,15 +1432,12 @@ pub async fn endpoints_agents_connectors_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_connectors_destroy(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
+    params: EndpointsAgentsConnectorsDestroyParams,
 ) -> Result<(), Error<EndpointsAgentsConnectorsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-
     let uri_str = format!(
         "{}/endpoints/agents/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -928,11 +1469,8 @@ pub async fn endpoints_agents_connectors_destroy(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_connectors_enroll_create(
     configuration: &configuration::Configuration,
-    enroll_request: models::EnrollRequest,
+    params: EndpointsAgentsConnectorsEnrollCreateParams,
 ) -> Result<models::AgentTokenResponse, Error<EndpointsAgentsConnectorsEnrollCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_enroll_request = enroll_request;
-
     let uri_str = format!("{}/endpoints/agents/connectors/enroll/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -942,7 +1480,7 @@ pub async fn endpoints_agents_connectors_enroll_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_enroll_request);
+    req_builder = req_builder.json(&params.enroll_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -958,7 +1496,7 @@ pub async fn endpoints_agents_connectors_enroll_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AgentTokenResponse`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AgentTokenResponse`")))),
         }
@@ -976,40 +1514,27 @@ pub async fn endpoints_agents_connectors_enroll_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_connectors_list(
     configuration: &configuration::Configuration,
-    enabled: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: EndpointsAgentsConnectorsListParams,
 ) -> Result<models::PaginatedAgentConnectorList, Error<EndpointsAgentsConnectorsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_enabled = enabled;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/endpoints/agents/connectors/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_enabled {
+    if let Some(ref param_value) = params.enabled {
         req_builder = req_builder.query(&[("enabled", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1033,7 +1558,7 @@ pub async fn endpoints_agents_connectors_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAgentConnectorList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAgentConnectorList`")))),
         }
@@ -1051,17 +1576,12 @@ pub async fn endpoints_agents_connectors_list(
 /// Generate configuration for MDM systems to deploy authentik Agent
 pub async fn endpoints_agents_connectors_mdm_config_create(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
-    mdm_config_request: models::MdmConfigRequest,
+    params: EndpointsAgentsConnectorsMdmConfigCreateParams,
 ) -> Result<models::MdmConfigResponse, Error<EndpointsAgentsConnectorsMdmConfigCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-    let p_body_mdm_config_request = mdm_config_request;
-
     let uri_str = format!(
         "{}/endpoints/agents/connectors/{connector_uuid}/mdm_config/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1071,7 +1591,7 @@ pub async fn endpoints_agents_connectors_mdm_config_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_mdm_config_request);
+    req_builder = req_builder.json(&params.mdm_config_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1087,7 +1607,7 @@ pub async fn endpoints_agents_connectors_mdm_config_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MdmConfigResponse`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MdmConfigResponse`")))),
         }
@@ -1105,17 +1625,12 @@ pub async fn endpoints_agents_connectors_mdm_config_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_connectors_partial_update(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
-    patched_agent_connector_request: Option<models::PatchedAgentConnectorRequest>,
+    params: EndpointsAgentsConnectorsPartialUpdateParams,
 ) -> Result<models::AgentConnector, Error<EndpointsAgentsConnectorsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-    let p_body_patched_agent_connector_request = patched_agent_connector_request;
-
     let uri_str = format!(
         "{}/endpoints/agents/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1125,7 +1640,7 @@ pub async fn endpoints_agents_connectors_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_agent_connector_request);
+    req_builder = req_builder.json(&params.patched_agent_connector_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1141,7 +1656,9 @@ pub async fn endpoints_agents_connectors_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::AgentConnector`",
@@ -1165,15 +1682,12 @@ pub async fn endpoints_agents_connectors_partial_update(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_connectors_retrieve(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
+    params: EndpointsAgentsConnectorsRetrieveParams,
 ) -> Result<models::AgentConnector, Error<EndpointsAgentsConnectorsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-
     let uri_str = format!(
         "{}/endpoints/agents/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1198,7 +1712,9 @@ pub async fn endpoints_agents_connectors_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::AgentConnector`",
@@ -1222,17 +1738,12 @@ pub async fn endpoints_agents_connectors_retrieve(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_connectors_update(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
-    agent_connector_request: models::AgentConnectorRequest,
+    params: EndpointsAgentsConnectorsUpdateParams,
 ) -> Result<models::AgentConnector, Error<EndpointsAgentsConnectorsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-    let p_body_agent_connector_request = agent_connector_request;
-
     let uri_str = format!(
         "{}/endpoints/agents/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1242,7 +1753,7 @@ pub async fn endpoints_agents_connectors_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_agent_connector_request);
+    req_builder = req_builder.json(&params.agent_connector_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1258,7 +1769,9 @@ pub async fn endpoints_agents_connectors_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::AgentConnector`",
@@ -1282,15 +1795,12 @@ pub async fn endpoints_agents_connectors_update(
 /// Get a list of all objects that use this object
 pub async fn endpoints_agents_connectors_used_by_list(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
+    params: EndpointsAgentsConnectorsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EndpointsAgentsConnectorsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-
     let uri_str = format!(
         "{}/endpoints/agents/connectors/{connector_uuid}/used_by/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1315,7 +1825,7 @@ pub async fn endpoints_agents_connectors_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1333,11 +1843,8 @@ pub async fn endpoints_agents_connectors_used_by_list(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_enrollment_tokens_create(
     configuration: &configuration::Configuration,
-    enrollment_token_request: models::EnrollmentTokenRequest,
+    params: EndpointsAgentsEnrollmentTokensCreateParams,
 ) -> Result<models::EnrollmentToken, Error<EndpointsAgentsEnrollmentTokensCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_enrollment_token_request = enrollment_token_request;
-
     let uri_str = format!("{}/endpoints/agents/enrollment_tokens/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1347,7 +1854,7 @@ pub async fn endpoints_agents_enrollment_tokens_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_enrollment_token_request);
+    req_builder = req_builder.json(&params.enrollment_token_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1363,7 +1870,9 @@ pub async fn endpoints_agents_enrollment_tokens_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EnrollmentToken`",
@@ -1387,15 +1896,12 @@ pub async fn endpoints_agents_enrollment_tokens_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_enrollment_tokens_destroy(
     configuration: &configuration::Configuration,
-    token_uuid: &str,
+    params: EndpointsAgentsEnrollmentTokensDestroyParams,
 ) -> Result<(), Error<EndpointsAgentsEnrollmentTokensDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_token_uuid = token_uuid;
-
     let uri_str = format!(
         "{}/endpoints/agents/enrollment_tokens/{token_uuid}/",
         configuration.base_path,
-        token_uuid = crate::apis::urlencode(p_path_token_uuid)
+        token_uuid = crate::apis::urlencode(params.token_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1427,40 +1933,27 @@ pub async fn endpoints_agents_enrollment_tokens_destroy(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_enrollment_tokens_list(
     configuration: &configuration::Configuration,
-    connector: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    token_uuid: Option<&str>,
+    params: EndpointsAgentsEnrollmentTokensListParams,
 ) -> Result<models::PaginatedEnrollmentTokenList, Error<EndpointsAgentsEnrollmentTokensListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_connector = connector;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_token_uuid = token_uuid;
-
     let uri_str = format!("{}/endpoints/agents/enrollment_tokens/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_connector {
+    if let Some(ref param_value) = params.connector {
         req_builder = req_builder.query(&[("connector", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_token_uuid {
+    if let Some(ref param_value) = params.token_uuid {
         req_builder = req_builder.query(&[("token_uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1484,7 +1977,7 @@ pub async fn endpoints_agents_enrollment_tokens_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedEnrollmentTokenList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedEnrollmentTokenList`")))),
         }
@@ -1502,17 +1995,12 @@ pub async fn endpoints_agents_enrollment_tokens_list(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_enrollment_tokens_partial_update(
     configuration: &configuration::Configuration,
-    token_uuid: &str,
-    patched_enrollment_token_request: Option<models::PatchedEnrollmentTokenRequest>,
+    params: EndpointsAgentsEnrollmentTokensPartialUpdateParams,
 ) -> Result<models::EnrollmentToken, Error<EndpointsAgentsEnrollmentTokensPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_token_uuid = token_uuid;
-    let p_body_patched_enrollment_token_request = patched_enrollment_token_request;
-
     let uri_str = format!(
         "{}/endpoints/agents/enrollment_tokens/{token_uuid}/",
         configuration.base_path,
-        token_uuid = crate::apis::urlencode(p_path_token_uuid)
+        token_uuid = crate::apis::urlencode(params.token_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1522,7 +2010,7 @@ pub async fn endpoints_agents_enrollment_tokens_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_enrollment_token_request);
+    req_builder = req_builder.json(&params.patched_enrollment_token_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1538,7 +2026,9 @@ pub async fn endpoints_agents_enrollment_tokens_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EnrollmentToken`",
@@ -1562,15 +2052,12 @@ pub async fn endpoints_agents_enrollment_tokens_partial_update(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_enrollment_tokens_retrieve(
     configuration: &configuration::Configuration,
-    token_uuid: &str,
+    params: EndpointsAgentsEnrollmentTokensRetrieveParams,
 ) -> Result<models::EnrollmentToken, Error<EndpointsAgentsEnrollmentTokensRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_token_uuid = token_uuid;
-
     let uri_str = format!(
         "{}/endpoints/agents/enrollment_tokens/{token_uuid}/",
         configuration.base_path,
-        token_uuid = crate::apis::urlencode(p_path_token_uuid)
+        token_uuid = crate::apis::urlencode(params.token_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1595,7 +2082,9 @@ pub async fn endpoints_agents_enrollment_tokens_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EnrollmentToken`",
@@ -1619,17 +2108,12 @@ pub async fn endpoints_agents_enrollment_tokens_retrieve(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_enrollment_tokens_update(
     configuration: &configuration::Configuration,
-    token_uuid: &str,
-    enrollment_token_request: models::EnrollmentTokenRequest,
+    params: EndpointsAgentsEnrollmentTokensUpdateParams,
 ) -> Result<models::EnrollmentToken, Error<EndpointsAgentsEnrollmentTokensUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_token_uuid = token_uuid;
-    let p_body_enrollment_token_request = enrollment_token_request;
-
     let uri_str = format!(
         "{}/endpoints/agents/enrollment_tokens/{token_uuid}/",
         configuration.base_path,
-        token_uuid = crate::apis::urlencode(p_path_token_uuid)
+        token_uuid = crate::apis::urlencode(params.token_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1639,7 +2123,7 @@ pub async fn endpoints_agents_enrollment_tokens_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_enrollment_token_request);
+    req_builder = req_builder.json(&params.enrollment_token_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1655,7 +2139,9 @@ pub async fn endpoints_agents_enrollment_tokens_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EnrollmentToken`",
@@ -1679,15 +2165,12 @@ pub async fn endpoints_agents_enrollment_tokens_update(
 /// Get a list of all objects that use this object
 pub async fn endpoints_agents_enrollment_tokens_used_by_list(
     configuration: &configuration::Configuration,
-    token_uuid: &str,
+    params: EndpointsAgentsEnrollmentTokensUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EndpointsAgentsEnrollmentTokensUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_token_uuid = token_uuid;
-
     let uri_str = format!(
         "{}/endpoints/agents/enrollment_tokens/{token_uuid}/used_by/",
         configuration.base_path,
-        token_uuid = crate::apis::urlencode(p_path_token_uuid)
+        token_uuid = crate::apis::urlencode(params.token_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1712,7 +2195,7 @@ pub async fn endpoints_agents_enrollment_tokens_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1730,15 +2213,12 @@ pub async fn endpoints_agents_enrollment_tokens_used_by_list(
 /// Return token key and log access
 pub async fn endpoints_agents_enrollment_tokens_view_key_retrieve(
     configuration: &configuration::Configuration,
-    token_uuid: &str,
+    params: EndpointsAgentsEnrollmentTokensViewKeyRetrieveParams,
 ) -> Result<models::TokenView, Error<EndpointsAgentsEnrollmentTokensViewKeyRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_token_uuid = token_uuid;
-
     let uri_str = format!(
         "{}/endpoints/agents/enrollment_tokens/{token_uuid}/view_key/",
         configuration.base_path,
-        token_uuid = crate::apis::urlencode(p_path_token_uuid)
+        token_uuid = crate::apis::urlencode(params.token_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1763,7 +2243,9 @@ pub async fn endpoints_agents_enrollment_tokens_view_key_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TokenView`",
@@ -1789,11 +2271,8 @@ pub async fn endpoints_agents_enrollment_tokens_view_key_retrieve(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_psso_ise_create(
     configuration: &configuration::Configuration,
-    apple_independent_secure_enclave_request: models::AppleIndependentSecureEnclaveRequest,
+    params: EndpointsAgentsPssoIseCreateParams,
 ) -> Result<models::AppleIndependentSecureEnclave, Error<EndpointsAgentsPssoIseCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_apple_independent_secure_enclave_request = apple_independent_secure_enclave_request;
-
     let uri_str = format!("{}/endpoints/agents/psso/ise/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1803,7 +2282,7 @@ pub async fn endpoints_agents_psso_ise_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_apple_independent_secure_enclave_request);
+    req_builder = req_builder.json(&params.apple_independent_secure_enclave_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1819,7 +2298,7 @@ pub async fn endpoints_agents_psso_ise_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AppleIndependentSecureEnclave`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AppleIndependentSecureEnclave`")))),
         }
@@ -1837,15 +2316,12 @@ pub async fn endpoints_agents_psso_ise_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_psso_ise_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: EndpointsAgentsPssoIseDestroyParams,
 ) -> Result<(), Error<EndpointsAgentsPssoIseDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/endpoints/agents/psso/ise/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1877,40 +2353,27 @@ pub async fn endpoints_agents_psso_ise_destroy(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_psso_ise_list(
     configuration: &configuration::Configuration,
-    apple_enclave_key_id: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    user: Option<i32>,
+    params: EndpointsAgentsPssoIseListParams,
 ) -> Result<models::PaginatedAppleIndependentSecureEnclaveList, Error<EndpointsAgentsPssoIseListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_apple_enclave_key_id = apple_enclave_key_id;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_user = user;
-
     let uri_str = format!("{}/endpoints/agents/psso/ise/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_apple_enclave_key_id {
+    if let Some(ref param_value) = params.apple_enclave_key_id {
         req_builder = req_builder.query(&[("apple_enclave_key_id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1934,7 +2397,7 @@ pub async fn endpoints_agents_psso_ise_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAppleIndependentSecureEnclaveList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAppleIndependentSecureEnclaveList`")))),
         }
@@ -1952,17 +2415,12 @@ pub async fn endpoints_agents_psso_ise_list(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_psso_ise_partial_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    patched_apple_independent_secure_enclave_request: Option<models::PatchedAppleIndependentSecureEnclaveRequest>,
+    params: EndpointsAgentsPssoIsePartialUpdateParams,
 ) -> Result<models::AppleIndependentSecureEnclave, Error<EndpointsAgentsPssoIsePartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_patched_apple_independent_secure_enclave_request = patched_apple_independent_secure_enclave_request;
-
     let uri_str = format!(
         "{}/endpoints/agents/psso/ise/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1972,7 +2430,7 @@ pub async fn endpoints_agents_psso_ise_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_apple_independent_secure_enclave_request);
+    req_builder = req_builder.json(&params.patched_apple_independent_secure_enclave_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1988,7 +2446,7 @@ pub async fn endpoints_agents_psso_ise_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AppleIndependentSecureEnclave`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AppleIndependentSecureEnclave`")))),
         }
@@ -2006,15 +2464,12 @@ pub async fn endpoints_agents_psso_ise_partial_update(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_psso_ise_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: EndpointsAgentsPssoIseRetrieveParams,
 ) -> Result<models::AppleIndependentSecureEnclave, Error<EndpointsAgentsPssoIseRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/endpoints/agents/psso/ise/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2039,7 +2494,7 @@ pub async fn endpoints_agents_psso_ise_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AppleIndependentSecureEnclave`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AppleIndependentSecureEnclave`")))),
         }
@@ -2057,17 +2512,12 @@ pub async fn endpoints_agents_psso_ise_retrieve(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_agents_psso_ise_update(
     configuration: &configuration::Configuration,
-    uuid: &str,
-    apple_independent_secure_enclave_request: models::AppleIndependentSecureEnclaveRequest,
+    params: EndpointsAgentsPssoIseUpdateParams,
 ) -> Result<models::AppleIndependentSecureEnclave, Error<EndpointsAgentsPssoIseUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-    let p_body_apple_independent_secure_enclave_request = apple_independent_secure_enclave_request;
-
     let uri_str = format!(
         "{}/endpoints/agents/psso/ise/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2077,7 +2527,7 @@ pub async fn endpoints_agents_psso_ise_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_apple_independent_secure_enclave_request);
+    req_builder = req_builder.json(&params.apple_independent_secure_enclave_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2093,7 +2543,7 @@ pub async fn endpoints_agents_psso_ise_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AppleIndependentSecureEnclave`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AppleIndependentSecureEnclave`")))),
         }
@@ -2111,15 +2561,12 @@ pub async fn endpoints_agents_psso_ise_update(
 /// Get a list of all objects that use this object
 pub async fn endpoints_agents_psso_ise_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: EndpointsAgentsPssoIseUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EndpointsAgentsPssoIseUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/endpoints/agents/psso/ise/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2144,7 +2591,7 @@ pub async fn endpoints_agents_psso_ise_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2161,18 +2608,15 @@ pub async fn endpoints_agents_psso_ise_used_by_list(
 
 pub async fn endpoints_agents_psso_register_device_create(
     configuration: &configuration::Configuration,
-    agent_psso_device_registration_request: models::AgentPssoDeviceRegistrationRequest,
+    params: EndpointsAgentsPssoRegisterDeviceCreateParams,
 ) -> Result<models::AgentPssoDeviceRegistrationResponse, Error<EndpointsAgentsPssoRegisterDeviceCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_agent_psso_device_registration_request = agent_psso_device_registration_request;
-
     let uri_str = format!("{}/endpoints/agents/psso/register/device/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
-    req_builder = req_builder.json(&p_body_agent_psso_device_registration_request);
+    req_builder = req_builder.json(&params.agent_psso_device_registration_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2188,7 +2632,7 @@ pub async fn endpoints_agents_psso_register_device_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AgentPssoDeviceRegistrationResponse`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AgentPssoDeviceRegistrationResponse`")))),
         }
@@ -2205,18 +2649,15 @@ pub async fn endpoints_agents_psso_register_device_create(
 
 pub async fn endpoints_agents_psso_register_user_create(
     configuration: &configuration::Configuration,
-    agent_psso_user_registration_request: models::AgentPssoUserRegistrationRequest,
+    params: EndpointsAgentsPssoRegisterUserCreateParams,
 ) -> Result<models::UserSelf, Error<EndpointsAgentsPssoRegisterUserCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_agent_psso_user_registration_request = agent_psso_user_registration_request;
-
     let uri_str = format!("{}/endpoints/agents/psso/register/user/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
-    req_builder = req_builder.json(&p_body_agent_psso_user_registration_request);
+    req_builder = req_builder.json(&params.agent_psso_user_registration_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2232,7 +2673,9 @@ pub async fn endpoints_agents_psso_register_user_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserSelf`",
@@ -2258,15 +2701,12 @@ pub async fn endpoints_agents_psso_register_user_create(
 /// Connector Viewset
 pub async fn endpoints_connectors_destroy(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
+    params: EndpointsConnectorsDestroyParams,
 ) -> Result<(), Error<EndpointsConnectorsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-
     let uri_str = format!(
         "{}/endpoints/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2298,30 +2738,21 @@ pub async fn endpoints_connectors_destroy(
 /// Connector Viewset
 pub async fn endpoints_connectors_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: EndpointsConnectorsListParams,
 ) -> Result<models::PaginatedConnectorList, Error<EndpointsConnectorsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/endpoints/connectors/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2345,7 +2776,7 @@ pub async fn endpoints_connectors_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedConnectorList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedConnectorList`")))),
         }
@@ -2363,15 +2794,12 @@ pub async fn endpoints_connectors_list(
 /// Connector Viewset
 pub async fn endpoints_connectors_retrieve(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
+    params: EndpointsConnectorsRetrieveParams,
 ) -> Result<models::Connector, Error<EndpointsConnectorsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-
     let uri_str = format!(
         "{}/endpoints/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2396,7 +2824,9 @@ pub async fn endpoints_connectors_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Connector`",
@@ -2447,7 +2877,7 @@ pub async fn endpoints_connectors_types_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`")))),
         }
@@ -2465,15 +2895,12 @@ pub async fn endpoints_connectors_types_list(
 /// Get a list of all objects that use this object
 pub async fn endpoints_connectors_used_by_list(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
+    params: EndpointsConnectorsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EndpointsConnectorsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-
     let uri_str = format!(
         "{}/endpoints/connectors/{connector_uuid}/used_by/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2498,7 +2925,7 @@ pub async fn endpoints_connectors_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2516,11 +2943,8 @@ pub async fn endpoints_connectors_used_by_list(
 /// DeviceAccessGroup Viewset
 pub async fn endpoints_device_access_groups_create(
     configuration: &configuration::Configuration,
-    device_access_group_request: models::DeviceAccessGroupRequest,
+    params: EndpointsDeviceAccessGroupsCreateParams,
 ) -> Result<models::DeviceAccessGroup, Error<EndpointsDeviceAccessGroupsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_device_access_group_request = device_access_group_request;
-
     let uri_str = format!("{}/endpoints/device_access_groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2530,7 +2954,7 @@ pub async fn endpoints_device_access_groups_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_device_access_group_request);
+    req_builder = req_builder.json(&params.device_access_group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2546,7 +2970,7 @@ pub async fn endpoints_device_access_groups_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeviceAccessGroup`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeviceAccessGroup`")))),
         }
@@ -2564,15 +2988,12 @@ pub async fn endpoints_device_access_groups_create(
 /// DeviceAccessGroup Viewset
 pub async fn endpoints_device_access_groups_destroy(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
+    params: EndpointsDeviceAccessGroupsDestroyParams,
 ) -> Result<(), Error<EndpointsDeviceAccessGroupsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
     let uri_str = format!(
         "{}/endpoints/device_access_groups/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2604,40 +3025,27 @@ pub async fn endpoints_device_access_groups_destroy(
 /// DeviceAccessGroup Viewset
 pub async fn endpoints_device_access_groups_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pbm_uuid: Option<&str>,
-    search: Option<&str>,
+    params: EndpointsDeviceAccessGroupsListParams,
 ) -> Result<models::PaginatedDeviceAccessGroupList, Error<EndpointsDeviceAccessGroupsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_search = search;
-
     let uri_str = format!("{}/endpoints/device_access_groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2661,7 +3069,7 @@ pub async fn endpoints_device_access_groups_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedDeviceAccessGroupList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedDeviceAccessGroupList`")))),
         }
@@ -2679,17 +3087,12 @@ pub async fn endpoints_device_access_groups_list(
 /// DeviceAccessGroup Viewset
 pub async fn endpoints_device_access_groups_partial_update(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-    patched_device_access_group_request: Option<models::PatchedDeviceAccessGroupRequest>,
+    params: EndpointsDeviceAccessGroupsPartialUpdateParams,
 ) -> Result<models::DeviceAccessGroup, Error<EndpointsDeviceAccessGroupsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-    let p_body_patched_device_access_group_request = patched_device_access_group_request;
-
     let uri_str = format!(
         "{}/endpoints/device_access_groups/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2699,7 +3102,7 @@ pub async fn endpoints_device_access_groups_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_device_access_group_request);
+    req_builder = req_builder.json(&params.patched_device_access_group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2715,7 +3118,7 @@ pub async fn endpoints_device_access_groups_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeviceAccessGroup`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeviceAccessGroup`")))),
         }
@@ -2733,15 +3136,12 @@ pub async fn endpoints_device_access_groups_partial_update(
 /// DeviceAccessGroup Viewset
 pub async fn endpoints_device_access_groups_retrieve(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
+    params: EndpointsDeviceAccessGroupsRetrieveParams,
 ) -> Result<models::DeviceAccessGroup, Error<EndpointsDeviceAccessGroupsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
     let uri_str = format!(
         "{}/endpoints/device_access_groups/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2766,7 +3166,7 @@ pub async fn endpoints_device_access_groups_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeviceAccessGroup`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeviceAccessGroup`")))),
         }
@@ -2784,17 +3184,12 @@ pub async fn endpoints_device_access_groups_retrieve(
 /// DeviceAccessGroup Viewset
 pub async fn endpoints_device_access_groups_update(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-    device_access_group_request: models::DeviceAccessGroupRequest,
+    params: EndpointsDeviceAccessGroupsUpdateParams,
 ) -> Result<models::DeviceAccessGroup, Error<EndpointsDeviceAccessGroupsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-    let p_body_device_access_group_request = device_access_group_request;
-
     let uri_str = format!(
         "{}/endpoints/device_access_groups/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2804,7 +3199,7 @@ pub async fn endpoints_device_access_groups_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_device_access_group_request);
+    req_builder = req_builder.json(&params.device_access_group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2820,7 +3215,7 @@ pub async fn endpoints_device_access_groups_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeviceAccessGroup`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeviceAccessGroup`")))),
         }
@@ -2838,15 +3233,12 @@ pub async fn endpoints_device_access_groups_update(
 /// Get a list of all objects that use this object
 pub async fn endpoints_device_access_groups_used_by_list(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
+    params: EndpointsDeviceAccessGroupsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EndpointsDeviceAccessGroupsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
     let uri_str = format!(
         "{}/endpoints/device_access_groups/{pbm_uuid}/used_by/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2871,7 +3263,7 @@ pub async fn endpoints_device_access_groups_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2889,11 +3281,8 @@ pub async fn endpoints_device_access_groups_used_by_list(
 /// PolicyBinding Viewset
 pub async fn endpoints_device_bindings_create(
     configuration: &configuration::Configuration,
-    device_user_binding_request: models::DeviceUserBindingRequest,
+    params: EndpointsDeviceBindingsCreateParams,
 ) -> Result<models::DeviceUserBinding, Error<EndpointsDeviceBindingsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_device_user_binding_request = device_user_binding_request;
-
     let uri_str = format!("{}/endpoints/device_bindings/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2903,7 +3292,7 @@ pub async fn endpoints_device_bindings_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_device_user_binding_request);
+    req_builder = req_builder.json(&params.device_user_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2919,7 +3308,7 @@ pub async fn endpoints_device_bindings_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeviceUserBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeviceUserBinding`")))),
         }
@@ -2937,15 +3326,12 @@ pub async fn endpoints_device_bindings_create(
 /// PolicyBinding Viewset
 pub async fn endpoints_device_bindings_destroy(
     configuration: &configuration::Configuration,
-    policy_binding_uuid: &str,
+    params: EndpointsDeviceBindingsDestroyParams,
 ) -> Result<(), Error<EndpointsDeviceBindingsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_binding_uuid = policy_binding_uuid;
-
     let uri_str = format!(
         "{}/endpoints/device_bindings/{policy_binding_uuid}/",
         configuration.base_path,
-        policy_binding_uuid = crate::apis::urlencode(p_path_policy_binding_uuid)
+        policy_binding_uuid = crate::apis::urlencode(params.policy_binding_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2977,62 +3363,39 @@ pub async fn endpoints_device_bindings_destroy(
 /// PolicyBinding Viewset
 pub async fn endpoints_device_bindings_list(
     configuration: &configuration::Configuration,
-    enabled: Option<bool>,
-    order: Option<i32>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    policy: Option<&str>,
-    policy__isnull: Option<bool>,
-    search: Option<&str>,
-    target: Option<&str>,
-    target_in: Option<Vec<uuid::Uuid>>,
-    timeout: Option<i32>,
+    params: EndpointsDeviceBindingsListParams,
 ) -> Result<models::PaginatedDeviceUserBindingList, Error<EndpointsDeviceBindingsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_enabled = enabled;
-    let p_query_order = order;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_policy = policy;
-    let p_query_policy__isnull = policy__isnull;
-    let p_query_search = search;
-    let p_query_target = target;
-    let p_query_target_in = target_in;
-    let p_query_timeout = timeout;
-
     let uri_str = format!("{}/endpoints/device_bindings/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_enabled {
+    if let Some(ref param_value) = params.enabled {
         req_builder = req_builder.query(&[("enabled", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_order {
+    if let Some(ref param_value) = params.order {
         req_builder = req_builder.query(&[("order", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy {
+    if let Some(ref param_value) = params.policy {
         req_builder = req_builder.query(&[("policy", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy__isnull {
+    if let Some(ref param_value) = params.policy__isnull {
         req_builder = req_builder.query(&[("policy__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_target {
+    if let Some(ref param_value) = params.target {
         req_builder = req_builder.query(&[("target", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_target_in {
+    if let Some(ref param_value) = params.target_in {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -3051,7 +3414,7 @@ pub async fn endpoints_device_bindings_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_timeout {
+    if let Some(ref param_value) = params.timeout {
         req_builder = req_builder.query(&[("timeout", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3075,7 +3438,7 @@ pub async fn endpoints_device_bindings_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedDeviceUserBindingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedDeviceUserBindingList`")))),
         }
@@ -3093,17 +3456,12 @@ pub async fn endpoints_device_bindings_list(
 /// PolicyBinding Viewset
 pub async fn endpoints_device_bindings_partial_update(
     configuration: &configuration::Configuration,
-    policy_binding_uuid: &str,
-    patched_device_user_binding_request: Option<models::PatchedDeviceUserBindingRequest>,
+    params: EndpointsDeviceBindingsPartialUpdateParams,
 ) -> Result<models::DeviceUserBinding, Error<EndpointsDeviceBindingsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_binding_uuid = policy_binding_uuid;
-    let p_body_patched_device_user_binding_request = patched_device_user_binding_request;
-
     let uri_str = format!(
         "{}/endpoints/device_bindings/{policy_binding_uuid}/",
         configuration.base_path,
-        policy_binding_uuid = crate::apis::urlencode(p_path_policy_binding_uuid)
+        policy_binding_uuid = crate::apis::urlencode(params.policy_binding_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3113,7 +3471,7 @@ pub async fn endpoints_device_bindings_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_device_user_binding_request);
+    req_builder = req_builder.json(&params.patched_device_user_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3129,7 +3487,7 @@ pub async fn endpoints_device_bindings_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeviceUserBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeviceUserBinding`")))),
         }
@@ -3147,15 +3505,12 @@ pub async fn endpoints_device_bindings_partial_update(
 /// PolicyBinding Viewset
 pub async fn endpoints_device_bindings_retrieve(
     configuration: &configuration::Configuration,
-    policy_binding_uuid: &str,
+    params: EndpointsDeviceBindingsRetrieveParams,
 ) -> Result<models::DeviceUserBinding, Error<EndpointsDeviceBindingsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_binding_uuid = policy_binding_uuid;
-
     let uri_str = format!(
         "{}/endpoints/device_bindings/{policy_binding_uuid}/",
         configuration.base_path,
-        policy_binding_uuid = crate::apis::urlencode(p_path_policy_binding_uuid)
+        policy_binding_uuid = crate::apis::urlencode(params.policy_binding_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3180,7 +3535,7 @@ pub async fn endpoints_device_bindings_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeviceUserBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeviceUserBinding`")))),
         }
@@ -3198,17 +3553,12 @@ pub async fn endpoints_device_bindings_retrieve(
 /// PolicyBinding Viewset
 pub async fn endpoints_device_bindings_update(
     configuration: &configuration::Configuration,
-    policy_binding_uuid: &str,
-    device_user_binding_request: models::DeviceUserBindingRequest,
+    params: EndpointsDeviceBindingsUpdateParams,
 ) -> Result<models::DeviceUserBinding, Error<EndpointsDeviceBindingsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_binding_uuid = policy_binding_uuid;
-    let p_body_device_user_binding_request = device_user_binding_request;
-
     let uri_str = format!(
         "{}/endpoints/device_bindings/{policy_binding_uuid}/",
         configuration.base_path,
-        policy_binding_uuid = crate::apis::urlencode(p_path_policy_binding_uuid)
+        policy_binding_uuid = crate::apis::urlencode(params.policy_binding_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3218,7 +3568,7 @@ pub async fn endpoints_device_bindings_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_device_user_binding_request);
+    req_builder = req_builder.json(&params.device_user_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3234,7 +3584,7 @@ pub async fn endpoints_device_bindings_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeviceUserBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeviceUserBinding`")))),
         }
@@ -3252,15 +3602,12 @@ pub async fn endpoints_device_bindings_update(
 /// Get a list of all objects that use this object
 pub async fn endpoints_device_bindings_used_by_list(
     configuration: &configuration::Configuration,
-    policy_binding_uuid: &str,
+    params: EndpointsDeviceBindingsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EndpointsDeviceBindingsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_binding_uuid = policy_binding_uuid;
-
     let uri_str = format!(
         "{}/endpoints/device_bindings/{policy_binding_uuid}/used_by/",
         configuration.base_path,
-        policy_binding_uuid = crate::apis::urlencode(p_path_policy_binding_uuid)
+        policy_binding_uuid = crate::apis::urlencode(params.policy_binding_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3285,7 +3632,7 @@ pub async fn endpoints_device_bindings_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3303,11 +3650,8 @@ pub async fn endpoints_device_bindings_used_by_list(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_devices_create(
     configuration: &configuration::Configuration,
-    endpoint_device_request: models::EndpointDeviceRequest,
+    params: EndpointsDevicesCreateParams,
 ) -> Result<models::EndpointDevice, Error<EndpointsDevicesCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_endpoint_device_request = endpoint_device_request;
-
     let uri_str = format!("{}/endpoints/devices/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3317,7 +3661,7 @@ pub async fn endpoints_devices_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_endpoint_device_request);
+    req_builder = req_builder.json(&params.endpoint_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3333,7 +3677,9 @@ pub async fn endpoints_devices_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EndpointDevice`",
@@ -3357,15 +3703,12 @@ pub async fn endpoints_devices_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_devices_destroy(
     configuration: &configuration::Configuration,
-    device_uuid: &str,
+    params: EndpointsDevicesDestroyParams,
 ) -> Result<(), Error<EndpointsDevicesDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_device_uuid = device_uuid;
-
     let uri_str = format!(
         "{}/endpoints/devices/{device_uuid}/",
         configuration.base_path,
-        device_uuid = crate::apis::urlencode(p_path_device_uuid)
+        device_uuid = crate::apis::urlencode(params.device_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3397,40 +3740,27 @@ pub async fn endpoints_devices_destroy(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_devices_list(
     configuration: &configuration::Configuration,
-    identifier: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: EndpointsDevicesListParams,
 ) -> Result<models::PaginatedEndpointDeviceList, Error<EndpointsDevicesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_identifier = identifier;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/endpoints/devices/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_identifier {
+    if let Some(ref param_value) = params.identifier {
         req_builder = req_builder.query(&[("identifier", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3454,7 +3784,7 @@ pub async fn endpoints_devices_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedEndpointDeviceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedEndpointDeviceList`")))),
         }
@@ -3472,17 +3802,12 @@ pub async fn endpoints_devices_list(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_devices_partial_update(
     configuration: &configuration::Configuration,
-    device_uuid: &str,
-    patched_endpoint_device_request: Option<models::PatchedEndpointDeviceRequest>,
+    params: EndpointsDevicesPartialUpdateParams,
 ) -> Result<models::EndpointDevice, Error<EndpointsDevicesPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_device_uuid = device_uuid;
-    let p_body_patched_endpoint_device_request = patched_endpoint_device_request;
-
     let uri_str = format!(
         "{}/endpoints/devices/{device_uuid}/",
         configuration.base_path,
-        device_uuid = crate::apis::urlencode(p_path_device_uuid)
+        device_uuid = crate::apis::urlencode(params.device_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3492,7 +3817,7 @@ pub async fn endpoints_devices_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_endpoint_device_request);
+    req_builder = req_builder.json(&params.patched_endpoint_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3508,7 +3833,9 @@ pub async fn endpoints_devices_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EndpointDevice`",
@@ -3532,15 +3859,12 @@ pub async fn endpoints_devices_partial_update(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_devices_retrieve(
     configuration: &configuration::Configuration,
-    device_uuid: &str,
+    params: EndpointsDevicesRetrieveParams,
 ) -> Result<models::EndpointDeviceDetails, Error<EndpointsDevicesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_device_uuid = device_uuid;
-
     let uri_str = format!(
         "{}/endpoints/devices/{device_uuid}/",
         configuration.base_path,
-        device_uuid = crate::apis::urlencode(p_path_device_uuid)
+        device_uuid = crate::apis::urlencode(params.device_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3565,7 +3889,7 @@ pub async fn endpoints_devices_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::EndpointDeviceDetails`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::EndpointDeviceDetails`")))),
         }
@@ -3608,7 +3932,9 @@ pub async fn endpoints_devices_summary_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DeviceSummary`",
@@ -3632,17 +3958,12 @@ pub async fn endpoints_devices_summary_retrieve(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn endpoints_devices_update(
     configuration: &configuration::Configuration,
-    device_uuid: &str,
-    endpoint_device_request: models::EndpointDeviceRequest,
+    params: EndpointsDevicesUpdateParams,
 ) -> Result<models::EndpointDevice, Error<EndpointsDevicesUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_device_uuid = device_uuid;
-    let p_body_endpoint_device_request = endpoint_device_request;
-
     let uri_str = format!(
         "{}/endpoints/devices/{device_uuid}/",
         configuration.base_path,
-        device_uuid = crate::apis::urlencode(p_path_device_uuid)
+        device_uuid = crate::apis::urlencode(params.device_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3652,7 +3973,7 @@ pub async fn endpoints_devices_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_endpoint_device_request);
+    req_builder = req_builder.json(&params.endpoint_device_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3668,7 +3989,9 @@ pub async fn endpoints_devices_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::EndpointDevice`",
@@ -3692,15 +4015,12 @@ pub async fn endpoints_devices_update(
 /// Get a list of all objects that use this object
 pub async fn endpoints_devices_used_by_list(
     configuration: &configuration::Configuration,
-    device_uuid: &str,
+    params: EndpointsDevicesUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EndpointsDevicesUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_device_uuid = device_uuid;
-
     let uri_str = format!(
         "{}/endpoints/devices/{device_uuid}/used_by/",
         configuration.base_path,
-        device_uuid = crate::apis::urlencode(p_path_device_uuid)
+        device_uuid = crate::apis::urlencode(params.device_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3725,7 +4045,7 @@ pub async fn endpoints_devices_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3743,11 +4063,8 @@ pub async fn endpoints_devices_used_by_list(
 /// FleetConnector Viewset
 pub async fn endpoints_fleet_connectors_create(
     configuration: &configuration::Configuration,
-    fleet_connector_request: models::FleetConnectorRequest,
+    params: EndpointsFleetConnectorsCreateParams,
 ) -> Result<models::FleetConnector, Error<EndpointsFleetConnectorsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_fleet_connector_request = fleet_connector_request;
-
     let uri_str = format!("{}/endpoints/fleet/connectors/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3757,7 +4074,7 @@ pub async fn endpoints_fleet_connectors_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_fleet_connector_request);
+    req_builder = req_builder.json(&params.fleet_connector_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3773,7 +4090,9 @@ pub async fn endpoints_fleet_connectors_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::FleetConnector`",
@@ -3797,15 +4116,12 @@ pub async fn endpoints_fleet_connectors_create(
 /// FleetConnector Viewset
 pub async fn endpoints_fleet_connectors_destroy(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
+    params: EndpointsFleetConnectorsDestroyParams,
 ) -> Result<(), Error<EndpointsFleetConnectorsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-
     let uri_str = format!(
         "{}/endpoints/fleet/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3837,35 +4153,24 @@ pub async fn endpoints_fleet_connectors_destroy(
 /// FleetConnector Viewset
 pub async fn endpoints_fleet_connectors_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: EndpointsFleetConnectorsListParams,
 ) -> Result<models::PaginatedFleetConnectorList, Error<EndpointsFleetConnectorsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/endpoints/fleet/connectors/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3889,7 +4194,7 @@ pub async fn endpoints_fleet_connectors_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedFleetConnectorList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedFleetConnectorList`")))),
         }
@@ -3907,17 +4212,12 @@ pub async fn endpoints_fleet_connectors_list(
 /// FleetConnector Viewset
 pub async fn endpoints_fleet_connectors_partial_update(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
-    patched_fleet_connector_request: Option<models::PatchedFleetConnectorRequest>,
+    params: EndpointsFleetConnectorsPartialUpdateParams,
 ) -> Result<models::FleetConnector, Error<EndpointsFleetConnectorsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-    let p_body_patched_fleet_connector_request = patched_fleet_connector_request;
-
     let uri_str = format!(
         "{}/endpoints/fleet/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3927,7 +4227,7 @@ pub async fn endpoints_fleet_connectors_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_fleet_connector_request);
+    req_builder = req_builder.json(&params.patched_fleet_connector_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3943,7 +4243,9 @@ pub async fn endpoints_fleet_connectors_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::FleetConnector`",
@@ -3967,15 +4269,12 @@ pub async fn endpoints_fleet_connectors_partial_update(
 /// FleetConnector Viewset
 pub async fn endpoints_fleet_connectors_retrieve(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
+    params: EndpointsFleetConnectorsRetrieveParams,
 ) -> Result<models::FleetConnector, Error<EndpointsFleetConnectorsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-
     let uri_str = format!(
         "{}/endpoints/fleet/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4000,7 +4299,9 @@ pub async fn endpoints_fleet_connectors_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::FleetConnector`",
@@ -4024,17 +4325,12 @@ pub async fn endpoints_fleet_connectors_retrieve(
 /// FleetConnector Viewset
 pub async fn endpoints_fleet_connectors_update(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
-    fleet_connector_request: models::FleetConnectorRequest,
+    params: EndpointsFleetConnectorsUpdateParams,
 ) -> Result<models::FleetConnector, Error<EndpointsFleetConnectorsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-    let p_body_fleet_connector_request = fleet_connector_request;
-
     let uri_str = format!(
         "{}/endpoints/fleet/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4044,7 +4340,7 @@ pub async fn endpoints_fleet_connectors_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_fleet_connector_request);
+    req_builder = req_builder.json(&params.fleet_connector_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4060,7 +4356,9 @@ pub async fn endpoints_fleet_connectors_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::FleetConnector`",
@@ -4084,15 +4382,12 @@ pub async fn endpoints_fleet_connectors_update(
 /// Get a list of all objects that use this object
 pub async fn endpoints_fleet_connectors_used_by_list(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
+    params: EndpointsFleetConnectorsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EndpointsFleetConnectorsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-
     let uri_str = format!(
         "{}/endpoints/fleet/connectors/{connector_uuid}/used_by/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4117,7 +4412,7 @@ pub async fn endpoints_fleet_connectors_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4135,11 +4430,8 @@ pub async fn endpoints_fleet_connectors_used_by_list(
 /// GoogleChromeConnector Viewset
 pub async fn endpoints_google_chrome_connectors_create(
     configuration: &configuration::Configuration,
-    google_chrome_connector_request: models::GoogleChromeConnectorRequest,
+    params: EndpointsGoogleChromeConnectorsCreateParams,
 ) -> Result<models::GoogleChromeConnector, Error<EndpointsGoogleChromeConnectorsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_google_chrome_connector_request = google_chrome_connector_request;
-
     let uri_str = format!("{}/endpoints/google_chrome/connectors/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4149,7 +4441,7 @@ pub async fn endpoints_google_chrome_connectors_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_google_chrome_connector_request);
+    req_builder = req_builder.json(&params.google_chrome_connector_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4165,7 +4457,7 @@ pub async fn endpoints_google_chrome_connectors_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleChromeConnector`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleChromeConnector`")))),
         }
@@ -4183,15 +4475,12 @@ pub async fn endpoints_google_chrome_connectors_create(
 /// GoogleChromeConnector Viewset
 pub async fn endpoints_google_chrome_connectors_destroy(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
+    params: EndpointsGoogleChromeConnectorsDestroyParams,
 ) -> Result<(), Error<EndpointsGoogleChromeConnectorsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-
     let uri_str = format!(
         "{}/endpoints/google_chrome/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4223,35 +4512,24 @@ pub async fn endpoints_google_chrome_connectors_destroy(
 /// GoogleChromeConnector Viewset
 pub async fn endpoints_google_chrome_connectors_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: EndpointsGoogleChromeConnectorsListParams,
 ) -> Result<models::PaginatedGoogleChromeConnectorList, Error<EndpointsGoogleChromeConnectorsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/endpoints/google_chrome/connectors/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4275,7 +4553,7 @@ pub async fn endpoints_google_chrome_connectors_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGoogleChromeConnectorList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGoogleChromeConnectorList`")))),
         }
@@ -4293,17 +4571,12 @@ pub async fn endpoints_google_chrome_connectors_list(
 /// GoogleChromeConnector Viewset
 pub async fn endpoints_google_chrome_connectors_partial_update(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
-    patched_google_chrome_connector_request: Option<models::PatchedGoogleChromeConnectorRequest>,
+    params: EndpointsGoogleChromeConnectorsPartialUpdateParams,
 ) -> Result<models::GoogleChromeConnector, Error<EndpointsGoogleChromeConnectorsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-    let p_body_patched_google_chrome_connector_request = patched_google_chrome_connector_request;
-
     let uri_str = format!(
         "{}/endpoints/google_chrome/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -4313,7 +4586,7 @@ pub async fn endpoints_google_chrome_connectors_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_google_chrome_connector_request);
+    req_builder = req_builder.json(&params.patched_google_chrome_connector_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4329,7 +4602,7 @@ pub async fn endpoints_google_chrome_connectors_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleChromeConnector`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleChromeConnector`")))),
         }
@@ -4347,15 +4620,12 @@ pub async fn endpoints_google_chrome_connectors_partial_update(
 /// GoogleChromeConnector Viewset
 pub async fn endpoints_google_chrome_connectors_retrieve(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
+    params: EndpointsGoogleChromeConnectorsRetrieveParams,
 ) -> Result<models::GoogleChromeConnector, Error<EndpointsGoogleChromeConnectorsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-
     let uri_str = format!(
         "{}/endpoints/google_chrome/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4380,7 +4650,7 @@ pub async fn endpoints_google_chrome_connectors_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleChromeConnector`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleChromeConnector`")))),
         }
@@ -4398,17 +4668,12 @@ pub async fn endpoints_google_chrome_connectors_retrieve(
 /// GoogleChromeConnector Viewset
 pub async fn endpoints_google_chrome_connectors_update(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
-    google_chrome_connector_request: models::GoogleChromeConnectorRequest,
+    params: EndpointsGoogleChromeConnectorsUpdateParams,
 ) -> Result<models::GoogleChromeConnector, Error<EndpointsGoogleChromeConnectorsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-    let p_body_google_chrome_connector_request = google_chrome_connector_request;
-
     let uri_str = format!(
         "{}/endpoints/google_chrome/connectors/{connector_uuid}/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4418,7 +4683,7 @@ pub async fn endpoints_google_chrome_connectors_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_google_chrome_connector_request);
+    req_builder = req_builder.json(&params.google_chrome_connector_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4434,7 +4699,7 @@ pub async fn endpoints_google_chrome_connectors_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleChromeConnector`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleChromeConnector`")))),
         }
@@ -4452,15 +4717,12 @@ pub async fn endpoints_google_chrome_connectors_update(
 /// Get a list of all objects that use this object
 pub async fn endpoints_google_chrome_connectors_used_by_list(
     configuration: &configuration::Configuration,
-    connector_uuid: &str,
+    params: EndpointsGoogleChromeConnectorsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<EndpointsGoogleChromeConnectorsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_connector_uuid = connector_uuid;
-
     let uri_str = format!(
         "{}/endpoints/google_chrome/connectors/{connector_uuid}/used_by/",
         configuration.base_path,
-        connector_uuid = crate::apis::urlencode(p_path_connector_uuid)
+        connector_uuid = crate::apis::urlencode(params.connector_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4485,7 +4747,7 @@ pub async fn endpoints_google_chrome_connectors_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

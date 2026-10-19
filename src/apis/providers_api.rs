@@ -15,6 +15,1188 @@ use serde::{de::Error as _, Deserialize, Serialize};
 use tokio::fs::File as TokioFile;
 use tokio_util::codec::{BytesCodec, FramedRead};
 
+/// struct for passing parameters to the method [`providers_all_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersAllDestroyParams {
+    /// A unique integer value identifying this provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_all_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersAllListParams {
+    pub application__isnull: Option<bool>,
+    /// When not set all providers are returned. When set to true, only backchannel providers are returned. When set to false, backchannel providers are excluded
+    pub backchannel: Option<bool>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_all_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersAllRetrieveParams {
+    /// A unique integer value identifying this provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_all_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersAllUsedByListParams {
+    /// A unique integer value identifying this provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceCreateParams {
+    pub google_workspace_provider_request: models::GoogleWorkspaceProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceDestroyParams {
+    /// A unique integer value identifying this Google Workspace Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_groups_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceGroupsCreateParams {
+    pub google_workspace_provider_group_request: models::GoogleWorkspaceProviderGroupRequest,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_groups_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceGroupsDestroyParams {
+    /// A UUID string identifying this Google Workspace Provider Group.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_groups_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceGroupsListParams {
+    pub group__group_uuid: Option<String>,
+    pub group__name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub provider__id: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_groups_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceGroupsRetrieveParams {
+    /// A UUID string identifying this Google Workspace Provider Group.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_groups_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceGroupsUsedByListParams {
+    /// A UUID string identifying this Google Workspace Provider Group.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceListParams {
+    pub delegated_subject: Option<String>,
+    pub exclude_users_service_account: Option<bool>,
+    pub filter_group: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspacePartialUpdateParams {
+    /// A unique integer value identifying this Google Workspace Provider.
+    pub id: i32,
+    pub patched_google_workspace_provider_request: Option<models::PatchedGoogleWorkspaceProviderRequest>,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceRetrieveParams {
+    /// A unique integer value identifying this Google Workspace Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_sync_object_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceSyncObjectCreateParams {
+    /// A unique integer value identifying this Google Workspace Provider.
+    pub id: i32,
+    pub sync_object_request: models::SyncObjectRequest,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_sync_status_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceSyncStatusRetrieveParams {
+    /// A unique integer value identifying this Google Workspace Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceUpdateParams {
+    /// A unique integer value identifying this Google Workspace Provider.
+    pub id: i32,
+    pub google_workspace_provider_request: models::GoogleWorkspaceProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceUsedByListParams {
+    /// A unique integer value identifying this Google Workspace Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_users_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceUsersCreateParams {
+    pub google_workspace_provider_user_request: models::GoogleWorkspaceProviderUserRequest,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_users_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceUsersDestroyParams {
+    /// A UUID string identifying this Google Workspace Provider User.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_users_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceUsersListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub provider__id: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub user__id: Option<i32>,
+    pub user__username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_users_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceUsersRetrieveParams {
+    /// A UUID string identifying this Google Workspace Provider User.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_google_workspace_users_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersGoogleWorkspaceUsersUsedByListParams {
+    /// A UUID string identifying this Google Workspace Provider User.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_ldap_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersLdapCreateParams {
+    pub ldap_provider_request: models::LdapProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_ldap_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersLdapDestroyParams {
+    /// A unique integer value identifying this LDAP Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_ldap_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersLdapListParams {
+    pub application__isnull: Option<bool>,
+    pub authorization_flow__slug__iexact: Option<String>,
+    pub base_dn__iexact: Option<String>,
+    pub certificate__kp_uuid__iexact: Option<String>,
+    pub certificate__name__iexact: Option<String>,
+    pub gid_start_number__iexact: Option<i32>,
+    pub name__iexact: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub tls_server_name__iexact: Option<String>,
+    pub uid_start_number__iexact: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`providers_ldap_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersLdapPartialUpdateParams {
+    /// A unique integer value identifying this LDAP Provider.
+    pub id: i32,
+    pub patched_ldap_provider_request: Option<models::PatchedLdapProviderRequest>,
+}
+
+/// struct for passing parameters to the method [`providers_ldap_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersLdapRetrieveParams {
+    /// A unique integer value identifying this LDAP Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_ldap_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersLdapUpdateParams {
+    /// A unique integer value identifying this LDAP Provider.
+    pub id: i32,
+    pub ldap_provider_request: models::LdapProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_ldap_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersLdapUsedByListParams {
+    /// A unique integer value identifying this LDAP Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraCreateParams {
+    pub microsoft_entra_provider_request: models::MicrosoftEntraProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraDestroyParams {
+    /// A unique integer value identifying this Microsoft Entra Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_groups_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraGroupsCreateParams {
+    pub microsoft_entra_provider_group_request: models::MicrosoftEntraProviderGroupRequest,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_groups_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraGroupsDestroyParams {
+    /// A UUID string identifying this Microsoft Entra Provider Group.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_groups_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraGroupsListParams {
+    pub group__group_uuid: Option<String>,
+    pub group__name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub provider__id: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_groups_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraGroupsRetrieveParams {
+    /// A UUID string identifying this Microsoft Entra Provider Group.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_groups_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraGroupsUsedByListParams {
+    /// A UUID string identifying this Microsoft Entra Provider Group.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraListParams {
+    pub exclude_users_service_account: Option<bool>,
+    pub filter_group: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraPartialUpdateParams {
+    /// A unique integer value identifying this Microsoft Entra Provider.
+    pub id: i32,
+    pub patched_microsoft_entra_provider_request: Option<models::PatchedMicrosoftEntraProviderRequest>,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraRetrieveParams {
+    /// A unique integer value identifying this Microsoft Entra Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_sync_object_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraSyncObjectCreateParams {
+    /// A unique integer value identifying this Microsoft Entra Provider.
+    pub id: i32,
+    pub sync_object_request: models::SyncObjectRequest,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_sync_status_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraSyncStatusRetrieveParams {
+    /// A unique integer value identifying this Microsoft Entra Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraUpdateParams {
+    /// A unique integer value identifying this Microsoft Entra Provider.
+    pub id: i32,
+    pub microsoft_entra_provider_request: models::MicrosoftEntraProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraUsedByListParams {
+    /// A unique integer value identifying this Microsoft Entra Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_users_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraUsersCreateParams {
+    pub microsoft_entra_provider_user_request: models::MicrosoftEntraProviderUserRequest,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_users_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraUsersDestroyParams {
+    /// A UUID string identifying this Microsoft Entra Provider User.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_users_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraUsersListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub provider__id: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub user__id: Option<i32>,
+    pub user__username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_users_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraUsersRetrieveParams {
+    /// A UUID string identifying this Microsoft Entra Provider User.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_microsoft_entra_users_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersMicrosoftEntraUsersUsedByListParams {
+    /// A UUID string identifying this Microsoft Entra Provider User.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2CreateParams {
+    pub o_auth2_provider_request: models::OAuth2ProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_dcr_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2DcrCreateParams {
+    pub o_auth2_dynamic_client_registration_request: models::OAuth2DynamicClientRegistrationRequest,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_dcr_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2DcrDestroyParams {
+    /// A UUID string identifying this OAuth2 Dynamic Client Registration.
+    pub pbm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_dcr_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2DcrListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub provider: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_dcr_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2DcrPartialUpdateParams {
+    /// A UUID string identifying this OAuth2 Dynamic Client Registration.
+    pub pbm_uuid: String,
+    pub patched_o_auth2_dynamic_client_registration_request:
+        Option<models::PatchedOAuth2DynamicClientRegistrationRequest>,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_dcr_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2DcrRetrieveParams {
+    /// A UUID string identifying this OAuth2 Dynamic Client Registration.
+    pub pbm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_dcr_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2DcrUpdateParams {
+    /// A UUID string identifying this OAuth2 Dynamic Client Registration.
+    pub pbm_uuid: String,
+    pub o_auth2_dynamic_client_registration_request: models::OAuth2DynamicClientRegistrationRequest,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2DestroyParams {
+    /// A unique integer value identifying this OAuth2/OpenID Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2ListParams {
+    pub access_code_validity: Option<String>,
+    pub access_token_validity: Option<String>,
+    pub application: Option<String>,
+    pub authorization_flow: Option<String>,
+    pub client_id: Option<String>,
+    pub client_type: Option<String>,
+    pub include_claims_in_id_token: Option<bool>,
+    pub issuer_mode: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub property_mappings: Option<Vec<uuid::Uuid>>,
+    pub refresh_token_validity: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub signing_key: Option<String>,
+    pub sub_mode: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2PartialUpdateParams {
+    /// A unique integer value identifying this OAuth2/OpenID Provider.
+    pub id: i32,
+    pub patched_o_auth2_provider_request: Option<models::PatchedOAuth2ProviderRequest>,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_preview_user_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2PreviewUserRetrieveParams {
+    /// A unique integer value identifying this OAuth2/OpenID Provider.
+    pub id: i32,
+    pub for_user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2RetrieveParams {
+    /// A unique integer value identifying this OAuth2/OpenID Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_setup_urls_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2SetupUrlsRetrieveParams {
+    /// A unique integer value identifying this OAuth2/OpenID Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2UpdateParams {
+    /// A unique integer value identifying this OAuth2/OpenID Provider.
+    pub id: i32,
+    pub o_auth2_provider_request: models::OAuth2ProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_oauth2_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersOauth2UsedByListParams {
+    /// A unique integer value identifying this OAuth2/OpenID Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_proxy_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersProxyCreateParams {
+    pub proxy_provider_request: models::ProxyProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_proxy_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersProxyDestroyParams {
+    /// A unique integer value identifying this Proxy Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_proxy_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersProxyListParams {
+    pub application__isnull: Option<bool>,
+    pub authorization_flow__slug__iexact: Option<String>,
+    pub basic_auth_enabled__iexact: Option<bool>,
+    pub basic_auth_password_attribute__iexact: Option<String>,
+    pub basic_auth_user_attribute__iexact: Option<String>,
+    pub certificate__kp_uuid__iexact: Option<String>,
+    pub certificate__name__iexact: Option<String>,
+    pub cookie_domain__iexact: Option<String>,
+    pub external_host__iexact: Option<String>,
+    pub internal_host__iexact: Option<String>,
+    pub internal_host_ssl_validation__iexact: Option<bool>,
+    pub mode__iexact: Option<String>,
+    pub name__iexact: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub property_mappings__iexact: Option<Vec<uuid::Uuid>>,
+    /// A search term.
+    pub search: Option<String>,
+    pub skip_path_regex__iexact: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_proxy_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersProxyPartialUpdateParams {
+    /// A unique integer value identifying this Proxy Provider.
+    pub id: i32,
+    pub patched_proxy_provider_request: Option<models::PatchedProxyProviderRequest>,
+}
+
+/// struct for passing parameters to the method [`providers_proxy_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersProxyRetrieveParams {
+    /// A unique integer value identifying this Proxy Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_proxy_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersProxyUpdateParams {
+    /// A unique integer value identifying this Proxy Provider.
+    pub id: i32,
+    pub proxy_provider_request: models::ProxyProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_proxy_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersProxyUsedByListParams {
+    /// A unique integer value identifying this Proxy Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_rac_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRacCreateParams {
+    pub rac_provider_request: models::RacProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_rac_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRacDestroyParams {
+    /// A unique integer value identifying this RAC Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_rac_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRacListParams {
+    pub application__isnull: Option<bool>,
+    pub name__iexact: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_rac_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRacPartialUpdateParams {
+    /// A unique integer value identifying this RAC Provider.
+    pub id: i32,
+    pub patched_rac_provider_request: Option<models::PatchedRacProviderRequest>,
+}
+
+/// struct for passing parameters to the method [`providers_rac_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRacRetrieveParams {
+    /// A unique integer value identifying this RAC Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_rac_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRacUpdateParams {
+    /// A unique integer value identifying this RAC Provider.
+    pub id: i32,
+    pub rac_provider_request: models::RacProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_rac_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRacUsedByListParams {
+    /// A unique integer value identifying this RAC Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_radius_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRadiusCreateParams {
+    pub radius_provider_request: models::RadiusProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_radius_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRadiusDestroyParams {
+    /// A unique integer value identifying this Radius Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_radius_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRadiusListParams {
+    pub application__isnull: Option<bool>,
+    pub authorization_flow__slug__iexact: Option<String>,
+    pub client_networks__iexact: Option<String>,
+    pub name__iexact: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_radius_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRadiusPartialUpdateParams {
+    /// A unique integer value identifying this Radius Provider.
+    pub id: i32,
+    pub patched_radius_provider_request: Option<models::PatchedRadiusProviderRequest>,
+}
+
+/// struct for passing parameters to the method [`providers_radius_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRadiusRetrieveParams {
+    /// A unique integer value identifying this Radius Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_radius_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRadiusUpdateParams {
+    /// A unique integer value identifying this Radius Provider.
+    pub id: i32,
+    pub radius_provider_request: models::RadiusProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_radius_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersRadiusUsedByListParams {
+    /// A unique integer value identifying this Radius Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_saml_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSamlCreateParams {
+    pub saml_provider_request: models::SamlProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_saml_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSamlDestroyParams {
+    /// A unique integer value identifying this SAML Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_saml_import_metadata_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSamlImportMetadataCreateParams {
+    pub name: String,
+    pub authorization_flow: String,
+    pub invalidation_flow: String,
+    pub file: std::path::PathBuf,
+}
+
+/// struct for passing parameters to the method [`providers_saml_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSamlListParams {
+    pub acs_url: Option<String>,
+    pub assertion_valid_not_before: Option<String>,
+    pub assertion_valid_not_on_or_after: Option<String>,
+    pub audience: Option<String>,
+    pub authentication_flow: Option<String>,
+    pub authn_context_class_ref_mapping: Option<String>,
+    pub authorization_flow: Option<String>,
+    pub backchannel_application: Option<String>,
+    pub default_name_id_policy: Option<models::SamlNameIdPolicyEnum>,
+    pub default_relay_state: Option<String>,
+    pub digest_algorithm: Option<models::DigestAlgorithmEnum>,
+    pub encryption_kp: Option<String>,
+    pub invalidation_flow: Option<String>,
+    pub is_backchannel: Option<bool>,
+    pub issuer_override: Option<String>,
+    pub logout_method: Option<String>,
+    pub name: Option<String>,
+    pub name_id_mapping: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub property_mappings: Option<Vec<uuid::Uuid>>,
+    /// A search term.
+    pub search: Option<String>,
+    pub session_valid_not_on_or_after: Option<String>,
+    pub sign_assertion: Option<bool>,
+    pub sign_logout_request: Option<bool>,
+    pub sign_logout_response: Option<bool>,
+    pub sign_response: Option<bool>,
+    pub signature_algorithm: Option<models::SignatureAlgorithmEnum>,
+    pub signing_kp: Option<String>,
+    pub sls_binding: Option<String>,
+    pub sls_url: Option<String>,
+    pub sp_binding: Option<String>,
+    pub verification_kp: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_saml_metadata_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSamlMetadataRetrieveParams {
+    /// A unique integer value identifying this SAML Provider.
+    pub id: i32,
+    pub download: Option<bool>,
+    pub force_binding: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_saml_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSamlPartialUpdateParams {
+    /// A unique integer value identifying this SAML Provider.
+    pub id: i32,
+    pub patched_saml_provider_request: Option<models::PatchedSamlProviderRequest>,
+}
+
+/// struct for passing parameters to the method [`providers_saml_preview_user_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSamlPreviewUserRetrieveParams {
+    /// A unique integer value identifying this SAML Provider.
+    pub id: i32,
+    pub for_user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`providers_saml_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSamlRetrieveParams {
+    /// A unique integer value identifying this SAML Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_saml_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSamlUpdateParams {
+    /// A unique integer value identifying this SAML Provider.
+    pub id: i32,
+    pub saml_provider_request: models::SamlProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_saml_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSamlUsedByListParams {
+    /// A unique integer value identifying this SAML Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_scim_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimCreateParams {
+    pub scim_provider_request: models::ScimProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_scim_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimDestroyParams {
+    /// A unique integer value identifying this SCIM Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_scim_groups_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimGroupsCreateParams {
+    pub scim_provider_group_request: models::ScimProviderGroupRequest,
+}
+
+/// struct for passing parameters to the method [`providers_scim_groups_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimGroupsDestroyParams {
+    /// A UUID string identifying this scim provider group.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_scim_groups_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimGroupsListParams {
+    pub group__group_uuid: Option<String>,
+    pub group__name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub provider__id: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_scim_groups_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimGroupsRetrieveParams {
+    /// A UUID string identifying this scim provider group.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_scim_groups_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimGroupsUsedByListParams {
+    /// A UUID string identifying this scim provider group.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_scim_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimListParams {
+    pub exclude_users_service_account: Option<bool>,
+    pub group_filters: Option<Vec<uuid::Uuid>>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub url: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_scim_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimPartialUpdateParams {
+    /// A unique integer value identifying this SCIM Provider.
+    pub id: i32,
+    pub patched_scim_provider_request: Option<models::PatchedScimProviderRequest>,
+}
+
+/// struct for passing parameters to the method [`providers_scim_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimRetrieveParams {
+    /// A unique integer value identifying this SCIM Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_scim_sync_object_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimSyncObjectCreateParams {
+    /// A unique integer value identifying this SCIM Provider.
+    pub id: i32,
+    pub sync_object_request: models::SyncObjectRequest,
+}
+
+/// struct for passing parameters to the method [`providers_scim_sync_status_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimSyncStatusRetrieveParams {
+    /// A unique integer value identifying this SCIM Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_scim_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimUpdateParams {
+    /// A unique integer value identifying this SCIM Provider.
+    pub id: i32,
+    pub scim_provider_request: models::ScimProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_scim_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimUsedByListParams {
+    /// A unique integer value identifying this SCIM Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_scim_users_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimUsersCreateParams {
+    pub scim_provider_user_request: models::ScimProviderUserRequest,
+}
+
+/// struct for passing parameters to the method [`providers_scim_users_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimUsersDestroyParams {
+    /// A UUID string identifying this scim provider user.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_scim_users_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimUsersListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub provider__id: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub user__id: Option<i32>,
+    pub user__username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_scim_users_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimUsersRetrieveParams {
+    /// A UUID string identifying this scim provider user.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_scim_users_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersScimUsersUsedByListParams {
+    /// A UUID string identifying this scim provider user.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`providers_ssf_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSsfCreateParams {
+    pub ssf_provider_request: models::SsfProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_ssf_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSsfDestroyParams {
+    /// A unique integer value identifying this Shared Signals Framework Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_ssf_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSsfListParams {
+    pub application__isnull: Option<bool>,
+    pub name__iexact: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_ssf_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSsfPartialUpdateParams {
+    /// A unique integer value identifying this Shared Signals Framework Provider.
+    pub id: i32,
+    pub patched_ssf_provider_request: Option<models::PatchedSsfProviderRequest>,
+}
+
+/// struct for passing parameters to the method [`providers_ssf_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSsfRetrieveParams {
+    /// A unique integer value identifying this Shared Signals Framework Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_ssf_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSsfUpdateParams {
+    /// A unique integer value identifying this Shared Signals Framework Provider.
+    pub id: i32,
+    pub ssf_provider_request: models::SsfProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_ssf_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersSsfUsedByListParams {
+    /// A unique integer value identifying this Shared Signals Framework Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_wsfed_create`]
+#[derive(Clone, Debug)]
+pub struct ProvidersWsfedCreateParams {
+    pub ws_federation_provider_request: models::WsFederationProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_wsfed_destroy`]
+#[derive(Clone, Debug)]
+pub struct ProvidersWsfedDestroyParams {
+    /// A unique integer value identifying this WS-Federation Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_wsfed_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersWsfedListParams {
+    pub acs_url: Option<String>,
+    pub assertion_valid_not_before: Option<String>,
+    pub assertion_valid_not_on_or_after: Option<String>,
+    pub audience: Option<String>,
+    pub authentication_flow: Option<String>,
+    pub authn_context_class_ref_mapping: Option<String>,
+    pub authorization_flow: Option<String>,
+    pub backchannel_application: Option<String>,
+    pub default_name_id_policy: Option<models::SamlNameIdPolicyEnum>,
+    pub default_relay_state: Option<String>,
+    pub digest_algorithm: Option<models::DigestAlgorithmEnum>,
+    pub encryption_kp: Option<String>,
+    pub invalidation_flow: Option<String>,
+    pub is_backchannel: Option<bool>,
+    pub issuer_override: Option<String>,
+    pub logout_method: Option<String>,
+    pub name: Option<String>,
+    pub name_id_mapping: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub property_mappings: Option<Vec<uuid::Uuid>>,
+    pub saml_version: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub session_valid_not_on_or_after: Option<String>,
+    pub sign_assertion: Option<bool>,
+    pub sign_logout_request: Option<bool>,
+    pub sign_logout_response: Option<bool>,
+    pub sign_response: Option<bool>,
+    pub signature_algorithm: Option<models::SignatureAlgorithmEnum>,
+    pub signing_kp: Option<String>,
+    pub sls_binding: Option<String>,
+    pub sls_url: Option<String>,
+    pub sp_binding: Option<String>,
+    pub verification_kp: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_wsfed_metadata_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersWsfedMetadataRetrieveParams {
+    /// A unique integer value identifying this WS-Federation Provider.
+    pub id: i32,
+    pub download: Option<bool>,
+    pub force_binding: Option<String>,
+}
+
+/// struct for passing parameters to the method [`providers_wsfed_partial_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersWsfedPartialUpdateParams {
+    /// A unique integer value identifying this WS-Federation Provider.
+    pub id: i32,
+    pub patched_ws_federation_provider_request: Option<models::PatchedWsFederationProviderRequest>,
+}
+
+/// struct for passing parameters to the method [`providers_wsfed_preview_user_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersWsfedPreviewUserRetrieveParams {
+    /// A unique integer value identifying this WS-Federation Provider.
+    pub id: i32,
+    pub for_user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`providers_wsfed_retrieve`]
+#[derive(Clone, Debug)]
+pub struct ProvidersWsfedRetrieveParams {
+    /// A unique integer value identifying this WS-Federation Provider.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`providers_wsfed_update`]
+#[derive(Clone, Debug)]
+pub struct ProvidersWsfedUpdateParams {
+    /// A unique integer value identifying this WS-Federation Provider.
+    pub id: i32,
+    pub ws_federation_provider_request: models::WsFederationProviderRequest,
+}
+
+/// struct for passing parameters to the method [`providers_wsfed_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct ProvidersWsfedUsedByListParams {
+    /// A unique integer value identifying this WS-Federation Provider.
+    pub id: i32,
+}
+
 /// struct for typed errors of method [`providers_all_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -1200,12 +2382,9 @@ pub enum ProvidersWsfedUsedByListError {
 /// Provider Viewset
 pub async fn providers_all_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersAllDestroyParams,
 ) -> Result<(), Error<ProvidersAllDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/all/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/all/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1236,40 +2415,27 @@ pub async fn providers_all_destroy(
 /// Provider Viewset
 pub async fn providers_all_list(
     configuration: &configuration::Configuration,
-    application__isnull: Option<bool>,
-    backchannel: Option<bool>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: ProvidersAllListParams,
 ) -> Result<models::PaginatedProviderList, Error<ProvidersAllListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_application__isnull = application__isnull;
-    let p_query_backchannel = backchannel;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/providers/all/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_application__isnull {
+    if let Some(ref param_value) = params.application__isnull {
         req_builder = req_builder.query(&[("application__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_backchannel {
+    if let Some(ref param_value) = params.backchannel {
         req_builder = req_builder.query(&[("backchannel", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1293,7 +2459,7 @@ pub async fn providers_all_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedProviderList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedProviderList`")))),
         }
@@ -1311,12 +2477,9 @@ pub async fn providers_all_list(
 /// Provider Viewset
 pub async fn providers_all_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersAllRetrieveParams,
 ) -> Result<models::Provider, Error<ProvidersAllRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/all/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/all/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1340,7 +2503,9 @@ pub async fn providers_all_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Provider`",
@@ -1391,7 +2556,7 @@ pub async fn providers_all_types_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`")))),
         }
@@ -1409,15 +2574,12 @@ pub async fn providers_all_types_list(
 /// Get a list of all objects that use this object
 pub async fn providers_all_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersAllUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersAllUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/all/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1442,7 +2604,7 @@ pub async fn providers_all_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1460,11 +2622,8 @@ pub async fn providers_all_used_by_list(
 /// GoogleWorkspaceProvider Viewset
 pub async fn providers_google_workspace_create(
     configuration: &configuration::Configuration,
-    google_workspace_provider_request: models::GoogleWorkspaceProviderRequest,
+    params: ProvidersGoogleWorkspaceCreateParams,
 ) -> Result<models::GoogleWorkspaceProvider, Error<ProvidersGoogleWorkspaceCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_google_workspace_provider_request = google_workspace_provider_request;
-
     let uri_str = format!("{}/providers/google_workspace/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1474,7 +2633,7 @@ pub async fn providers_google_workspace_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_google_workspace_provider_request);
+    req_builder = req_builder.json(&params.google_workspace_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1490,7 +2649,7 @@ pub async fn providers_google_workspace_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleWorkspaceProvider`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleWorkspaceProvider`")))),
         }
@@ -1508,15 +2667,12 @@ pub async fn providers_google_workspace_create(
 /// GoogleWorkspaceProvider Viewset
 pub async fn providers_google_workspace_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersGoogleWorkspaceDestroyParams,
 ) -> Result<(), Error<ProvidersGoogleWorkspaceDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/google_workspace/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1548,11 +2704,8 @@ pub async fn providers_google_workspace_destroy(
 /// GoogleWorkspaceProviderGroup Viewset
 pub async fn providers_google_workspace_groups_create(
     configuration: &configuration::Configuration,
-    google_workspace_provider_group_request: models::GoogleWorkspaceProviderGroupRequest,
+    params: ProvidersGoogleWorkspaceGroupsCreateParams,
 ) -> Result<models::GoogleWorkspaceProviderGroup, Error<ProvidersGoogleWorkspaceGroupsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_google_workspace_provider_group_request = google_workspace_provider_group_request;
-
     let uri_str = format!("{}/providers/google_workspace_groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1562,7 +2715,7 @@ pub async fn providers_google_workspace_groups_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_google_workspace_provider_group_request);
+    req_builder = req_builder.json(&params.google_workspace_provider_group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1578,7 +2731,7 @@ pub async fn providers_google_workspace_groups_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleWorkspaceProviderGroup`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleWorkspaceProviderGroup`")))),
         }
@@ -1596,15 +2749,12 @@ pub async fn providers_google_workspace_groups_create(
 /// GoogleWorkspaceProviderGroup Viewset
 pub async fn providers_google_workspace_groups_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersGoogleWorkspaceGroupsDestroyParams,
 ) -> Result<(), Error<ProvidersGoogleWorkspaceGroupsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/google_workspace_groups/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1636,45 +2786,30 @@ pub async fn providers_google_workspace_groups_destroy(
 /// GoogleWorkspaceProviderGroup Viewset
 pub async fn providers_google_workspace_groups_list(
     configuration: &configuration::Configuration,
-    group__group_uuid: Option<&str>,
-    group__name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    provider__id: Option<i32>,
-    search: Option<&str>,
+    params: ProvidersGoogleWorkspaceGroupsListParams,
 ) -> Result<models::PaginatedGoogleWorkspaceProviderGroupList, Error<ProvidersGoogleWorkspaceGroupsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group__group_uuid = group__group_uuid;
-    let p_query_group__name = group__name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_provider__id = provider__id;
-    let p_query_search = search;
-
     let uri_str = format!("{}/providers/google_workspace_groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group__group_uuid {
+    if let Some(ref param_value) = params.group__group_uuid {
         req_builder = req_builder.query(&[("group__group_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_group__name {
+    if let Some(ref param_value) = params.group__name {
         req_builder = req_builder.query(&[("group__name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider__id {
+    if let Some(ref param_value) = params.provider__id {
         req_builder = req_builder.query(&[("provider__id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1698,7 +2833,7 @@ pub async fn providers_google_workspace_groups_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGoogleWorkspaceProviderGroupList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGoogleWorkspaceProviderGroupList`")))),
         }
@@ -1716,15 +2851,12 @@ pub async fn providers_google_workspace_groups_list(
 /// GoogleWorkspaceProviderGroup Viewset
 pub async fn providers_google_workspace_groups_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersGoogleWorkspaceGroupsRetrieveParams,
 ) -> Result<models::GoogleWorkspaceProviderGroup, Error<ProvidersGoogleWorkspaceGroupsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/google_workspace_groups/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1749,7 +2881,7 @@ pub async fn providers_google_workspace_groups_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleWorkspaceProviderGroup`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleWorkspaceProviderGroup`")))),
         }
@@ -1767,15 +2899,12 @@ pub async fn providers_google_workspace_groups_retrieve(
 /// Get a list of all objects that use this object
 pub async fn providers_google_workspace_groups_used_by_list(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersGoogleWorkspaceGroupsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersGoogleWorkspaceGroupsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/google_workspace_groups/{id}/used_by/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1800,7 +2929,7 @@ pub async fn providers_google_workspace_groups_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1818,50 +2947,33 @@ pub async fn providers_google_workspace_groups_used_by_list(
 /// GoogleWorkspaceProvider Viewset
 pub async fn providers_google_workspace_list(
     configuration: &configuration::Configuration,
-    delegated_subject: Option<&str>,
-    exclude_users_service_account: Option<bool>,
-    filter_group: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: ProvidersGoogleWorkspaceListParams,
 ) -> Result<models::PaginatedGoogleWorkspaceProviderList, Error<ProvidersGoogleWorkspaceListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_delegated_subject = delegated_subject;
-    let p_query_exclude_users_service_account = exclude_users_service_account;
-    let p_query_filter_group = filter_group;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/providers/google_workspace/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_delegated_subject {
+    if let Some(ref param_value) = params.delegated_subject {
         req_builder = req_builder.query(&[("delegated_subject", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_exclude_users_service_account {
+    if let Some(ref param_value) = params.exclude_users_service_account {
         req_builder = req_builder.query(&[("exclude_users_service_account", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_filter_group {
+    if let Some(ref param_value) = params.filter_group {
         req_builder = req_builder.query(&[("filter_group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1885,7 +2997,7 @@ pub async fn providers_google_workspace_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGoogleWorkspaceProviderList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGoogleWorkspaceProviderList`")))),
         }
@@ -1903,17 +3015,12 @@ pub async fn providers_google_workspace_list(
 /// GoogleWorkspaceProvider Viewset
 pub async fn providers_google_workspace_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_google_workspace_provider_request: Option<models::PatchedGoogleWorkspaceProviderRequest>,
+    params: ProvidersGoogleWorkspacePartialUpdateParams,
 ) -> Result<models::GoogleWorkspaceProvider, Error<ProvidersGoogleWorkspacePartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_google_workspace_provider_request = patched_google_workspace_provider_request;
-
     let uri_str = format!(
         "{}/providers/google_workspace/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1923,7 +3030,7 @@ pub async fn providers_google_workspace_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_google_workspace_provider_request);
+    req_builder = req_builder.json(&params.patched_google_workspace_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1939,7 +3046,7 @@ pub async fn providers_google_workspace_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleWorkspaceProvider`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleWorkspaceProvider`")))),
         }
@@ -1957,15 +3064,12 @@ pub async fn providers_google_workspace_partial_update(
 /// GoogleWorkspaceProvider Viewset
 pub async fn providers_google_workspace_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersGoogleWorkspaceRetrieveParams,
 ) -> Result<models::GoogleWorkspaceProvider, Error<ProvidersGoogleWorkspaceRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/google_workspace/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1990,7 +3094,7 @@ pub async fn providers_google_workspace_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleWorkspaceProvider`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleWorkspaceProvider`")))),
         }
@@ -2008,17 +3112,12 @@ pub async fn providers_google_workspace_retrieve(
 /// Sync/Re-sync a single user/group object
 pub async fn providers_google_workspace_sync_object_create(
     configuration: &configuration::Configuration,
-    id: i32,
-    sync_object_request: models::SyncObjectRequest,
+    params: ProvidersGoogleWorkspaceSyncObjectCreateParams,
 ) -> Result<models::SyncObjectResult, Error<ProvidersGoogleWorkspaceSyncObjectCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_sync_object_request = sync_object_request;
-
     let uri_str = format!(
         "{}/providers/google_workspace/{id}/sync/object/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2028,7 +3127,7 @@ pub async fn providers_google_workspace_sync_object_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_sync_object_request);
+    req_builder = req_builder.json(&params.sync_object_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2044,7 +3143,7 @@ pub async fn providers_google_workspace_sync_object_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SyncObjectResult`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SyncObjectResult`")))),
         }
@@ -2062,15 +3161,12 @@ pub async fn providers_google_workspace_sync_object_create(
 /// Get provider's sync status
 pub async fn providers_google_workspace_sync_status_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersGoogleWorkspaceSyncStatusRetrieveParams,
 ) -> Result<models::SyncStatus, Error<ProvidersGoogleWorkspaceSyncStatusRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/google_workspace/{id}/sync/status/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2095,7 +3191,9 @@ pub async fn providers_google_workspace_sync_status_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SyncStatus`",
@@ -2121,17 +3219,12 @@ pub async fn providers_google_workspace_sync_status_retrieve(
 /// GoogleWorkspaceProvider Viewset
 pub async fn providers_google_workspace_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    google_workspace_provider_request: models::GoogleWorkspaceProviderRequest,
+    params: ProvidersGoogleWorkspaceUpdateParams,
 ) -> Result<models::GoogleWorkspaceProvider, Error<ProvidersGoogleWorkspaceUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_google_workspace_provider_request = google_workspace_provider_request;
-
     let uri_str = format!(
         "{}/providers/google_workspace/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2141,7 +3234,7 @@ pub async fn providers_google_workspace_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_google_workspace_provider_request);
+    req_builder = req_builder.json(&params.google_workspace_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2157,7 +3250,7 @@ pub async fn providers_google_workspace_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleWorkspaceProvider`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleWorkspaceProvider`")))),
         }
@@ -2175,15 +3268,12 @@ pub async fn providers_google_workspace_update(
 /// Get a list of all objects that use this object
 pub async fn providers_google_workspace_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersGoogleWorkspaceUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersGoogleWorkspaceUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/google_workspace/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2208,7 +3298,7 @@ pub async fn providers_google_workspace_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2226,11 +3316,8 @@ pub async fn providers_google_workspace_used_by_list(
 /// GoogleWorkspaceProviderUser Viewset
 pub async fn providers_google_workspace_users_create(
     configuration: &configuration::Configuration,
-    google_workspace_provider_user_request: models::GoogleWorkspaceProviderUserRequest,
+    params: ProvidersGoogleWorkspaceUsersCreateParams,
 ) -> Result<models::GoogleWorkspaceProviderUser, Error<ProvidersGoogleWorkspaceUsersCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_google_workspace_provider_user_request = google_workspace_provider_user_request;
-
     let uri_str = format!("{}/providers/google_workspace_users/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2240,7 +3327,7 @@ pub async fn providers_google_workspace_users_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_google_workspace_provider_user_request);
+    req_builder = req_builder.json(&params.google_workspace_provider_user_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2256,7 +3343,7 @@ pub async fn providers_google_workspace_users_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleWorkspaceProviderUser`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleWorkspaceProviderUser`")))),
         }
@@ -2274,15 +3361,12 @@ pub async fn providers_google_workspace_users_create(
 /// GoogleWorkspaceProviderUser Viewset
 pub async fn providers_google_workspace_users_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersGoogleWorkspaceUsersDestroyParams,
 ) -> Result<(), Error<ProvidersGoogleWorkspaceUsersDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/google_workspace_users/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2314,45 +3398,30 @@ pub async fn providers_google_workspace_users_destroy(
 /// GoogleWorkspaceProviderUser Viewset
 pub async fn providers_google_workspace_users_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    provider__id: Option<i32>,
-    search: Option<&str>,
-    user__id: Option<i32>,
-    user__username: Option<&str>,
+    params: ProvidersGoogleWorkspaceUsersListParams,
 ) -> Result<models::PaginatedGoogleWorkspaceProviderUserList, Error<ProvidersGoogleWorkspaceUsersListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_provider__id = provider__id;
-    let p_query_search = search;
-    let p_query_user__id = user__id;
-    let p_query_user__username = user__username;
-
     let uri_str = format!("{}/providers/google_workspace_users/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider__id {
+    if let Some(ref param_value) = params.provider__id {
         req_builder = req_builder.query(&[("provider__id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user__id {
+    if let Some(ref param_value) = params.user__id {
         req_builder = req_builder.query(&[("user__id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user__username {
+    if let Some(ref param_value) = params.user__username {
         req_builder = req_builder.query(&[("user__username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2376,7 +3445,7 @@ pub async fn providers_google_workspace_users_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGoogleWorkspaceProviderUserList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGoogleWorkspaceProviderUserList`")))),
         }
@@ -2394,15 +3463,12 @@ pub async fn providers_google_workspace_users_list(
 /// GoogleWorkspaceProviderUser Viewset
 pub async fn providers_google_workspace_users_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersGoogleWorkspaceUsersRetrieveParams,
 ) -> Result<models::GoogleWorkspaceProviderUser, Error<ProvidersGoogleWorkspaceUsersRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/google_workspace_users/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2427,7 +3493,7 @@ pub async fn providers_google_workspace_users_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GoogleWorkspaceProviderUser`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GoogleWorkspaceProviderUser`")))),
         }
@@ -2445,15 +3511,12 @@ pub async fn providers_google_workspace_users_retrieve(
 /// Get a list of all objects that use this object
 pub async fn providers_google_workspace_users_used_by_list(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersGoogleWorkspaceUsersUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersGoogleWorkspaceUsersUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/google_workspace_users/{id}/used_by/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2478,7 +3541,7 @@ pub async fn providers_google_workspace_users_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2496,11 +3559,8 @@ pub async fn providers_google_workspace_users_used_by_list(
 /// LDAPProvider Viewset
 pub async fn providers_ldap_create(
     configuration: &configuration::Configuration,
-    ldap_provider_request: models::LdapProviderRequest,
+    params: ProvidersLdapCreateParams,
 ) -> Result<models::LdapProvider, Error<ProvidersLdapCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_ldap_provider_request = ldap_provider_request;
-
     let uri_str = format!("{}/providers/ldap/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2510,7 +3570,7 @@ pub async fn providers_ldap_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_ldap_provider_request);
+    req_builder = req_builder.json(&params.ldap_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2526,7 +3586,9 @@ pub async fn providers_ldap_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LdapProvider`",
@@ -2550,12 +3612,9 @@ pub async fn providers_ldap_create(
 /// LDAPProvider Viewset
 pub async fn providers_ldap_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersLdapDestroyParams,
 ) -> Result<(), Error<ProvidersLdapDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/ldap/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/ldap/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2586,75 +3645,48 @@ pub async fn providers_ldap_destroy(
 /// LDAPProvider Viewset
 pub async fn providers_ldap_list(
     configuration: &configuration::Configuration,
-    application__isnull: Option<bool>,
-    authorization_flow__slug__iexact: Option<&str>,
-    base_dn__iexact: Option<&str>,
-    certificate__kp_uuid__iexact: Option<&str>,
-    certificate__name__iexact: Option<&str>,
-    gid_start_number__iexact: Option<i32>,
-    name__iexact: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    tls_server_name__iexact: Option<&str>,
-    uid_start_number__iexact: Option<i32>,
+    params: ProvidersLdapListParams,
 ) -> Result<models::PaginatedLdapProviderList, Error<ProvidersLdapListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_application__isnull = application__isnull;
-    let p_query_authorization_flow__slug__iexact = authorization_flow__slug__iexact;
-    let p_query_base_dn__iexact = base_dn__iexact;
-    let p_query_certificate__kp_uuid__iexact = certificate__kp_uuid__iexact;
-    let p_query_certificate__name__iexact = certificate__name__iexact;
-    let p_query_gid_start_number__iexact = gid_start_number__iexact;
-    let p_query_name__iexact = name__iexact;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_tls_server_name__iexact = tls_server_name__iexact;
-    let p_query_uid_start_number__iexact = uid_start_number__iexact;
-
     let uri_str = format!("{}/providers/ldap/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_application__isnull {
+    if let Some(ref param_value) = params.application__isnull {
         req_builder = req_builder.query(&[("application__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authorization_flow__slug__iexact {
+    if let Some(ref param_value) = params.authorization_flow__slug__iexact {
         req_builder = req_builder.query(&[("authorization_flow__slug__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_base_dn__iexact {
+    if let Some(ref param_value) = params.base_dn__iexact {
         req_builder = req_builder.query(&[("base_dn__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_certificate__kp_uuid__iexact {
+    if let Some(ref param_value) = params.certificate__kp_uuid__iexact {
         req_builder = req_builder.query(&[("certificate__kp_uuid__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_certificate__name__iexact {
+    if let Some(ref param_value) = params.certificate__name__iexact {
         req_builder = req_builder.query(&[("certificate__name__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_gid_start_number__iexact {
+    if let Some(ref param_value) = params.gid_start_number__iexact {
         req_builder = req_builder.query(&[("gid_start_number__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name__iexact {
+    if let Some(ref param_value) = params.name__iexact {
         req_builder = req_builder.query(&[("name__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_tls_server_name__iexact {
+    if let Some(ref param_value) = params.tls_server_name__iexact {
         req_builder = req_builder.query(&[("tls_server_name__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_uid_start_number__iexact {
+    if let Some(ref param_value) = params.uid_start_number__iexact {
         req_builder = req_builder.query(&[("uid_start_number__iexact", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2678,7 +3710,7 @@ pub async fn providers_ldap_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedLdapProviderList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedLdapProviderList`")))),
         }
@@ -2696,14 +3728,9 @@ pub async fn providers_ldap_list(
 /// LDAPProvider Viewset
 pub async fn providers_ldap_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_ldap_provider_request: Option<models::PatchedLdapProviderRequest>,
+    params: ProvidersLdapPartialUpdateParams,
 ) -> Result<models::LdapProvider, Error<ProvidersLdapPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_ldap_provider_request = patched_ldap_provider_request;
-
-    let uri_str = format!("{}/providers/ldap/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/ldap/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2712,7 +3739,7 @@ pub async fn providers_ldap_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_ldap_provider_request);
+    req_builder = req_builder.json(&params.patched_ldap_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2728,7 +3755,9 @@ pub async fn providers_ldap_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LdapProvider`",
@@ -2752,12 +3781,9 @@ pub async fn providers_ldap_partial_update(
 /// LDAPProvider Viewset
 pub async fn providers_ldap_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersLdapRetrieveParams,
 ) -> Result<models::LdapProvider, Error<ProvidersLdapRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/ldap/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/ldap/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2781,7 +3807,9 @@ pub async fn providers_ldap_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LdapProvider`",
@@ -2805,14 +3833,9 @@ pub async fn providers_ldap_retrieve(
 /// LDAPProvider Viewset
 pub async fn providers_ldap_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    ldap_provider_request: models::LdapProviderRequest,
+    params: ProvidersLdapUpdateParams,
 ) -> Result<models::LdapProvider, Error<ProvidersLdapUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_ldap_provider_request = ldap_provider_request;
-
-    let uri_str = format!("{}/providers/ldap/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/ldap/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2821,7 +3844,7 @@ pub async fn providers_ldap_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_ldap_provider_request);
+    req_builder = req_builder.json(&params.ldap_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2837,7 +3860,9 @@ pub async fn providers_ldap_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LdapProvider`",
@@ -2861,15 +3886,12 @@ pub async fn providers_ldap_update(
 /// Get a list of all objects that use this object
 pub async fn providers_ldap_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersLdapUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersLdapUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/ldap/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2894,7 +3916,7 @@ pub async fn providers_ldap_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2912,11 +3934,8 @@ pub async fn providers_ldap_used_by_list(
 /// MicrosoftEntraProvider Viewset
 pub async fn providers_microsoft_entra_create(
     configuration: &configuration::Configuration,
-    microsoft_entra_provider_request: models::MicrosoftEntraProviderRequest,
+    params: ProvidersMicrosoftEntraCreateParams,
 ) -> Result<models::MicrosoftEntraProvider, Error<ProvidersMicrosoftEntraCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_microsoft_entra_provider_request = microsoft_entra_provider_request;
-
     let uri_str = format!("{}/providers/microsoft_entra/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2926,7 +3945,7 @@ pub async fn providers_microsoft_entra_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_microsoft_entra_provider_request);
+    req_builder = req_builder.json(&params.microsoft_entra_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2942,7 +3961,7 @@ pub async fn providers_microsoft_entra_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MicrosoftEntraProvider`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MicrosoftEntraProvider`")))),
         }
@@ -2960,15 +3979,12 @@ pub async fn providers_microsoft_entra_create(
 /// MicrosoftEntraProvider Viewset
 pub async fn providers_microsoft_entra_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersMicrosoftEntraDestroyParams,
 ) -> Result<(), Error<ProvidersMicrosoftEntraDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3000,11 +4016,8 @@ pub async fn providers_microsoft_entra_destroy(
 /// MicrosoftEntraProviderGroup Viewset
 pub async fn providers_microsoft_entra_groups_create(
     configuration: &configuration::Configuration,
-    microsoft_entra_provider_group_request: models::MicrosoftEntraProviderGroupRequest,
+    params: ProvidersMicrosoftEntraGroupsCreateParams,
 ) -> Result<models::MicrosoftEntraProviderGroup, Error<ProvidersMicrosoftEntraGroupsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_microsoft_entra_provider_group_request = microsoft_entra_provider_group_request;
-
     let uri_str = format!("{}/providers/microsoft_entra_groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3014,7 +4027,7 @@ pub async fn providers_microsoft_entra_groups_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_microsoft_entra_provider_group_request);
+    req_builder = req_builder.json(&params.microsoft_entra_provider_group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3030,7 +4043,7 @@ pub async fn providers_microsoft_entra_groups_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MicrosoftEntraProviderGroup`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MicrosoftEntraProviderGroup`")))),
         }
@@ -3048,15 +4061,12 @@ pub async fn providers_microsoft_entra_groups_create(
 /// MicrosoftEntraProviderGroup Viewset
 pub async fn providers_microsoft_entra_groups_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersMicrosoftEntraGroupsDestroyParams,
 ) -> Result<(), Error<ProvidersMicrosoftEntraGroupsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra_groups/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3088,45 +4098,30 @@ pub async fn providers_microsoft_entra_groups_destroy(
 /// MicrosoftEntraProviderGroup Viewset
 pub async fn providers_microsoft_entra_groups_list(
     configuration: &configuration::Configuration,
-    group__group_uuid: Option<&str>,
-    group__name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    provider__id: Option<i32>,
-    search: Option<&str>,
+    params: ProvidersMicrosoftEntraGroupsListParams,
 ) -> Result<models::PaginatedMicrosoftEntraProviderGroupList, Error<ProvidersMicrosoftEntraGroupsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group__group_uuid = group__group_uuid;
-    let p_query_group__name = group__name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_provider__id = provider__id;
-    let p_query_search = search;
-
     let uri_str = format!("{}/providers/microsoft_entra_groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group__group_uuid {
+    if let Some(ref param_value) = params.group__group_uuid {
         req_builder = req_builder.query(&[("group__group_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_group__name {
+    if let Some(ref param_value) = params.group__name {
         req_builder = req_builder.query(&[("group__name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider__id {
+    if let Some(ref param_value) = params.provider__id {
         req_builder = req_builder.query(&[("provider__id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3150,7 +4145,7 @@ pub async fn providers_microsoft_entra_groups_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedMicrosoftEntraProviderGroupList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedMicrosoftEntraProviderGroupList`")))),
         }
@@ -3168,15 +4163,12 @@ pub async fn providers_microsoft_entra_groups_list(
 /// MicrosoftEntraProviderGroup Viewset
 pub async fn providers_microsoft_entra_groups_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersMicrosoftEntraGroupsRetrieveParams,
 ) -> Result<models::MicrosoftEntraProviderGroup, Error<ProvidersMicrosoftEntraGroupsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra_groups/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3201,7 +4193,7 @@ pub async fn providers_microsoft_entra_groups_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MicrosoftEntraProviderGroup`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MicrosoftEntraProviderGroup`")))),
         }
@@ -3219,15 +4211,12 @@ pub async fn providers_microsoft_entra_groups_retrieve(
 /// Get a list of all objects that use this object
 pub async fn providers_microsoft_entra_groups_used_by_list(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersMicrosoftEntraGroupsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersMicrosoftEntraGroupsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra_groups/{id}/used_by/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3252,7 +4241,7 @@ pub async fn providers_microsoft_entra_groups_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3270,45 +4259,30 @@ pub async fn providers_microsoft_entra_groups_used_by_list(
 /// MicrosoftEntraProvider Viewset
 pub async fn providers_microsoft_entra_list(
     configuration: &configuration::Configuration,
-    exclude_users_service_account: Option<bool>,
-    filter_group: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: ProvidersMicrosoftEntraListParams,
 ) -> Result<models::PaginatedMicrosoftEntraProviderList, Error<ProvidersMicrosoftEntraListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_exclude_users_service_account = exclude_users_service_account;
-    let p_query_filter_group = filter_group;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/providers/microsoft_entra/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_exclude_users_service_account {
+    if let Some(ref param_value) = params.exclude_users_service_account {
         req_builder = req_builder.query(&[("exclude_users_service_account", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_filter_group {
+    if let Some(ref param_value) = params.filter_group {
         req_builder = req_builder.query(&[("filter_group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3332,7 +4306,7 @@ pub async fn providers_microsoft_entra_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedMicrosoftEntraProviderList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedMicrosoftEntraProviderList`")))),
         }
@@ -3350,17 +4324,12 @@ pub async fn providers_microsoft_entra_list(
 /// MicrosoftEntraProvider Viewset
 pub async fn providers_microsoft_entra_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_microsoft_entra_provider_request: Option<models::PatchedMicrosoftEntraProviderRequest>,
+    params: ProvidersMicrosoftEntraPartialUpdateParams,
 ) -> Result<models::MicrosoftEntraProvider, Error<ProvidersMicrosoftEntraPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_microsoft_entra_provider_request = patched_microsoft_entra_provider_request;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3370,7 +4339,7 @@ pub async fn providers_microsoft_entra_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_microsoft_entra_provider_request);
+    req_builder = req_builder.json(&params.patched_microsoft_entra_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3386,7 +4355,7 @@ pub async fn providers_microsoft_entra_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MicrosoftEntraProvider`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MicrosoftEntraProvider`")))),
         }
@@ -3404,15 +4373,12 @@ pub async fn providers_microsoft_entra_partial_update(
 /// MicrosoftEntraProvider Viewset
 pub async fn providers_microsoft_entra_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersMicrosoftEntraRetrieveParams,
 ) -> Result<models::MicrosoftEntraProvider, Error<ProvidersMicrosoftEntraRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3437,7 +4403,7 @@ pub async fn providers_microsoft_entra_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MicrosoftEntraProvider`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MicrosoftEntraProvider`")))),
         }
@@ -3455,17 +4421,12 @@ pub async fn providers_microsoft_entra_retrieve(
 /// Sync/Re-sync a single user/group object
 pub async fn providers_microsoft_entra_sync_object_create(
     configuration: &configuration::Configuration,
-    id: i32,
-    sync_object_request: models::SyncObjectRequest,
+    params: ProvidersMicrosoftEntraSyncObjectCreateParams,
 ) -> Result<models::SyncObjectResult, Error<ProvidersMicrosoftEntraSyncObjectCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_sync_object_request = sync_object_request;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra/{id}/sync/object/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3475,7 +4436,7 @@ pub async fn providers_microsoft_entra_sync_object_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_sync_object_request);
+    req_builder = req_builder.json(&params.sync_object_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3491,7 +4452,7 @@ pub async fn providers_microsoft_entra_sync_object_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SyncObjectResult`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SyncObjectResult`")))),
         }
@@ -3509,15 +4470,12 @@ pub async fn providers_microsoft_entra_sync_object_create(
 /// Get provider's sync status
 pub async fn providers_microsoft_entra_sync_status_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersMicrosoftEntraSyncStatusRetrieveParams,
 ) -> Result<models::SyncStatus, Error<ProvidersMicrosoftEntraSyncStatusRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra/{id}/sync/status/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3542,7 +4500,9 @@ pub async fn providers_microsoft_entra_sync_status_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SyncStatus`",
@@ -3568,17 +4528,12 @@ pub async fn providers_microsoft_entra_sync_status_retrieve(
 /// MicrosoftEntraProvider Viewset
 pub async fn providers_microsoft_entra_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    microsoft_entra_provider_request: models::MicrosoftEntraProviderRequest,
+    params: ProvidersMicrosoftEntraUpdateParams,
 ) -> Result<models::MicrosoftEntraProvider, Error<ProvidersMicrosoftEntraUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_microsoft_entra_provider_request = microsoft_entra_provider_request;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3588,7 +4543,7 @@ pub async fn providers_microsoft_entra_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_microsoft_entra_provider_request);
+    req_builder = req_builder.json(&params.microsoft_entra_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3604,7 +4559,7 @@ pub async fn providers_microsoft_entra_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MicrosoftEntraProvider`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MicrosoftEntraProvider`")))),
         }
@@ -3622,15 +4577,12 @@ pub async fn providers_microsoft_entra_update(
 /// Get a list of all objects that use this object
 pub async fn providers_microsoft_entra_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersMicrosoftEntraUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersMicrosoftEntraUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3655,7 +4607,7 @@ pub async fn providers_microsoft_entra_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3673,11 +4625,8 @@ pub async fn providers_microsoft_entra_used_by_list(
 /// MicrosoftEntraProviderUser Viewset
 pub async fn providers_microsoft_entra_users_create(
     configuration: &configuration::Configuration,
-    microsoft_entra_provider_user_request: models::MicrosoftEntraProviderUserRequest,
+    params: ProvidersMicrosoftEntraUsersCreateParams,
 ) -> Result<models::MicrosoftEntraProviderUser, Error<ProvidersMicrosoftEntraUsersCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_microsoft_entra_provider_user_request = microsoft_entra_provider_user_request;
-
     let uri_str = format!("{}/providers/microsoft_entra_users/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3687,7 +4636,7 @@ pub async fn providers_microsoft_entra_users_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_microsoft_entra_provider_user_request);
+    req_builder = req_builder.json(&params.microsoft_entra_provider_user_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3703,7 +4652,7 @@ pub async fn providers_microsoft_entra_users_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MicrosoftEntraProviderUser`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MicrosoftEntraProviderUser`")))),
         }
@@ -3721,15 +4670,12 @@ pub async fn providers_microsoft_entra_users_create(
 /// MicrosoftEntraProviderUser Viewset
 pub async fn providers_microsoft_entra_users_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersMicrosoftEntraUsersDestroyParams,
 ) -> Result<(), Error<ProvidersMicrosoftEntraUsersDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra_users/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3761,45 +4707,30 @@ pub async fn providers_microsoft_entra_users_destroy(
 /// MicrosoftEntraProviderUser Viewset
 pub async fn providers_microsoft_entra_users_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    provider__id: Option<i32>,
-    search: Option<&str>,
-    user__id: Option<i32>,
-    user__username: Option<&str>,
+    params: ProvidersMicrosoftEntraUsersListParams,
 ) -> Result<models::PaginatedMicrosoftEntraProviderUserList, Error<ProvidersMicrosoftEntraUsersListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_provider__id = provider__id;
-    let p_query_search = search;
-    let p_query_user__id = user__id;
-    let p_query_user__username = user__username;
-
     let uri_str = format!("{}/providers/microsoft_entra_users/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider__id {
+    if let Some(ref param_value) = params.provider__id {
         req_builder = req_builder.query(&[("provider__id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user__id {
+    if let Some(ref param_value) = params.user__id {
         req_builder = req_builder.query(&[("user__id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user__username {
+    if let Some(ref param_value) = params.user__username {
         req_builder = req_builder.query(&[("user__username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3823,7 +4754,7 @@ pub async fn providers_microsoft_entra_users_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedMicrosoftEntraProviderUserList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedMicrosoftEntraProviderUserList`")))),
         }
@@ -3841,15 +4772,12 @@ pub async fn providers_microsoft_entra_users_list(
 /// MicrosoftEntraProviderUser Viewset
 pub async fn providers_microsoft_entra_users_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersMicrosoftEntraUsersRetrieveParams,
 ) -> Result<models::MicrosoftEntraProviderUser, Error<ProvidersMicrosoftEntraUsersRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra_users/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3874,7 +4802,7 @@ pub async fn providers_microsoft_entra_users_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MicrosoftEntraProviderUser`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MicrosoftEntraProviderUser`")))),
         }
@@ -3892,15 +4820,12 @@ pub async fn providers_microsoft_entra_users_retrieve(
 /// Get a list of all objects that use this object
 pub async fn providers_microsoft_entra_users_used_by_list(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersMicrosoftEntraUsersUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersMicrosoftEntraUsersUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/microsoft_entra_users/{id}/used_by/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3925,7 +4850,7 @@ pub async fn providers_microsoft_entra_users_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3943,11 +4868,8 @@ pub async fn providers_microsoft_entra_users_used_by_list(
 /// OAuth2Provider Viewset
 pub async fn providers_oauth2_create(
     configuration: &configuration::Configuration,
-    o_auth2_provider_request: models::OAuth2ProviderRequest,
+    params: ProvidersOauth2CreateParams,
 ) -> Result<models::OAuth2Provider, Error<ProvidersOauth2CreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_o_auth2_provider_request = o_auth2_provider_request;
-
     let uri_str = format!("{}/providers/oauth2/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3957,7 +4879,7 @@ pub async fn providers_oauth2_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_o_auth2_provider_request);
+    req_builder = req_builder.json(&params.o_auth2_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3973,7 +4895,9 @@ pub async fn providers_oauth2_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::OAuth2Provider`",
@@ -3997,11 +4921,8 @@ pub async fn providers_oauth2_create(
 /// OAuth2 Dynamic Client Registration configuration ViewSet
 pub async fn providers_oauth2_dcr_create(
     configuration: &configuration::Configuration,
-    o_auth2_dynamic_client_registration_request: models::OAuth2DynamicClientRegistrationRequest,
+    params: ProvidersOauth2DcrCreateParams,
 ) -> Result<models::OAuth2DynamicClientRegistration, Error<ProvidersOauth2DcrCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_o_auth2_dynamic_client_registration_request = o_auth2_dynamic_client_registration_request;
-
     let uri_str = format!("{}/providers/oauth2-dcr/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4011,7 +4932,7 @@ pub async fn providers_oauth2_dcr_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_o_auth2_dynamic_client_registration_request);
+    req_builder = req_builder.json(&params.o_auth2_dynamic_client_registration_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4027,7 +4948,7 @@ pub async fn providers_oauth2_dcr_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`")))),
         }
@@ -4045,15 +4966,12 @@ pub async fn providers_oauth2_dcr_create(
 /// OAuth2 Dynamic Client Registration configuration ViewSet
 pub async fn providers_oauth2_dcr_destroy(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
+    params: ProvidersOauth2DcrDestroyParams,
 ) -> Result<(), Error<ProvidersOauth2DcrDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
     let uri_str = format!(
         "{}/providers/oauth2-dcr/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4085,35 +5003,24 @@ pub async fn providers_oauth2_dcr_destroy(
 /// OAuth2 Dynamic Client Registration configuration ViewSet
 pub async fn providers_oauth2_dcr_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    provider: Option<i32>,
-    search: Option<&str>,
+    params: ProvidersOauth2DcrListParams,
 ) -> Result<models::PaginatedOAuth2DynamicClientRegistrationList, Error<ProvidersOauth2DcrListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_provider = provider;
-    let p_query_search = search;
-
     let uri_str = format!("{}/providers/oauth2-dcr/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider {
+    if let Some(ref param_value) = params.provider {
         req_builder = req_builder.query(&[("provider", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4137,7 +5044,7 @@ pub async fn providers_oauth2_dcr_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedOAuth2DynamicClientRegistrationList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedOAuth2DynamicClientRegistrationList`")))),
         }
@@ -4155,18 +5062,12 @@ pub async fn providers_oauth2_dcr_list(
 /// OAuth2 Dynamic Client Registration configuration ViewSet
 pub async fn providers_oauth2_dcr_partial_update(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-    patched_o_auth2_dynamic_client_registration_request: Option<models::PatchedOAuth2DynamicClientRegistrationRequest>,
+    params: ProvidersOauth2DcrPartialUpdateParams,
 ) -> Result<models::OAuth2DynamicClientRegistration, Error<ProvidersOauth2DcrPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-    let p_body_patched_o_auth2_dynamic_client_registration_request =
-        patched_o_auth2_dynamic_client_registration_request;
-
     let uri_str = format!(
         "{}/providers/oauth2-dcr/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -4176,7 +5077,7 @@ pub async fn providers_oauth2_dcr_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_o_auth2_dynamic_client_registration_request);
+    req_builder = req_builder.json(&params.patched_o_auth2_dynamic_client_registration_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4192,7 +5093,7 @@ pub async fn providers_oauth2_dcr_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`")))),
         }
@@ -4210,15 +5111,12 @@ pub async fn providers_oauth2_dcr_partial_update(
 /// OAuth2 Dynamic Client Registration configuration ViewSet
 pub async fn providers_oauth2_dcr_retrieve(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
+    params: ProvidersOauth2DcrRetrieveParams,
 ) -> Result<models::OAuth2DynamicClientRegistration, Error<ProvidersOauth2DcrRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
     let uri_str = format!(
         "{}/providers/oauth2-dcr/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4243,7 +5141,7 @@ pub async fn providers_oauth2_dcr_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`")))),
         }
@@ -4261,17 +5159,12 @@ pub async fn providers_oauth2_dcr_retrieve(
 /// OAuth2 Dynamic Client Registration configuration ViewSet
 pub async fn providers_oauth2_dcr_update(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-    o_auth2_dynamic_client_registration_request: models::OAuth2DynamicClientRegistrationRequest,
+    params: ProvidersOauth2DcrUpdateParams,
 ) -> Result<models::OAuth2DynamicClientRegistration, Error<ProvidersOauth2DcrUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-    let p_body_o_auth2_dynamic_client_registration_request = o_auth2_dynamic_client_registration_request;
-
     let uri_str = format!(
         "{}/providers/oauth2-dcr/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4281,7 +5174,7 @@ pub async fn providers_oauth2_dcr_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_o_auth2_dynamic_client_registration_request);
+    req_builder = req_builder.json(&params.o_auth2_dynamic_client_registration_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4297,7 +5190,7 @@ pub async fn providers_oauth2_dcr_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuth2DynamicClientRegistration`")))),
         }
@@ -4315,12 +5208,9 @@ pub async fn providers_oauth2_dcr_update(
 /// OAuth2Provider Viewset
 pub async fn providers_oauth2_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersOauth2DestroyParams,
 ) -> Result<(), Error<ProvidersOauth2DestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/oauth2/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/oauth2/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4351,83 +5241,48 @@ pub async fn providers_oauth2_destroy(
 /// OAuth2Provider Viewset
 pub async fn providers_oauth2_list(
     configuration: &configuration::Configuration,
-    access_code_validity: Option<&str>,
-    access_token_validity: Option<&str>,
-    application: Option<&str>,
-    authorization_flow: Option<&str>,
-    client_id: Option<&str>,
-    client_type: Option<&str>,
-    include_claims_in_id_token: Option<bool>,
-    issuer_mode: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    property_mappings: Option<Vec<uuid::Uuid>>,
-    refresh_token_validity: Option<&str>,
-    search: Option<&str>,
-    signing_key: Option<&str>,
-    sub_mode: Option<&str>,
+    params: ProvidersOauth2ListParams,
 ) -> Result<models::PaginatedOAuth2ProviderList, Error<ProvidersOauth2ListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_access_code_validity = access_code_validity;
-    let p_query_access_token_validity = access_token_validity;
-    let p_query_application = application;
-    let p_query_authorization_flow = authorization_flow;
-    let p_query_client_id = client_id;
-    let p_query_client_type = client_type;
-    let p_query_include_claims_in_id_token = include_claims_in_id_token;
-    let p_query_issuer_mode = issuer_mode;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_property_mappings = property_mappings;
-    let p_query_refresh_token_validity = refresh_token_validity;
-    let p_query_search = search;
-    let p_query_signing_key = signing_key;
-    let p_query_sub_mode = sub_mode;
-
     let uri_str = format!("{}/providers/oauth2/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_access_code_validity {
+    if let Some(ref param_value) = params.access_code_validity {
         req_builder = req_builder.query(&[("access_code_validity", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_access_token_validity {
+    if let Some(ref param_value) = params.access_token_validity {
         req_builder = req_builder.query(&[("access_token_validity", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_application {
+    if let Some(ref param_value) = params.application {
         req_builder = req_builder.query(&[("application", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authorization_flow {
+    if let Some(ref param_value) = params.authorization_flow {
         req_builder = req_builder.query(&[("authorization_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_id {
+    if let Some(ref param_value) = params.client_id {
         req_builder = req_builder.query(&[("client_id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_type {
+    if let Some(ref param_value) = params.client_type {
         req_builder = req_builder.query(&[("client_type", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_include_claims_in_id_token {
+    if let Some(ref param_value) = params.include_claims_in_id_token {
         req_builder = req_builder.query(&[("include_claims_in_id_token", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_issuer_mode {
+    if let Some(ref param_value) = params.issuer_mode {
         req_builder = req_builder.query(&[("issuer_mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_property_mappings {
+    if let Some(ref param_value) = params.property_mappings {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -4446,16 +5301,16 @@ pub async fn providers_oauth2_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_refresh_token_validity {
+    if let Some(ref param_value) = params.refresh_token_validity {
         req_builder = req_builder.query(&[("refresh_token_validity", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_signing_key {
+    if let Some(ref param_value) = params.signing_key {
         req_builder = req_builder.query(&[("signing_key", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sub_mode {
+    if let Some(ref param_value) = params.sub_mode {
         req_builder = req_builder.query(&[("sub_mode", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4479,7 +5334,7 @@ pub async fn providers_oauth2_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedOAuth2ProviderList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedOAuth2ProviderList`")))),
         }
@@ -4497,14 +5352,9 @@ pub async fn providers_oauth2_list(
 /// OAuth2Provider Viewset
 pub async fn providers_oauth2_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_o_auth2_provider_request: Option<models::PatchedOAuth2ProviderRequest>,
+    params: ProvidersOauth2PartialUpdateParams,
 ) -> Result<models::OAuth2Provider, Error<ProvidersOauth2PartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_o_auth2_provider_request = patched_o_auth2_provider_request;
-
-    let uri_str = format!("{}/providers/oauth2/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/oauth2/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4513,7 +5363,7 @@ pub async fn providers_oauth2_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_o_auth2_provider_request);
+    req_builder = req_builder.json(&params.patched_o_auth2_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4529,7 +5379,9 @@ pub async fn providers_oauth2_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::OAuth2Provider`",
@@ -4553,21 +5405,16 @@ pub async fn providers_oauth2_partial_update(
 /// Preview user data for provider
 pub async fn providers_oauth2_preview_user_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
-    for_user: Option<i32>,
+    params: ProvidersOauth2PreviewUserRetrieveParams,
 ) -> Result<models::PropertyMappingPreview, Error<ProvidersOauth2PreviewUserRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_query_for_user = for_user;
-
     let uri_str = format!(
         "{}/providers/oauth2/{id}/preview_user/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_for_user {
+    if let Some(ref param_value) = params.for_user {
         req_builder = req_builder.query(&[("for_user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4591,7 +5438,7 @@ pub async fn providers_oauth2_preview_user_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PropertyMappingPreview`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PropertyMappingPreview`")))),
         }
@@ -4609,12 +5456,9 @@ pub async fn providers_oauth2_preview_user_retrieve(
 /// OAuth2Provider Viewset
 pub async fn providers_oauth2_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersOauth2RetrieveParams,
 ) -> Result<models::OAuth2Provider, Error<ProvidersOauth2RetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/oauth2/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/oauth2/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4638,7 +5482,9 @@ pub async fn providers_oauth2_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::OAuth2Provider`",
@@ -4662,15 +5508,12 @@ pub async fn providers_oauth2_retrieve(
 /// Get Providers setup URLs
 pub async fn providers_oauth2_setup_urls_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersOauth2SetupUrlsRetrieveParams,
 ) -> Result<models::OAuth2ProviderSetupUrls, Error<ProvidersOauth2SetupUrlsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/oauth2/{id}/setup_urls/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4695,7 +5538,7 @@ pub async fn providers_oauth2_setup_urls_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuth2ProviderSetupUrls`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuth2ProviderSetupUrls`")))),
         }
@@ -4713,14 +5556,9 @@ pub async fn providers_oauth2_setup_urls_retrieve(
 /// OAuth2Provider Viewset
 pub async fn providers_oauth2_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    o_auth2_provider_request: models::OAuth2ProviderRequest,
+    params: ProvidersOauth2UpdateParams,
 ) -> Result<models::OAuth2Provider, Error<ProvidersOauth2UpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_o_auth2_provider_request = o_auth2_provider_request;
-
-    let uri_str = format!("{}/providers/oauth2/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/oauth2/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4729,7 +5567,7 @@ pub async fn providers_oauth2_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_o_auth2_provider_request);
+    req_builder = req_builder.json(&params.o_auth2_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4745,7 +5583,9 @@ pub async fn providers_oauth2_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::OAuth2Provider`",
@@ -4769,15 +5609,12 @@ pub async fn providers_oauth2_update(
 /// Get a list of all objects that use this object
 pub async fn providers_oauth2_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersOauth2UsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersOauth2UsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/oauth2/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4802,7 +5639,7 @@ pub async fn providers_oauth2_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4820,11 +5657,8 @@ pub async fn providers_oauth2_used_by_list(
 /// ProxyProvider Viewset
 pub async fn providers_proxy_create(
     configuration: &configuration::Configuration,
-    proxy_provider_request: models::ProxyProviderRequest,
+    params: ProvidersProxyCreateParams,
 ) -> Result<models::ProxyProvider, Error<ProvidersProxyCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_proxy_provider_request = proxy_provider_request;
-
     let uri_str = format!("{}/providers/proxy/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4834,7 +5668,7 @@ pub async fn providers_proxy_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_proxy_provider_request);
+    req_builder = req_builder.json(&params.proxy_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4850,7 +5684,9 @@ pub async fn providers_proxy_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ProxyProvider`",
@@ -4874,12 +5710,9 @@ pub async fn providers_proxy_create(
 /// ProxyProvider Viewset
 pub async fn providers_proxy_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersProxyDestroyParams,
 ) -> Result<(), Error<ProvidersProxyDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/proxy/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/proxy/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4910,99 +5743,60 @@ pub async fn providers_proxy_destroy(
 /// ProxyProvider Viewset
 pub async fn providers_proxy_list(
     configuration: &configuration::Configuration,
-    application__isnull: Option<bool>,
-    authorization_flow__slug__iexact: Option<&str>,
-    basic_auth_enabled__iexact: Option<bool>,
-    basic_auth_password_attribute__iexact: Option<&str>,
-    basic_auth_user_attribute__iexact: Option<&str>,
-    certificate__kp_uuid__iexact: Option<&str>,
-    certificate__name__iexact: Option<&str>,
-    cookie_domain__iexact: Option<&str>,
-    external_host__iexact: Option<&str>,
-    internal_host__iexact: Option<&str>,
-    internal_host_ssl_validation__iexact: Option<bool>,
-    mode__iexact: Option<&str>,
-    name__iexact: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    property_mappings__iexact: Option<Vec<uuid::Uuid>>,
-    search: Option<&str>,
-    skip_path_regex__iexact: Option<&str>,
+    params: ProvidersProxyListParams,
 ) -> Result<models::PaginatedProxyProviderList, Error<ProvidersProxyListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_application__isnull = application__isnull;
-    let p_query_authorization_flow__slug__iexact = authorization_flow__slug__iexact;
-    let p_query_basic_auth_enabled__iexact = basic_auth_enabled__iexact;
-    let p_query_basic_auth_password_attribute__iexact = basic_auth_password_attribute__iexact;
-    let p_query_basic_auth_user_attribute__iexact = basic_auth_user_attribute__iexact;
-    let p_query_certificate__kp_uuid__iexact = certificate__kp_uuid__iexact;
-    let p_query_certificate__name__iexact = certificate__name__iexact;
-    let p_query_cookie_domain__iexact = cookie_domain__iexact;
-    let p_query_external_host__iexact = external_host__iexact;
-    let p_query_internal_host__iexact = internal_host__iexact;
-    let p_query_internal_host_ssl_validation__iexact = internal_host_ssl_validation__iexact;
-    let p_query_mode__iexact = mode__iexact;
-    let p_query_name__iexact = name__iexact;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_property_mappings__iexact = property_mappings__iexact;
-    let p_query_search = search;
-    let p_query_skip_path_regex__iexact = skip_path_regex__iexact;
-
     let uri_str = format!("{}/providers/proxy/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_application__isnull {
+    if let Some(ref param_value) = params.application__isnull {
         req_builder = req_builder.query(&[("application__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authorization_flow__slug__iexact {
+    if let Some(ref param_value) = params.authorization_flow__slug__iexact {
         req_builder = req_builder.query(&[("authorization_flow__slug__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_basic_auth_enabled__iexact {
+    if let Some(ref param_value) = params.basic_auth_enabled__iexact {
         req_builder = req_builder.query(&[("basic_auth_enabled__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_basic_auth_password_attribute__iexact {
+    if let Some(ref param_value) = params.basic_auth_password_attribute__iexact {
         req_builder = req_builder.query(&[("basic_auth_password_attribute__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_basic_auth_user_attribute__iexact {
+    if let Some(ref param_value) = params.basic_auth_user_attribute__iexact {
         req_builder = req_builder.query(&[("basic_auth_user_attribute__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_certificate__kp_uuid__iexact {
+    if let Some(ref param_value) = params.certificate__kp_uuid__iexact {
         req_builder = req_builder.query(&[("certificate__kp_uuid__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_certificate__name__iexact {
+    if let Some(ref param_value) = params.certificate__name__iexact {
         req_builder = req_builder.query(&[("certificate__name__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_cookie_domain__iexact {
+    if let Some(ref param_value) = params.cookie_domain__iexact {
         req_builder = req_builder.query(&[("cookie_domain__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_external_host__iexact {
+    if let Some(ref param_value) = params.external_host__iexact {
         req_builder = req_builder.query(&[("external_host__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_internal_host__iexact {
+    if let Some(ref param_value) = params.internal_host__iexact {
         req_builder = req_builder.query(&[("internal_host__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_internal_host_ssl_validation__iexact {
+    if let Some(ref param_value) = params.internal_host_ssl_validation__iexact {
         req_builder = req_builder.query(&[("internal_host_ssl_validation__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_mode__iexact {
+    if let Some(ref param_value) = params.mode__iexact {
         req_builder = req_builder.query(&[("mode__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name__iexact {
+    if let Some(ref param_value) = params.name__iexact {
         req_builder = req_builder.query(&[("name__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_property_mappings__iexact {
+    if let Some(ref param_value) = params.property_mappings__iexact {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5021,10 +5815,10 @@ pub async fn providers_proxy_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_skip_path_regex__iexact {
+    if let Some(ref param_value) = params.skip_path_regex__iexact {
         req_builder = req_builder.query(&[("skip_path_regex__iexact", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5048,7 +5842,7 @@ pub async fn providers_proxy_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedProxyProviderList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedProxyProviderList`")))),
         }
@@ -5066,14 +5860,9 @@ pub async fn providers_proxy_list(
 /// ProxyProvider Viewset
 pub async fn providers_proxy_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_proxy_provider_request: Option<models::PatchedProxyProviderRequest>,
+    params: ProvidersProxyPartialUpdateParams,
 ) -> Result<models::ProxyProvider, Error<ProvidersProxyPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_proxy_provider_request = patched_proxy_provider_request;
-
-    let uri_str = format!("{}/providers/proxy/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/proxy/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5082,7 +5871,7 @@ pub async fn providers_proxy_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_proxy_provider_request);
+    req_builder = req_builder.json(&params.patched_proxy_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5098,7 +5887,9 @@ pub async fn providers_proxy_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ProxyProvider`",
@@ -5122,12 +5913,9 @@ pub async fn providers_proxy_partial_update(
 /// ProxyProvider Viewset
 pub async fn providers_proxy_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersProxyRetrieveParams,
 ) -> Result<models::ProxyProvider, Error<ProvidersProxyRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/proxy/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/proxy/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5151,7 +5939,9 @@ pub async fn providers_proxy_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ProxyProvider`",
@@ -5175,14 +5965,9 @@ pub async fn providers_proxy_retrieve(
 /// ProxyProvider Viewset
 pub async fn providers_proxy_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    proxy_provider_request: models::ProxyProviderRequest,
+    params: ProvidersProxyUpdateParams,
 ) -> Result<models::ProxyProvider, Error<ProvidersProxyUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_proxy_provider_request = proxy_provider_request;
-
-    let uri_str = format!("{}/providers/proxy/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/proxy/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5191,7 +5976,7 @@ pub async fn providers_proxy_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_proxy_provider_request);
+    req_builder = req_builder.json(&params.proxy_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5207,7 +5992,9 @@ pub async fn providers_proxy_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ProxyProvider`",
@@ -5231,15 +6018,12 @@ pub async fn providers_proxy_update(
 /// Get a list of all objects that use this object
 pub async fn providers_proxy_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersProxyUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersProxyUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/proxy/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5264,7 +6048,7 @@ pub async fn providers_proxy_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -5282,11 +6066,8 @@ pub async fn providers_proxy_used_by_list(
 /// RACProvider Viewset
 pub async fn providers_rac_create(
     configuration: &configuration::Configuration,
-    rac_provider_request: models::RacProviderRequest,
+    params: ProvidersRacCreateParams,
 ) -> Result<models::RacProvider, Error<ProvidersRacCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_rac_provider_request = rac_provider_request;
-
     let uri_str = format!("{}/providers/rac/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -5296,7 +6077,7 @@ pub async fn providers_rac_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_rac_provider_request);
+    req_builder = req_builder.json(&params.rac_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5312,7 +6093,9 @@ pub async fn providers_rac_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RacProvider`",
@@ -5338,12 +6121,9 @@ pub async fn providers_rac_create(
 /// RACProvider Viewset
 pub async fn providers_rac_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersRacDestroyParams,
 ) -> Result<(), Error<ProvidersRacDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/rac/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/rac/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5374,40 +6154,27 @@ pub async fn providers_rac_destroy(
 /// RACProvider Viewset
 pub async fn providers_rac_list(
     configuration: &configuration::Configuration,
-    application__isnull: Option<bool>,
-    name__iexact: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: ProvidersRacListParams,
 ) -> Result<models::PaginatedRacProviderList, Error<ProvidersRacListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_application__isnull = application__isnull;
-    let p_query_name__iexact = name__iexact;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/providers/rac/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_application__isnull {
+    if let Some(ref param_value) = params.application__isnull {
         req_builder = req_builder.query(&[("application__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name__iexact {
+    if let Some(ref param_value) = params.name__iexact {
         req_builder = req_builder.query(&[("name__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5431,7 +6198,7 @@ pub async fn providers_rac_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRacProviderList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRacProviderList`")))),
         }
@@ -5449,14 +6216,9 @@ pub async fn providers_rac_list(
 /// RACProvider Viewset
 pub async fn providers_rac_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_rac_provider_request: Option<models::PatchedRacProviderRequest>,
+    params: ProvidersRacPartialUpdateParams,
 ) -> Result<models::RacProvider, Error<ProvidersRacPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_rac_provider_request = patched_rac_provider_request;
-
-    let uri_str = format!("{}/providers/rac/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/rac/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5465,7 +6227,7 @@ pub async fn providers_rac_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_rac_provider_request);
+    req_builder = req_builder.json(&params.patched_rac_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5481,7 +6243,9 @@ pub async fn providers_rac_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RacProvider`",
@@ -5507,12 +6271,9 @@ pub async fn providers_rac_partial_update(
 /// RACProvider Viewset
 pub async fn providers_rac_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersRacRetrieveParams,
 ) -> Result<models::RacProvider, Error<ProvidersRacRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/rac/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/rac/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5536,7 +6297,9 @@ pub async fn providers_rac_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RacProvider`",
@@ -5562,14 +6325,9 @@ pub async fn providers_rac_retrieve(
 /// RACProvider Viewset
 pub async fn providers_rac_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    rac_provider_request: models::RacProviderRequest,
+    params: ProvidersRacUpdateParams,
 ) -> Result<models::RacProvider, Error<ProvidersRacUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_rac_provider_request = rac_provider_request;
-
-    let uri_str = format!("{}/providers/rac/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/rac/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5578,7 +6336,7 @@ pub async fn providers_rac_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_rac_provider_request);
+    req_builder = req_builder.json(&params.rac_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5594,7 +6352,9 @@ pub async fn providers_rac_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RacProvider`",
@@ -5620,15 +6380,12 @@ pub async fn providers_rac_update(
 /// Get a list of all objects that use this object
 pub async fn providers_rac_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersRacUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersRacUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/rac/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5653,7 +6410,7 @@ pub async fn providers_rac_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -5671,11 +6428,8 @@ pub async fn providers_rac_used_by_list(
 /// RadiusProvider Viewset
 pub async fn providers_radius_create(
     configuration: &configuration::Configuration,
-    radius_provider_request: models::RadiusProviderRequest,
+    params: ProvidersRadiusCreateParams,
 ) -> Result<models::RadiusProvider, Error<ProvidersRadiusCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_radius_provider_request = radius_provider_request;
-
     let uri_str = format!("{}/providers/radius/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -5685,7 +6439,7 @@ pub async fn providers_radius_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_radius_provider_request);
+    req_builder = req_builder.json(&params.radius_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5701,7 +6455,9 @@ pub async fn providers_radius_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RadiusProvider`",
@@ -5725,12 +6481,9 @@ pub async fn providers_radius_create(
 /// RadiusProvider Viewset
 pub async fn providers_radius_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersRadiusDestroyParams,
 ) -> Result<(), Error<ProvidersRadiusDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/radius/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/radius/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5761,50 +6514,33 @@ pub async fn providers_radius_destroy(
 /// RadiusProvider Viewset
 pub async fn providers_radius_list(
     configuration: &configuration::Configuration,
-    application__isnull: Option<bool>,
-    authorization_flow__slug__iexact: Option<&str>,
-    client_networks__iexact: Option<&str>,
-    name__iexact: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: ProvidersRadiusListParams,
 ) -> Result<models::PaginatedRadiusProviderList, Error<ProvidersRadiusListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_application__isnull = application__isnull;
-    let p_query_authorization_flow__slug__iexact = authorization_flow__slug__iexact;
-    let p_query_client_networks__iexact = client_networks__iexact;
-    let p_query_name__iexact = name__iexact;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/providers/radius/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_application__isnull {
+    if let Some(ref param_value) = params.application__isnull {
         req_builder = req_builder.query(&[("application__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authorization_flow__slug__iexact {
+    if let Some(ref param_value) = params.authorization_flow__slug__iexact {
         req_builder = req_builder.query(&[("authorization_flow__slug__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_networks__iexact {
+    if let Some(ref param_value) = params.client_networks__iexact {
         req_builder = req_builder.query(&[("client_networks__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name__iexact {
+    if let Some(ref param_value) = params.name__iexact {
         req_builder = req_builder.query(&[("name__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5828,7 +6564,7 @@ pub async fn providers_radius_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRadiusProviderList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRadiusProviderList`")))),
         }
@@ -5846,14 +6582,9 @@ pub async fn providers_radius_list(
 /// RadiusProvider Viewset
 pub async fn providers_radius_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_radius_provider_request: Option<models::PatchedRadiusProviderRequest>,
+    params: ProvidersRadiusPartialUpdateParams,
 ) -> Result<models::RadiusProvider, Error<ProvidersRadiusPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_radius_provider_request = patched_radius_provider_request;
-
-    let uri_str = format!("{}/providers/radius/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/radius/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5862,7 +6593,7 @@ pub async fn providers_radius_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_radius_provider_request);
+    req_builder = req_builder.json(&params.patched_radius_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5878,7 +6609,9 @@ pub async fn providers_radius_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RadiusProvider`",
@@ -5902,12 +6635,9 @@ pub async fn providers_radius_partial_update(
 /// RadiusProvider Viewset
 pub async fn providers_radius_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersRadiusRetrieveParams,
 ) -> Result<models::RadiusProvider, Error<ProvidersRadiusRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/radius/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/radius/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5931,7 +6661,9 @@ pub async fn providers_radius_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RadiusProvider`",
@@ -5955,14 +6687,9 @@ pub async fn providers_radius_retrieve(
 /// RadiusProvider Viewset
 pub async fn providers_radius_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    radius_provider_request: models::RadiusProviderRequest,
+    params: ProvidersRadiusUpdateParams,
 ) -> Result<models::RadiusProvider, Error<ProvidersRadiusUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_radius_provider_request = radius_provider_request;
-
-    let uri_str = format!("{}/providers/radius/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/radius/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5971,7 +6698,7 @@ pub async fn providers_radius_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_radius_provider_request);
+    req_builder = req_builder.json(&params.radius_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5987,7 +6714,9 @@ pub async fn providers_radius_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::RadiusProvider`",
@@ -6011,15 +6740,12 @@ pub async fn providers_radius_update(
 /// Get a list of all objects that use this object
 pub async fn providers_radius_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersRadiusUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersRadiusUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/radius/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6044,7 +6770,7 @@ pub async fn providers_radius_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -6062,11 +6788,8 @@ pub async fn providers_radius_used_by_list(
 /// SAMLProvider Viewset
 pub async fn providers_saml_create(
     configuration: &configuration::Configuration,
-    saml_provider_request: models::SamlProviderRequest,
+    params: ProvidersSamlCreateParams,
 ) -> Result<models::SamlProvider, Error<ProvidersSamlCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_saml_provider_request = saml_provider_request;
-
     let uri_str = format!("{}/providers/saml/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -6076,7 +6799,7 @@ pub async fn providers_saml_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_saml_provider_request);
+    req_builder = req_builder.json(&params.saml_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6092,7 +6815,9 @@ pub async fn providers_saml_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SamlProvider`",
@@ -6116,12 +6841,9 @@ pub async fn providers_saml_create(
 /// SAMLProvider Viewset
 pub async fn providers_saml_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersSamlDestroyParams,
 ) -> Result<(), Error<ProvidersSamlDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/saml/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/saml/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6152,17 +6874,8 @@ pub async fn providers_saml_destroy(
 /// Create provider from SAML Metadata
 pub async fn providers_saml_import_metadata_create(
     configuration: &configuration::Configuration,
-    name: &str,
-    authorization_flow: &str,
-    invalidation_flow: &str,
-    file: std::path::PathBuf,
+    params: ProvidersSamlImportMetadataCreateParams,
 ) -> Result<models::SamlProvider, Error<ProvidersSamlImportMetadataCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_form_name = name;
-    let p_form_authorization_flow = authorization_flow;
-    let p_form_invalidation_flow = invalidation_flow;
-    let p_form_file = file;
-
     let uri_str = format!("{}/providers/saml/import_metadata/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -6173,12 +6886,13 @@ pub async fn providers_saml_import_metadata_create(
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
     let mut multipart_form = reqwest::multipart::Form::new();
-    multipart_form = multipart_form.text("name", p_form_name.to_string());
-    multipart_form = multipart_form.text("authorization_flow", p_form_authorization_flow.to_string());
-    multipart_form = multipart_form.text("invalidation_flow", p_form_invalidation_flow.to_string());
-    let file = TokioFile::open(&p_form_file).await?;
+    multipart_form = multipart_form.text("name", params.name.to_string());
+    multipart_form = multipart_form.text("authorization_flow", params.authorization_flow.to_string());
+    multipart_form = multipart_form.text("invalidation_flow", params.invalidation_flow.to_string());
+    let file = TokioFile::open(&params.file).await?;
     let stream = FramedRead::new(file, BytesCodec::new());
-    let file_name = p_form_file
+    let file_name = params
+        .file
         .file_name()
         .map(|n| n.to_string_lossy().to_string())
         .unwrap_or_default();
@@ -6200,7 +6914,9 @@ pub async fn providers_saml_import_metadata_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SamlProvider`",
@@ -6224,144 +6940,75 @@ pub async fn providers_saml_import_metadata_create(
 /// SAMLProvider Viewset
 pub async fn providers_saml_list(
     configuration: &configuration::Configuration,
-    acs_url: Option<&str>,
-    assertion_valid_not_before: Option<&str>,
-    assertion_valid_not_on_or_after: Option<&str>,
-    audience: Option<&str>,
-    authentication_flow: Option<&str>,
-    authn_context_class_ref_mapping: Option<&str>,
-    authorization_flow: Option<&str>,
-    backchannel_application: Option<&str>,
-    default_name_id_policy: Option<models::SamlNameIdPolicyEnum>,
-    default_relay_state: Option<&str>,
-    digest_algorithm: Option<models::DigestAlgorithmEnum>,
-    encryption_kp: Option<&str>,
-    invalidation_flow: Option<&str>,
-    is_backchannel: Option<bool>,
-    issuer_override: Option<&str>,
-    logout_method: Option<&str>,
-    name: Option<&str>,
-    name_id_mapping: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    property_mappings: Option<Vec<uuid::Uuid>>,
-    search: Option<&str>,
-    session_valid_not_on_or_after: Option<&str>,
-    sign_assertion: Option<bool>,
-    sign_logout_request: Option<bool>,
-    sign_logout_response: Option<bool>,
-    sign_response: Option<bool>,
-    signature_algorithm: Option<models::SignatureAlgorithmEnum>,
-    signing_kp: Option<&str>,
-    sls_binding: Option<&str>,
-    sls_url: Option<&str>,
-    sp_binding: Option<&str>,
-    verification_kp: Option<&str>,
+    params: ProvidersSamlListParams,
 ) -> Result<models::PaginatedSamlProviderList, Error<ProvidersSamlListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_acs_url = acs_url;
-    let p_query_assertion_valid_not_before = assertion_valid_not_before;
-    let p_query_assertion_valid_not_on_or_after = assertion_valid_not_on_or_after;
-    let p_query_audience = audience;
-    let p_query_authentication_flow = authentication_flow;
-    let p_query_authn_context_class_ref_mapping = authn_context_class_ref_mapping;
-    let p_query_authorization_flow = authorization_flow;
-    let p_query_backchannel_application = backchannel_application;
-    let p_query_default_name_id_policy = default_name_id_policy;
-    let p_query_default_relay_state = default_relay_state;
-    let p_query_digest_algorithm = digest_algorithm;
-    let p_query_encryption_kp = encryption_kp;
-    let p_query_invalidation_flow = invalidation_flow;
-    let p_query_is_backchannel = is_backchannel;
-    let p_query_issuer_override = issuer_override;
-    let p_query_logout_method = logout_method;
-    let p_query_name = name;
-    let p_query_name_id_mapping = name_id_mapping;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_property_mappings = property_mappings;
-    let p_query_search = search;
-    let p_query_session_valid_not_on_or_after = session_valid_not_on_or_after;
-    let p_query_sign_assertion = sign_assertion;
-    let p_query_sign_logout_request = sign_logout_request;
-    let p_query_sign_logout_response = sign_logout_response;
-    let p_query_sign_response = sign_response;
-    let p_query_signature_algorithm = signature_algorithm;
-    let p_query_signing_kp = signing_kp;
-    let p_query_sls_binding = sls_binding;
-    let p_query_sls_url = sls_url;
-    let p_query_sp_binding = sp_binding;
-    let p_query_verification_kp = verification_kp;
-
     let uri_str = format!("{}/providers/saml/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_acs_url {
+    if let Some(ref param_value) = params.acs_url {
         req_builder = req_builder.query(&[("acs_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_assertion_valid_not_before {
+    if let Some(ref param_value) = params.assertion_valid_not_before {
         req_builder = req_builder.query(&[("assertion_valid_not_before", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_assertion_valid_not_on_or_after {
+    if let Some(ref param_value) = params.assertion_valid_not_on_or_after {
         req_builder = req_builder.query(&[("assertion_valid_not_on_or_after", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_audience {
+    if let Some(ref param_value) = params.audience {
         req_builder = req_builder.query(&[("audience", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authentication_flow {
+    if let Some(ref param_value) = params.authentication_flow {
         req_builder = req_builder.query(&[("authentication_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authn_context_class_ref_mapping {
+    if let Some(ref param_value) = params.authn_context_class_ref_mapping {
         req_builder = req_builder.query(&[("authn_context_class_ref_mapping", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authorization_flow {
+    if let Some(ref param_value) = params.authorization_flow {
         req_builder = req_builder.query(&[("authorization_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_backchannel_application {
+    if let Some(ref param_value) = params.backchannel_application {
         req_builder = req_builder.query(&[("backchannel_application", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_default_name_id_policy {
+    if let Some(ref param_value) = params.default_name_id_policy {
         req_builder = req_builder.query(&[("default_name_id_policy", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_default_relay_state {
+    if let Some(ref param_value) = params.default_relay_state {
         req_builder = req_builder.query(&[("default_relay_state", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_digest_algorithm {
+    if let Some(ref param_value) = params.digest_algorithm {
         req_builder = req_builder.query(&[("digest_algorithm", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_encryption_kp {
+    if let Some(ref param_value) = params.encryption_kp {
         req_builder = req_builder.query(&[("encryption_kp", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_invalidation_flow {
+    if let Some(ref param_value) = params.invalidation_flow {
         req_builder = req_builder.query(&[("invalidation_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_is_backchannel {
+    if let Some(ref param_value) = params.is_backchannel {
         req_builder = req_builder.query(&[("is_backchannel", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_issuer_override {
+    if let Some(ref param_value) = params.issuer_override {
         req_builder = req_builder.query(&[("issuer_override", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_logout_method {
+    if let Some(ref param_value) = params.logout_method {
         req_builder = req_builder.query(&[("logout_method", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name_id_mapping {
+    if let Some(ref param_value) = params.name_id_mapping {
         req_builder = req_builder.query(&[("name_id_mapping", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_property_mappings {
+    if let Some(ref param_value) = params.property_mappings {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -6380,40 +7027,40 @@ pub async fn providers_saml_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_session_valid_not_on_or_after {
+    if let Some(ref param_value) = params.session_valid_not_on_or_after {
         req_builder = req_builder.query(&[("session_valid_not_on_or_after", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sign_assertion {
+    if let Some(ref param_value) = params.sign_assertion {
         req_builder = req_builder.query(&[("sign_assertion", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sign_logout_request {
+    if let Some(ref param_value) = params.sign_logout_request {
         req_builder = req_builder.query(&[("sign_logout_request", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sign_logout_response {
+    if let Some(ref param_value) = params.sign_logout_response {
         req_builder = req_builder.query(&[("sign_logout_response", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sign_response {
+    if let Some(ref param_value) = params.sign_response {
         req_builder = req_builder.query(&[("sign_response", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_signature_algorithm {
+    if let Some(ref param_value) = params.signature_algorithm {
         req_builder = req_builder.query(&[("signature_algorithm", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_signing_kp {
+    if let Some(ref param_value) = params.signing_kp {
         req_builder = req_builder.query(&[("signing_kp", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sls_binding {
+    if let Some(ref param_value) = params.sls_binding {
         req_builder = req_builder.query(&[("sls_binding", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sls_url {
+    if let Some(ref param_value) = params.sls_url {
         req_builder = req_builder.query(&[("sls_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sp_binding {
+    if let Some(ref param_value) = params.sp_binding {
         req_builder = req_builder.query(&[("sp_binding", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_verification_kp {
+    if let Some(ref param_value) = params.verification_kp {
         req_builder = req_builder.query(&[("verification_kp", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6437,7 +7084,7 @@ pub async fn providers_saml_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedSamlProviderList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedSamlProviderList`")))),
         }
@@ -6455,26 +7102,19 @@ pub async fn providers_saml_list(
 /// Return metadata as XML string
 pub async fn providers_saml_metadata_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
-    download: Option<bool>,
-    force_binding: Option<&str>,
+    params: ProvidersSamlMetadataRetrieveParams,
 ) -> Result<models::SamlMetadata, Error<ProvidersSamlMetadataRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_query_download = download;
-    let p_query_force_binding = force_binding;
-
     let uri_str = format!(
         "{}/providers/saml/{id}/metadata/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_download {
+    if let Some(ref param_value) = params.download {
         req_builder = req_builder.query(&[("download", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_force_binding {
+    if let Some(ref param_value) = params.force_binding {
         req_builder = req_builder.query(&[("force_binding", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6498,7 +7138,9 @@ pub async fn providers_saml_metadata_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SamlMetadata`",
@@ -6522,14 +7164,9 @@ pub async fn providers_saml_metadata_retrieve(
 /// SAMLProvider Viewset
 pub async fn providers_saml_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_saml_provider_request: Option<models::PatchedSamlProviderRequest>,
+    params: ProvidersSamlPartialUpdateParams,
 ) -> Result<models::SamlProvider, Error<ProvidersSamlPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_saml_provider_request = patched_saml_provider_request;
-
-    let uri_str = format!("{}/providers/saml/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/saml/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6538,7 +7175,7 @@ pub async fn providers_saml_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_saml_provider_request);
+    req_builder = req_builder.json(&params.patched_saml_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6554,7 +7191,9 @@ pub async fn providers_saml_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SamlProvider`",
@@ -6578,21 +7217,16 @@ pub async fn providers_saml_partial_update(
 /// Preview user data for provider
 pub async fn providers_saml_preview_user_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
-    for_user: Option<i32>,
+    params: ProvidersSamlPreviewUserRetrieveParams,
 ) -> Result<models::PropertyMappingPreview, Error<ProvidersSamlPreviewUserRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_query_for_user = for_user;
-
     let uri_str = format!(
         "{}/providers/saml/{id}/preview_user/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_for_user {
+    if let Some(ref param_value) = params.for_user {
         req_builder = req_builder.query(&[("for_user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6616,7 +7250,7 @@ pub async fn providers_saml_preview_user_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PropertyMappingPreview`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PropertyMappingPreview`")))),
         }
@@ -6634,12 +7268,9 @@ pub async fn providers_saml_preview_user_retrieve(
 /// SAMLProvider Viewset
 pub async fn providers_saml_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersSamlRetrieveParams,
 ) -> Result<models::SamlProvider, Error<ProvidersSamlRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/saml/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/saml/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6663,7 +7294,9 @@ pub async fn providers_saml_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SamlProvider`",
@@ -6687,14 +7320,9 @@ pub async fn providers_saml_retrieve(
 /// SAMLProvider Viewset
 pub async fn providers_saml_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    saml_provider_request: models::SamlProviderRequest,
+    params: ProvidersSamlUpdateParams,
 ) -> Result<models::SamlProvider, Error<ProvidersSamlUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_saml_provider_request = saml_provider_request;
-
-    let uri_str = format!("{}/providers/saml/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/saml/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6703,7 +7331,7 @@ pub async fn providers_saml_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_saml_provider_request);
+    req_builder = req_builder.json(&params.saml_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6719,7 +7347,9 @@ pub async fn providers_saml_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SamlProvider`",
@@ -6743,15 +7373,12 @@ pub async fn providers_saml_update(
 /// Get a list of all objects that use this object
 pub async fn providers_saml_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersSamlUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersSamlUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/saml/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6776,7 +7403,7 @@ pub async fn providers_saml_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -6794,11 +7421,8 @@ pub async fn providers_saml_used_by_list(
 /// SCIMProvider Viewset
 pub async fn providers_scim_create(
     configuration: &configuration::Configuration,
-    scim_provider_request: models::ScimProviderRequest,
+    params: ProvidersScimCreateParams,
 ) -> Result<models::ScimProvider, Error<ProvidersScimCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_scim_provider_request = scim_provider_request;
-
     let uri_str = format!("{}/providers/scim/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -6808,7 +7432,7 @@ pub async fn providers_scim_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_provider_request);
+    req_builder = req_builder.json(&params.scim_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6824,7 +7448,9 @@ pub async fn providers_scim_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimProvider`",
@@ -6848,12 +7474,9 @@ pub async fn providers_scim_create(
 /// SCIMProvider Viewset
 pub async fn providers_scim_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersScimDestroyParams,
 ) -> Result<(), Error<ProvidersScimDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/scim/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/scim/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6884,11 +7507,8 @@ pub async fn providers_scim_destroy(
 /// SCIMProviderGroup Viewset
 pub async fn providers_scim_groups_create(
     configuration: &configuration::Configuration,
-    scim_provider_group_request: models::ScimProviderGroupRequest,
+    params: ProvidersScimGroupsCreateParams,
 ) -> Result<models::ScimProviderGroup, Error<ProvidersScimGroupsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_scim_provider_group_request = scim_provider_group_request;
-
     let uri_str = format!("{}/providers/scim_groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -6898,7 +7518,7 @@ pub async fn providers_scim_groups_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_provider_group_request);
+    req_builder = req_builder.json(&params.scim_provider_group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6914,7 +7534,7 @@ pub async fn providers_scim_groups_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ScimProviderGroup`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ScimProviderGroup`")))),
         }
@@ -6932,15 +7552,12 @@ pub async fn providers_scim_groups_create(
 /// SCIMProviderGroup Viewset
 pub async fn providers_scim_groups_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersScimGroupsDestroyParams,
 ) -> Result<(), Error<ProvidersScimGroupsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/scim_groups/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -6972,45 +7589,30 @@ pub async fn providers_scim_groups_destroy(
 /// SCIMProviderGroup Viewset
 pub async fn providers_scim_groups_list(
     configuration: &configuration::Configuration,
-    group__group_uuid: Option<&str>,
-    group__name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    provider__id: Option<i32>,
-    search: Option<&str>,
+    params: ProvidersScimGroupsListParams,
 ) -> Result<models::PaginatedScimProviderGroupList, Error<ProvidersScimGroupsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group__group_uuid = group__group_uuid;
-    let p_query_group__name = group__name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_provider__id = provider__id;
-    let p_query_search = search;
-
     let uri_str = format!("{}/providers/scim_groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group__group_uuid {
+    if let Some(ref param_value) = params.group__group_uuid {
         req_builder = req_builder.query(&[("group__group_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_group__name {
+    if let Some(ref param_value) = params.group__name {
         req_builder = req_builder.query(&[("group__name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider__id {
+    if let Some(ref param_value) = params.provider__id {
         req_builder = req_builder.query(&[("provider__id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7034,7 +7636,7 @@ pub async fn providers_scim_groups_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedScimProviderGroupList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedScimProviderGroupList`")))),
         }
@@ -7052,15 +7654,12 @@ pub async fn providers_scim_groups_list(
 /// SCIMProviderGroup Viewset
 pub async fn providers_scim_groups_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersScimGroupsRetrieveParams,
 ) -> Result<models::ScimProviderGroup, Error<ProvidersScimGroupsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/scim_groups/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7085,7 +7684,7 @@ pub async fn providers_scim_groups_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ScimProviderGroup`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ScimProviderGroup`")))),
         }
@@ -7103,15 +7702,12 @@ pub async fn providers_scim_groups_retrieve(
 /// Get a list of all objects that use this object
 pub async fn providers_scim_groups_used_by_list(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersScimGroupsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersScimGroupsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/scim_groups/{id}/used_by/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7136,7 +7732,7 @@ pub async fn providers_scim_groups_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -7154,32 +7750,15 @@ pub async fn providers_scim_groups_used_by_list(
 /// SCIMProvider Viewset
 pub async fn providers_scim_list(
     configuration: &configuration::Configuration,
-    exclude_users_service_account: Option<bool>,
-    group_filters: Option<Vec<uuid::Uuid>>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    url: Option<&str>,
+    params: ProvidersScimListParams,
 ) -> Result<models::PaginatedScimProviderList, Error<ProvidersScimListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_exclude_users_service_account = exclude_users_service_account;
-    let p_query_group_filters = group_filters;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_url = url;
-
     let uri_str = format!("{}/providers/scim/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_exclude_users_service_account {
+    if let Some(ref param_value) = params.exclude_users_service_account {
         req_builder = req_builder.query(&[("exclude_users_service_account", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_group_filters {
+    if let Some(ref param_value) = params.group_filters {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -7198,22 +7777,22 @@ pub async fn providers_scim_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_url {
+    if let Some(ref param_value) = params.url {
         req_builder = req_builder.query(&[("url", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7237,7 +7816,7 @@ pub async fn providers_scim_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedScimProviderList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedScimProviderList`")))),
         }
@@ -7255,14 +7834,9 @@ pub async fn providers_scim_list(
 /// SCIMProvider Viewset
 pub async fn providers_scim_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_scim_provider_request: Option<models::PatchedScimProviderRequest>,
+    params: ProvidersScimPartialUpdateParams,
 ) -> Result<models::ScimProvider, Error<ProvidersScimPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_scim_provider_request = patched_scim_provider_request;
-
-    let uri_str = format!("{}/providers/scim/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/scim/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7271,7 +7845,7 @@ pub async fn providers_scim_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_scim_provider_request);
+    req_builder = req_builder.json(&params.patched_scim_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7287,7 +7861,9 @@ pub async fn providers_scim_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimProvider`",
@@ -7311,12 +7887,9 @@ pub async fn providers_scim_partial_update(
 /// SCIMProvider Viewset
 pub async fn providers_scim_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersScimRetrieveParams,
 ) -> Result<models::ScimProvider, Error<ProvidersScimRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/scim/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/scim/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7340,7 +7913,9 @@ pub async fn providers_scim_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimProvider`",
@@ -7364,17 +7939,12 @@ pub async fn providers_scim_retrieve(
 /// Sync/Re-sync a single user/group object
 pub async fn providers_scim_sync_object_create(
     configuration: &configuration::Configuration,
-    id: i32,
-    sync_object_request: models::SyncObjectRequest,
+    params: ProvidersScimSyncObjectCreateParams,
 ) -> Result<models::SyncObjectResult, Error<ProvidersScimSyncObjectCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_sync_object_request = sync_object_request;
-
     let uri_str = format!(
         "{}/providers/scim/{id}/sync/object/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -7384,7 +7954,7 @@ pub async fn providers_scim_sync_object_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_sync_object_request);
+    req_builder = req_builder.json(&params.sync_object_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7400,7 +7970,7 @@ pub async fn providers_scim_sync_object_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SyncObjectResult`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SyncObjectResult`")))),
         }
@@ -7418,15 +7988,12 @@ pub async fn providers_scim_sync_object_create(
 /// Get provider's sync status
 pub async fn providers_scim_sync_status_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersScimSyncStatusRetrieveParams,
 ) -> Result<models::SyncStatus, Error<ProvidersScimSyncStatusRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/scim/{id}/sync/status/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7451,7 +8018,9 @@ pub async fn providers_scim_sync_status_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SyncStatus`",
@@ -7477,14 +8046,9 @@ pub async fn providers_scim_sync_status_retrieve(
 /// SCIMProvider Viewset
 pub async fn providers_scim_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    scim_provider_request: models::ScimProviderRequest,
+    params: ProvidersScimUpdateParams,
 ) -> Result<models::ScimProvider, Error<ProvidersScimUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_scim_provider_request = scim_provider_request;
-
-    let uri_str = format!("{}/providers/scim/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/scim/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7493,7 +8057,7 @@ pub async fn providers_scim_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_provider_request);
+    req_builder = req_builder.json(&params.scim_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7509,7 +8073,9 @@ pub async fn providers_scim_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimProvider`",
@@ -7533,15 +8099,12 @@ pub async fn providers_scim_update(
 /// Get a list of all objects that use this object
 pub async fn providers_scim_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersScimUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersScimUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/scim/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7566,7 +8129,7 @@ pub async fn providers_scim_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -7584,11 +8147,8 @@ pub async fn providers_scim_used_by_list(
 /// SCIMProviderUser Viewset
 pub async fn providers_scim_users_create(
     configuration: &configuration::Configuration,
-    scim_provider_user_request: models::ScimProviderUserRequest,
+    params: ProvidersScimUsersCreateParams,
 ) -> Result<models::ScimProviderUser, Error<ProvidersScimUsersCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_scim_provider_user_request = scim_provider_user_request;
-
     let uri_str = format!("{}/providers/scim_users/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -7598,7 +8158,7 @@ pub async fn providers_scim_users_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_provider_user_request);
+    req_builder = req_builder.json(&params.scim_provider_user_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7614,7 +8174,7 @@ pub async fn providers_scim_users_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ScimProviderUser`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ScimProviderUser`")))),
         }
@@ -7632,15 +8192,12 @@ pub async fn providers_scim_users_create(
 /// SCIMProviderUser Viewset
 pub async fn providers_scim_users_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersScimUsersDestroyParams,
 ) -> Result<(), Error<ProvidersScimUsersDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/scim_users/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -7672,45 +8229,30 @@ pub async fn providers_scim_users_destroy(
 /// SCIMProviderUser Viewset
 pub async fn providers_scim_users_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    provider__id: Option<i32>,
-    search: Option<&str>,
-    user__id: Option<i32>,
-    user__username: Option<&str>,
+    params: ProvidersScimUsersListParams,
 ) -> Result<models::PaginatedScimProviderUserList, Error<ProvidersScimUsersListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_provider__id = provider__id;
-    let p_query_search = search;
-    let p_query_user__id = user__id;
-    let p_query_user__username = user__username;
-
     let uri_str = format!("{}/providers/scim_users/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider__id {
+    if let Some(ref param_value) = params.provider__id {
         req_builder = req_builder.query(&[("provider__id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user__id {
+    if let Some(ref param_value) = params.user__id {
         req_builder = req_builder.query(&[("user__id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user__username {
+    if let Some(ref param_value) = params.user__username {
         req_builder = req_builder.query(&[("user__username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7734,7 +8276,7 @@ pub async fn providers_scim_users_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedScimProviderUserList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedScimProviderUserList`")))),
         }
@@ -7752,15 +8294,12 @@ pub async fn providers_scim_users_list(
 /// SCIMProviderUser Viewset
 pub async fn providers_scim_users_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersScimUsersRetrieveParams,
 ) -> Result<models::ScimProviderUser, Error<ProvidersScimUsersRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/scim_users/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7785,7 +8324,7 @@ pub async fn providers_scim_users_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ScimProviderUser`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ScimProviderUser`")))),
         }
@@ -7803,15 +8342,12 @@ pub async fn providers_scim_users_retrieve(
 /// Get a list of all objects that use this object
 pub async fn providers_scim_users_used_by_list(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: ProvidersScimUsersUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersScimUsersUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/scim_users/{id}/used_by/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7836,7 +8372,7 @@ pub async fn providers_scim_users_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -7854,11 +8390,8 @@ pub async fn providers_scim_users_used_by_list(
 /// SSFProvider Viewset
 pub async fn providers_ssf_create(
     configuration: &configuration::Configuration,
-    ssf_provider_request: models::SsfProviderRequest,
+    params: ProvidersSsfCreateParams,
 ) -> Result<models::SsfProvider, Error<ProvidersSsfCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_ssf_provider_request = ssf_provider_request;
-
     let uri_str = format!("{}/providers/ssf/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -7868,7 +8401,7 @@ pub async fn providers_ssf_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_ssf_provider_request);
+    req_builder = req_builder.json(&params.ssf_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7884,7 +8417,9 @@ pub async fn providers_ssf_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SsfProvider`",
@@ -7910,12 +8445,9 @@ pub async fn providers_ssf_create(
 /// SSFProvider Viewset
 pub async fn providers_ssf_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersSsfDestroyParams,
 ) -> Result<(), Error<ProvidersSsfDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/ssf/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/ssf/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7946,40 +8478,27 @@ pub async fn providers_ssf_destroy(
 /// SSFProvider Viewset
 pub async fn providers_ssf_list(
     configuration: &configuration::Configuration,
-    application__isnull: Option<bool>,
-    name__iexact: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: ProvidersSsfListParams,
 ) -> Result<models::PaginatedSsfProviderList, Error<ProvidersSsfListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_application__isnull = application__isnull;
-    let p_query_name__iexact = name__iexact;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/providers/ssf/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_application__isnull {
+    if let Some(ref param_value) = params.application__isnull {
         req_builder = req_builder.query(&[("application__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name__iexact {
+    if let Some(ref param_value) = params.name__iexact {
         req_builder = req_builder.query(&[("name__iexact", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8003,7 +8522,7 @@ pub async fn providers_ssf_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedSsfProviderList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedSsfProviderList`")))),
         }
@@ -8021,14 +8540,9 @@ pub async fn providers_ssf_list(
 /// SSFProvider Viewset
 pub async fn providers_ssf_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_ssf_provider_request: Option<models::PatchedSsfProviderRequest>,
+    params: ProvidersSsfPartialUpdateParams,
 ) -> Result<models::SsfProvider, Error<ProvidersSsfPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_ssf_provider_request = patched_ssf_provider_request;
-
-    let uri_str = format!("{}/providers/ssf/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/ssf/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8037,7 +8551,7 @@ pub async fn providers_ssf_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_ssf_provider_request);
+    req_builder = req_builder.json(&params.patched_ssf_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8053,7 +8567,9 @@ pub async fn providers_ssf_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SsfProvider`",
@@ -8079,12 +8595,9 @@ pub async fn providers_ssf_partial_update(
 /// SSFProvider Viewset
 pub async fn providers_ssf_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersSsfRetrieveParams,
 ) -> Result<models::SsfProvider, Error<ProvidersSsfRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/ssf/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/ssf/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8108,7 +8621,9 @@ pub async fn providers_ssf_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SsfProvider`",
@@ -8134,14 +8649,9 @@ pub async fn providers_ssf_retrieve(
 /// SSFProvider Viewset
 pub async fn providers_ssf_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    ssf_provider_request: models::SsfProviderRequest,
+    params: ProvidersSsfUpdateParams,
 ) -> Result<models::SsfProvider, Error<ProvidersSsfUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_ssf_provider_request = ssf_provider_request;
-
-    let uri_str = format!("{}/providers/ssf/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/ssf/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8150,7 +8660,7 @@ pub async fn providers_ssf_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_ssf_provider_request);
+    req_builder = req_builder.json(&params.ssf_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8166,7 +8676,9 @@ pub async fn providers_ssf_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SsfProvider`",
@@ -8192,15 +8704,12 @@ pub async fn providers_ssf_update(
 /// Get a list of all objects that use this object
 pub async fn providers_ssf_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersSsfUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersSsfUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/ssf/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -8225,7 +8734,7 @@ pub async fn providers_ssf_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -8243,11 +8752,8 @@ pub async fn providers_ssf_used_by_list(
 /// WSFederationProvider Viewset
 pub async fn providers_wsfed_create(
     configuration: &configuration::Configuration,
-    ws_federation_provider_request: models::WsFederationProviderRequest,
+    params: ProvidersWsfedCreateParams,
 ) -> Result<models::WsFederationProvider, Error<ProvidersWsfedCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_ws_federation_provider_request = ws_federation_provider_request;
-
     let uri_str = format!("{}/providers/wsfed/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -8257,7 +8763,7 @@ pub async fn providers_wsfed_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_ws_federation_provider_request);
+    req_builder = req_builder.json(&params.ws_federation_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8273,7 +8779,7 @@ pub async fn providers_wsfed_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::WsFederationProvider`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::WsFederationProvider`")))),
         }
@@ -8291,12 +8797,9 @@ pub async fn providers_wsfed_create(
 /// WSFederationProvider Viewset
 pub async fn providers_wsfed_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersWsfedDestroyParams,
 ) -> Result<(), Error<ProvidersWsfedDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/wsfed/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/wsfed/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8327,146 +8830,75 @@ pub async fn providers_wsfed_destroy(
 /// WSFederationProvider Viewset
 pub async fn providers_wsfed_list(
     configuration: &configuration::Configuration,
-    acs_url: Option<&str>,
-    assertion_valid_not_before: Option<&str>,
-    assertion_valid_not_on_or_after: Option<&str>,
-    audience: Option<&str>,
-    authentication_flow: Option<&str>,
-    authn_context_class_ref_mapping: Option<&str>,
-    authorization_flow: Option<&str>,
-    backchannel_application: Option<&str>,
-    default_name_id_policy: Option<models::SamlNameIdPolicyEnum>,
-    default_relay_state: Option<&str>,
-    digest_algorithm: Option<models::DigestAlgorithmEnum>,
-    encryption_kp: Option<&str>,
-    invalidation_flow: Option<&str>,
-    is_backchannel: Option<bool>,
-    issuer_override: Option<&str>,
-    logout_method: Option<&str>,
-    name: Option<&str>,
-    name_id_mapping: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    property_mappings: Option<Vec<uuid::Uuid>>,
-    saml_version: Option<&str>,
-    search: Option<&str>,
-    session_valid_not_on_or_after: Option<&str>,
-    sign_assertion: Option<bool>,
-    sign_logout_request: Option<bool>,
-    sign_logout_response: Option<bool>,
-    sign_response: Option<bool>,
-    signature_algorithm: Option<models::SignatureAlgorithmEnum>,
-    signing_kp: Option<&str>,
-    sls_binding: Option<&str>,
-    sls_url: Option<&str>,
-    sp_binding: Option<&str>,
-    verification_kp: Option<&str>,
+    params: ProvidersWsfedListParams,
 ) -> Result<models::PaginatedWsFederationProviderList, Error<ProvidersWsfedListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_acs_url = acs_url;
-    let p_query_assertion_valid_not_before = assertion_valid_not_before;
-    let p_query_assertion_valid_not_on_or_after = assertion_valid_not_on_or_after;
-    let p_query_audience = audience;
-    let p_query_authentication_flow = authentication_flow;
-    let p_query_authn_context_class_ref_mapping = authn_context_class_ref_mapping;
-    let p_query_authorization_flow = authorization_flow;
-    let p_query_backchannel_application = backchannel_application;
-    let p_query_default_name_id_policy = default_name_id_policy;
-    let p_query_default_relay_state = default_relay_state;
-    let p_query_digest_algorithm = digest_algorithm;
-    let p_query_encryption_kp = encryption_kp;
-    let p_query_invalidation_flow = invalidation_flow;
-    let p_query_is_backchannel = is_backchannel;
-    let p_query_issuer_override = issuer_override;
-    let p_query_logout_method = logout_method;
-    let p_query_name = name;
-    let p_query_name_id_mapping = name_id_mapping;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_property_mappings = property_mappings;
-    let p_query_saml_version = saml_version;
-    let p_query_search = search;
-    let p_query_session_valid_not_on_or_after = session_valid_not_on_or_after;
-    let p_query_sign_assertion = sign_assertion;
-    let p_query_sign_logout_request = sign_logout_request;
-    let p_query_sign_logout_response = sign_logout_response;
-    let p_query_sign_response = sign_response;
-    let p_query_signature_algorithm = signature_algorithm;
-    let p_query_signing_kp = signing_kp;
-    let p_query_sls_binding = sls_binding;
-    let p_query_sls_url = sls_url;
-    let p_query_sp_binding = sp_binding;
-    let p_query_verification_kp = verification_kp;
-
     let uri_str = format!("{}/providers/wsfed/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_acs_url {
+    if let Some(ref param_value) = params.acs_url {
         req_builder = req_builder.query(&[("acs_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_assertion_valid_not_before {
+    if let Some(ref param_value) = params.assertion_valid_not_before {
         req_builder = req_builder.query(&[("assertion_valid_not_before", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_assertion_valid_not_on_or_after {
+    if let Some(ref param_value) = params.assertion_valid_not_on_or_after {
         req_builder = req_builder.query(&[("assertion_valid_not_on_or_after", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_audience {
+    if let Some(ref param_value) = params.audience {
         req_builder = req_builder.query(&[("audience", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authentication_flow {
+    if let Some(ref param_value) = params.authentication_flow {
         req_builder = req_builder.query(&[("authentication_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authn_context_class_ref_mapping {
+    if let Some(ref param_value) = params.authn_context_class_ref_mapping {
         req_builder = req_builder.query(&[("authn_context_class_ref_mapping", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authorization_flow {
+    if let Some(ref param_value) = params.authorization_flow {
         req_builder = req_builder.query(&[("authorization_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_backchannel_application {
+    if let Some(ref param_value) = params.backchannel_application {
         req_builder = req_builder.query(&[("backchannel_application", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_default_name_id_policy {
+    if let Some(ref param_value) = params.default_name_id_policy {
         req_builder = req_builder.query(&[("default_name_id_policy", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_default_relay_state {
+    if let Some(ref param_value) = params.default_relay_state {
         req_builder = req_builder.query(&[("default_relay_state", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_digest_algorithm {
+    if let Some(ref param_value) = params.digest_algorithm {
         req_builder = req_builder.query(&[("digest_algorithm", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_encryption_kp {
+    if let Some(ref param_value) = params.encryption_kp {
         req_builder = req_builder.query(&[("encryption_kp", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_invalidation_flow {
+    if let Some(ref param_value) = params.invalidation_flow {
         req_builder = req_builder.query(&[("invalidation_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_is_backchannel {
+    if let Some(ref param_value) = params.is_backchannel {
         req_builder = req_builder.query(&[("is_backchannel", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_issuer_override {
+    if let Some(ref param_value) = params.issuer_override {
         req_builder = req_builder.query(&[("issuer_override", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_logout_method {
+    if let Some(ref param_value) = params.logout_method {
         req_builder = req_builder.query(&[("logout_method", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name_id_mapping {
+    if let Some(ref param_value) = params.name_id_mapping {
         req_builder = req_builder.query(&[("name_id_mapping", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_property_mappings {
+    if let Some(ref param_value) = params.property_mappings {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -8485,43 +8917,43 @@ pub async fn providers_wsfed_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_saml_version {
+    if let Some(ref param_value) = params.saml_version {
         req_builder = req_builder.query(&[("saml_version", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_session_valid_not_on_or_after {
+    if let Some(ref param_value) = params.session_valid_not_on_or_after {
         req_builder = req_builder.query(&[("session_valid_not_on_or_after", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sign_assertion {
+    if let Some(ref param_value) = params.sign_assertion {
         req_builder = req_builder.query(&[("sign_assertion", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sign_logout_request {
+    if let Some(ref param_value) = params.sign_logout_request {
         req_builder = req_builder.query(&[("sign_logout_request", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sign_logout_response {
+    if let Some(ref param_value) = params.sign_logout_response {
         req_builder = req_builder.query(&[("sign_logout_response", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sign_response {
+    if let Some(ref param_value) = params.sign_response {
         req_builder = req_builder.query(&[("sign_response", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_signature_algorithm {
+    if let Some(ref param_value) = params.signature_algorithm {
         req_builder = req_builder.query(&[("signature_algorithm", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_signing_kp {
+    if let Some(ref param_value) = params.signing_kp {
         req_builder = req_builder.query(&[("signing_kp", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sls_binding {
+    if let Some(ref param_value) = params.sls_binding {
         req_builder = req_builder.query(&[("sls_binding", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sls_url {
+    if let Some(ref param_value) = params.sls_url {
         req_builder = req_builder.query(&[("sls_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sp_binding {
+    if let Some(ref param_value) = params.sp_binding {
         req_builder = req_builder.query(&[("sp_binding", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_verification_kp {
+    if let Some(ref param_value) = params.verification_kp {
         req_builder = req_builder.query(&[("verification_kp", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8545,7 +8977,7 @@ pub async fn providers_wsfed_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedWsFederationProviderList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedWsFederationProviderList`")))),
         }
@@ -8563,26 +8995,19 @@ pub async fn providers_wsfed_list(
 /// Return metadata as XML string
 pub async fn providers_wsfed_metadata_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
-    download: Option<bool>,
-    force_binding: Option<&str>,
+    params: ProvidersWsfedMetadataRetrieveParams,
 ) -> Result<models::SamlMetadata, Error<ProvidersWsfedMetadataRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_query_download = download;
-    let p_query_force_binding = force_binding;
-
     let uri_str = format!(
         "{}/providers/wsfed/{id}/metadata/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_download {
+    if let Some(ref param_value) = params.download {
         req_builder = req_builder.query(&[("download", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_force_binding {
+    if let Some(ref param_value) = params.force_binding {
         req_builder = req_builder.query(&[("force_binding", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8606,7 +9031,9 @@ pub async fn providers_wsfed_metadata_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SamlMetadata`",
@@ -8630,14 +9057,9 @@ pub async fn providers_wsfed_metadata_retrieve(
 /// WSFederationProvider Viewset
 pub async fn providers_wsfed_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_ws_federation_provider_request: Option<models::PatchedWsFederationProviderRequest>,
+    params: ProvidersWsfedPartialUpdateParams,
 ) -> Result<models::WsFederationProvider, Error<ProvidersWsfedPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_ws_federation_provider_request = patched_ws_federation_provider_request;
-
-    let uri_str = format!("{}/providers/wsfed/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/wsfed/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8646,7 +9068,7 @@ pub async fn providers_wsfed_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_ws_federation_provider_request);
+    req_builder = req_builder.json(&params.patched_ws_federation_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8662,7 +9084,7 @@ pub async fn providers_wsfed_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::WsFederationProvider`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::WsFederationProvider`")))),
         }
@@ -8680,21 +9102,16 @@ pub async fn providers_wsfed_partial_update(
 /// Preview user data for provider
 pub async fn providers_wsfed_preview_user_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
-    for_user: Option<i32>,
+    params: ProvidersWsfedPreviewUserRetrieveParams,
 ) -> Result<models::PropertyMappingPreview, Error<ProvidersWsfedPreviewUserRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_query_for_user = for_user;
-
     let uri_str = format!(
         "{}/providers/wsfed/{id}/preview_user/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_for_user {
+    if let Some(ref param_value) = params.for_user {
         req_builder = req_builder.query(&[("for_user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8718,7 +9135,7 @@ pub async fn providers_wsfed_preview_user_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PropertyMappingPreview`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PropertyMappingPreview`")))),
         }
@@ -8736,12 +9153,9 @@ pub async fn providers_wsfed_preview_user_retrieve(
 /// WSFederationProvider Viewset
 pub async fn providers_wsfed_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersWsfedRetrieveParams,
 ) -> Result<models::WsFederationProvider, Error<ProvidersWsfedRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/providers/wsfed/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/wsfed/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8765,7 +9179,7 @@ pub async fn providers_wsfed_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::WsFederationProvider`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::WsFederationProvider`")))),
         }
@@ -8783,14 +9197,9 @@ pub async fn providers_wsfed_retrieve(
 /// WSFederationProvider Viewset
 pub async fn providers_wsfed_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    ws_federation_provider_request: models::WsFederationProviderRequest,
+    params: ProvidersWsfedUpdateParams,
 ) -> Result<models::WsFederationProvider, Error<ProvidersWsfedUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_ws_federation_provider_request = ws_federation_provider_request;
-
-    let uri_str = format!("{}/providers/wsfed/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/providers/wsfed/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8799,7 +9208,7 @@ pub async fn providers_wsfed_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_ws_federation_provider_request);
+    req_builder = req_builder.json(&params.ws_federation_provider_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8815,7 +9224,7 @@ pub async fn providers_wsfed_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::WsFederationProvider`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::WsFederationProvider`")))),
         }
@@ -8833,15 +9242,12 @@ pub async fn providers_wsfed_update(
 /// Get a list of all objects that use this object
 pub async fn providers_wsfed_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: ProvidersWsfedUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<ProvidersWsfedUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/providers/wsfed/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -8866,7 +9272,7 @@ pub async fn providers_wsfed_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

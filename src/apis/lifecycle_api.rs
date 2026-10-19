@@ -13,6 +13,130 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`lifecycle_iterations_create`]
+#[derive(Clone, Debug)]
+pub struct LifecycleIterationsCreateParams {
+    pub lifecycle_iteration_request: models::LifecycleIterationRequest,
+}
+
+/// struct for passing parameters to the method [`lifecycle_iterations_list_latest`]
+#[derive(Clone, Debug)]
+pub struct LifecycleIterationsListLatestParams {
+    pub content_type: String,
+    pub object_id: String,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub user_is_reviewer: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`lifecycle_iterations_list_open`]
+#[derive(Clone, Debug)]
+pub struct LifecycleIterationsListOpenParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub user_is_reviewer: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`lifecycle_reviews_create`]
+#[derive(Clone, Debug)]
+pub struct LifecycleReviewsCreateParams {
+    pub review_request: models::ReviewRequest,
+}
+
+/// struct for passing parameters to the method [`lifecycle_rules_create`]
+#[derive(Clone, Debug)]
+pub struct LifecycleRulesCreateParams {
+    pub lifecycle_rule_request: models::LifecycleRuleRequest,
+}
+
+/// struct for passing parameters to the method [`lifecycle_rules_destroy`]
+#[derive(Clone, Debug)]
+pub struct LifecycleRulesDestroyParams {
+    /// A UUID string identifying this lifecycle rule.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`lifecycle_rules_list`]
+#[derive(Clone, Debug)]
+pub struct LifecycleRulesListParams {
+    pub content_type__model: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`lifecycle_rules_partial_update`]
+#[derive(Clone, Debug)]
+pub struct LifecycleRulesPartialUpdateParams {
+    /// A UUID string identifying this lifecycle rule.
+    pub id: String,
+    pub patched_lifecycle_rule_request: Option<models::PatchedLifecycleRuleRequest>,
+}
+
+/// struct for passing parameters to the method [`lifecycle_rules_retrieve`]
+#[derive(Clone, Debug)]
+pub struct LifecycleRulesRetrieveParams {
+    /// A UUID string identifying this lifecycle rule.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`lifecycle_rules_update`]
+#[derive(Clone, Debug)]
+pub struct LifecycleRulesUpdateParams {
+    /// A UUID string identifying this lifecycle rule.
+    pub id: String,
+    pub lifecycle_rule_request: models::LifecycleRuleRequest,
+}
+
+/// struct for passing parameters to the method [`lifecycle_user_offboarding_create`]
+#[derive(Clone, Debug)]
+pub struct LifecycleUserOffboardingCreateParams {
+    pub user_offboarding_request: models::UserOffboardingRequest,
+}
+
+/// struct for passing parameters to the method [`lifecycle_user_offboarding_destroy`]
+#[derive(Clone, Debug)]
+pub struct LifecycleUserOffboardingDestroyParams {
+    /// A UUID string identifying this User Offboarding.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`lifecycle_user_offboarding_list`]
+#[derive(Clone, Debug)]
+pub struct LifecycleUserOffboardingListParams {
+    pub action: Option<models::OffboardingActionEnum>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub status: Option<models::OffboardingStatusEnum>,
+    pub user__uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`lifecycle_user_offboarding_retrieve`]
+#[derive(Clone, Debug)]
+pub struct LifecycleUserOffboardingRetrieveParams {
+    /// A UUID string identifying this User Offboarding.
+    pub id: String,
+}
+
 /// struct for typed errors of method [`lifecycle_iterations_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -142,11 +266,8 @@ pub enum LifecycleUserOffboardingRetrieveError {
 /// Mixin to validate that a valid enterprise license exists before allowing to save the object
 pub async fn lifecycle_iterations_create(
     configuration: &configuration::Configuration,
-    lifecycle_iteration_request: models::LifecycleIterationRequest,
+    params: LifecycleIterationsCreateParams,
 ) -> Result<models::LifecycleIteration, Error<LifecycleIterationsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_lifecycle_iteration_request = lifecycle_iteration_request;
-
     let uri_str = format!("{}/lifecycle/iterations/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -156,7 +277,7 @@ pub async fn lifecycle_iterations_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_lifecycle_iteration_request);
+    req_builder = req_builder.json(&params.lifecycle_iteration_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -172,7 +293,7 @@ pub async fn lifecycle_iterations_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::LifecycleIteration`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::LifecycleIteration`")))),
         }
@@ -190,34 +311,23 @@ pub async fn lifecycle_iterations_create(
 /// Mixin to validate that a valid enterprise license exists before allowing to save the object
 pub async fn lifecycle_iterations_list_latest(
     configuration: &configuration::Configuration,
-    content_type: &str,
-    object_id: &str,
-    ordering: Option<&str>,
-    search: Option<&str>,
-    user_is_reviewer: Option<bool>,
+    params: LifecycleIterationsListLatestParams,
 ) -> Result<Vec<models::LifecycleIteration>, Error<LifecycleIterationsListLatestError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_content_type = content_type;
-    let p_path_object_id = object_id;
-    let p_query_ordering = ordering;
-    let p_query_search = search;
-    let p_query_user_is_reviewer = user_is_reviewer;
-
     let uri_str = format!(
         "{}/lifecycle/iterations/latest/{content_type}/{object_id}/",
         configuration.base_path,
-        content_type = crate::apis::urlencode(p_path_content_type),
-        object_id = crate::apis::urlencode(p_path_object_id)
+        content_type = crate::apis::urlencode(params.content_type),
+        object_id = crate::apis::urlencode(params.object_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_is_reviewer {
+    if let Some(ref param_value) = params.user_is_reviewer {
         req_builder = req_builder.query(&[("user_is_reviewer", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -241,7 +351,7 @@ pub async fn lifecycle_iterations_list_latest(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::LifecycleIteration&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::LifecycleIteration&gt;`")))),
         }
@@ -259,35 +369,24 @@ pub async fn lifecycle_iterations_list_latest(
 /// Mixin to validate that a valid enterprise license exists before allowing to save the object
 pub async fn lifecycle_iterations_list_open(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    user_is_reviewer: Option<bool>,
+    params: LifecycleIterationsListOpenParams,
 ) -> Result<models::PaginatedLifecycleIterationList, Error<LifecycleIterationsListOpenError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_user_is_reviewer = user_is_reviewer;
-
     let uri_str = format!("{}/lifecycle/iterations/open/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_is_reviewer {
+    if let Some(ref param_value) = params.user_is_reviewer {
         req_builder = req_builder.query(&[("user_is_reviewer", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -311,7 +410,7 @@ pub async fn lifecycle_iterations_list_open(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedLifecycleIterationList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedLifecycleIterationList`")))),
         }
@@ -329,11 +428,8 @@ pub async fn lifecycle_iterations_list_open(
 /// Mixin to validate that a valid enterprise license exists before allowing to save the object
 pub async fn lifecycle_reviews_create(
     configuration: &configuration::Configuration,
-    review_request: models::ReviewRequest,
+    params: LifecycleReviewsCreateParams,
 ) -> Result<models::Review, Error<LifecycleReviewsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_review_request = review_request;
-
     let uri_str = format!("{}/lifecycle/reviews/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -343,7 +439,7 @@ pub async fn lifecycle_reviews_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_review_request);
+    req_builder = req_builder.json(&params.review_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -359,7 +455,9 @@ pub async fn lifecycle_reviews_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Review`",
@@ -384,11 +482,8 @@ pub async fn lifecycle_reviews_create(
 
 pub async fn lifecycle_rules_create(
     configuration: &configuration::Configuration,
-    lifecycle_rule_request: models::LifecycleRuleRequest,
+    params: LifecycleRulesCreateParams,
 ) -> Result<models::LifecycleRule, Error<LifecycleRulesCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_lifecycle_rule_request = lifecycle_rule_request;
-
     let uri_str = format!("{}/lifecycle/rules/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -398,7 +493,7 @@ pub async fn lifecycle_rules_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_lifecycle_rule_request);
+    req_builder = req_builder.json(&params.lifecycle_rule_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -414,7 +509,9 @@ pub async fn lifecycle_rules_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LifecycleRule`",
@@ -437,15 +534,12 @@ pub async fn lifecycle_rules_create(
 
 pub async fn lifecycle_rules_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: LifecycleRulesDestroyParams,
 ) -> Result<(), Error<LifecycleRulesDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/lifecycle/rules/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -476,35 +570,24 @@ pub async fn lifecycle_rules_destroy(
 
 pub async fn lifecycle_rules_list(
     configuration: &configuration::Configuration,
-    content_type__model: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: LifecycleRulesListParams,
 ) -> Result<models::PaginatedLifecycleRuleList, Error<LifecycleRulesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_content_type__model = content_type__model;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/lifecycle/rules/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_content_type__model {
+    if let Some(ref param_value) = params.content_type__model {
         req_builder = req_builder.query(&[("content_type__model", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -528,7 +611,7 @@ pub async fn lifecycle_rules_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedLifecycleRuleList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedLifecycleRuleList`")))),
         }
@@ -545,17 +628,12 @@ pub async fn lifecycle_rules_list(
 
 pub async fn lifecycle_rules_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    patched_lifecycle_rule_request: Option<models::PatchedLifecycleRuleRequest>,
+    params: LifecycleRulesPartialUpdateParams,
 ) -> Result<models::LifecycleRule, Error<LifecycleRulesPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_lifecycle_rule_request = patched_lifecycle_rule_request;
-
     let uri_str = format!(
         "{}/lifecycle/rules/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -565,7 +643,7 @@ pub async fn lifecycle_rules_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_lifecycle_rule_request);
+    req_builder = req_builder.json(&params.patched_lifecycle_rule_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -581,7 +659,9 @@ pub async fn lifecycle_rules_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LifecycleRule`",
@@ -604,15 +684,12 @@ pub async fn lifecycle_rules_partial_update(
 
 pub async fn lifecycle_rules_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: LifecycleRulesRetrieveParams,
 ) -> Result<models::LifecycleRule, Error<LifecycleRulesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/lifecycle/rules/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -637,7 +714,9 @@ pub async fn lifecycle_rules_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LifecycleRule`",
@@ -660,17 +739,12 @@ pub async fn lifecycle_rules_retrieve(
 
 pub async fn lifecycle_rules_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    lifecycle_rule_request: models::LifecycleRuleRequest,
+    params: LifecycleRulesUpdateParams,
 ) -> Result<models::LifecycleRule, Error<LifecycleRulesUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_lifecycle_rule_request = lifecycle_rule_request;
-
     let uri_str = format!(
         "{}/lifecycle/rules/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -680,7 +754,7 @@ pub async fn lifecycle_rules_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_lifecycle_rule_request);
+    req_builder = req_builder.json(&params.lifecycle_rule_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -696,7 +770,9 @@ pub async fn lifecycle_rules_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LifecycleRule`",
@@ -719,11 +795,8 @@ pub async fn lifecycle_rules_update(
 
 pub async fn lifecycle_user_offboarding_create(
     configuration: &configuration::Configuration,
-    user_offboarding_request: models::UserOffboardingRequest,
+    params: LifecycleUserOffboardingCreateParams,
 ) -> Result<models::UserOffboarding, Error<LifecycleUserOffboardingCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_offboarding_request = user_offboarding_request;
-
     let uri_str = format!("{}/lifecycle/user_offboarding/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -733,7 +806,7 @@ pub async fn lifecycle_user_offboarding_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_offboarding_request);
+    req_builder = req_builder.json(&params.user_offboarding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -749,7 +822,9 @@ pub async fn lifecycle_user_offboarding_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserOffboarding`",
@@ -773,15 +848,12 @@ pub async fn lifecycle_user_offboarding_create(
 /// Cancel a pending offboarding instead of deleting the record.  The row is retained (as `CANCELED`) so the offboarding stays visible in the audit history; deletion would erase who scheduled and cancelled it. You cannot cancel an offboarding that targets you.
 pub async fn lifecycle_user_offboarding_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: LifecycleUserOffboardingDestroyParams,
 ) -> Result<(), Error<LifecycleUserOffboardingDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/lifecycle/user_offboarding/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -812,45 +884,30 @@ pub async fn lifecycle_user_offboarding_destroy(
 
 pub async fn lifecycle_user_offboarding_list(
     configuration: &configuration::Configuration,
-    action: Option<models::OffboardingActionEnum>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    status: Option<models::OffboardingStatusEnum>,
-    user__uuid: Option<&str>,
+    params: LifecycleUserOffboardingListParams,
 ) -> Result<models::PaginatedUserOffboardingList, Error<LifecycleUserOffboardingListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_action = action;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_status = status;
-    let p_query_user__uuid = user__uuid;
-
     let uri_str = format!("{}/lifecycle/user_offboarding/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_action {
+    if let Some(ref param_value) = params.action {
         req_builder = req_builder.query(&[("action", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_status {
+    if let Some(ref param_value) = params.status {
         req_builder = req_builder.query(&[("status", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user__uuid {
+    if let Some(ref param_value) = params.user__uuid {
         req_builder = req_builder.query(&[("user__uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -874,7 +931,7 @@ pub async fn lifecycle_user_offboarding_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserOffboardingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserOffboardingList`")))),
         }
@@ -891,15 +948,12 @@ pub async fn lifecycle_user_offboarding_list(
 
 pub async fn lifecycle_user_offboarding_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: LifecycleUserOffboardingRetrieveParams,
 ) -> Result<models::UserOffboarding, Error<LifecycleUserOffboardingRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/lifecycle/user_offboarding/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -924,7 +978,9 @@ pub async fn lifecycle_user_offboarding_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserOffboarding`",

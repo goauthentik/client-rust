@@ -13,6 +13,1474 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`sources_all_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesAllDestroyParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_all_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesAllListParams {
+    pub managed: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pbm_uuid: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_all_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesAllRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_all_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesAllUsedByListParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_all_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsAllDestroyParams {
+    /// A unique integer value identifying this group source connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_all_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsAllListParams {
+    pub group: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_all_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsAllPartialUpdateParams {
+    /// A unique integer value identifying this group source connection.
+    pub id: i32,
+    pub patched_group_source_connection_request: Option<models::PatchedGroupSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_all_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsAllRetrieveParams {
+    /// A unique integer value identifying this group source connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_all_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsAllUpdateParams {
+    /// A unique integer value identifying this group source connection.
+    pub id: i32,
+    pub group_source_connection_request: models::GroupSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_all_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsAllUsedByListParams {
+    /// A unique integer value identifying this group source connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_kerberos_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsKerberosCreateParams {
+    pub group_kerberos_source_connection_request: models::GroupKerberosSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_kerberos_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsKerberosDestroyParams {
+    /// A unique integer value identifying this Group Kerberos Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_kerberos_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsKerberosListParams {
+    pub group: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_kerberos_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsKerberosPartialUpdateParams {
+    /// A unique integer value identifying this Group Kerberos Source Connection.
+    pub id: i32,
+    pub patched_group_kerberos_source_connection_request: Option<models::PatchedGroupKerberosSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_kerberos_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsKerberosRetrieveParams {
+    /// A unique integer value identifying this Group Kerberos Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_kerberos_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsKerberosUpdateParams {
+    /// A unique integer value identifying this Group Kerberos Source Connection.
+    pub id: i32,
+    pub group_kerberos_source_connection_request: models::GroupKerberosSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_kerberos_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsKerberosUsedByListParams {
+    /// A unique integer value identifying this Group Kerberos Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_ldap_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsLdapCreateParams {
+    pub group_ldap_source_connection_request: models::GroupLdapSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_ldap_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsLdapDestroyParams {
+    /// A unique integer value identifying this Group LDAP Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_ldap_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsLdapListParams {
+    pub group: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_ldap_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsLdapPartialUpdateParams {
+    /// A unique integer value identifying this Group LDAP Source Connection.
+    pub id: i32,
+    pub patched_group_ldap_source_connection_request: Option<models::PatchedGroupLdapSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_ldap_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsLdapRetrieveParams {
+    /// A unique integer value identifying this Group LDAP Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_ldap_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsLdapUpdateParams {
+    /// A unique integer value identifying this Group LDAP Source Connection.
+    pub id: i32,
+    pub group_ldap_source_connection_request: models::GroupLdapSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_ldap_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsLdapUsedByListParams {
+    /// A unique integer value identifying this Group LDAP Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_oauth_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsOauthCreateParams {
+    pub group_o_auth_source_connection_request: models::GroupOAuthSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_oauth_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsOauthDestroyParams {
+    /// A unique integer value identifying this Group OAuth Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_oauth_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsOauthListParams {
+    pub group: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_oauth_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsOauthPartialUpdateParams {
+    /// A unique integer value identifying this Group OAuth Source Connection.
+    pub id: i32,
+    pub patched_group_o_auth_source_connection_request: Option<models::PatchedGroupOAuthSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_oauth_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsOauthRetrieveParams {
+    /// A unique integer value identifying this Group OAuth Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_oauth_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsOauthUpdateParams {
+    /// A unique integer value identifying this Group OAuth Source Connection.
+    pub id: i32,
+    pub group_o_auth_source_connection_request: models::GroupOAuthSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_oauth_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsOauthUsedByListParams {
+    /// A unique integer value identifying this Group OAuth Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_plex_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsPlexCreateParams {
+    pub group_plex_source_connection_request: models::GroupPlexSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_plex_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsPlexDestroyParams {
+    /// A unique integer value identifying this Group Plex Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_plex_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsPlexListParams {
+    pub group: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_plex_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsPlexPartialUpdateParams {
+    /// A unique integer value identifying this Group Plex Source Connection.
+    pub id: i32,
+    pub patched_group_plex_source_connection_request: Option<models::PatchedGroupPlexSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_plex_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsPlexRetrieveParams {
+    /// A unique integer value identifying this Group Plex Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_plex_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsPlexUpdateParams {
+    /// A unique integer value identifying this Group Plex Source Connection.
+    pub id: i32,
+    pub group_plex_source_connection_request: models::GroupPlexSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_plex_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsPlexUsedByListParams {
+    /// A unique integer value identifying this Group Plex Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_saml_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsSamlCreateParams {
+    pub group_saml_source_connection_request: models::GroupSamlSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_saml_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsSamlDestroyParams {
+    /// A unique integer value identifying this Group SAML Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_saml_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsSamlListParams {
+    pub group: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_saml_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsSamlPartialUpdateParams {
+    /// A unique integer value identifying this Group SAML Source Connection.
+    pub id: i32,
+    pub patched_group_saml_source_connection_request: Option<models::PatchedGroupSamlSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_saml_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsSamlRetrieveParams {
+    /// A unique integer value identifying this Group SAML Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_saml_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsSamlUpdateParams {
+    /// A unique integer value identifying this Group SAML Source Connection.
+    pub id: i32,
+    pub group_saml_source_connection_request: models::GroupSamlSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_saml_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsSamlUsedByListParams {
+    /// A unique integer value identifying this Group SAML Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_telegram_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsTelegramCreateParams {
+    pub group_telegram_source_connection_request: models::GroupTelegramSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_telegram_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsTelegramDestroyParams {
+    /// A unique integer value identifying this Group Telegram Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_telegram_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsTelegramListParams {
+    pub group: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_telegram_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsTelegramPartialUpdateParams {
+    /// A unique integer value identifying this Group Telegram Source Connection.
+    pub id: i32,
+    pub patched_group_telegram_source_connection_request: Option<models::PatchedGroupTelegramSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_telegram_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsTelegramRetrieveParams {
+    /// A unique integer value identifying this Group Telegram Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_telegram_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsTelegramUpdateParams {
+    /// A unique integer value identifying this Group Telegram Source Connection.
+    pub id: i32,
+    pub group_telegram_source_connection_request: models::GroupTelegramSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_group_connections_telegram_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesGroupConnectionsTelegramUsedByListParams {
+    /// A unique integer value identifying this Group Telegram Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_kerberos_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesKerberosCreateParams {
+    pub kerberos_source_request: models::KerberosSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_kerberos_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesKerberosDestroyParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_kerberos_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesKerberosListParams {
+    pub enabled: Option<bool>,
+    pub kadmin_type: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub password_login_update_internal_password: Option<bool>,
+    pub pbm_uuid: Option<String>,
+    pub realm: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub slug: Option<String>,
+    pub spnego_server_name: Option<String>,
+    pub sync_principal: Option<String>,
+    pub sync_users: Option<bool>,
+    pub sync_users_password: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`sources_kerberos_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesKerberosPartialUpdateParams {
+    pub slug: String,
+    pub patched_kerberos_source_request: Option<models::PatchedKerberosSourceRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_kerberos_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesKerberosRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_kerberos_sync_status_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesKerberosSyncStatusRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_kerberos_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesKerberosUpdateParams {
+    pub slug: String,
+    pub kerberos_source_request: models::KerberosSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_kerberos_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesKerberosUsedByListParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_ldap_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesLdapCreateParams {
+    pub ldap_source_request: models::LdapSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_ldap_debug_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesLdapDebugRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_ldap_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesLdapDestroyParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_ldap_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesLdapListParams {
+    pub additional_group_dn: Option<String>,
+    pub additional_user_dn: Option<String>,
+    pub base_dn: Option<String>,
+    pub bind_cn: Option<String>,
+    pub client_certificate: Option<String>,
+    pub delete_not_found_objects: Option<bool>,
+    pub enabled: Option<bool>,
+    pub group_membership_field: Option<String>,
+    pub group_object_filter: Option<String>,
+    pub group_property_mappings: Option<Vec<uuid::Uuid>>,
+    pub lookup_groups_from_user: Option<bool>,
+    pub name: Option<String>,
+    pub object_uniqueness_field: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub password_login_update_internal_password: Option<bool>,
+    pub pbm_uuid: Option<String>,
+    pub peer_certificate: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub server_uri: Option<String>,
+    pub service_bind_method: Option<String>,
+    pub slug: Option<String>,
+    pub sni: Option<bool>,
+    pub start_tls: Option<bool>,
+    pub sync_group_hierarchy: Option<bool>,
+    pub sync_groups: Option<bool>,
+    pub sync_parent_group: Option<String>,
+    pub sync_users: Option<bool>,
+    pub sync_users_password: Option<bool>,
+    pub user_membership_attribute: Option<String>,
+    pub user_object_filter: Option<String>,
+    pub user_property_mappings: Option<Vec<uuid::Uuid>>,
+}
+
+/// struct for passing parameters to the method [`sources_ldap_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesLdapPartialUpdateParams {
+    pub slug: String,
+    pub patched_ldap_source_request: Option<models::PatchedLdapSourceRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_ldap_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesLdapRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_ldap_sync_status_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesLdapSyncStatusRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_ldap_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesLdapUpdateParams {
+    pub slug: String,
+    pub ldap_source_request: models::LdapSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_ldap_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesLdapUsedByListParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_oauth_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesOauthCreateParams {
+    pub o_auth_source_request: models::OAuthSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_oauth_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesOauthDestroyParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_oauth_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesOauthListParams {
+    pub access_token_url: Option<String>,
+    pub additional_scopes: Option<String>,
+    pub authentication_flow: Option<String>,
+    pub authorization_url: Option<String>,
+    pub consumer_key: Option<String>,
+    pub enabled: Option<bool>,
+    pub enrollment_flow: Option<String>,
+    pub group_matching_mode: Option<String>,
+    /// Only return sources with JWKS data
+    pub has_jwks: Option<bool>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pbm_uuid: Option<String>,
+    pub policy_engine_mode: Option<models::PolicyEngineMode>,
+    pub profile_url: Option<String>,
+    pub provider_type: Option<String>,
+    pub request_token_url: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub slug: Option<String>,
+    pub user_matching_mode: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_oauth_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesOauthPartialUpdateParams {
+    pub slug: String,
+    pub patched_o_auth_source_request: Option<models::PatchedOAuthSourceRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_oauth_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesOauthRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_oauth_source_types_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesOauthSourceTypesListParams {
+    pub name: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_oauth_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesOauthUpdateParams {
+    pub slug: String,
+    pub o_auth_source_request: models::OAuthSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_oauth_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesOauthUsedByListParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_plex_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesPlexCreateParams {
+    pub plex_source_request: models::PlexSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_plex_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesPlexDestroyParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_plex_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesPlexListParams {
+    pub allow_friends: Option<bool>,
+    pub authentication_flow: Option<String>,
+    pub client_id: Option<String>,
+    pub enabled: Option<bool>,
+    pub enrollment_flow: Option<String>,
+    pub group_matching_mode: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pbm_uuid: Option<String>,
+    pub policy_engine_mode: Option<models::PolicyEngineMode>,
+    /// A search term.
+    pub search: Option<String>,
+    pub slug: Option<String>,
+    pub user_matching_mode: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_plex_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesPlexPartialUpdateParams {
+    pub slug: String,
+    pub patched_plex_source_request: Option<models::PatchedPlexSourceRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_plex_redeem_token_authenticated_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesPlexRedeemTokenAuthenticatedCreateParams {
+    pub plex_token_redeem_request: models::PlexTokenRedeemRequest,
+    pub slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_plex_redeem_token_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesPlexRedeemTokenCreateParams {
+    pub plex_token_redeem_request: models::PlexTokenRedeemRequest,
+    pub slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_plex_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesPlexRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_plex_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesPlexUpdateParams {
+    pub slug: String,
+    pub plex_source_request: models::PlexSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_plex_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesPlexUsedByListParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_saml_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesSamlCreateParams {
+    pub saml_source_request: models::SamlSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_saml_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesSamlDestroyParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_saml_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesSamlListParams {
+    pub allow_idp_initiated: Option<bool>,
+    pub authentication_flow: Option<String>,
+    pub binding_type: Option<models::BindingTypeEnum>,
+    pub digest_algorithm: Option<models::DigestAlgorithmEnum>,
+    pub enabled: Option<bool>,
+    pub enrollment_flow: Option<String>,
+    pub force_authn: Option<bool>,
+    pub issuer_override: Option<String>,
+    pub managed: Option<String>,
+    pub name: Option<String>,
+    pub name_id_policy: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pbm_uuid: Option<String>,
+    pub policy_engine_mode: Option<models::PolicyEngineMode>,
+    pub pre_authentication_flow: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub signature_algorithm: Option<models::SignatureAlgorithmEnum>,
+    pub signed_assertion: Option<bool>,
+    pub signed_response: Option<bool>,
+    pub signing_kp: Option<String>,
+    pub slo_url: Option<String>,
+    pub slug: Option<String>,
+    pub sso_url: Option<String>,
+    pub temporary_user_delete_after: Option<String>,
+    pub user_matching_mode: Option<String>,
+    pub verification_kp: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_saml_metadata_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesSamlMetadataRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_saml_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesSamlPartialUpdateParams {
+    pub slug: String,
+    pub patched_saml_source_request: Option<models::PatchedSamlSourceRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_saml_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesSamlRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_saml_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesSamlUpdateParams {
+    pub slug: String,
+    pub saml_source_request: models::SamlSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_saml_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesSamlUsedByListParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_scim_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimCreateParams {
+    pub scim_source_request: models::ScimSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_scim_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimDestroyParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_scim_groups_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimGroupsCreateParams {
+    pub scim_source_group_request: models::ScimSourceGroupRequest,
+}
+
+/// struct for passing parameters to the method [`sources_scim_groups_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimGroupsDestroyParams {
+    /// A unique value identifying this scim source group.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`sources_scim_groups_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimGroupsListParams {
+    pub group__group_uuid: Option<String>,
+    pub group__name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_scim_groups_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimGroupsPartialUpdateParams {
+    /// A unique value identifying this scim source group.
+    pub id: String,
+    pub patched_scim_source_group_request: Option<models::PatchedScimSourceGroupRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_scim_groups_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimGroupsRetrieveParams {
+    /// A unique value identifying this scim source group.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`sources_scim_groups_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimGroupsUpdateParams {
+    /// A unique value identifying this scim source group.
+    pub id: String,
+    pub scim_source_group_request: models::ScimSourceGroupRequest,
+}
+
+/// struct for passing parameters to the method [`sources_scim_groups_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimGroupsUsedByListParams {
+    /// A unique value identifying this scim source group.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`sources_scim_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pbm_uuid: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_scim_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimPartialUpdateParams {
+    pub slug: String,
+    pub patched_scim_source_request: Option<models::PatchedScimSourceRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_scim_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_scim_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimUpdateParams {
+    pub slug: String,
+    pub scim_source_request: models::ScimSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_scim_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimUsedByListParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_scim_users_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimUsersCreateParams {
+    pub scim_source_user_request: models::ScimSourceUserRequest,
+}
+
+/// struct for passing parameters to the method [`sources_scim_users_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimUsersDestroyParams {
+    /// A unique value identifying this scim source user.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`sources_scim_users_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimUsersListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+    pub user__id: Option<i32>,
+    pub user__username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_scim_users_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimUsersPartialUpdateParams {
+    /// A unique value identifying this scim source user.
+    pub id: String,
+    pub patched_scim_source_user_request: Option<models::PatchedScimSourceUserRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_scim_users_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimUsersRetrieveParams {
+    /// A unique value identifying this scim source user.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`sources_scim_users_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimUsersUpdateParams {
+    /// A unique value identifying this scim source user.
+    pub id: String,
+    pub scim_source_user_request: models::ScimSourceUserRequest,
+}
+
+/// struct for passing parameters to the method [`sources_scim_users_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesScimUsersUsedByListParams {
+    /// A unique value identifying this scim source user.
+    pub id: String,
+}
+
+/// struct for passing parameters to the method [`sources_telegram_connect_user_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesTelegramConnectUserCreateParams {
+    pub slug: String,
+    pub telegram_auth_request: models::TelegramAuthRequest,
+}
+
+/// struct for passing parameters to the method [`sources_telegram_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesTelegramCreateParams {
+    pub telegram_source_request: models::TelegramSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_telegram_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesTelegramDestroyParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_telegram_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesTelegramListParams {
+    pub authentication_flow: Option<String>,
+    pub bot_username: Option<String>,
+    pub enabled: Option<bool>,
+    pub enrollment_flow: Option<String>,
+    pub group_matching_mode: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pbm_uuid: Option<String>,
+    pub policy_engine_mode: Option<models::PolicyEngineMode>,
+    pub request_message_access: Option<bool>,
+    /// A search term.
+    pub search: Option<String>,
+    pub slug: Option<String>,
+    pub user_matching_mode: Option<String>,
+}
+
+/// struct for passing parameters to the method [`sources_telegram_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesTelegramPartialUpdateParams {
+    pub slug: String,
+    pub patched_telegram_source_request: Option<models::PatchedTelegramSourceRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_telegram_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesTelegramRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_telegram_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesTelegramUpdateParams {
+    pub slug: String,
+    pub telegram_source_request: models::TelegramSourceRequest,
+}
+
+/// struct for passing parameters to the method [`sources_telegram_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesTelegramUsedByListParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_all_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsAllDestroyParams {
+    /// A unique integer value identifying this user source connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_all_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsAllListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_all_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsAllPartialUpdateParams {
+    /// A unique integer value identifying this user source connection.
+    pub id: i32,
+    pub patched_user_source_connection_request: Option<models::PatchedUserSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_all_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsAllRetrieveParams {
+    /// A unique integer value identifying this user source connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_all_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsAllUpdateParams {
+    /// A unique integer value identifying this user source connection.
+    pub id: i32,
+    pub user_source_connection_request: models::UserSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_all_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsAllUsedByListParams {
+    /// A unique integer value identifying this user source connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_kerberos_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsKerberosCreateParams {
+    pub user_kerberos_source_connection_request: models::UserKerberosSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_kerberos_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsKerberosDestroyParams {
+    /// A unique integer value identifying this User Kerberos Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_kerberos_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsKerberosListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_kerberos_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsKerberosPartialUpdateParams {
+    /// A unique integer value identifying this User Kerberos Source Connection.
+    pub id: i32,
+    pub patched_user_kerberos_source_connection_request: Option<models::PatchedUserKerberosSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_kerberos_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsKerberosRetrieveParams {
+    /// A unique integer value identifying this User Kerberos Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_kerberos_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsKerberosUpdateParams {
+    /// A unique integer value identifying this User Kerberos Source Connection.
+    pub id: i32,
+    pub user_kerberos_source_connection_request: models::UserKerberosSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_kerberos_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsKerberosUsedByListParams {
+    /// A unique integer value identifying this User Kerberos Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_ldap_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsLdapCreateParams {
+    pub user_ldap_source_connection_request: models::UserLdapSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_ldap_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsLdapDestroyParams {
+    /// A unique integer value identifying this User LDAP Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_ldap_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsLdapListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_ldap_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsLdapPartialUpdateParams {
+    /// A unique integer value identifying this User LDAP Source Connection.
+    pub id: i32,
+    pub patched_user_ldap_source_connection_request: Option<models::PatchedUserLdapSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_ldap_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsLdapRetrieveParams {
+    /// A unique integer value identifying this User LDAP Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_ldap_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsLdapUpdateParams {
+    /// A unique integer value identifying this User LDAP Source Connection.
+    pub id: i32,
+    pub user_ldap_source_connection_request: models::UserLdapSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_ldap_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsLdapUsedByListParams {
+    /// A unique integer value identifying this User LDAP Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_oauth_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsOauthCreateParams {
+    pub user_o_auth_source_connection_request: models::UserOAuthSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_oauth_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsOauthDestroyParams {
+    /// A unique integer value identifying this User OAuth Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_oauth_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsOauthListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_oauth_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsOauthPartialUpdateParams {
+    /// A unique integer value identifying this User OAuth Source Connection.
+    pub id: i32,
+    pub patched_user_o_auth_source_connection_request: Option<models::PatchedUserOAuthSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_oauth_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsOauthRetrieveParams {
+    /// A unique integer value identifying this User OAuth Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_oauth_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsOauthUpdateParams {
+    /// A unique integer value identifying this User OAuth Source Connection.
+    pub id: i32,
+    pub user_o_auth_source_connection_request: models::UserOAuthSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_oauth_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsOauthUsedByListParams {
+    /// A unique integer value identifying this User OAuth Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_plex_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsPlexCreateParams {
+    pub user_plex_source_connection_request: models::UserPlexSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_plex_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsPlexDestroyParams {
+    /// A unique integer value identifying this User Plex Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_plex_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsPlexListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_plex_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsPlexPartialUpdateParams {
+    /// A unique integer value identifying this User Plex Source Connection.
+    pub id: i32,
+    pub patched_user_plex_source_connection_request: Option<models::PatchedUserPlexSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_plex_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsPlexRetrieveParams {
+    /// A unique integer value identifying this User Plex Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_plex_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsPlexUpdateParams {
+    /// A unique integer value identifying this User Plex Source Connection.
+    pub id: i32,
+    pub user_plex_source_connection_request: models::UserPlexSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_plex_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsPlexUsedByListParams {
+    /// A unique integer value identifying this User Plex Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_saml_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsSamlCreateParams {
+    pub user_saml_source_connection_request: models::UserSamlSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_saml_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsSamlDestroyParams {
+    /// A unique integer value identifying this User SAML Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_saml_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsSamlListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_saml_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsSamlPartialUpdateParams {
+    /// A unique integer value identifying this User SAML Source Connection.
+    pub id: i32,
+    pub patched_user_saml_source_connection_request: Option<models::PatchedUserSamlSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_saml_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsSamlRetrieveParams {
+    /// A unique integer value identifying this User SAML Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_saml_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsSamlUpdateParams {
+    /// A unique integer value identifying this User SAML Source Connection.
+    pub id: i32,
+    pub user_saml_source_connection_request: models::UserSamlSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_saml_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsSamlUsedByListParams {
+    /// A unique integer value identifying this User SAML Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_telegram_create`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsTelegramCreateParams {
+    pub user_telegram_source_connection_request: models::UserTelegramSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_telegram_destroy`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsTelegramDestroyParams {
+    /// A unique integer value identifying this User Telegram Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_telegram_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsTelegramListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub source__slug: Option<String>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_telegram_partial_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsTelegramPartialUpdateParams {
+    /// A unique integer value identifying this User Telegram Source Connection.
+    pub id: i32,
+    pub patched_user_telegram_source_connection_request: Option<models::PatchedUserTelegramSourceConnectionRequest>,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_telegram_retrieve`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsTelegramRetrieveParams {
+    /// A unique integer value identifying this User Telegram Source Connection.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_telegram_update`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsTelegramUpdateParams {
+    /// A unique integer value identifying this User Telegram Source Connection.
+    pub id: i32,
+    pub user_telegram_source_connection_request: models::UserTelegramSourceConnectionRequest,
+}
+
+/// struct for passing parameters to the method [`sources_user_connections_telegram_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct SourcesUserConnectionsTelegramUsedByListParams {
+    /// A unique integer value identifying this User Telegram Source Connection.
+    pub id: i32,
+}
+
 /// struct for typed errors of method [`sources_all_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -1573,15 +3041,12 @@ pub enum SourcesUserConnectionsTelegramUsedByListError {
 /// Prevent deletion of built-in sources
 pub async fn sources_all_destroy(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesAllDestroyParams,
 ) -> Result<(), Error<SourcesAllDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/all/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1613,50 +3078,33 @@ pub async fn sources_all_destroy(
 /// Source Viewset
 pub async fn sources_all_list(
     configuration: &configuration::Configuration,
-    managed: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pbm_uuid: Option<&str>,
-    search: Option<&str>,
-    slug: Option<&str>,
+    params: SourcesAllListParams,
 ) -> Result<models::PaginatedSourceList, Error<SourcesAllListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_managed = managed;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_search = search;
-    let p_query_slug = slug;
-
     let uri_str = format!("{}/sources/all/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = req_builder.query(&[("managed", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1680,7 +3128,7 @@ pub async fn sources_all_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedSourceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedSourceList`")))),
         }
@@ -1698,15 +3146,12 @@ pub async fn sources_all_list(
 /// Source Viewset
 pub async fn sources_all_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesAllRetrieveParams,
 ) -> Result<models::Source, Error<SourcesAllRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/all/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1731,7 +3176,9 @@ pub async fn sources_all_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Source`",
@@ -1782,7 +3229,7 @@ pub async fn sources_all_types_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`")))),
         }
@@ -1800,15 +3247,12 @@ pub async fn sources_all_types_list(
 /// Get a list of all objects that use this object
 pub async fn sources_all_used_by_list(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesAllUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesAllUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/all/{slug}/used_by/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1833,7 +3277,7 @@ pub async fn sources_all_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1876,7 +3320,7 @@ pub async fn sources_all_user_settings_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UserSetting&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UserSetting&gt;`")))),
         }
@@ -1894,15 +3338,12 @@ pub async fn sources_all_user_settings_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_all_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsAllDestroyParams,
 ) -> Result<(), Error<SourcesGroupConnectionsAllDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/all/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1934,40 +3375,27 @@ pub async fn sources_group_connections_all_destroy(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_all_list(
     configuration: &configuration::Configuration,
-    group: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
+    params: SourcesGroupConnectionsAllListParams,
 ) -> Result<models::PaginatedGroupSourceConnectionList, Error<SourcesGroupConnectionsAllListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group = group;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-
     let uri_str = format!("{}/sources/group_connections/all/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group {
+    if let Some(ref param_value) = params.group {
         req_builder = req_builder.query(&[("group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1991,7 +3419,7 @@ pub async fn sources_group_connections_all_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGroupSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGroupSourceConnectionList`")))),
         }
@@ -2009,17 +3437,12 @@ pub async fn sources_group_connections_all_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_all_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_group_source_connection_request: Option<models::PatchedGroupSourceConnectionRequest>,
+    params: SourcesGroupConnectionsAllPartialUpdateParams,
 ) -> Result<models::GroupSourceConnection, Error<SourcesGroupConnectionsAllPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_group_source_connection_request = patched_group_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/all/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2029,7 +3452,7 @@ pub async fn sources_group_connections_all_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_group_source_connection_request);
+    req_builder = req_builder.json(&params.patched_group_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2045,7 +3468,7 @@ pub async fn sources_group_connections_all_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupSourceConnection`")))),
         }
@@ -2063,15 +3486,12 @@ pub async fn sources_group_connections_all_partial_update(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_all_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsAllRetrieveParams,
 ) -> Result<models::GroupSourceConnection, Error<SourcesGroupConnectionsAllRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/all/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2096,7 +3516,7 @@ pub async fn sources_group_connections_all_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupSourceConnection`")))),
         }
@@ -2114,17 +3534,12 @@ pub async fn sources_group_connections_all_retrieve(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_all_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    group_source_connection_request: models::GroupSourceConnectionRequest,
+    params: SourcesGroupConnectionsAllUpdateParams,
 ) -> Result<models::GroupSourceConnection, Error<SourcesGroupConnectionsAllUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_group_source_connection_request = group_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/all/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2134,7 +3549,7 @@ pub async fn sources_group_connections_all_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_source_connection_request);
+    req_builder = req_builder.json(&params.group_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2150,7 +3565,7 @@ pub async fn sources_group_connections_all_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupSourceConnection`")))),
         }
@@ -2168,15 +3583,12 @@ pub async fn sources_group_connections_all_update(
 /// Get a list of all objects that use this object
 pub async fn sources_group_connections_all_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsAllUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesGroupConnectionsAllUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/all/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2201,7 +3613,7 @@ pub async fn sources_group_connections_all_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2219,11 +3631,8 @@ pub async fn sources_group_connections_all_used_by_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_kerberos_create(
     configuration: &configuration::Configuration,
-    group_kerberos_source_connection_request: models::GroupKerberosSourceConnectionRequest,
+    params: SourcesGroupConnectionsKerberosCreateParams,
 ) -> Result<models::GroupKerberosSourceConnection, Error<SourcesGroupConnectionsKerberosCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_group_kerberos_source_connection_request = group_kerberos_source_connection_request;
-
     let uri_str = format!("{}/sources/group_connections/kerberos/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2233,7 +3642,7 @@ pub async fn sources_group_connections_kerberos_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_kerberos_source_connection_request);
+    req_builder = req_builder.json(&params.group_kerberos_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2249,7 +3658,7 @@ pub async fn sources_group_connections_kerberos_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupKerberosSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupKerberosSourceConnection`")))),
         }
@@ -2267,15 +3676,12 @@ pub async fn sources_group_connections_kerberos_create(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_kerberos_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsKerberosDestroyParams,
 ) -> Result<(), Error<SourcesGroupConnectionsKerberosDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/kerberos/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2307,40 +3713,27 @@ pub async fn sources_group_connections_kerberos_destroy(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_kerberos_list(
     configuration: &configuration::Configuration,
-    group: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
+    params: SourcesGroupConnectionsKerberosListParams,
 ) -> Result<models::PaginatedGroupKerberosSourceConnectionList, Error<SourcesGroupConnectionsKerberosListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group = group;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-
     let uri_str = format!("{}/sources/group_connections/kerberos/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group {
+    if let Some(ref param_value) = params.group {
         req_builder = req_builder.query(&[("group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2364,7 +3757,7 @@ pub async fn sources_group_connections_kerberos_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGroupKerberosSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGroupKerberosSourceConnectionList`")))),
         }
@@ -2382,17 +3775,12 @@ pub async fn sources_group_connections_kerberos_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_kerberos_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_group_kerberos_source_connection_request: Option<models::PatchedGroupKerberosSourceConnectionRequest>,
+    params: SourcesGroupConnectionsKerberosPartialUpdateParams,
 ) -> Result<models::GroupKerberosSourceConnection, Error<SourcesGroupConnectionsKerberosPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_group_kerberos_source_connection_request = patched_group_kerberos_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/kerberos/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2402,7 +3790,7 @@ pub async fn sources_group_connections_kerberos_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_group_kerberos_source_connection_request);
+    req_builder = req_builder.json(&params.patched_group_kerberos_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2418,7 +3806,7 @@ pub async fn sources_group_connections_kerberos_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupKerberosSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupKerberosSourceConnection`")))),
         }
@@ -2436,15 +3824,12 @@ pub async fn sources_group_connections_kerberos_partial_update(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_kerberos_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsKerberosRetrieveParams,
 ) -> Result<models::GroupKerberosSourceConnection, Error<SourcesGroupConnectionsKerberosRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/kerberos/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2469,7 +3854,7 @@ pub async fn sources_group_connections_kerberos_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupKerberosSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupKerberosSourceConnection`")))),
         }
@@ -2487,17 +3872,12 @@ pub async fn sources_group_connections_kerberos_retrieve(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_kerberos_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    group_kerberos_source_connection_request: models::GroupKerberosSourceConnectionRequest,
+    params: SourcesGroupConnectionsKerberosUpdateParams,
 ) -> Result<models::GroupKerberosSourceConnection, Error<SourcesGroupConnectionsKerberosUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_group_kerberos_source_connection_request = group_kerberos_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/kerberos/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2507,7 +3887,7 @@ pub async fn sources_group_connections_kerberos_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_kerberos_source_connection_request);
+    req_builder = req_builder.json(&params.group_kerberos_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2523,7 +3903,7 @@ pub async fn sources_group_connections_kerberos_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupKerberosSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupKerberosSourceConnection`")))),
         }
@@ -2541,15 +3921,12 @@ pub async fn sources_group_connections_kerberos_update(
 /// Get a list of all objects that use this object
 pub async fn sources_group_connections_kerberos_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsKerberosUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesGroupConnectionsKerberosUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/kerberos/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2574,7 +3951,7 @@ pub async fn sources_group_connections_kerberos_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2592,11 +3969,8 @@ pub async fn sources_group_connections_kerberos_used_by_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_ldap_create(
     configuration: &configuration::Configuration,
-    group_ldap_source_connection_request: models::GroupLdapSourceConnectionRequest,
+    params: SourcesGroupConnectionsLdapCreateParams,
 ) -> Result<models::GroupLdapSourceConnection, Error<SourcesGroupConnectionsLdapCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_group_ldap_source_connection_request = group_ldap_source_connection_request;
-
     let uri_str = format!("{}/sources/group_connections/ldap/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2606,7 +3980,7 @@ pub async fn sources_group_connections_ldap_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_ldap_source_connection_request);
+    req_builder = req_builder.json(&params.group_ldap_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2622,7 +3996,7 @@ pub async fn sources_group_connections_ldap_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupLdapSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupLdapSourceConnection`")))),
         }
@@ -2640,15 +4014,12 @@ pub async fn sources_group_connections_ldap_create(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_ldap_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsLdapDestroyParams,
 ) -> Result<(), Error<SourcesGroupConnectionsLdapDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/ldap/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2680,40 +4051,27 @@ pub async fn sources_group_connections_ldap_destroy(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_ldap_list(
     configuration: &configuration::Configuration,
-    group: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
+    params: SourcesGroupConnectionsLdapListParams,
 ) -> Result<models::PaginatedGroupLdapSourceConnectionList, Error<SourcesGroupConnectionsLdapListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group = group;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-
     let uri_str = format!("{}/sources/group_connections/ldap/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group {
+    if let Some(ref param_value) = params.group {
         req_builder = req_builder.query(&[("group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2737,7 +4095,7 @@ pub async fn sources_group_connections_ldap_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGroupLdapSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGroupLdapSourceConnectionList`")))),
         }
@@ -2755,17 +4113,12 @@ pub async fn sources_group_connections_ldap_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_ldap_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_group_ldap_source_connection_request: Option<models::PatchedGroupLdapSourceConnectionRequest>,
+    params: SourcesGroupConnectionsLdapPartialUpdateParams,
 ) -> Result<models::GroupLdapSourceConnection, Error<SourcesGroupConnectionsLdapPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_group_ldap_source_connection_request = patched_group_ldap_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/ldap/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2775,7 +4128,7 @@ pub async fn sources_group_connections_ldap_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_group_ldap_source_connection_request);
+    req_builder = req_builder.json(&params.patched_group_ldap_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2791,7 +4144,7 @@ pub async fn sources_group_connections_ldap_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupLdapSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupLdapSourceConnection`")))),
         }
@@ -2809,15 +4162,12 @@ pub async fn sources_group_connections_ldap_partial_update(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_ldap_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsLdapRetrieveParams,
 ) -> Result<models::GroupLdapSourceConnection, Error<SourcesGroupConnectionsLdapRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/ldap/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2842,7 +4192,7 @@ pub async fn sources_group_connections_ldap_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupLdapSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupLdapSourceConnection`")))),
         }
@@ -2860,17 +4210,12 @@ pub async fn sources_group_connections_ldap_retrieve(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_ldap_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    group_ldap_source_connection_request: models::GroupLdapSourceConnectionRequest,
+    params: SourcesGroupConnectionsLdapUpdateParams,
 ) -> Result<models::GroupLdapSourceConnection, Error<SourcesGroupConnectionsLdapUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_group_ldap_source_connection_request = group_ldap_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/ldap/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2880,7 +4225,7 @@ pub async fn sources_group_connections_ldap_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_ldap_source_connection_request);
+    req_builder = req_builder.json(&params.group_ldap_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2896,7 +4241,7 @@ pub async fn sources_group_connections_ldap_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupLdapSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupLdapSourceConnection`")))),
         }
@@ -2914,15 +4259,12 @@ pub async fn sources_group_connections_ldap_update(
 /// Get a list of all objects that use this object
 pub async fn sources_group_connections_ldap_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsLdapUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesGroupConnectionsLdapUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/ldap/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2947,7 +4289,7 @@ pub async fn sources_group_connections_ldap_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2965,11 +4307,8 @@ pub async fn sources_group_connections_ldap_used_by_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_oauth_create(
     configuration: &configuration::Configuration,
-    group_o_auth_source_connection_request: models::GroupOAuthSourceConnectionRequest,
+    params: SourcesGroupConnectionsOauthCreateParams,
 ) -> Result<models::GroupOAuthSourceConnection, Error<SourcesGroupConnectionsOauthCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_group_o_auth_source_connection_request = group_o_auth_source_connection_request;
-
     let uri_str = format!("{}/sources/group_connections/oauth/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2979,7 +4318,7 @@ pub async fn sources_group_connections_oauth_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_o_auth_source_connection_request);
+    req_builder = req_builder.json(&params.group_o_auth_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2995,7 +4334,7 @@ pub async fn sources_group_connections_oauth_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupOAuthSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupOAuthSourceConnection`")))),
         }
@@ -3013,15 +4352,12 @@ pub async fn sources_group_connections_oauth_create(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_oauth_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsOauthDestroyParams,
 ) -> Result<(), Error<SourcesGroupConnectionsOauthDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/oauth/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3053,40 +4389,27 @@ pub async fn sources_group_connections_oauth_destroy(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_oauth_list(
     configuration: &configuration::Configuration,
-    group: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
+    params: SourcesGroupConnectionsOauthListParams,
 ) -> Result<models::PaginatedGroupOAuthSourceConnectionList, Error<SourcesGroupConnectionsOauthListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group = group;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-
     let uri_str = format!("{}/sources/group_connections/oauth/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group {
+    if let Some(ref param_value) = params.group {
         req_builder = req_builder.query(&[("group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3110,7 +4433,7 @@ pub async fn sources_group_connections_oauth_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGroupOAuthSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGroupOAuthSourceConnectionList`")))),
         }
@@ -3128,17 +4451,12 @@ pub async fn sources_group_connections_oauth_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_oauth_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_group_o_auth_source_connection_request: Option<models::PatchedGroupOAuthSourceConnectionRequest>,
+    params: SourcesGroupConnectionsOauthPartialUpdateParams,
 ) -> Result<models::GroupOAuthSourceConnection, Error<SourcesGroupConnectionsOauthPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_group_o_auth_source_connection_request = patched_group_o_auth_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/oauth/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3148,7 +4466,7 @@ pub async fn sources_group_connections_oauth_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_group_o_auth_source_connection_request);
+    req_builder = req_builder.json(&params.patched_group_o_auth_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3164,7 +4482,7 @@ pub async fn sources_group_connections_oauth_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupOAuthSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupOAuthSourceConnection`")))),
         }
@@ -3182,15 +4500,12 @@ pub async fn sources_group_connections_oauth_partial_update(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_oauth_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsOauthRetrieveParams,
 ) -> Result<models::GroupOAuthSourceConnection, Error<SourcesGroupConnectionsOauthRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/oauth/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3215,7 +4530,7 @@ pub async fn sources_group_connections_oauth_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupOAuthSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupOAuthSourceConnection`")))),
         }
@@ -3233,17 +4548,12 @@ pub async fn sources_group_connections_oauth_retrieve(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_oauth_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    group_o_auth_source_connection_request: models::GroupOAuthSourceConnectionRequest,
+    params: SourcesGroupConnectionsOauthUpdateParams,
 ) -> Result<models::GroupOAuthSourceConnection, Error<SourcesGroupConnectionsOauthUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_group_o_auth_source_connection_request = group_o_auth_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/oauth/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3253,7 +4563,7 @@ pub async fn sources_group_connections_oauth_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_o_auth_source_connection_request);
+    req_builder = req_builder.json(&params.group_o_auth_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3269,7 +4579,7 @@ pub async fn sources_group_connections_oauth_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupOAuthSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupOAuthSourceConnection`")))),
         }
@@ -3287,15 +4597,12 @@ pub async fn sources_group_connections_oauth_update(
 /// Get a list of all objects that use this object
 pub async fn sources_group_connections_oauth_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsOauthUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesGroupConnectionsOauthUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/oauth/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3320,7 +4627,7 @@ pub async fn sources_group_connections_oauth_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3338,11 +4645,8 @@ pub async fn sources_group_connections_oauth_used_by_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_plex_create(
     configuration: &configuration::Configuration,
-    group_plex_source_connection_request: models::GroupPlexSourceConnectionRequest,
+    params: SourcesGroupConnectionsPlexCreateParams,
 ) -> Result<models::GroupPlexSourceConnection, Error<SourcesGroupConnectionsPlexCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_group_plex_source_connection_request = group_plex_source_connection_request;
-
     let uri_str = format!("{}/sources/group_connections/plex/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3352,7 +4656,7 @@ pub async fn sources_group_connections_plex_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_plex_source_connection_request);
+    req_builder = req_builder.json(&params.group_plex_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3368,7 +4672,7 @@ pub async fn sources_group_connections_plex_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupPlexSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupPlexSourceConnection`")))),
         }
@@ -3386,15 +4690,12 @@ pub async fn sources_group_connections_plex_create(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_plex_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsPlexDestroyParams,
 ) -> Result<(), Error<SourcesGroupConnectionsPlexDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/plex/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3426,40 +4727,27 @@ pub async fn sources_group_connections_plex_destroy(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_plex_list(
     configuration: &configuration::Configuration,
-    group: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
+    params: SourcesGroupConnectionsPlexListParams,
 ) -> Result<models::PaginatedGroupPlexSourceConnectionList, Error<SourcesGroupConnectionsPlexListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group = group;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-
     let uri_str = format!("{}/sources/group_connections/plex/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group {
+    if let Some(ref param_value) = params.group {
         req_builder = req_builder.query(&[("group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3483,7 +4771,7 @@ pub async fn sources_group_connections_plex_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGroupPlexSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGroupPlexSourceConnectionList`")))),
         }
@@ -3501,17 +4789,12 @@ pub async fn sources_group_connections_plex_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_plex_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_group_plex_source_connection_request: Option<models::PatchedGroupPlexSourceConnectionRequest>,
+    params: SourcesGroupConnectionsPlexPartialUpdateParams,
 ) -> Result<models::GroupPlexSourceConnection, Error<SourcesGroupConnectionsPlexPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_group_plex_source_connection_request = patched_group_plex_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/plex/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3521,7 +4804,7 @@ pub async fn sources_group_connections_plex_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_group_plex_source_connection_request);
+    req_builder = req_builder.json(&params.patched_group_plex_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3537,7 +4820,7 @@ pub async fn sources_group_connections_plex_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupPlexSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupPlexSourceConnection`")))),
         }
@@ -3555,15 +4838,12 @@ pub async fn sources_group_connections_plex_partial_update(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_plex_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsPlexRetrieveParams,
 ) -> Result<models::GroupPlexSourceConnection, Error<SourcesGroupConnectionsPlexRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/plex/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3588,7 +4868,7 @@ pub async fn sources_group_connections_plex_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupPlexSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupPlexSourceConnection`")))),
         }
@@ -3606,17 +4886,12 @@ pub async fn sources_group_connections_plex_retrieve(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_plex_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    group_plex_source_connection_request: models::GroupPlexSourceConnectionRequest,
+    params: SourcesGroupConnectionsPlexUpdateParams,
 ) -> Result<models::GroupPlexSourceConnection, Error<SourcesGroupConnectionsPlexUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_group_plex_source_connection_request = group_plex_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/plex/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3626,7 +4901,7 @@ pub async fn sources_group_connections_plex_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_plex_source_connection_request);
+    req_builder = req_builder.json(&params.group_plex_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3642,7 +4917,7 @@ pub async fn sources_group_connections_plex_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupPlexSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupPlexSourceConnection`")))),
         }
@@ -3660,15 +4935,12 @@ pub async fn sources_group_connections_plex_update(
 /// Get a list of all objects that use this object
 pub async fn sources_group_connections_plex_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsPlexUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesGroupConnectionsPlexUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/plex/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3693,7 +4965,7 @@ pub async fn sources_group_connections_plex_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3711,11 +4983,8 @@ pub async fn sources_group_connections_plex_used_by_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_saml_create(
     configuration: &configuration::Configuration,
-    group_saml_source_connection_request: models::GroupSamlSourceConnectionRequest,
+    params: SourcesGroupConnectionsSamlCreateParams,
 ) -> Result<models::GroupSamlSourceConnection, Error<SourcesGroupConnectionsSamlCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_group_saml_source_connection_request = group_saml_source_connection_request;
-
     let uri_str = format!("{}/sources/group_connections/saml/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3725,7 +4994,7 @@ pub async fn sources_group_connections_saml_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_saml_source_connection_request);
+    req_builder = req_builder.json(&params.group_saml_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3741,7 +5010,7 @@ pub async fn sources_group_connections_saml_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupSamlSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupSamlSourceConnection`")))),
         }
@@ -3759,15 +5028,12 @@ pub async fn sources_group_connections_saml_create(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_saml_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsSamlDestroyParams,
 ) -> Result<(), Error<SourcesGroupConnectionsSamlDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/saml/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3799,40 +5065,27 @@ pub async fn sources_group_connections_saml_destroy(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_saml_list(
     configuration: &configuration::Configuration,
-    group: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
+    params: SourcesGroupConnectionsSamlListParams,
 ) -> Result<models::PaginatedGroupSamlSourceConnectionList, Error<SourcesGroupConnectionsSamlListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group = group;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-
     let uri_str = format!("{}/sources/group_connections/saml/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group {
+    if let Some(ref param_value) = params.group {
         req_builder = req_builder.query(&[("group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3856,7 +5109,7 @@ pub async fn sources_group_connections_saml_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGroupSamlSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGroupSamlSourceConnectionList`")))),
         }
@@ -3874,17 +5127,12 @@ pub async fn sources_group_connections_saml_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_saml_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_group_saml_source_connection_request: Option<models::PatchedGroupSamlSourceConnectionRequest>,
+    params: SourcesGroupConnectionsSamlPartialUpdateParams,
 ) -> Result<models::GroupSamlSourceConnection, Error<SourcesGroupConnectionsSamlPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_group_saml_source_connection_request = patched_group_saml_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/saml/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3894,7 +5142,7 @@ pub async fn sources_group_connections_saml_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_group_saml_source_connection_request);
+    req_builder = req_builder.json(&params.patched_group_saml_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3910,7 +5158,7 @@ pub async fn sources_group_connections_saml_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupSamlSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupSamlSourceConnection`")))),
         }
@@ -3928,15 +5176,12 @@ pub async fn sources_group_connections_saml_partial_update(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_saml_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsSamlRetrieveParams,
 ) -> Result<models::GroupSamlSourceConnection, Error<SourcesGroupConnectionsSamlRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/saml/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3961,7 +5206,7 @@ pub async fn sources_group_connections_saml_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupSamlSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupSamlSourceConnection`")))),
         }
@@ -3979,17 +5224,12 @@ pub async fn sources_group_connections_saml_retrieve(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_saml_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    group_saml_source_connection_request: models::GroupSamlSourceConnectionRequest,
+    params: SourcesGroupConnectionsSamlUpdateParams,
 ) -> Result<models::GroupSamlSourceConnection, Error<SourcesGroupConnectionsSamlUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_group_saml_source_connection_request = group_saml_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/saml/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3999,7 +5239,7 @@ pub async fn sources_group_connections_saml_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_saml_source_connection_request);
+    req_builder = req_builder.json(&params.group_saml_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4015,7 +5255,7 @@ pub async fn sources_group_connections_saml_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupSamlSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupSamlSourceConnection`")))),
         }
@@ -4033,15 +5273,12 @@ pub async fn sources_group_connections_saml_update(
 /// Get a list of all objects that use this object
 pub async fn sources_group_connections_saml_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsSamlUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesGroupConnectionsSamlUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/saml/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4066,7 +5303,7 @@ pub async fn sources_group_connections_saml_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4084,11 +5321,8 @@ pub async fn sources_group_connections_saml_used_by_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_telegram_create(
     configuration: &configuration::Configuration,
-    group_telegram_source_connection_request: models::GroupTelegramSourceConnectionRequest,
+    params: SourcesGroupConnectionsTelegramCreateParams,
 ) -> Result<models::GroupTelegramSourceConnection, Error<SourcesGroupConnectionsTelegramCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_group_telegram_source_connection_request = group_telegram_source_connection_request;
-
     let uri_str = format!("{}/sources/group_connections/telegram/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4098,7 +5332,7 @@ pub async fn sources_group_connections_telegram_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_telegram_source_connection_request);
+    req_builder = req_builder.json(&params.group_telegram_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4114,7 +5348,7 @@ pub async fn sources_group_connections_telegram_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupTelegramSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupTelegramSourceConnection`")))),
         }
@@ -4132,15 +5366,12 @@ pub async fn sources_group_connections_telegram_create(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_telegram_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsTelegramDestroyParams,
 ) -> Result<(), Error<SourcesGroupConnectionsTelegramDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/telegram/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4172,40 +5403,27 @@ pub async fn sources_group_connections_telegram_destroy(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_telegram_list(
     configuration: &configuration::Configuration,
-    group: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
+    params: SourcesGroupConnectionsTelegramListParams,
 ) -> Result<models::PaginatedGroupTelegramSourceConnectionList, Error<SourcesGroupConnectionsTelegramListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group = group;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-
     let uri_str = format!("{}/sources/group_connections/telegram/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group {
+    if let Some(ref param_value) = params.group {
         req_builder = req_builder.query(&[("group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4229,7 +5447,7 @@ pub async fn sources_group_connections_telegram_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGroupTelegramSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGroupTelegramSourceConnectionList`")))),
         }
@@ -4247,17 +5465,12 @@ pub async fn sources_group_connections_telegram_list(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_telegram_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_group_telegram_source_connection_request: Option<models::PatchedGroupTelegramSourceConnectionRequest>,
+    params: SourcesGroupConnectionsTelegramPartialUpdateParams,
 ) -> Result<models::GroupTelegramSourceConnection, Error<SourcesGroupConnectionsTelegramPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_group_telegram_source_connection_request = patched_group_telegram_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/telegram/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -4267,7 +5480,7 @@ pub async fn sources_group_connections_telegram_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_group_telegram_source_connection_request);
+    req_builder = req_builder.json(&params.patched_group_telegram_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4283,7 +5496,7 @@ pub async fn sources_group_connections_telegram_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupTelegramSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupTelegramSourceConnection`")))),
         }
@@ -4301,15 +5514,12 @@ pub async fn sources_group_connections_telegram_partial_update(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_telegram_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsTelegramRetrieveParams,
 ) -> Result<models::GroupTelegramSourceConnection, Error<SourcesGroupConnectionsTelegramRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/telegram/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4334,7 +5544,7 @@ pub async fn sources_group_connections_telegram_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupTelegramSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupTelegramSourceConnection`")))),
         }
@@ -4352,17 +5562,12 @@ pub async fn sources_group_connections_telegram_retrieve(
 /// Group-source connection Viewset
 pub async fn sources_group_connections_telegram_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    group_telegram_source_connection_request: models::GroupTelegramSourceConnectionRequest,
+    params: SourcesGroupConnectionsTelegramUpdateParams,
 ) -> Result<models::GroupTelegramSourceConnection, Error<SourcesGroupConnectionsTelegramUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_group_telegram_source_connection_request = group_telegram_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/group_connections/telegram/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4372,7 +5577,7 @@ pub async fn sources_group_connections_telegram_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_telegram_source_connection_request);
+    req_builder = req_builder.json(&params.group_telegram_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4388,7 +5593,7 @@ pub async fn sources_group_connections_telegram_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupTelegramSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupTelegramSourceConnection`")))),
         }
@@ -4406,15 +5611,12 @@ pub async fn sources_group_connections_telegram_update(
 /// Get a list of all objects that use this object
 pub async fn sources_group_connections_telegram_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesGroupConnectionsTelegramUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesGroupConnectionsTelegramUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/group_connections/telegram/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4439,7 +5641,7 @@ pub async fn sources_group_connections_telegram_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4457,11 +5659,8 @@ pub async fn sources_group_connections_telegram_used_by_list(
 /// Kerberos Source Viewset
 pub async fn sources_kerberos_create(
     configuration: &configuration::Configuration,
-    kerberos_source_request: models::KerberosSourceRequest,
+    params: SourcesKerberosCreateParams,
 ) -> Result<models::KerberosSource, Error<SourcesKerberosCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_kerberos_source_request = kerberos_source_request;
-
     let uri_str = format!("{}/sources/kerberos/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4471,7 +5670,7 @@ pub async fn sources_kerberos_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_kerberos_source_request);
+    req_builder = req_builder.json(&params.kerberos_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4487,7 +5686,9 @@ pub async fn sources_kerberos_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::KerberosSource`",
@@ -4511,15 +5712,12 @@ pub async fn sources_kerberos_create(
 /// Kerberos Source Viewset
 pub async fn sources_kerberos_destroy(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesKerberosDestroyParams,
 ) -> Result<(), Error<SourcesKerberosDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/kerberos/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4551,85 +5749,54 @@ pub async fn sources_kerberos_destroy(
 /// Kerberos Source Viewset
 pub async fn sources_kerberos_list(
     configuration: &configuration::Configuration,
-    enabled: Option<bool>,
-    kadmin_type: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    password_login_update_internal_password: Option<bool>,
-    pbm_uuid: Option<&str>,
-    realm: Option<&str>,
-    search: Option<&str>,
-    slug: Option<&str>,
-    spnego_server_name: Option<&str>,
-    sync_principal: Option<&str>,
-    sync_users: Option<bool>,
-    sync_users_password: Option<bool>,
+    params: SourcesKerberosListParams,
 ) -> Result<models::PaginatedKerberosSourceList, Error<SourcesKerberosListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_enabled = enabled;
-    let p_query_kadmin_type = kadmin_type;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_password_login_update_internal_password = password_login_update_internal_password;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_realm = realm;
-    let p_query_search = search;
-    let p_query_slug = slug;
-    let p_query_spnego_server_name = spnego_server_name;
-    let p_query_sync_principal = sync_principal;
-    let p_query_sync_users = sync_users;
-    let p_query_sync_users_password = sync_users_password;
-
     let uri_str = format!("{}/sources/kerberos/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_enabled {
+    if let Some(ref param_value) = params.enabled {
         req_builder = req_builder.query(&[("enabled", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_kadmin_type {
+    if let Some(ref param_value) = params.kadmin_type {
         req_builder = req_builder.query(&[("kadmin_type", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_password_login_update_internal_password {
+    if let Some(ref param_value) = params.password_login_update_internal_password {
         req_builder = req_builder.query(&[("password_login_update_internal_password", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_realm {
+    if let Some(ref param_value) = params.realm {
         req_builder = req_builder.query(&[("realm", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_spnego_server_name {
+    if let Some(ref param_value) = params.spnego_server_name {
         req_builder = req_builder.query(&[("spnego_server_name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sync_principal {
+    if let Some(ref param_value) = params.sync_principal {
         req_builder = req_builder.query(&[("sync_principal", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sync_users {
+    if let Some(ref param_value) = params.sync_users {
         req_builder = req_builder.query(&[("sync_users", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sync_users_password {
+    if let Some(ref param_value) = params.sync_users_password {
         req_builder = req_builder.query(&[("sync_users_password", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4653,7 +5820,7 @@ pub async fn sources_kerberos_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedKerberosSourceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedKerberosSourceList`")))),
         }
@@ -4671,17 +5838,12 @@ pub async fn sources_kerberos_list(
 /// Kerberos Source Viewset
 pub async fn sources_kerberos_partial_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    patched_kerberos_source_request: Option<models::PatchedKerberosSourceRequest>,
+    params: SourcesKerberosPartialUpdateParams,
 ) -> Result<models::KerberosSource, Error<SourcesKerberosPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_patched_kerberos_source_request = patched_kerberos_source_request;
-
     let uri_str = format!(
         "{}/sources/kerberos/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -4691,7 +5853,7 @@ pub async fn sources_kerberos_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_kerberos_source_request);
+    req_builder = req_builder.json(&params.patched_kerberos_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4707,7 +5869,9 @@ pub async fn sources_kerberos_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::KerberosSource`",
@@ -4731,15 +5895,12 @@ pub async fn sources_kerberos_partial_update(
 /// Kerberos Source Viewset
 pub async fn sources_kerberos_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesKerberosRetrieveParams,
 ) -> Result<models::KerberosSource, Error<SourcesKerberosRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/kerberos/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4764,7 +5925,9 @@ pub async fn sources_kerberos_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::KerberosSource`",
@@ -4788,15 +5951,12 @@ pub async fn sources_kerberos_retrieve(
 /// Get provider's sync status
 pub async fn sources_kerberos_sync_status_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesKerberosSyncStatusRetrieveParams,
 ) -> Result<models::SyncStatus, Error<SourcesKerberosSyncStatusRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/kerberos/{slug}/sync/status/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4821,7 +5981,9 @@ pub async fn sources_kerberos_sync_status_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SyncStatus`",
@@ -4847,17 +6009,12 @@ pub async fn sources_kerberos_sync_status_retrieve(
 /// Kerberos Source Viewset
 pub async fn sources_kerberos_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    kerberos_source_request: models::KerberosSourceRequest,
+    params: SourcesKerberosUpdateParams,
 ) -> Result<models::KerberosSource, Error<SourcesKerberosUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_kerberos_source_request = kerberos_source_request;
-
     let uri_str = format!(
         "{}/sources/kerberos/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4867,7 +6024,7 @@ pub async fn sources_kerberos_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_kerberos_source_request);
+    req_builder = req_builder.json(&params.kerberos_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4883,7 +6040,9 @@ pub async fn sources_kerberos_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::KerberosSource`",
@@ -4907,15 +6066,12 @@ pub async fn sources_kerberos_update(
 /// Get a list of all objects that use this object
 pub async fn sources_kerberos_used_by_list(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesKerberosUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesKerberosUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/kerberos/{slug}/used_by/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4940,7 +6096,7 @@ pub async fn sources_kerberos_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4958,11 +6114,8 @@ pub async fn sources_kerberos_used_by_list(
 /// LDAP Source Viewset
 pub async fn sources_ldap_create(
     configuration: &configuration::Configuration,
-    ldap_source_request: models::LdapSourceRequest,
+    params: SourcesLdapCreateParams,
 ) -> Result<models::LdapSource, Error<SourcesLdapCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_ldap_source_request = ldap_source_request;
-
     let uri_str = format!("{}/sources/ldap/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4972,7 +6125,7 @@ pub async fn sources_ldap_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_ldap_source_request);
+    req_builder = req_builder.json(&params.ldap_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4988,7 +6141,9 @@ pub async fn sources_ldap_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LdapSource`",
@@ -5014,15 +6169,12 @@ pub async fn sources_ldap_create(
 /// Get raw LDAP data to debug
 pub async fn sources_ldap_debug_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesLdapDebugRetrieveParams,
 ) -> Result<models::LdapDebug, Error<SourcesLdapDebugRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/ldap/{slug}/debug/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5047,7 +6199,9 @@ pub async fn sources_ldap_debug_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LdapDebug`",
@@ -5073,15 +6227,12 @@ pub async fn sources_ldap_debug_retrieve(
 /// LDAP Source Viewset
 pub async fn sources_ldap_destroy(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesLdapDestroyParams,
 ) -> Result<(), Error<SourcesLdapDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/ldap/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -5113,106 +6264,39 @@ pub async fn sources_ldap_destroy(
 /// LDAP Source Viewset
 pub async fn sources_ldap_list(
     configuration: &configuration::Configuration,
-    additional_group_dn: Option<&str>,
-    additional_user_dn: Option<&str>,
-    base_dn: Option<&str>,
-    bind_cn: Option<&str>,
-    client_certificate: Option<&str>,
-    delete_not_found_objects: Option<bool>,
-    enabled: Option<bool>,
-    group_membership_field: Option<&str>,
-    group_object_filter: Option<&str>,
-    group_property_mappings: Option<Vec<uuid::Uuid>>,
-    lookup_groups_from_user: Option<bool>,
-    name: Option<&str>,
-    object_uniqueness_field: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    password_login_update_internal_password: Option<bool>,
-    pbm_uuid: Option<&str>,
-    peer_certificate: Option<&str>,
-    search: Option<&str>,
-    server_uri: Option<&str>,
-    service_bind_method: Option<&str>,
-    slug: Option<&str>,
-    sni: Option<bool>,
-    start_tls: Option<bool>,
-    sync_group_hierarchy: Option<bool>,
-    sync_groups: Option<bool>,
-    sync_parent_group: Option<&str>,
-    sync_users: Option<bool>,
-    sync_users_password: Option<bool>,
-    user_membership_attribute: Option<&str>,
-    user_object_filter: Option<&str>,
-    user_property_mappings: Option<Vec<uuid::Uuid>>,
+    params: SourcesLdapListParams,
 ) -> Result<models::PaginatedLdapSourceList, Error<SourcesLdapListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_additional_group_dn = additional_group_dn;
-    let p_query_additional_user_dn = additional_user_dn;
-    let p_query_base_dn = base_dn;
-    let p_query_bind_cn = bind_cn;
-    let p_query_client_certificate = client_certificate;
-    let p_query_delete_not_found_objects = delete_not_found_objects;
-    let p_query_enabled = enabled;
-    let p_query_group_membership_field = group_membership_field;
-    let p_query_group_object_filter = group_object_filter;
-    let p_query_group_property_mappings = group_property_mappings;
-    let p_query_lookup_groups_from_user = lookup_groups_from_user;
-    let p_query_name = name;
-    let p_query_object_uniqueness_field = object_uniqueness_field;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_password_login_update_internal_password = password_login_update_internal_password;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_peer_certificate = peer_certificate;
-    let p_query_search = search;
-    let p_query_server_uri = server_uri;
-    let p_query_service_bind_method = service_bind_method;
-    let p_query_slug = slug;
-    let p_query_sni = sni;
-    let p_query_start_tls = start_tls;
-    let p_query_sync_group_hierarchy = sync_group_hierarchy;
-    let p_query_sync_groups = sync_groups;
-    let p_query_sync_parent_group = sync_parent_group;
-    let p_query_sync_users = sync_users;
-    let p_query_sync_users_password = sync_users_password;
-    let p_query_user_membership_attribute = user_membership_attribute;
-    let p_query_user_object_filter = user_object_filter;
-    let p_query_user_property_mappings = user_property_mappings;
-
     let uri_str = format!("{}/sources/ldap/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_additional_group_dn {
+    if let Some(ref param_value) = params.additional_group_dn {
         req_builder = req_builder.query(&[("additional_group_dn", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_additional_user_dn {
+    if let Some(ref param_value) = params.additional_user_dn {
         req_builder = req_builder.query(&[("additional_user_dn", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_base_dn {
+    if let Some(ref param_value) = params.base_dn {
         req_builder = req_builder.query(&[("base_dn", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_bind_cn {
+    if let Some(ref param_value) = params.bind_cn {
         req_builder = req_builder.query(&[("bind_cn", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_certificate {
+    if let Some(ref param_value) = params.client_certificate {
         req_builder = req_builder.query(&[("client_certificate", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_delete_not_found_objects {
+    if let Some(ref param_value) = params.delete_not_found_objects {
         req_builder = req_builder.query(&[("delete_not_found_objects", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_enabled {
+    if let Some(ref param_value) = params.enabled {
         req_builder = req_builder.query(&[("enabled", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_group_membership_field {
+    if let Some(ref param_value) = params.group_membership_field {
         req_builder = req_builder.query(&[("group_membership_field", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_group_object_filter {
+    if let Some(ref param_value) = params.group_object_filter {
         req_builder = req_builder.query(&[("group_object_filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_group_property_mappings {
+    if let Some(ref param_value) = params.group_property_mappings {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5231,73 +6315,73 @@ pub async fn sources_ldap_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_lookup_groups_from_user {
+    if let Some(ref param_value) = params.lookup_groups_from_user {
         req_builder = req_builder.query(&[("lookup_groups_from_user", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_object_uniqueness_field {
+    if let Some(ref param_value) = params.object_uniqueness_field {
         req_builder = req_builder.query(&[("object_uniqueness_field", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_password_login_update_internal_password {
+    if let Some(ref param_value) = params.password_login_update_internal_password {
         req_builder = req_builder.query(&[("password_login_update_internal_password", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_peer_certificate {
+    if let Some(ref param_value) = params.peer_certificate {
         req_builder = req_builder.query(&[("peer_certificate", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_server_uri {
+    if let Some(ref param_value) = params.server_uri {
         req_builder = req_builder.query(&[("server_uri", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_service_bind_method {
+    if let Some(ref param_value) = params.service_bind_method {
         req_builder = req_builder.query(&[("service_bind_method", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sni {
+    if let Some(ref param_value) = params.sni {
         req_builder = req_builder.query(&[("sni", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_start_tls {
+    if let Some(ref param_value) = params.start_tls {
         req_builder = req_builder.query(&[("start_tls", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sync_group_hierarchy {
+    if let Some(ref param_value) = params.sync_group_hierarchy {
         req_builder = req_builder.query(&[("sync_group_hierarchy", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sync_groups {
+    if let Some(ref param_value) = params.sync_groups {
         req_builder = req_builder.query(&[("sync_groups", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sync_parent_group {
+    if let Some(ref param_value) = params.sync_parent_group {
         req_builder = req_builder.query(&[("sync_parent_group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sync_users {
+    if let Some(ref param_value) = params.sync_users {
         req_builder = req_builder.query(&[("sync_users", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sync_users_password {
+    if let Some(ref param_value) = params.sync_users_password {
         req_builder = req_builder.query(&[("sync_users_password", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_membership_attribute {
+    if let Some(ref param_value) = params.user_membership_attribute {
         req_builder = req_builder.query(&[("user_membership_attribute", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_object_filter {
+    if let Some(ref param_value) = params.user_object_filter {
         req_builder = req_builder.query(&[("user_object_filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_property_mappings {
+    if let Some(ref param_value) = params.user_property_mappings {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5337,7 +6421,7 @@ pub async fn sources_ldap_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedLdapSourceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedLdapSourceList`")))),
         }
@@ -5355,17 +6439,12 @@ pub async fn sources_ldap_list(
 /// LDAP Source Viewset
 pub async fn sources_ldap_partial_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    patched_ldap_source_request: Option<models::PatchedLdapSourceRequest>,
+    params: SourcesLdapPartialUpdateParams,
 ) -> Result<models::LdapSource, Error<SourcesLdapPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_patched_ldap_source_request = patched_ldap_source_request;
-
     let uri_str = format!(
         "{}/sources/ldap/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -5375,7 +6454,7 @@ pub async fn sources_ldap_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_ldap_source_request);
+    req_builder = req_builder.json(&params.patched_ldap_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5391,7 +6470,9 @@ pub async fn sources_ldap_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LdapSource`",
@@ -5417,15 +6498,12 @@ pub async fn sources_ldap_partial_update(
 /// LDAP Source Viewset
 pub async fn sources_ldap_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesLdapRetrieveParams,
 ) -> Result<models::LdapSource, Error<SourcesLdapRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/ldap/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5450,7 +6528,9 @@ pub async fn sources_ldap_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LdapSource`",
@@ -5476,15 +6556,12 @@ pub async fn sources_ldap_retrieve(
 /// Get provider's sync status
 pub async fn sources_ldap_sync_status_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesLdapSyncStatusRetrieveParams,
 ) -> Result<models::SyncStatus, Error<SourcesLdapSyncStatusRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/ldap/{slug}/sync/status/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5509,7 +6586,9 @@ pub async fn sources_ldap_sync_status_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SyncStatus`",
@@ -5535,17 +6614,12 @@ pub async fn sources_ldap_sync_status_retrieve(
 /// LDAP Source Viewset
 pub async fn sources_ldap_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    ldap_source_request: models::LdapSourceRequest,
+    params: SourcesLdapUpdateParams,
 ) -> Result<models::LdapSource, Error<SourcesLdapUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_ldap_source_request = ldap_source_request;
-
     let uri_str = format!(
         "{}/sources/ldap/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -5555,7 +6629,7 @@ pub async fn sources_ldap_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_ldap_source_request);
+    req_builder = req_builder.json(&params.ldap_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5571,7 +6645,9 @@ pub async fn sources_ldap_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::LdapSource`",
@@ -5597,15 +6673,12 @@ pub async fn sources_ldap_update(
 /// Get a list of all objects that use this object
 pub async fn sources_ldap_used_by_list(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesLdapUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesLdapUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/ldap/{slug}/used_by/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5630,7 +6703,7 @@ pub async fn sources_ldap_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -5648,11 +6721,8 @@ pub async fn sources_ldap_used_by_list(
 /// Source Viewset
 pub async fn sources_oauth_create(
     configuration: &configuration::Configuration,
-    o_auth_source_request: models::OAuthSourceRequest,
+    params: SourcesOauthCreateParams,
 ) -> Result<models::OAuthSource, Error<SourcesOauthCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_o_auth_source_request = o_auth_source_request;
-
     let uri_str = format!("{}/sources/oauth/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -5662,7 +6732,7 @@ pub async fn sources_oauth_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_o_auth_source_request);
+    req_builder = req_builder.json(&params.o_auth_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5678,7 +6748,9 @@ pub async fn sources_oauth_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::OAuthSource`",
@@ -5704,15 +6776,12 @@ pub async fn sources_oauth_create(
 /// Source Viewset
 pub async fn sources_oauth_destroy(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesOauthDestroyParams,
 ) -> Result<(), Error<SourcesOauthDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/oauth/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -5744,115 +6813,72 @@ pub async fn sources_oauth_destroy(
 /// Source Viewset
 pub async fn sources_oauth_list(
     configuration: &configuration::Configuration,
-    access_token_url: Option<&str>,
-    additional_scopes: Option<&str>,
-    authentication_flow: Option<&str>,
-    authorization_url: Option<&str>,
-    consumer_key: Option<&str>,
-    enabled: Option<bool>,
-    enrollment_flow: Option<&str>,
-    group_matching_mode: Option<&str>,
-    has_jwks: Option<bool>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pbm_uuid: Option<&str>,
-    policy_engine_mode: Option<models::PolicyEngineMode>,
-    profile_url: Option<&str>,
-    provider_type: Option<&str>,
-    request_token_url: Option<&str>,
-    search: Option<&str>,
-    slug: Option<&str>,
-    user_matching_mode: Option<&str>,
+    params: SourcesOauthListParams,
 ) -> Result<models::PaginatedOAuthSourceList, Error<SourcesOauthListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_access_token_url = access_token_url;
-    let p_query_additional_scopes = additional_scopes;
-    let p_query_authentication_flow = authentication_flow;
-    let p_query_authorization_url = authorization_url;
-    let p_query_consumer_key = consumer_key;
-    let p_query_enabled = enabled;
-    let p_query_enrollment_flow = enrollment_flow;
-    let p_query_group_matching_mode = group_matching_mode;
-    let p_query_has_jwks = has_jwks;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_policy_engine_mode = policy_engine_mode;
-    let p_query_profile_url = profile_url;
-    let p_query_provider_type = provider_type;
-    let p_query_request_token_url = request_token_url;
-    let p_query_search = search;
-    let p_query_slug = slug;
-    let p_query_user_matching_mode = user_matching_mode;
-
     let uri_str = format!("{}/sources/oauth/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_access_token_url {
+    if let Some(ref param_value) = params.access_token_url {
         req_builder = req_builder.query(&[("access_token_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_additional_scopes {
+    if let Some(ref param_value) = params.additional_scopes {
         req_builder = req_builder.query(&[("additional_scopes", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authentication_flow {
+    if let Some(ref param_value) = params.authentication_flow {
         req_builder = req_builder.query(&[("authentication_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authorization_url {
+    if let Some(ref param_value) = params.authorization_url {
         req_builder = req_builder.query(&[("authorization_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_consumer_key {
+    if let Some(ref param_value) = params.consumer_key {
         req_builder = req_builder.query(&[("consumer_key", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_enabled {
+    if let Some(ref param_value) = params.enabled {
         req_builder = req_builder.query(&[("enabled", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_enrollment_flow {
+    if let Some(ref param_value) = params.enrollment_flow {
         req_builder = req_builder.query(&[("enrollment_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_group_matching_mode {
+    if let Some(ref param_value) = params.group_matching_mode {
         req_builder = req_builder.query(&[("group_matching_mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_has_jwks {
+    if let Some(ref param_value) = params.has_jwks {
         req_builder = req_builder.query(&[("has_jwks", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy_engine_mode {
+    if let Some(ref param_value) = params.policy_engine_mode {
         req_builder = req_builder.query(&[("policy_engine_mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_profile_url {
+    if let Some(ref param_value) = params.profile_url {
         req_builder = req_builder.query(&[("profile_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_provider_type {
+    if let Some(ref param_value) = params.provider_type {
         req_builder = req_builder.query(&[("provider_type", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_request_token_url {
+    if let Some(ref param_value) = params.request_token_url {
         req_builder = req_builder.query(&[("request_token_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_matching_mode {
+    if let Some(ref param_value) = params.user_matching_mode {
         req_builder = req_builder.query(&[("user_matching_mode", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5876,7 +6902,7 @@ pub async fn sources_oauth_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedOAuthSourceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedOAuthSourceList`")))),
         }
@@ -5894,17 +6920,12 @@ pub async fn sources_oauth_list(
 /// Source Viewset
 pub async fn sources_oauth_partial_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    patched_o_auth_source_request: Option<models::PatchedOAuthSourceRequest>,
+    params: SourcesOauthPartialUpdateParams,
 ) -> Result<models::OAuthSource, Error<SourcesOauthPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_patched_o_auth_source_request = patched_o_auth_source_request;
-
     let uri_str = format!(
         "{}/sources/oauth/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -5914,7 +6935,7 @@ pub async fn sources_oauth_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_o_auth_source_request);
+    req_builder = req_builder.json(&params.patched_o_auth_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5930,7 +6951,9 @@ pub async fn sources_oauth_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::OAuthSource`",
@@ -5956,15 +6979,12 @@ pub async fn sources_oauth_partial_update(
 /// Source Viewset
 pub async fn sources_oauth_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesOauthRetrieveParams,
 ) -> Result<models::OAuthSource, Error<SourcesOauthRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/oauth/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5989,7 +7009,9 @@ pub async fn sources_oauth_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::OAuthSource`",
@@ -6015,15 +7037,12 @@ pub async fn sources_oauth_retrieve(
 /// Get all creatable source types. If ?name is set, only returns the type for <name>. If <name> isn't found, returns the default type.
 pub async fn sources_oauth_source_types_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
+    params: SourcesOauthSourceTypesListParams,
 ) -> Result<Vec<models::SourceType>, Error<SourcesOauthSourceTypesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-
     let uri_str = format!("{}/sources/oauth/source_types/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6047,7 +7066,7 @@ pub async fn sources_oauth_source_types_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::SourceType&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::SourceType&gt;`")))),
         }
@@ -6065,17 +7084,12 @@ pub async fn sources_oauth_source_types_list(
 /// Source Viewset
 pub async fn sources_oauth_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    o_auth_source_request: models::OAuthSourceRequest,
+    params: SourcesOauthUpdateParams,
 ) -> Result<models::OAuthSource, Error<SourcesOauthUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_o_auth_source_request = o_auth_source_request;
-
     let uri_str = format!(
         "{}/sources/oauth/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -6085,7 +7099,7 @@ pub async fn sources_oauth_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_o_auth_source_request);
+    req_builder = req_builder.json(&params.o_auth_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6101,7 +7115,9 @@ pub async fn sources_oauth_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::OAuthSource`",
@@ -6127,15 +7143,12 @@ pub async fn sources_oauth_update(
 /// Get a list of all objects that use this object
 pub async fn sources_oauth_used_by_list(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesOauthUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesOauthUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/oauth/{slug}/used_by/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6160,7 +7173,7 @@ pub async fn sources_oauth_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -6178,11 +7191,8 @@ pub async fn sources_oauth_used_by_list(
 /// Plex source Viewset
 pub async fn sources_plex_create(
     configuration: &configuration::Configuration,
-    plex_source_request: models::PlexSourceRequest,
+    params: SourcesPlexCreateParams,
 ) -> Result<models::PlexSource, Error<SourcesPlexCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_plex_source_request = plex_source_request;
-
     let uri_str = format!("{}/sources/plex/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -6192,7 +7202,7 @@ pub async fn sources_plex_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_plex_source_request);
+    req_builder = req_builder.json(&params.plex_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6208,7 +7218,9 @@ pub async fn sources_plex_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PlexSource`",
@@ -6234,15 +7246,12 @@ pub async fn sources_plex_create(
 /// Plex source Viewset
 pub async fn sources_plex_destroy(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesPlexDestroyParams,
 ) -> Result<(), Error<SourcesPlexDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/plex/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -6274,85 +7283,54 @@ pub async fn sources_plex_destroy(
 /// Plex source Viewset
 pub async fn sources_plex_list(
     configuration: &configuration::Configuration,
-    allow_friends: Option<bool>,
-    authentication_flow: Option<&str>,
-    client_id: Option<&str>,
-    enabled: Option<bool>,
-    enrollment_flow: Option<&str>,
-    group_matching_mode: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pbm_uuid: Option<&str>,
-    policy_engine_mode: Option<models::PolicyEngineMode>,
-    search: Option<&str>,
-    slug: Option<&str>,
-    user_matching_mode: Option<&str>,
+    params: SourcesPlexListParams,
 ) -> Result<models::PaginatedPlexSourceList, Error<SourcesPlexListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_allow_friends = allow_friends;
-    let p_query_authentication_flow = authentication_flow;
-    let p_query_client_id = client_id;
-    let p_query_enabled = enabled;
-    let p_query_enrollment_flow = enrollment_flow;
-    let p_query_group_matching_mode = group_matching_mode;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_policy_engine_mode = policy_engine_mode;
-    let p_query_search = search;
-    let p_query_slug = slug;
-    let p_query_user_matching_mode = user_matching_mode;
-
     let uri_str = format!("{}/sources/plex/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_allow_friends {
+    if let Some(ref param_value) = params.allow_friends {
         req_builder = req_builder.query(&[("allow_friends", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authentication_flow {
+    if let Some(ref param_value) = params.authentication_flow {
         req_builder = req_builder.query(&[("authentication_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_id {
+    if let Some(ref param_value) = params.client_id {
         req_builder = req_builder.query(&[("client_id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_enabled {
+    if let Some(ref param_value) = params.enabled {
         req_builder = req_builder.query(&[("enabled", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_enrollment_flow {
+    if let Some(ref param_value) = params.enrollment_flow {
         req_builder = req_builder.query(&[("enrollment_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_group_matching_mode {
+    if let Some(ref param_value) = params.group_matching_mode {
         req_builder = req_builder.query(&[("group_matching_mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy_engine_mode {
+    if let Some(ref param_value) = params.policy_engine_mode {
         req_builder = req_builder.query(&[("policy_engine_mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_matching_mode {
+    if let Some(ref param_value) = params.user_matching_mode {
         req_builder = req_builder.query(&[("user_matching_mode", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6376,7 +7354,7 @@ pub async fn sources_plex_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedPlexSourceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedPlexSourceList`")))),
         }
@@ -6394,17 +7372,12 @@ pub async fn sources_plex_list(
 /// Plex source Viewset
 pub async fn sources_plex_partial_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    patched_plex_source_request: Option<models::PatchedPlexSourceRequest>,
+    params: SourcesPlexPartialUpdateParams,
 ) -> Result<models::PlexSource, Error<SourcesPlexPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_patched_plex_source_request = patched_plex_source_request;
-
     let uri_str = format!(
         "{}/sources/plex/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -6414,7 +7387,7 @@ pub async fn sources_plex_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_plex_source_request);
+    req_builder = req_builder.json(&params.patched_plex_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6430,7 +7403,9 @@ pub async fn sources_plex_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PlexSource`",
@@ -6456,17 +7431,12 @@ pub async fn sources_plex_partial_update(
 /// Redeem a plex token for an authenticated user, creating a connection
 pub async fn sources_plex_redeem_token_authenticated_create(
     configuration: &configuration::Configuration,
-    plex_token_redeem_request: models::PlexTokenRedeemRequest,
-    slug: Option<&str>,
+    params: SourcesPlexRedeemTokenAuthenticatedCreateParams,
 ) -> Result<(), Error<SourcesPlexRedeemTokenAuthenticatedCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_plex_token_redeem_request = plex_token_redeem_request;
-    let p_query_slug = slug;
-
     let uri_str = format!("{}/sources/plex/redeem_token_authenticated/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6475,7 +7445,7 @@ pub async fn sources_plex_redeem_token_authenticated_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_plex_token_redeem_request);
+    req_builder = req_builder.json(&params.plex_token_redeem_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6498,17 +7468,12 @@ pub async fn sources_plex_redeem_token_authenticated_create(
 /// Redeem a plex token, check it's access to resources against what's allowed for the source, and redirect to an authentication/enrollment flow.
 pub async fn sources_plex_redeem_token_create(
     configuration: &configuration::Configuration,
-    plex_token_redeem_request: models::PlexTokenRedeemRequest,
-    slug: Option<&str>,
+    params: SourcesPlexRedeemTokenCreateParams,
 ) -> Result<models::RedirectChallenge, Error<SourcesPlexRedeemTokenCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_plex_token_redeem_request = plex_token_redeem_request;
-    let p_query_slug = slug;
-
     let uri_str = format!("{}/sources/plex/redeem_token/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6517,7 +7482,7 @@ pub async fn sources_plex_redeem_token_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_plex_token_redeem_request);
+    req_builder = req_builder.json(&params.plex_token_redeem_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6533,7 +7498,7 @@ pub async fn sources_plex_redeem_token_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RedirectChallenge`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RedirectChallenge`")))),
         }
@@ -6551,15 +7516,12 @@ pub async fn sources_plex_redeem_token_create(
 /// Plex source Viewset
 pub async fn sources_plex_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesPlexRetrieveParams,
 ) -> Result<models::PlexSource, Error<SourcesPlexRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/plex/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6584,7 +7546,9 @@ pub async fn sources_plex_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PlexSource`",
@@ -6610,17 +7574,12 @@ pub async fn sources_plex_retrieve(
 /// Plex source Viewset
 pub async fn sources_plex_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    plex_source_request: models::PlexSourceRequest,
+    params: SourcesPlexUpdateParams,
 ) -> Result<models::PlexSource, Error<SourcesPlexUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_plex_source_request = plex_source_request;
-
     let uri_str = format!(
         "{}/sources/plex/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -6630,7 +7589,7 @@ pub async fn sources_plex_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_plex_source_request);
+    req_builder = req_builder.json(&params.plex_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6646,7 +7605,9 @@ pub async fn sources_plex_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PlexSource`",
@@ -6672,15 +7633,12 @@ pub async fn sources_plex_update(
 /// Get a list of all objects that use this object
 pub async fn sources_plex_used_by_list(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesPlexUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesPlexUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/plex/{slug}/used_by/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -6705,7 +7663,7 @@ pub async fn sources_plex_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -6723,11 +7681,8 @@ pub async fn sources_plex_used_by_list(
 /// SAMLSource Viewset
 pub async fn sources_saml_create(
     configuration: &configuration::Configuration,
-    saml_source_request: models::SamlSourceRequest,
+    params: SourcesSamlCreateParams,
 ) -> Result<models::SamlSource, Error<SourcesSamlCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_saml_source_request = saml_source_request;
-
     let uri_str = format!("{}/sources/saml/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -6737,7 +7692,7 @@ pub async fn sources_saml_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_saml_source_request);
+    req_builder = req_builder.json(&params.saml_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -6753,7 +7708,9 @@ pub async fn sources_saml_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SamlSource`",
@@ -6779,15 +7736,12 @@ pub async fn sources_saml_create(
 /// SAMLSource Viewset
 pub async fn sources_saml_destroy(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesSamlDestroyParams,
 ) -> Result<(), Error<SourcesSamlDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/saml/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -6819,150 +7773,93 @@ pub async fn sources_saml_destroy(
 /// SAMLSource Viewset
 pub async fn sources_saml_list(
     configuration: &configuration::Configuration,
-    allow_idp_initiated: Option<bool>,
-    authentication_flow: Option<&str>,
-    binding_type: Option<models::BindingTypeEnum>,
-    digest_algorithm: Option<models::DigestAlgorithmEnum>,
-    enabled: Option<bool>,
-    enrollment_flow: Option<&str>,
-    force_authn: Option<bool>,
-    issuer_override: Option<&str>,
-    managed: Option<&str>,
-    name: Option<&str>,
-    name_id_policy: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pbm_uuid: Option<&str>,
-    policy_engine_mode: Option<models::PolicyEngineMode>,
-    pre_authentication_flow: Option<&str>,
-    search: Option<&str>,
-    signature_algorithm: Option<models::SignatureAlgorithmEnum>,
-    signed_assertion: Option<bool>,
-    signed_response: Option<bool>,
-    signing_kp: Option<&str>,
-    slo_url: Option<&str>,
-    slug: Option<&str>,
-    sso_url: Option<&str>,
-    temporary_user_delete_after: Option<&str>,
-    user_matching_mode: Option<&str>,
-    verification_kp: Option<&str>,
+    params: SourcesSamlListParams,
 ) -> Result<models::PaginatedSamlSourceList, Error<SourcesSamlListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_allow_idp_initiated = allow_idp_initiated;
-    let p_query_authentication_flow = authentication_flow;
-    let p_query_binding_type = binding_type;
-    let p_query_digest_algorithm = digest_algorithm;
-    let p_query_enabled = enabled;
-    let p_query_enrollment_flow = enrollment_flow;
-    let p_query_force_authn = force_authn;
-    let p_query_issuer_override = issuer_override;
-    let p_query_managed = managed;
-    let p_query_name = name;
-    let p_query_name_id_policy = name_id_policy;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_policy_engine_mode = policy_engine_mode;
-    let p_query_pre_authentication_flow = pre_authentication_flow;
-    let p_query_search = search;
-    let p_query_signature_algorithm = signature_algorithm;
-    let p_query_signed_assertion = signed_assertion;
-    let p_query_signed_response = signed_response;
-    let p_query_signing_kp = signing_kp;
-    let p_query_slo_url = slo_url;
-    let p_query_slug = slug;
-    let p_query_sso_url = sso_url;
-    let p_query_temporary_user_delete_after = temporary_user_delete_after;
-    let p_query_user_matching_mode = user_matching_mode;
-    let p_query_verification_kp = verification_kp;
-
     let uri_str = format!("{}/sources/saml/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_allow_idp_initiated {
+    if let Some(ref param_value) = params.allow_idp_initiated {
         req_builder = req_builder.query(&[("allow_idp_initiated", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_authentication_flow {
+    if let Some(ref param_value) = params.authentication_flow {
         req_builder = req_builder.query(&[("authentication_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_binding_type {
+    if let Some(ref param_value) = params.binding_type {
         req_builder = req_builder.query(&[("binding_type", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_digest_algorithm {
+    if let Some(ref param_value) = params.digest_algorithm {
         req_builder = req_builder.query(&[("digest_algorithm", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_enabled {
+    if let Some(ref param_value) = params.enabled {
         req_builder = req_builder.query(&[("enabled", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_enrollment_flow {
+    if let Some(ref param_value) = params.enrollment_flow {
         req_builder = req_builder.query(&[("enrollment_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_force_authn {
+    if let Some(ref param_value) = params.force_authn {
         req_builder = req_builder.query(&[("force_authn", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_issuer_override {
+    if let Some(ref param_value) = params.issuer_override {
         req_builder = req_builder.query(&[("issuer_override", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = req_builder.query(&[("managed", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name_id_policy {
+    if let Some(ref param_value) = params.name_id_policy {
         req_builder = req_builder.query(&[("name_id_policy", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy_engine_mode {
+    if let Some(ref param_value) = params.policy_engine_mode {
         req_builder = req_builder.query(&[("policy_engine_mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pre_authentication_flow {
+    if let Some(ref param_value) = params.pre_authentication_flow {
         req_builder = req_builder.query(&[("pre_authentication_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_signature_algorithm {
+    if let Some(ref param_value) = params.signature_algorithm {
         req_builder = req_builder.query(&[("signature_algorithm", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_signed_assertion {
+    if let Some(ref param_value) = params.signed_assertion {
         req_builder = req_builder.query(&[("signed_assertion", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_signed_response {
+    if let Some(ref param_value) = params.signed_response {
         req_builder = req_builder.query(&[("signed_response", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_signing_kp {
+    if let Some(ref param_value) = params.signing_kp {
         req_builder = req_builder.query(&[("signing_kp", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slo_url {
+    if let Some(ref param_value) = params.slo_url {
         req_builder = req_builder.query(&[("slo_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_sso_url {
+    if let Some(ref param_value) = params.sso_url {
         req_builder = req_builder.query(&[("sso_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_temporary_user_delete_after {
+    if let Some(ref param_value) = params.temporary_user_delete_after {
         req_builder = req_builder.query(&[("temporary_user_delete_after", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_matching_mode {
+    if let Some(ref param_value) = params.user_matching_mode {
         req_builder = req_builder.query(&[("user_matching_mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_verification_kp {
+    if let Some(ref param_value) = params.verification_kp {
         req_builder = req_builder.query(&[("verification_kp", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -6986,7 +7883,7 @@ pub async fn sources_saml_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedSamlSourceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedSamlSourceList`")))),
         }
@@ -7004,15 +7901,12 @@ pub async fn sources_saml_list(
 /// Return metadata as XML string
 pub async fn sources_saml_metadata_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesSamlMetadataRetrieveParams,
 ) -> Result<models::SamlMetadata, Error<SourcesSamlMetadataRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/saml/{slug}/metadata/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7037,7 +7931,9 @@ pub async fn sources_saml_metadata_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SamlMetadata`",
@@ -7061,17 +7957,12 @@ pub async fn sources_saml_metadata_retrieve(
 /// SAMLSource Viewset
 pub async fn sources_saml_partial_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    patched_saml_source_request: Option<models::PatchedSamlSourceRequest>,
+    params: SourcesSamlPartialUpdateParams,
 ) -> Result<models::SamlSource, Error<SourcesSamlPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_patched_saml_source_request = patched_saml_source_request;
-
     let uri_str = format!(
         "{}/sources/saml/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -7081,7 +7972,7 @@ pub async fn sources_saml_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_saml_source_request);
+    req_builder = req_builder.json(&params.patched_saml_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7097,7 +7988,9 @@ pub async fn sources_saml_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SamlSource`",
@@ -7123,15 +8016,12 @@ pub async fn sources_saml_partial_update(
 /// SAMLSource Viewset
 pub async fn sources_saml_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesSamlRetrieveParams,
 ) -> Result<models::SamlSource, Error<SourcesSamlRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/saml/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7156,7 +8046,9 @@ pub async fn sources_saml_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SamlSource`",
@@ -7182,17 +8074,12 @@ pub async fn sources_saml_retrieve(
 /// SAMLSource Viewset
 pub async fn sources_saml_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    saml_source_request: models::SamlSourceRequest,
+    params: SourcesSamlUpdateParams,
 ) -> Result<models::SamlSource, Error<SourcesSamlUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_saml_source_request = saml_source_request;
-
     let uri_str = format!(
         "{}/sources/saml/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -7202,7 +8089,7 @@ pub async fn sources_saml_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_saml_source_request);
+    req_builder = req_builder.json(&params.saml_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7218,7 +8105,9 @@ pub async fn sources_saml_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SamlSource`",
@@ -7244,15 +8133,12 @@ pub async fn sources_saml_update(
 /// Get a list of all objects that use this object
 pub async fn sources_saml_used_by_list(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesSamlUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesSamlUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/saml/{slug}/used_by/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7277,7 +8163,7 @@ pub async fn sources_saml_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -7295,11 +8181,8 @@ pub async fn sources_saml_used_by_list(
 /// SCIMSource Viewset
 pub async fn sources_scim_create(
     configuration: &configuration::Configuration,
-    scim_source_request: models::ScimSourceRequest,
+    params: SourcesScimCreateParams,
 ) -> Result<models::ScimSource, Error<SourcesScimCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_scim_source_request = scim_source_request;
-
     let uri_str = format!("{}/sources/scim/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -7309,7 +8192,7 @@ pub async fn sources_scim_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_source_request);
+    req_builder = req_builder.json(&params.scim_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7325,7 +8208,9 @@ pub async fn sources_scim_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimSource`",
@@ -7351,15 +8236,12 @@ pub async fn sources_scim_create(
 /// SCIMSource Viewset
 pub async fn sources_scim_destroy(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesScimDestroyParams,
 ) -> Result<(), Error<SourcesScimDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/scim/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -7391,11 +8273,8 @@ pub async fn sources_scim_destroy(
 /// SCIMSourceGroup Viewset
 pub async fn sources_scim_groups_create(
     configuration: &configuration::Configuration,
-    scim_source_group_request: models::ScimSourceGroupRequest,
+    params: SourcesScimGroupsCreateParams,
 ) -> Result<models::ScimSourceGroup, Error<SourcesScimGroupsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_scim_source_group_request = scim_source_group_request;
-
     let uri_str = format!("{}/sources/scim_groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -7405,7 +8284,7 @@ pub async fn sources_scim_groups_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_source_group_request);
+    req_builder = req_builder.json(&params.scim_source_group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7421,7 +8300,9 @@ pub async fn sources_scim_groups_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimSourceGroup`",
@@ -7445,15 +8326,12 @@ pub async fn sources_scim_groups_create(
 /// SCIMSourceGroup Viewset
 pub async fn sources_scim_groups_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: SourcesScimGroupsDestroyParams,
 ) -> Result<(), Error<SourcesScimGroupsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/scim_groups/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -7485,45 +8363,30 @@ pub async fn sources_scim_groups_destroy(
 /// SCIMSourceGroup Viewset
 pub async fn sources_scim_groups_list(
     configuration: &configuration::Configuration,
-    group__group_uuid: Option<&str>,
-    group__name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
+    params: SourcesScimGroupsListParams,
 ) -> Result<models::PaginatedScimSourceGroupList, Error<SourcesScimGroupsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group__group_uuid = group__group_uuid;
-    let p_query_group__name = group__name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-
     let uri_str = format!("{}/sources/scim_groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group__group_uuid {
+    if let Some(ref param_value) = params.group__group_uuid {
         req_builder = req_builder.query(&[("group__group_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_group__name {
+    if let Some(ref param_value) = params.group__name {
         req_builder = req_builder.query(&[("group__name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7547,7 +8410,7 @@ pub async fn sources_scim_groups_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedScimSourceGroupList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedScimSourceGroupList`")))),
         }
@@ -7565,17 +8428,12 @@ pub async fn sources_scim_groups_list(
 /// SCIMSourceGroup Viewset
 pub async fn sources_scim_groups_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    patched_scim_source_group_request: Option<models::PatchedScimSourceGroupRequest>,
+    params: SourcesScimGroupsPartialUpdateParams,
 ) -> Result<models::ScimSourceGroup, Error<SourcesScimGroupsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_scim_source_group_request = patched_scim_source_group_request;
-
     let uri_str = format!(
         "{}/sources/scim_groups/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -7585,7 +8443,7 @@ pub async fn sources_scim_groups_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_scim_source_group_request);
+    req_builder = req_builder.json(&params.patched_scim_source_group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7601,7 +8459,9 @@ pub async fn sources_scim_groups_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimSourceGroup`",
@@ -7625,15 +8485,12 @@ pub async fn sources_scim_groups_partial_update(
 /// SCIMSourceGroup Viewset
 pub async fn sources_scim_groups_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: SourcesScimGroupsRetrieveParams,
 ) -> Result<models::ScimSourceGroup, Error<SourcesScimGroupsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/scim_groups/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7658,7 +8515,9 @@ pub async fn sources_scim_groups_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimSourceGroup`",
@@ -7682,17 +8541,12 @@ pub async fn sources_scim_groups_retrieve(
 /// SCIMSourceGroup Viewset
 pub async fn sources_scim_groups_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    scim_source_group_request: models::ScimSourceGroupRequest,
+    params: SourcesScimGroupsUpdateParams,
 ) -> Result<models::ScimSourceGroup, Error<SourcesScimGroupsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_scim_source_group_request = scim_source_group_request;
-
     let uri_str = format!(
         "{}/sources/scim_groups/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -7702,7 +8556,7 @@ pub async fn sources_scim_groups_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_source_group_request);
+    req_builder = req_builder.json(&params.scim_source_group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7718,7 +8572,9 @@ pub async fn sources_scim_groups_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimSourceGroup`",
@@ -7742,15 +8598,12 @@ pub async fn sources_scim_groups_update(
 /// Get a list of all objects that use this object
 pub async fn sources_scim_groups_used_by_list(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: SourcesScimGroupsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesScimGroupsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/scim_groups/{id}/used_by/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7775,7 +8628,7 @@ pub async fn sources_scim_groups_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -7793,45 +8646,30 @@ pub async fn sources_scim_groups_used_by_list(
 /// SCIMSource Viewset
 pub async fn sources_scim_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pbm_uuid: Option<&str>,
-    search: Option<&str>,
-    slug: Option<&str>,
+    params: SourcesScimListParams,
 ) -> Result<models::PaginatedScimSourceList, Error<SourcesScimListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_search = search;
-    let p_query_slug = slug;
-
     let uri_str = format!("{}/sources/scim/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -7855,7 +8693,7 @@ pub async fn sources_scim_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedScimSourceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedScimSourceList`")))),
         }
@@ -7873,17 +8711,12 @@ pub async fn sources_scim_list(
 /// SCIMSource Viewset
 pub async fn sources_scim_partial_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    patched_scim_source_request: Option<models::PatchedScimSourceRequest>,
+    params: SourcesScimPartialUpdateParams,
 ) -> Result<models::ScimSource, Error<SourcesScimPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_patched_scim_source_request = patched_scim_source_request;
-
     let uri_str = format!(
         "{}/sources/scim/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -7893,7 +8726,7 @@ pub async fn sources_scim_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_scim_source_request);
+    req_builder = req_builder.json(&params.patched_scim_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -7909,7 +8742,9 @@ pub async fn sources_scim_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimSource`",
@@ -7935,15 +8770,12 @@ pub async fn sources_scim_partial_update(
 /// SCIMSource Viewset
 pub async fn sources_scim_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesScimRetrieveParams,
 ) -> Result<models::ScimSource, Error<SourcesScimRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/scim/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -7968,7 +8800,9 @@ pub async fn sources_scim_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimSource`",
@@ -7994,17 +8828,12 @@ pub async fn sources_scim_retrieve(
 /// SCIMSource Viewset
 pub async fn sources_scim_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    scim_source_request: models::ScimSourceRequest,
+    params: SourcesScimUpdateParams,
 ) -> Result<models::ScimSource, Error<SourcesScimUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_scim_source_request = scim_source_request;
-
     let uri_str = format!(
         "{}/sources/scim/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -8014,7 +8843,7 @@ pub async fn sources_scim_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_source_request);
+    req_builder = req_builder.json(&params.scim_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8030,7 +8859,9 @@ pub async fn sources_scim_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimSource`",
@@ -8056,15 +8887,12 @@ pub async fn sources_scim_update(
 /// Get a list of all objects that use this object
 pub async fn sources_scim_used_by_list(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesScimUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesScimUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/scim/{slug}/used_by/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -8089,7 +8917,7 @@ pub async fn sources_scim_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -8107,11 +8935,8 @@ pub async fn sources_scim_used_by_list(
 /// SCIMSourceUser Viewset
 pub async fn sources_scim_users_create(
     configuration: &configuration::Configuration,
-    scim_source_user_request: models::ScimSourceUserRequest,
+    params: SourcesScimUsersCreateParams,
 ) -> Result<models::ScimSourceUser, Error<SourcesScimUsersCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_scim_source_user_request = scim_source_user_request;
-
     let uri_str = format!("{}/sources/scim_users/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -8121,7 +8946,7 @@ pub async fn sources_scim_users_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_source_user_request);
+    req_builder = req_builder.json(&params.scim_source_user_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8137,7 +8962,9 @@ pub async fn sources_scim_users_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimSourceUser`",
@@ -8161,15 +8988,12 @@ pub async fn sources_scim_users_create(
 /// SCIMSourceUser Viewset
 pub async fn sources_scim_users_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: SourcesScimUsersDestroyParams,
 ) -> Result<(), Error<SourcesScimUsersDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/scim_users/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -8201,45 +9025,30 @@ pub async fn sources_scim_users_destroy(
 /// SCIMSourceUser Viewset
 pub async fn sources_scim_users_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
-    user__id: Option<i32>,
-    user__username: Option<&str>,
+    params: SourcesScimUsersListParams,
 ) -> Result<models::PaginatedScimSourceUserList, Error<SourcesScimUsersListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-    let p_query_user__id = user__id;
-    let p_query_user__username = user__username;
-
     let uri_str = format!("{}/sources/scim_users/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user__id {
+    if let Some(ref param_value) = params.user__id {
         req_builder = req_builder.query(&[("user__id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user__username {
+    if let Some(ref param_value) = params.user__username {
         req_builder = req_builder.query(&[("user__username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8263,7 +9072,7 @@ pub async fn sources_scim_users_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedScimSourceUserList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedScimSourceUserList`")))),
         }
@@ -8281,17 +9090,12 @@ pub async fn sources_scim_users_list(
 /// SCIMSourceUser Viewset
 pub async fn sources_scim_users_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    patched_scim_source_user_request: Option<models::PatchedScimSourceUserRequest>,
+    params: SourcesScimUsersPartialUpdateParams,
 ) -> Result<models::ScimSourceUser, Error<SourcesScimUsersPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_scim_source_user_request = patched_scim_source_user_request;
-
     let uri_str = format!(
         "{}/sources/scim_users/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -8301,7 +9105,7 @@ pub async fn sources_scim_users_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_scim_source_user_request);
+    req_builder = req_builder.json(&params.patched_scim_source_user_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8317,7 +9121,9 @@ pub async fn sources_scim_users_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimSourceUser`",
@@ -8341,15 +9147,12 @@ pub async fn sources_scim_users_partial_update(
 /// SCIMSourceUser Viewset
 pub async fn sources_scim_users_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: SourcesScimUsersRetrieveParams,
 ) -> Result<models::ScimSourceUser, Error<SourcesScimUsersRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/scim_users/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -8374,7 +9177,9 @@ pub async fn sources_scim_users_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimSourceUser`",
@@ -8398,17 +9203,12 @@ pub async fn sources_scim_users_retrieve(
 /// SCIMSourceUser Viewset
 pub async fn sources_scim_users_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    scim_source_user_request: models::ScimSourceUserRequest,
+    params: SourcesScimUsersUpdateParams,
 ) -> Result<models::ScimSourceUser, Error<SourcesScimUsersUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_scim_source_user_request = scim_source_user_request;
-
     let uri_str = format!(
         "{}/sources/scim_users/{id}/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -8418,7 +9218,7 @@ pub async fn sources_scim_users_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_scim_source_user_request);
+    req_builder = req_builder.json(&params.scim_source_user_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8434,7 +9234,9 @@ pub async fn sources_scim_users_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ScimSourceUser`",
@@ -8458,15 +9260,12 @@ pub async fn sources_scim_users_update(
 /// Get a list of all objects that use this object
 pub async fn sources_scim_users_used_by_list(
     configuration: &configuration::Configuration,
-    id: &str,
+    params: SourcesScimUsersUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesScimUsersUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/scim_users/{id}/used_by/",
         configuration.base_path,
-        id = crate::apis::urlencode(p_path_id)
+        id = crate::apis::urlencode(params.id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -8491,7 +9290,7 @@ pub async fn sources_scim_users_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -8509,17 +9308,12 @@ pub async fn sources_scim_users_used_by_list(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn sources_telegram_connect_user_create(
     configuration: &configuration::Configuration,
-    slug: &str,
-    telegram_auth_request: models::TelegramAuthRequest,
+    params: SourcesTelegramConnectUserCreateParams,
 ) -> Result<models::UserTelegramSourceConnection, Error<SourcesTelegramConnectUserCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_telegram_auth_request = telegram_auth_request;
-
     let uri_str = format!(
         "{}/sources/telegram/{slug}/connect_user/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -8529,7 +9323,7 @@ pub async fn sources_telegram_connect_user_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_telegram_auth_request);
+    req_builder = req_builder.json(&params.telegram_auth_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8545,7 +9339,7 @@ pub async fn sources_telegram_connect_user_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserTelegramSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserTelegramSourceConnection`")))),
         }
@@ -8563,11 +9357,8 @@ pub async fn sources_telegram_connect_user_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn sources_telegram_create(
     configuration: &configuration::Configuration,
-    telegram_source_request: models::TelegramSourceRequest,
+    params: SourcesTelegramCreateParams,
 ) -> Result<models::TelegramSource, Error<SourcesTelegramCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_telegram_source_request = telegram_source_request;
-
     let uri_str = format!("{}/sources/telegram/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -8577,7 +9368,7 @@ pub async fn sources_telegram_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_telegram_source_request);
+    req_builder = req_builder.json(&params.telegram_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8593,7 +9384,9 @@ pub async fn sources_telegram_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TelegramSource`",
@@ -8617,15 +9410,12 @@ pub async fn sources_telegram_create(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn sources_telegram_destroy(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesTelegramDestroyParams,
 ) -> Result<(), Error<SourcesTelegramDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/telegram/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -8657,85 +9447,54 @@ pub async fn sources_telegram_destroy(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn sources_telegram_list(
     configuration: &configuration::Configuration,
-    authentication_flow: Option<&str>,
-    bot_username: Option<&str>,
-    enabled: Option<bool>,
-    enrollment_flow: Option<&str>,
-    group_matching_mode: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pbm_uuid: Option<&str>,
-    policy_engine_mode: Option<models::PolicyEngineMode>,
-    request_message_access: Option<bool>,
-    search: Option<&str>,
-    slug: Option<&str>,
-    user_matching_mode: Option<&str>,
+    params: SourcesTelegramListParams,
 ) -> Result<models::PaginatedTelegramSourceList, Error<SourcesTelegramListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_authentication_flow = authentication_flow;
-    let p_query_bot_username = bot_username;
-    let p_query_enabled = enabled;
-    let p_query_enrollment_flow = enrollment_flow;
-    let p_query_group_matching_mode = group_matching_mode;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_policy_engine_mode = policy_engine_mode;
-    let p_query_request_message_access = request_message_access;
-    let p_query_search = search;
-    let p_query_slug = slug;
-    let p_query_user_matching_mode = user_matching_mode;
-
     let uri_str = format!("{}/sources/telegram/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_authentication_flow {
+    if let Some(ref param_value) = params.authentication_flow {
         req_builder = req_builder.query(&[("authentication_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_bot_username {
+    if let Some(ref param_value) = params.bot_username {
         req_builder = req_builder.query(&[("bot_username", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_enabled {
+    if let Some(ref param_value) = params.enabled {
         req_builder = req_builder.query(&[("enabled", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_enrollment_flow {
+    if let Some(ref param_value) = params.enrollment_flow {
         req_builder = req_builder.query(&[("enrollment_flow", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_group_matching_mode {
+    if let Some(ref param_value) = params.group_matching_mode {
         req_builder = req_builder.query(&[("group_matching_mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy_engine_mode {
+    if let Some(ref param_value) = params.policy_engine_mode {
         req_builder = req_builder.query(&[("policy_engine_mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_request_message_access {
+    if let Some(ref param_value) = params.request_message_access {
         req_builder = req_builder.query(&[("request_message_access", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user_matching_mode {
+    if let Some(ref param_value) = params.user_matching_mode {
         req_builder = req_builder.query(&[("user_matching_mode", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -8759,7 +9518,7 @@ pub async fn sources_telegram_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedTelegramSourceList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedTelegramSourceList`")))),
         }
@@ -8777,17 +9536,12 @@ pub async fn sources_telegram_list(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn sources_telegram_partial_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    patched_telegram_source_request: Option<models::PatchedTelegramSourceRequest>,
+    params: SourcesTelegramPartialUpdateParams,
 ) -> Result<models::TelegramSource, Error<SourcesTelegramPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_patched_telegram_source_request = patched_telegram_source_request;
-
     let uri_str = format!(
         "{}/sources/telegram/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -8797,7 +9551,7 @@ pub async fn sources_telegram_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_telegram_source_request);
+    req_builder = req_builder.json(&params.patched_telegram_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8813,7 +9567,9 @@ pub async fn sources_telegram_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TelegramSource`",
@@ -8837,15 +9593,12 @@ pub async fn sources_telegram_partial_update(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn sources_telegram_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesTelegramRetrieveParams,
 ) -> Result<models::TelegramSource, Error<SourcesTelegramRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/telegram/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -8870,7 +9623,9 @@ pub async fn sources_telegram_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TelegramSource`",
@@ -8894,17 +9649,12 @@ pub async fn sources_telegram_retrieve(
 /// Mixin to add a used_by endpoint to return a list of all objects using this object
 pub async fn sources_telegram_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    telegram_source_request: models::TelegramSourceRequest,
+    params: SourcesTelegramUpdateParams,
 ) -> Result<models::TelegramSource, Error<SourcesTelegramUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_telegram_source_request = telegram_source_request;
-
     let uri_str = format!(
         "{}/sources/telegram/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -8914,7 +9664,7 @@ pub async fn sources_telegram_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_telegram_source_request);
+    req_builder = req_builder.json(&params.telegram_source_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -8930,7 +9680,9 @@ pub async fn sources_telegram_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TelegramSource`",
@@ -8954,15 +9706,12 @@ pub async fn sources_telegram_update(
 /// Get a list of all objects that use this object
 pub async fn sources_telegram_used_by_list(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: SourcesTelegramUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesTelegramUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/sources/telegram/{slug}/used_by/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -8987,7 +9736,7 @@ pub async fn sources_telegram_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -9005,15 +9754,12 @@ pub async fn sources_telegram_used_by_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_all_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsAllDestroyParams,
 ) -> Result<(), Error<SourcesUserConnectionsAllDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/all/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -9045,40 +9791,27 @@ pub async fn sources_user_connections_all_destroy(
 /// User-source connection Viewset
 pub async fn sources_user_connections_all_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
-    user: Option<i32>,
+    params: SourcesUserConnectionsAllListParams,
 ) -> Result<models::PaginatedUserSourceConnectionList, Error<SourcesUserConnectionsAllListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-    let p_query_user = user;
-
     let uri_str = format!("{}/sources/user_connections/all/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -9102,7 +9835,7 @@ pub async fn sources_user_connections_all_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserSourceConnectionList`")))),
         }
@@ -9120,17 +9853,12 @@ pub async fn sources_user_connections_all_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_all_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_user_source_connection_request: Option<models::PatchedUserSourceConnectionRequest>,
+    params: SourcesUserConnectionsAllPartialUpdateParams,
 ) -> Result<models::UserSourceConnection, Error<SourcesUserConnectionsAllPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_user_source_connection_request = patched_user_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/all/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -9140,7 +9868,7 @@ pub async fn sources_user_connections_all_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_user_source_connection_request);
+    req_builder = req_builder.json(&params.patched_user_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9156,7 +9884,7 @@ pub async fn sources_user_connections_all_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserSourceConnection`")))),
         }
@@ -9174,15 +9902,12 @@ pub async fn sources_user_connections_all_partial_update(
 /// User-source connection Viewset
 pub async fn sources_user_connections_all_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsAllRetrieveParams,
 ) -> Result<models::UserSourceConnection, Error<SourcesUserConnectionsAllRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/all/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -9207,7 +9932,7 @@ pub async fn sources_user_connections_all_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserSourceConnection`")))),
         }
@@ -9225,17 +9950,12 @@ pub async fn sources_user_connections_all_retrieve(
 /// User-source connection Viewset
 pub async fn sources_user_connections_all_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    user_source_connection_request: models::UserSourceConnectionRequest,
+    params: SourcesUserConnectionsAllUpdateParams,
 ) -> Result<models::UserSourceConnection, Error<SourcesUserConnectionsAllUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_user_source_connection_request = user_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/all/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -9245,7 +9965,7 @@ pub async fn sources_user_connections_all_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_source_connection_request);
+    req_builder = req_builder.json(&params.user_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9261,7 +9981,7 @@ pub async fn sources_user_connections_all_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserSourceConnection`")))),
         }
@@ -9279,15 +9999,12 @@ pub async fn sources_user_connections_all_update(
 /// Get a list of all objects that use this object
 pub async fn sources_user_connections_all_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsAllUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesUserConnectionsAllUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/all/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -9312,7 +10029,7 @@ pub async fn sources_user_connections_all_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -9330,11 +10047,8 @@ pub async fn sources_user_connections_all_used_by_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_kerberos_create(
     configuration: &configuration::Configuration,
-    user_kerberos_source_connection_request: models::UserKerberosSourceConnectionRequest,
+    params: SourcesUserConnectionsKerberosCreateParams,
 ) -> Result<models::UserKerberosSourceConnection, Error<SourcesUserConnectionsKerberosCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_kerberos_source_connection_request = user_kerberos_source_connection_request;
-
     let uri_str = format!("{}/sources/user_connections/kerberos/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -9344,7 +10058,7 @@ pub async fn sources_user_connections_kerberos_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_kerberos_source_connection_request);
+    req_builder = req_builder.json(&params.user_kerberos_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9360,7 +10074,7 @@ pub async fn sources_user_connections_kerberos_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserKerberosSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserKerberosSourceConnection`")))),
         }
@@ -9378,15 +10092,12 @@ pub async fn sources_user_connections_kerberos_create(
 /// User-source connection Viewset
 pub async fn sources_user_connections_kerberos_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsKerberosDestroyParams,
 ) -> Result<(), Error<SourcesUserConnectionsKerberosDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/kerberos/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -9418,40 +10129,27 @@ pub async fn sources_user_connections_kerberos_destroy(
 /// User-source connection Viewset
 pub async fn sources_user_connections_kerberos_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
-    user: Option<i32>,
+    params: SourcesUserConnectionsKerberosListParams,
 ) -> Result<models::PaginatedUserKerberosSourceConnectionList, Error<SourcesUserConnectionsKerberosListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-    let p_query_user = user;
-
     let uri_str = format!("{}/sources/user_connections/kerberos/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -9475,7 +10173,7 @@ pub async fn sources_user_connections_kerberos_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserKerberosSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserKerberosSourceConnectionList`")))),
         }
@@ -9493,17 +10191,12 @@ pub async fn sources_user_connections_kerberos_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_kerberos_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_user_kerberos_source_connection_request: Option<models::PatchedUserKerberosSourceConnectionRequest>,
+    params: SourcesUserConnectionsKerberosPartialUpdateParams,
 ) -> Result<models::UserKerberosSourceConnection, Error<SourcesUserConnectionsKerberosPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_user_kerberos_source_connection_request = patched_user_kerberos_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/kerberos/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -9513,7 +10206,7 @@ pub async fn sources_user_connections_kerberos_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_user_kerberos_source_connection_request);
+    req_builder = req_builder.json(&params.patched_user_kerberos_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9529,7 +10222,7 @@ pub async fn sources_user_connections_kerberos_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserKerberosSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserKerberosSourceConnection`")))),
         }
@@ -9547,15 +10240,12 @@ pub async fn sources_user_connections_kerberos_partial_update(
 /// User-source connection Viewset
 pub async fn sources_user_connections_kerberos_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsKerberosRetrieveParams,
 ) -> Result<models::UserKerberosSourceConnection, Error<SourcesUserConnectionsKerberosRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/kerberos/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -9580,7 +10270,7 @@ pub async fn sources_user_connections_kerberos_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserKerberosSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserKerberosSourceConnection`")))),
         }
@@ -9598,17 +10288,12 @@ pub async fn sources_user_connections_kerberos_retrieve(
 /// User-source connection Viewset
 pub async fn sources_user_connections_kerberos_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    user_kerberos_source_connection_request: models::UserKerberosSourceConnectionRequest,
+    params: SourcesUserConnectionsKerberosUpdateParams,
 ) -> Result<models::UserKerberosSourceConnection, Error<SourcesUserConnectionsKerberosUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_user_kerberos_source_connection_request = user_kerberos_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/kerberos/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -9618,7 +10303,7 @@ pub async fn sources_user_connections_kerberos_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_kerberos_source_connection_request);
+    req_builder = req_builder.json(&params.user_kerberos_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9634,7 +10319,7 @@ pub async fn sources_user_connections_kerberos_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserKerberosSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserKerberosSourceConnection`")))),
         }
@@ -9652,15 +10337,12 @@ pub async fn sources_user_connections_kerberos_update(
 /// Get a list of all objects that use this object
 pub async fn sources_user_connections_kerberos_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsKerberosUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesUserConnectionsKerberosUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/kerberos/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -9685,7 +10367,7 @@ pub async fn sources_user_connections_kerberos_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -9703,11 +10385,8 @@ pub async fn sources_user_connections_kerberos_used_by_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_ldap_create(
     configuration: &configuration::Configuration,
-    user_ldap_source_connection_request: models::UserLdapSourceConnectionRequest,
+    params: SourcesUserConnectionsLdapCreateParams,
 ) -> Result<models::UserLdapSourceConnection, Error<SourcesUserConnectionsLdapCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_ldap_source_connection_request = user_ldap_source_connection_request;
-
     let uri_str = format!("{}/sources/user_connections/ldap/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -9717,7 +10396,7 @@ pub async fn sources_user_connections_ldap_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_ldap_source_connection_request);
+    req_builder = req_builder.json(&params.user_ldap_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9733,7 +10412,7 @@ pub async fn sources_user_connections_ldap_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserLdapSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserLdapSourceConnection`")))),
         }
@@ -9751,15 +10430,12 @@ pub async fn sources_user_connections_ldap_create(
 /// User-source connection Viewset
 pub async fn sources_user_connections_ldap_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsLdapDestroyParams,
 ) -> Result<(), Error<SourcesUserConnectionsLdapDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/ldap/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -9791,40 +10467,27 @@ pub async fn sources_user_connections_ldap_destroy(
 /// User-source connection Viewset
 pub async fn sources_user_connections_ldap_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
-    user: Option<i32>,
+    params: SourcesUserConnectionsLdapListParams,
 ) -> Result<models::PaginatedUserLdapSourceConnectionList, Error<SourcesUserConnectionsLdapListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-    let p_query_user = user;
-
     let uri_str = format!("{}/sources/user_connections/ldap/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -9848,7 +10511,7 @@ pub async fn sources_user_connections_ldap_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserLdapSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserLdapSourceConnectionList`")))),
         }
@@ -9866,17 +10529,12 @@ pub async fn sources_user_connections_ldap_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_ldap_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_user_ldap_source_connection_request: Option<models::PatchedUserLdapSourceConnectionRequest>,
+    params: SourcesUserConnectionsLdapPartialUpdateParams,
 ) -> Result<models::UserLdapSourceConnection, Error<SourcesUserConnectionsLdapPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_user_ldap_source_connection_request = patched_user_ldap_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/ldap/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -9886,7 +10544,7 @@ pub async fn sources_user_connections_ldap_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_user_ldap_source_connection_request);
+    req_builder = req_builder.json(&params.patched_user_ldap_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -9902,7 +10560,7 @@ pub async fn sources_user_connections_ldap_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserLdapSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserLdapSourceConnection`")))),
         }
@@ -9920,15 +10578,12 @@ pub async fn sources_user_connections_ldap_partial_update(
 /// User-source connection Viewset
 pub async fn sources_user_connections_ldap_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsLdapRetrieveParams,
 ) -> Result<models::UserLdapSourceConnection, Error<SourcesUserConnectionsLdapRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/ldap/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -9953,7 +10608,7 @@ pub async fn sources_user_connections_ldap_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserLdapSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserLdapSourceConnection`")))),
         }
@@ -9971,17 +10626,12 @@ pub async fn sources_user_connections_ldap_retrieve(
 /// User-source connection Viewset
 pub async fn sources_user_connections_ldap_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    user_ldap_source_connection_request: models::UserLdapSourceConnectionRequest,
+    params: SourcesUserConnectionsLdapUpdateParams,
 ) -> Result<models::UserLdapSourceConnection, Error<SourcesUserConnectionsLdapUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_user_ldap_source_connection_request = user_ldap_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/ldap/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -9991,7 +10641,7 @@ pub async fn sources_user_connections_ldap_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_ldap_source_connection_request);
+    req_builder = req_builder.json(&params.user_ldap_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10007,7 +10657,7 @@ pub async fn sources_user_connections_ldap_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserLdapSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserLdapSourceConnection`")))),
         }
@@ -10025,15 +10675,12 @@ pub async fn sources_user_connections_ldap_update(
 /// Get a list of all objects that use this object
 pub async fn sources_user_connections_ldap_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsLdapUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesUserConnectionsLdapUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/ldap/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -10058,7 +10705,7 @@ pub async fn sources_user_connections_ldap_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -10076,11 +10723,8 @@ pub async fn sources_user_connections_ldap_used_by_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_oauth_create(
     configuration: &configuration::Configuration,
-    user_o_auth_source_connection_request: models::UserOAuthSourceConnectionRequest,
+    params: SourcesUserConnectionsOauthCreateParams,
 ) -> Result<models::UserOAuthSourceConnection, Error<SourcesUserConnectionsOauthCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_o_auth_source_connection_request = user_o_auth_source_connection_request;
-
     let uri_str = format!("{}/sources/user_connections/oauth/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -10090,7 +10734,7 @@ pub async fn sources_user_connections_oauth_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_o_auth_source_connection_request);
+    req_builder = req_builder.json(&params.user_o_auth_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10106,7 +10750,7 @@ pub async fn sources_user_connections_oauth_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserOAuthSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserOAuthSourceConnection`")))),
         }
@@ -10124,15 +10768,12 @@ pub async fn sources_user_connections_oauth_create(
 /// User-source connection Viewset
 pub async fn sources_user_connections_oauth_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsOauthDestroyParams,
 ) -> Result<(), Error<SourcesUserConnectionsOauthDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/oauth/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -10164,40 +10805,27 @@ pub async fn sources_user_connections_oauth_destroy(
 /// User-source connection Viewset
 pub async fn sources_user_connections_oauth_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
-    user: Option<i32>,
+    params: SourcesUserConnectionsOauthListParams,
 ) -> Result<models::PaginatedUserOAuthSourceConnectionList, Error<SourcesUserConnectionsOauthListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-    let p_query_user = user;
-
     let uri_str = format!("{}/sources/user_connections/oauth/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -10221,7 +10849,7 @@ pub async fn sources_user_connections_oauth_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserOAuthSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserOAuthSourceConnectionList`")))),
         }
@@ -10239,17 +10867,12 @@ pub async fn sources_user_connections_oauth_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_oauth_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_user_o_auth_source_connection_request: Option<models::PatchedUserOAuthSourceConnectionRequest>,
+    params: SourcesUserConnectionsOauthPartialUpdateParams,
 ) -> Result<models::UserOAuthSourceConnection, Error<SourcesUserConnectionsOauthPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_user_o_auth_source_connection_request = patched_user_o_auth_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/oauth/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -10259,7 +10882,7 @@ pub async fn sources_user_connections_oauth_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_user_o_auth_source_connection_request);
+    req_builder = req_builder.json(&params.patched_user_o_auth_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10275,7 +10898,7 @@ pub async fn sources_user_connections_oauth_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserOAuthSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserOAuthSourceConnection`")))),
         }
@@ -10293,15 +10916,12 @@ pub async fn sources_user_connections_oauth_partial_update(
 /// User-source connection Viewset
 pub async fn sources_user_connections_oauth_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsOauthRetrieveParams,
 ) -> Result<models::UserOAuthSourceConnection, Error<SourcesUserConnectionsOauthRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/oauth/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -10326,7 +10946,7 @@ pub async fn sources_user_connections_oauth_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserOAuthSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserOAuthSourceConnection`")))),
         }
@@ -10344,17 +10964,12 @@ pub async fn sources_user_connections_oauth_retrieve(
 /// User-source connection Viewset
 pub async fn sources_user_connections_oauth_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    user_o_auth_source_connection_request: models::UserOAuthSourceConnectionRequest,
+    params: SourcesUserConnectionsOauthUpdateParams,
 ) -> Result<models::UserOAuthSourceConnection, Error<SourcesUserConnectionsOauthUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_user_o_auth_source_connection_request = user_o_auth_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/oauth/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -10364,7 +10979,7 @@ pub async fn sources_user_connections_oauth_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_o_auth_source_connection_request);
+    req_builder = req_builder.json(&params.user_o_auth_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10380,7 +10995,7 @@ pub async fn sources_user_connections_oauth_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserOAuthSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserOAuthSourceConnection`")))),
         }
@@ -10398,15 +11013,12 @@ pub async fn sources_user_connections_oauth_update(
 /// Get a list of all objects that use this object
 pub async fn sources_user_connections_oauth_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsOauthUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesUserConnectionsOauthUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/oauth/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -10431,7 +11043,7 @@ pub async fn sources_user_connections_oauth_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -10449,11 +11061,8 @@ pub async fn sources_user_connections_oauth_used_by_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_plex_create(
     configuration: &configuration::Configuration,
-    user_plex_source_connection_request: models::UserPlexSourceConnectionRequest,
+    params: SourcesUserConnectionsPlexCreateParams,
 ) -> Result<models::UserPlexSourceConnection, Error<SourcesUserConnectionsPlexCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_plex_source_connection_request = user_plex_source_connection_request;
-
     let uri_str = format!("{}/sources/user_connections/plex/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -10463,7 +11072,7 @@ pub async fn sources_user_connections_plex_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_plex_source_connection_request);
+    req_builder = req_builder.json(&params.user_plex_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10479,7 +11088,7 @@ pub async fn sources_user_connections_plex_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserPlexSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserPlexSourceConnection`")))),
         }
@@ -10497,15 +11106,12 @@ pub async fn sources_user_connections_plex_create(
 /// User-source connection Viewset
 pub async fn sources_user_connections_plex_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsPlexDestroyParams,
 ) -> Result<(), Error<SourcesUserConnectionsPlexDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/plex/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -10537,40 +11143,27 @@ pub async fn sources_user_connections_plex_destroy(
 /// User-source connection Viewset
 pub async fn sources_user_connections_plex_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
-    user: Option<i32>,
+    params: SourcesUserConnectionsPlexListParams,
 ) -> Result<models::PaginatedUserPlexSourceConnectionList, Error<SourcesUserConnectionsPlexListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-    let p_query_user = user;
-
     let uri_str = format!("{}/sources/user_connections/plex/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -10594,7 +11187,7 @@ pub async fn sources_user_connections_plex_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserPlexSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserPlexSourceConnectionList`")))),
         }
@@ -10612,17 +11205,12 @@ pub async fn sources_user_connections_plex_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_plex_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_user_plex_source_connection_request: Option<models::PatchedUserPlexSourceConnectionRequest>,
+    params: SourcesUserConnectionsPlexPartialUpdateParams,
 ) -> Result<models::UserPlexSourceConnection, Error<SourcesUserConnectionsPlexPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_user_plex_source_connection_request = patched_user_plex_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/plex/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -10632,7 +11220,7 @@ pub async fn sources_user_connections_plex_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_user_plex_source_connection_request);
+    req_builder = req_builder.json(&params.patched_user_plex_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10648,7 +11236,7 @@ pub async fn sources_user_connections_plex_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserPlexSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserPlexSourceConnection`")))),
         }
@@ -10666,15 +11254,12 @@ pub async fn sources_user_connections_plex_partial_update(
 /// User-source connection Viewset
 pub async fn sources_user_connections_plex_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsPlexRetrieveParams,
 ) -> Result<models::UserPlexSourceConnection, Error<SourcesUserConnectionsPlexRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/plex/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -10699,7 +11284,7 @@ pub async fn sources_user_connections_plex_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserPlexSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserPlexSourceConnection`")))),
         }
@@ -10717,17 +11302,12 @@ pub async fn sources_user_connections_plex_retrieve(
 /// User-source connection Viewset
 pub async fn sources_user_connections_plex_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    user_plex_source_connection_request: models::UserPlexSourceConnectionRequest,
+    params: SourcesUserConnectionsPlexUpdateParams,
 ) -> Result<models::UserPlexSourceConnection, Error<SourcesUserConnectionsPlexUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_user_plex_source_connection_request = user_plex_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/plex/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -10737,7 +11317,7 @@ pub async fn sources_user_connections_plex_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_plex_source_connection_request);
+    req_builder = req_builder.json(&params.user_plex_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10753,7 +11333,7 @@ pub async fn sources_user_connections_plex_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserPlexSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserPlexSourceConnection`")))),
         }
@@ -10771,15 +11351,12 @@ pub async fn sources_user_connections_plex_update(
 /// Get a list of all objects that use this object
 pub async fn sources_user_connections_plex_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsPlexUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesUserConnectionsPlexUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/plex/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -10804,7 +11381,7 @@ pub async fn sources_user_connections_plex_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -10822,11 +11399,8 @@ pub async fn sources_user_connections_plex_used_by_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_saml_create(
     configuration: &configuration::Configuration,
-    user_saml_source_connection_request: models::UserSamlSourceConnectionRequest,
+    params: SourcesUserConnectionsSamlCreateParams,
 ) -> Result<models::UserSamlSourceConnection, Error<SourcesUserConnectionsSamlCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_saml_source_connection_request = user_saml_source_connection_request;
-
     let uri_str = format!("{}/sources/user_connections/saml/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -10836,7 +11410,7 @@ pub async fn sources_user_connections_saml_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_saml_source_connection_request);
+    req_builder = req_builder.json(&params.user_saml_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -10852,7 +11426,7 @@ pub async fn sources_user_connections_saml_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserSamlSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserSamlSourceConnection`")))),
         }
@@ -10870,15 +11444,12 @@ pub async fn sources_user_connections_saml_create(
 /// User-source connection Viewset
 pub async fn sources_user_connections_saml_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsSamlDestroyParams,
 ) -> Result<(), Error<SourcesUserConnectionsSamlDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/saml/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -10910,40 +11481,27 @@ pub async fn sources_user_connections_saml_destroy(
 /// User-source connection Viewset
 pub async fn sources_user_connections_saml_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
-    user: Option<i32>,
+    params: SourcesUserConnectionsSamlListParams,
 ) -> Result<models::PaginatedUserSamlSourceConnectionList, Error<SourcesUserConnectionsSamlListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-    let p_query_user = user;
-
     let uri_str = format!("{}/sources/user_connections/saml/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -10967,7 +11525,7 @@ pub async fn sources_user_connections_saml_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserSamlSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserSamlSourceConnectionList`")))),
         }
@@ -10985,17 +11543,12 @@ pub async fn sources_user_connections_saml_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_saml_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_user_saml_source_connection_request: Option<models::PatchedUserSamlSourceConnectionRequest>,
+    params: SourcesUserConnectionsSamlPartialUpdateParams,
 ) -> Result<models::UserSamlSourceConnection, Error<SourcesUserConnectionsSamlPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_user_saml_source_connection_request = patched_user_saml_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/saml/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -11005,7 +11558,7 @@ pub async fn sources_user_connections_saml_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_user_saml_source_connection_request);
+    req_builder = req_builder.json(&params.patched_user_saml_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11021,7 +11574,7 @@ pub async fn sources_user_connections_saml_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserSamlSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserSamlSourceConnection`")))),
         }
@@ -11039,15 +11592,12 @@ pub async fn sources_user_connections_saml_partial_update(
 /// User-source connection Viewset
 pub async fn sources_user_connections_saml_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsSamlRetrieveParams,
 ) -> Result<models::UserSamlSourceConnection, Error<SourcesUserConnectionsSamlRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/saml/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -11072,7 +11622,7 @@ pub async fn sources_user_connections_saml_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserSamlSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserSamlSourceConnection`")))),
         }
@@ -11090,17 +11640,12 @@ pub async fn sources_user_connections_saml_retrieve(
 /// User-source connection Viewset
 pub async fn sources_user_connections_saml_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    user_saml_source_connection_request: models::UserSamlSourceConnectionRequest,
+    params: SourcesUserConnectionsSamlUpdateParams,
 ) -> Result<models::UserSamlSourceConnection, Error<SourcesUserConnectionsSamlUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_user_saml_source_connection_request = user_saml_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/saml/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -11110,7 +11655,7 @@ pub async fn sources_user_connections_saml_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_saml_source_connection_request);
+    req_builder = req_builder.json(&params.user_saml_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11126,7 +11671,7 @@ pub async fn sources_user_connections_saml_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserSamlSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserSamlSourceConnection`")))),
         }
@@ -11144,15 +11689,12 @@ pub async fn sources_user_connections_saml_update(
 /// Get a list of all objects that use this object
 pub async fn sources_user_connections_saml_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsSamlUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesUserConnectionsSamlUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/saml/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -11177,7 +11719,7 @@ pub async fn sources_user_connections_saml_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -11195,11 +11737,8 @@ pub async fn sources_user_connections_saml_used_by_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_telegram_create(
     configuration: &configuration::Configuration,
-    user_telegram_source_connection_request: models::UserTelegramSourceConnectionRequest,
+    params: SourcesUserConnectionsTelegramCreateParams,
 ) -> Result<models::UserTelegramSourceConnection, Error<SourcesUserConnectionsTelegramCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_telegram_source_connection_request = user_telegram_source_connection_request;
-
     let uri_str = format!("{}/sources/user_connections/telegram/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -11209,7 +11748,7 @@ pub async fn sources_user_connections_telegram_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_telegram_source_connection_request);
+    req_builder = req_builder.json(&params.user_telegram_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11225,7 +11764,7 @@ pub async fn sources_user_connections_telegram_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserTelegramSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserTelegramSourceConnection`")))),
         }
@@ -11243,15 +11782,12 @@ pub async fn sources_user_connections_telegram_create(
 /// User-source connection Viewset
 pub async fn sources_user_connections_telegram_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsTelegramDestroyParams,
 ) -> Result<(), Error<SourcesUserConnectionsTelegramDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/telegram/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -11283,40 +11819,27 @@ pub async fn sources_user_connections_telegram_destroy(
 /// User-source connection Viewset
 pub async fn sources_user_connections_telegram_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    source__slug: Option<&str>,
-    user: Option<i32>,
+    params: SourcesUserConnectionsTelegramListParams,
 ) -> Result<models::PaginatedUserTelegramSourceConnectionList, Error<SourcesUserConnectionsTelegramListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_source__slug = source__slug;
-    let p_query_user = user;
-
     let uri_str = format!("{}/sources/user_connections/telegram/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_source__slug {
+    if let Some(ref param_value) = params.source__slug {
         req_builder = req_builder.query(&[("source__slug", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -11340,7 +11863,7 @@ pub async fn sources_user_connections_telegram_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserTelegramSourceConnectionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserTelegramSourceConnectionList`")))),
         }
@@ -11358,17 +11881,12 @@ pub async fn sources_user_connections_telegram_list(
 /// User-source connection Viewset
 pub async fn sources_user_connections_telegram_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_user_telegram_source_connection_request: Option<models::PatchedUserTelegramSourceConnectionRequest>,
+    params: SourcesUserConnectionsTelegramPartialUpdateParams,
 ) -> Result<models::UserTelegramSourceConnection, Error<SourcesUserConnectionsTelegramPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_user_telegram_source_connection_request = patched_user_telegram_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/telegram/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -11378,7 +11896,7 @@ pub async fn sources_user_connections_telegram_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_user_telegram_source_connection_request);
+    req_builder = req_builder.json(&params.patched_user_telegram_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11394,7 +11912,7 @@ pub async fn sources_user_connections_telegram_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserTelegramSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserTelegramSourceConnection`")))),
         }
@@ -11412,15 +11930,12 @@ pub async fn sources_user_connections_telegram_partial_update(
 /// User-source connection Viewset
 pub async fn sources_user_connections_telegram_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsTelegramRetrieveParams,
 ) -> Result<models::UserTelegramSourceConnection, Error<SourcesUserConnectionsTelegramRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/telegram/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -11445,7 +11960,7 @@ pub async fn sources_user_connections_telegram_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserTelegramSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserTelegramSourceConnection`")))),
         }
@@ -11463,17 +11978,12 @@ pub async fn sources_user_connections_telegram_retrieve(
 /// User-source connection Viewset
 pub async fn sources_user_connections_telegram_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    user_telegram_source_connection_request: models::UserTelegramSourceConnectionRequest,
+    params: SourcesUserConnectionsTelegramUpdateParams,
 ) -> Result<models::UserTelegramSourceConnection, Error<SourcesUserConnectionsTelegramUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_user_telegram_source_connection_request = user_telegram_source_connection_request;
-
     let uri_str = format!(
         "{}/sources/user_connections/telegram/{id}/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -11483,7 +11993,7 @@ pub async fn sources_user_connections_telegram_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_telegram_source_connection_request);
+    req_builder = req_builder.json(&params.user_telegram_source_connection_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -11499,7 +12009,7 @@ pub async fn sources_user_connections_telegram_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserTelegramSourceConnection`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserTelegramSourceConnection`")))),
         }
@@ -11517,15 +12027,12 @@ pub async fn sources_user_connections_telegram_update(
 /// Get a list of all objects that use this object
 pub async fn sources_user_connections_telegram_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: SourcesUserConnectionsTelegramUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<SourcesUserConnectionsTelegramUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/sources/user_connections/telegram/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -11550,7 +12057,7 @@ pub async fn sources_user_connections_telegram_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

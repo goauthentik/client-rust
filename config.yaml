@@ -1,13 +1,15 @@
 ---
 templateDir: /local/templates/
 additionalProperties:
-  packageName: authentik-client
   avoidBoxedModels: true
   bestFitInt: true
-  preferUnsignedInt: true
   library: reqwest
+  packageName: authentik-client
+  preferUnsignedInt: true
   supportAsync: true
   supportMiddleware: true
+  useSerdePathToError: true
+  useSingleRequestParameter: true
   repositoryUrl: https://github.com/authentik-community/client-rust.git
 files:
   README.mustache:

@@ -13,6 +13,665 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`policies_all_destroy`]
+#[derive(Clone, Debug)]
+pub struct PoliciesAllDestroyParams {
+    /// A UUID string identifying this Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_all_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesAllListParams {
+    pub bindings__isnull: Option<bool>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub promptstage__isnull: Option<bool>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`policies_all_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PoliciesAllRetrieveParams {
+    /// A UUID string identifying this Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_all_test_create`]
+#[derive(Clone, Debug)]
+pub struct PoliciesAllTestCreateParams {
+    /// A UUID string identifying this Policy.
+    pub policy_uuid: String,
+    pub policy_test_request: models::PolicyTestRequest,
+}
+
+/// struct for passing parameters to the method [`policies_all_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesAllUsedByListParams {
+    /// A UUID string identifying this Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_bindings_create`]
+#[derive(Clone, Debug)]
+pub struct PoliciesBindingsCreateParams {
+    pub policy_binding_request: models::PolicyBindingRequest,
+}
+
+/// struct for passing parameters to the method [`policies_bindings_destroy`]
+#[derive(Clone, Debug)]
+pub struct PoliciesBindingsDestroyParams {
+    /// A UUID string identifying this Policy Binding.
+    pub policy_binding_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_bindings_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesBindingsListParams {
+    pub enabled: Option<bool>,
+    pub order: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub policy: Option<String>,
+    pub policy__isnull: Option<bool>,
+    /// A search term.
+    pub search: Option<String>,
+    pub target: Option<String>,
+    pub target_in: Option<Vec<uuid::Uuid>>,
+    pub timeout: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`policies_bindings_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesBindingsPartialUpdateParams {
+    /// A UUID string identifying this Policy Binding.
+    pub policy_binding_uuid: String,
+    pub patched_policy_binding_request: Option<models::PatchedPolicyBindingRequest>,
+}
+
+/// struct for passing parameters to the method [`policies_bindings_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PoliciesBindingsRetrieveParams {
+    /// A UUID string identifying this Policy Binding.
+    pub policy_binding_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_bindings_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesBindingsUpdateParams {
+    /// A UUID string identifying this Policy Binding.
+    pub policy_binding_uuid: String,
+    pub policy_binding_request: models::PolicyBindingRequest,
+}
+
+/// struct for passing parameters to the method [`policies_bindings_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesBindingsUsedByListParams {
+    /// A UUID string identifying this Policy Binding.
+    pub policy_binding_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_dummy_create`]
+#[derive(Clone, Debug)]
+pub struct PoliciesDummyCreateParams {
+    pub dummy_policy_request: models::DummyPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_dummy_destroy`]
+#[derive(Clone, Debug)]
+pub struct PoliciesDummyDestroyParams {
+    /// A UUID string identifying this Dummy Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_dummy_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesDummyListParams {
+    pub created: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub execution_logging: Option<bool>,
+    pub last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub policy_uuid: Option<String>,
+    pub result: Option<bool>,
+    /// A search term.
+    pub search: Option<String>,
+    pub wait_max: Option<i32>,
+    pub wait_min: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`policies_dummy_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesDummyPartialUpdateParams {
+    /// A UUID string identifying this Dummy Policy.
+    pub policy_uuid: String,
+    pub patched_dummy_policy_request: Option<models::PatchedDummyPolicyRequest>,
+}
+
+/// struct for passing parameters to the method [`policies_dummy_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PoliciesDummyRetrieveParams {
+    /// A UUID string identifying this Dummy Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_dummy_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesDummyUpdateParams {
+    /// A UUID string identifying this Dummy Policy.
+    pub policy_uuid: String,
+    pub dummy_policy_request: models::DummyPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_dummy_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesDummyUsedByListParams {
+    /// A UUID string identifying this Dummy Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_event_matcher_create`]
+#[derive(Clone, Debug)]
+pub struct PoliciesEventMatcherCreateParams {
+    pub event_matcher_policy_request: models::EventMatcherPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_event_matcher_destroy`]
+#[derive(Clone, Debug)]
+pub struct PoliciesEventMatcherDestroyParams {
+    /// A UUID string identifying this Event Matcher Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_event_matcher_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesEventMatcherListParams {
+    pub action: Option<String>,
+    pub app: Option<String>,
+    pub client_ip: Option<String>,
+    pub created: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub execution_logging: Option<bool>,
+    pub last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub model: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub policy_uuid: Option<String>,
+    pub query: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`policies_event_matcher_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesEventMatcherPartialUpdateParams {
+    /// A UUID string identifying this Event Matcher Policy.
+    pub policy_uuid: String,
+    pub patched_event_matcher_policy_request: Option<models::PatchedEventMatcherPolicyRequest>,
+}
+
+/// struct for passing parameters to the method [`policies_event_matcher_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PoliciesEventMatcherRetrieveParams {
+    /// A UUID string identifying this Event Matcher Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_event_matcher_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesEventMatcherUpdateParams {
+    /// A UUID string identifying this Event Matcher Policy.
+    pub policy_uuid: String,
+    pub event_matcher_policy_request: models::EventMatcherPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_event_matcher_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesEventMatcherUsedByListParams {
+    /// A UUID string identifying this Event Matcher Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_expression_create`]
+#[derive(Clone, Debug)]
+pub struct PoliciesExpressionCreateParams {
+    pub expression_policy_request: models::ExpressionPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_expression_destroy`]
+#[derive(Clone, Debug)]
+pub struct PoliciesExpressionDestroyParams {
+    /// A UUID string identifying this Expression Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_expression_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesExpressionListParams {
+    pub created: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub execution_logging: Option<bool>,
+    pub expression: Option<String>,
+    pub last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub policy_uuid: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`policies_expression_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesExpressionPartialUpdateParams {
+    /// A UUID string identifying this Expression Policy.
+    pub policy_uuid: String,
+    pub patched_expression_policy_request: Option<models::PatchedExpressionPolicyRequest>,
+}
+
+/// struct for passing parameters to the method [`policies_expression_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PoliciesExpressionRetrieveParams {
+    /// A UUID string identifying this Expression Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_expression_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesExpressionUpdateParams {
+    /// A UUID string identifying this Expression Policy.
+    pub policy_uuid: String,
+    pub expression_policy_request: models::ExpressionPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_expression_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesExpressionUsedByListParams {
+    /// A UUID string identifying this Expression Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_geoip_create`]
+#[derive(Clone, Debug)]
+pub struct PoliciesGeoipCreateParams {
+    pub geo_ip_policy_request: models::GeoIpPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_geoip_destroy`]
+#[derive(Clone, Debug)]
+pub struct PoliciesGeoipDestroyParams {
+    /// A UUID string identifying this GeoIP Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_geoip_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesGeoipListParams {
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`policies_geoip_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesGeoipPartialUpdateParams {
+    /// A UUID string identifying this GeoIP Policy.
+    pub policy_uuid: String,
+    pub patched_geo_ip_policy_request: Option<models::PatchedGeoIpPolicyRequest>,
+}
+
+/// struct for passing parameters to the method [`policies_geoip_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PoliciesGeoipRetrieveParams {
+    /// A UUID string identifying this GeoIP Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_geoip_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesGeoipUpdateParams {
+    /// A UUID string identifying this GeoIP Policy.
+    pub policy_uuid: String,
+    pub geo_ip_policy_request: models::GeoIpPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_geoip_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesGeoipUsedByListParams {
+    /// A UUID string identifying this GeoIP Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_password_create`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordCreateParams {
+    pub password_policy_request: models::PasswordPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_password_destroy`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordDestroyParams {
+    /// A UUID string identifying this Password Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_password_expiry_create`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordExpiryCreateParams {
+    pub password_expiry_policy_request: models::PasswordExpiryPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_password_expiry_destroy`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordExpiryDestroyParams {
+    /// A UUID string identifying this Password Expiry Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_password_expiry_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordExpiryListParams {
+    pub created: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub days: Option<i32>,
+    pub deny_only: Option<bool>,
+    pub execution_logging: Option<bool>,
+    pub last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub policy_uuid: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`policies_password_expiry_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordExpiryPartialUpdateParams {
+    /// A UUID string identifying this Password Expiry Policy.
+    pub policy_uuid: String,
+    pub patched_password_expiry_policy_request: Option<models::PatchedPasswordExpiryPolicyRequest>,
+}
+
+/// struct for passing parameters to the method [`policies_password_expiry_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordExpiryRetrieveParams {
+    /// A UUID string identifying this Password Expiry Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_password_expiry_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordExpiryUpdateParams {
+    /// A UUID string identifying this Password Expiry Policy.
+    pub policy_uuid: String,
+    pub password_expiry_policy_request: models::PasswordExpiryPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_password_expiry_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordExpiryUsedByListParams {
+    /// A UUID string identifying this Password Expiry Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_password_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordListParams {
+    pub amount_digits: Option<i32>,
+    pub amount_lowercase: Option<i32>,
+    pub amount_symbols: Option<i32>,
+    pub amount_uppercase: Option<i32>,
+    pub check_have_i_been_pwned: Option<bool>,
+    pub check_static_rules: Option<bool>,
+    pub check_zxcvbn: Option<bool>,
+    pub created: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub error_message: Option<String>,
+    pub execution_logging: Option<bool>,
+    pub hibp_allowed_count: Option<i32>,
+    pub last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub length_min: Option<i32>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub password_field: Option<String>,
+    pub policy_uuid: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub symbol_charset: Option<String>,
+    pub zxcvbn_score_threshold: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`policies_password_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordPartialUpdateParams {
+    /// A UUID string identifying this Password Policy.
+    pub policy_uuid: String,
+    pub patched_password_policy_request: Option<models::PatchedPasswordPolicyRequest>,
+}
+
+/// struct for passing parameters to the method [`policies_password_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordRetrieveParams {
+    /// A UUID string identifying this Password Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_password_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordUpdateParams {
+    /// A UUID string identifying this Password Policy.
+    pub policy_uuid: String,
+    pub password_policy_request: models::PasswordPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_password_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesPasswordUsedByListParams {
+    /// A UUID string identifying this Password Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_reputation_create`]
+#[derive(Clone, Debug)]
+pub struct PoliciesReputationCreateParams {
+    pub reputation_policy_request: models::ReputationPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_reputation_destroy`]
+#[derive(Clone, Debug)]
+pub struct PoliciesReputationDestroyParams {
+    /// A UUID string identifying this Reputation Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_reputation_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesReputationListParams {
+    pub check_ip: Option<bool>,
+    pub check_username: Option<bool>,
+    pub created: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub execution_logging: Option<bool>,
+    pub last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub policy_uuid: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+    pub threshold: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`policies_reputation_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesReputationPartialUpdateParams {
+    /// A UUID string identifying this Reputation Policy.
+    pub policy_uuid: String,
+    pub patched_reputation_policy_request: Option<models::PatchedReputationPolicyRequest>,
+}
+
+/// struct for passing parameters to the method [`policies_reputation_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PoliciesReputationRetrieveParams {
+    /// A UUID string identifying this Reputation Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_reputation_scores_destroy`]
+#[derive(Clone, Debug)]
+pub struct PoliciesReputationScoresDestroyParams {
+    /// A UUID string identifying this Reputation Score.
+    pub reputation_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_reputation_scores_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesReputationScoresListParams {
+    pub identifier: Option<String>,
+    /// Multiple values may be separated by commas.
+    pub identifier_in: Option<Vec<String>>,
+    pub ip: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub score: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`policies_reputation_scores_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PoliciesReputationScoresRetrieveParams {
+    /// A UUID string identifying this Reputation Score.
+    pub reputation_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_reputation_scores_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesReputationScoresUsedByListParams {
+    /// A UUID string identifying this Reputation Score.
+    pub reputation_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_reputation_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesReputationUpdateParams {
+    /// A UUID string identifying this Reputation Policy.
+    pub policy_uuid: String,
+    pub reputation_policy_request: models::ReputationPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_reputation_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesReputationUsedByListParams {
+    /// A UUID string identifying this Reputation Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_unique_password_create`]
+#[derive(Clone, Debug)]
+pub struct PoliciesUniquePasswordCreateParams {
+    pub unique_password_policy_request: models::UniquePasswordPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_unique_password_destroy`]
+#[derive(Clone, Debug)]
+pub struct PoliciesUniquePasswordDestroyParams {
+    /// A UUID string identifying this Password Uniqueness Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_unique_password_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesUniquePasswordListParams {
+    pub created: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub execution_logging: Option<bool>,
+    pub last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub name: Option<String>,
+    pub num_historical_passwords: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub password_field: Option<String>,
+    pub policy_uuid: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`policies_unique_password_partial_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesUniquePasswordPartialUpdateParams {
+    /// A UUID string identifying this Password Uniqueness Policy.
+    pub policy_uuid: String,
+    pub patched_unique_password_policy_request: Option<models::PatchedUniquePasswordPolicyRequest>,
+}
+
+/// struct for passing parameters to the method [`policies_unique_password_retrieve`]
+#[derive(Clone, Debug)]
+pub struct PoliciesUniquePasswordRetrieveParams {
+    /// A UUID string identifying this Password Uniqueness Policy.
+    pub policy_uuid: String,
+}
+
+/// struct for passing parameters to the method [`policies_unique_password_update`]
+#[derive(Clone, Debug)]
+pub struct PoliciesUniquePasswordUpdateParams {
+    /// A UUID string identifying this Password Uniqueness Policy.
+    pub policy_uuid: String,
+    pub unique_password_policy_request: models::UniquePasswordPolicyRequest,
+}
+
+/// struct for passing parameters to the method [`policies_unique_password_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct PoliciesUniquePasswordUsedByListParams {
+    /// A UUID string identifying this Password Uniqueness Policy.
+    pub policy_uuid: String,
+}
+
 /// struct for typed errors of method [`policies_all_cache_clear_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -757,7 +1416,9 @@ pub async fn policies_all_cache_info_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Cache`",
@@ -783,15 +1444,12 @@ pub async fn policies_all_cache_info_retrieve(
 /// Policy Viewset
 pub async fn policies_all_destroy(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesAllDestroyParams,
 ) -> Result<(), Error<PoliciesAllDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/all/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -823,40 +1481,27 @@ pub async fn policies_all_destroy(
 /// Policy Viewset
 pub async fn policies_all_list(
     configuration: &configuration::Configuration,
-    bindings__isnull: Option<bool>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    promptstage__isnull: Option<bool>,
-    search: Option<&str>,
+    params: PoliciesAllListParams,
 ) -> Result<models::PaginatedPolicyList, Error<PoliciesAllListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_bindings__isnull = bindings__isnull;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_promptstage__isnull = promptstage__isnull;
-    let p_query_search = search;
-
     let uri_str = format!("{}/policies/all/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_bindings__isnull {
+    if let Some(ref param_value) = params.bindings__isnull {
         req_builder = req_builder.query(&[("bindings__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_promptstage__isnull {
+    if let Some(ref param_value) = params.promptstage__isnull {
         req_builder = req_builder.query(&[("promptstage__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -880,7 +1525,7 @@ pub async fn policies_all_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedPolicyList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedPolicyList`")))),
         }
@@ -898,15 +1543,12 @@ pub async fn policies_all_list(
 /// Policy Viewset
 pub async fn policies_all_retrieve(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesAllRetrieveParams,
 ) -> Result<models::Policy, Error<PoliciesAllRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/all/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -931,7 +1573,9 @@ pub async fn policies_all_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Policy`",
@@ -957,17 +1601,12 @@ pub async fn policies_all_retrieve(
 /// Test policy
 pub async fn policies_all_test_create(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    policy_test_request: models::PolicyTestRequest,
+    params: PoliciesAllTestCreateParams,
 ) -> Result<models::PolicyTestResult, Error<PoliciesAllTestCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_policy_test_request = policy_test_request;
-
     let uri_str = format!(
         "{}/policies/all/{policy_uuid}/test/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -977,7 +1616,7 @@ pub async fn policies_all_test_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_policy_test_request);
+    req_builder = req_builder.json(&params.policy_test_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -993,7 +1632,7 @@ pub async fn policies_all_test_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PolicyTestResult`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PolicyTestResult`")))),
         }
@@ -1036,7 +1675,7 @@ pub async fn policies_all_types_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::TypeCreate&gt;`")))),
         }
@@ -1054,15 +1693,12 @@ pub async fn policies_all_types_list(
 /// Get a list of all objects that use this object
 pub async fn policies_all_used_by_list(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesAllUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PoliciesAllUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/all/{policy_uuid}/used_by/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1087,7 +1723,7 @@ pub async fn policies_all_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1105,11 +1741,8 @@ pub async fn policies_all_used_by_list(
 /// PolicyBinding Viewset
 pub async fn policies_bindings_create(
     configuration: &configuration::Configuration,
-    policy_binding_request: models::PolicyBindingRequest,
+    params: PoliciesBindingsCreateParams,
 ) -> Result<models::PolicyBinding, Error<PoliciesBindingsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_policy_binding_request = policy_binding_request;
-
     let uri_str = format!("{}/policies/bindings/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1119,7 +1752,7 @@ pub async fn policies_bindings_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_policy_binding_request);
+    req_builder = req_builder.json(&params.policy_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1135,7 +1768,9 @@ pub async fn policies_bindings_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PolicyBinding`",
@@ -1159,15 +1794,12 @@ pub async fn policies_bindings_create(
 /// PolicyBinding Viewset
 pub async fn policies_bindings_destroy(
     configuration: &configuration::Configuration,
-    policy_binding_uuid: &str,
+    params: PoliciesBindingsDestroyParams,
 ) -> Result<(), Error<PoliciesBindingsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_binding_uuid = policy_binding_uuid;
-
     let uri_str = format!(
         "{}/policies/bindings/{policy_binding_uuid}/",
         configuration.base_path,
-        policy_binding_uuid = crate::apis::urlencode(p_path_policy_binding_uuid)
+        policy_binding_uuid = crate::apis::urlencode(params.policy_binding_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1199,62 +1831,39 @@ pub async fn policies_bindings_destroy(
 /// PolicyBinding Viewset
 pub async fn policies_bindings_list(
     configuration: &configuration::Configuration,
-    enabled: Option<bool>,
-    order: Option<i32>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    policy: Option<&str>,
-    policy__isnull: Option<bool>,
-    search: Option<&str>,
-    target: Option<&str>,
-    target_in: Option<Vec<uuid::Uuid>>,
-    timeout: Option<i32>,
+    params: PoliciesBindingsListParams,
 ) -> Result<models::PaginatedPolicyBindingList, Error<PoliciesBindingsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_enabled = enabled;
-    let p_query_order = order;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_policy = policy;
-    let p_query_policy__isnull = policy__isnull;
-    let p_query_search = search;
-    let p_query_target = target;
-    let p_query_target_in = target_in;
-    let p_query_timeout = timeout;
-
     let uri_str = format!("{}/policies/bindings/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_enabled {
+    if let Some(ref param_value) = params.enabled {
         req_builder = req_builder.query(&[("enabled", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_order {
+    if let Some(ref param_value) = params.order {
         req_builder = req_builder.query(&[("order", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy {
+    if let Some(ref param_value) = params.policy {
         req_builder = req_builder.query(&[("policy", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy__isnull {
+    if let Some(ref param_value) = params.policy__isnull {
         req_builder = req_builder.query(&[("policy__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_target {
+    if let Some(ref param_value) = params.target {
         req_builder = req_builder.query(&[("target", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_target_in {
+    if let Some(ref param_value) = params.target_in {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -1273,7 +1882,7 @@ pub async fn policies_bindings_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_timeout {
+    if let Some(ref param_value) = params.timeout {
         req_builder = req_builder.query(&[("timeout", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1297,7 +1906,7 @@ pub async fn policies_bindings_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedPolicyBindingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedPolicyBindingList`")))),
         }
@@ -1315,17 +1924,12 @@ pub async fn policies_bindings_list(
 /// PolicyBinding Viewset
 pub async fn policies_bindings_partial_update(
     configuration: &configuration::Configuration,
-    policy_binding_uuid: &str,
-    patched_policy_binding_request: Option<models::PatchedPolicyBindingRequest>,
+    params: PoliciesBindingsPartialUpdateParams,
 ) -> Result<models::PolicyBinding, Error<PoliciesBindingsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_binding_uuid = policy_binding_uuid;
-    let p_body_patched_policy_binding_request = patched_policy_binding_request;
-
     let uri_str = format!(
         "{}/policies/bindings/{policy_binding_uuid}/",
         configuration.base_path,
-        policy_binding_uuid = crate::apis::urlencode(p_path_policy_binding_uuid)
+        policy_binding_uuid = crate::apis::urlencode(params.policy_binding_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1335,7 +1939,7 @@ pub async fn policies_bindings_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_policy_binding_request);
+    req_builder = req_builder.json(&params.patched_policy_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1351,7 +1955,9 @@ pub async fn policies_bindings_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PolicyBinding`",
@@ -1375,15 +1981,12 @@ pub async fn policies_bindings_partial_update(
 /// PolicyBinding Viewset
 pub async fn policies_bindings_retrieve(
     configuration: &configuration::Configuration,
-    policy_binding_uuid: &str,
+    params: PoliciesBindingsRetrieveParams,
 ) -> Result<models::PolicyBinding, Error<PoliciesBindingsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_binding_uuid = policy_binding_uuid;
-
     let uri_str = format!(
         "{}/policies/bindings/{policy_binding_uuid}/",
         configuration.base_path,
-        policy_binding_uuid = crate::apis::urlencode(p_path_policy_binding_uuid)
+        policy_binding_uuid = crate::apis::urlencode(params.policy_binding_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1408,7 +2011,9 @@ pub async fn policies_bindings_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PolicyBinding`",
@@ -1432,17 +2037,12 @@ pub async fn policies_bindings_retrieve(
 /// PolicyBinding Viewset
 pub async fn policies_bindings_update(
     configuration: &configuration::Configuration,
-    policy_binding_uuid: &str,
-    policy_binding_request: models::PolicyBindingRequest,
+    params: PoliciesBindingsUpdateParams,
 ) -> Result<models::PolicyBinding, Error<PoliciesBindingsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_binding_uuid = policy_binding_uuid;
-    let p_body_policy_binding_request = policy_binding_request;
-
     let uri_str = format!(
         "{}/policies/bindings/{policy_binding_uuid}/",
         configuration.base_path,
-        policy_binding_uuid = crate::apis::urlencode(p_path_policy_binding_uuid)
+        policy_binding_uuid = crate::apis::urlencode(params.policy_binding_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1452,7 +2052,7 @@ pub async fn policies_bindings_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_policy_binding_request);
+    req_builder = req_builder.json(&params.policy_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1468,7 +2068,9 @@ pub async fn policies_bindings_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PolicyBinding`",
@@ -1492,15 +2094,12 @@ pub async fn policies_bindings_update(
 /// Get a list of all objects that use this object
 pub async fn policies_bindings_used_by_list(
     configuration: &configuration::Configuration,
-    policy_binding_uuid: &str,
+    params: PoliciesBindingsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PoliciesBindingsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_binding_uuid = policy_binding_uuid;
-
     let uri_str = format!(
         "{}/policies/bindings/{policy_binding_uuid}/used_by/",
         configuration.base_path,
-        policy_binding_uuid = crate::apis::urlencode(p_path_policy_binding_uuid)
+        policy_binding_uuid = crate::apis::urlencode(params.policy_binding_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1525,7 +2124,7 @@ pub async fn policies_bindings_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1543,11 +2142,8 @@ pub async fn policies_bindings_used_by_list(
 /// Dummy Viewset
 pub async fn policies_dummy_create(
     configuration: &configuration::Configuration,
-    dummy_policy_request: models::DummyPolicyRequest,
+    params: PoliciesDummyCreateParams,
 ) -> Result<models::DummyPolicy, Error<PoliciesDummyCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_dummy_policy_request = dummy_policy_request;
-
     let uri_str = format!("{}/policies/dummy/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1557,7 +2153,7 @@ pub async fn policies_dummy_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_dummy_policy_request);
+    req_builder = req_builder.json(&params.dummy_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1573,7 +2169,9 @@ pub async fn policies_dummy_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DummyPolicy`",
@@ -1599,15 +2197,12 @@ pub async fn policies_dummy_create(
 /// Dummy Viewset
 pub async fn policies_dummy_destroy(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesDummyDestroyParams,
 ) -> Result<(), Error<PoliciesDummyDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/dummy/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1639,70 +2234,45 @@ pub async fn policies_dummy_destroy(
 /// Dummy Viewset
 pub async fn policies_dummy_list(
     configuration: &configuration::Configuration,
-    created: Option<chrono::DateTime<chrono::FixedOffset>>,
-    execution_logging: Option<bool>,
-    last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    policy_uuid: Option<&str>,
-    result: Option<bool>,
-    search: Option<&str>,
-    wait_max: Option<i32>,
-    wait_min: Option<i32>,
+    params: PoliciesDummyListParams,
 ) -> Result<models::PaginatedDummyPolicyList, Error<PoliciesDummyListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_created = created;
-    let p_query_execution_logging = execution_logging;
-    let p_query_last_updated = last_updated;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_policy_uuid = policy_uuid;
-    let p_query_result = result;
-    let p_query_search = search;
-    let p_query_wait_max = wait_max;
-    let p_query_wait_min = wait_min;
-
     let uri_str = format!("{}/policies/dummy/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_created {
+    if let Some(ref param_value) = params.created {
         req_builder = req_builder.query(&[("created", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_execution_logging {
+    if let Some(ref param_value) = params.execution_logging {
         req_builder = req_builder.query(&[("execution_logging", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated {
+    if let Some(ref param_value) = params.last_updated {
         req_builder = req_builder.query(&[("last_updated", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy_uuid {
+    if let Some(ref param_value) = params.policy_uuid {
         req_builder = req_builder.query(&[("policy_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_result {
+    if let Some(ref param_value) = params.result {
         req_builder = req_builder.query(&[("result", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_wait_max {
+    if let Some(ref param_value) = params.wait_max {
         req_builder = req_builder.query(&[("wait_max", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_wait_min {
+    if let Some(ref param_value) = params.wait_min {
         req_builder = req_builder.query(&[("wait_min", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1726,7 +2296,7 @@ pub async fn policies_dummy_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedDummyPolicyList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedDummyPolicyList`")))),
         }
@@ -1744,17 +2314,12 @@ pub async fn policies_dummy_list(
 /// Dummy Viewset
 pub async fn policies_dummy_partial_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    patched_dummy_policy_request: Option<models::PatchedDummyPolicyRequest>,
+    params: PoliciesDummyPartialUpdateParams,
 ) -> Result<models::DummyPolicy, Error<PoliciesDummyPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_patched_dummy_policy_request = patched_dummy_policy_request;
-
     let uri_str = format!(
         "{}/policies/dummy/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1764,7 +2329,7 @@ pub async fn policies_dummy_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_dummy_policy_request);
+    req_builder = req_builder.json(&params.patched_dummy_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1780,7 +2345,9 @@ pub async fn policies_dummy_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DummyPolicy`",
@@ -1806,15 +2373,12 @@ pub async fn policies_dummy_partial_update(
 /// Dummy Viewset
 pub async fn policies_dummy_retrieve(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesDummyRetrieveParams,
 ) -> Result<models::DummyPolicy, Error<PoliciesDummyRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/dummy/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1839,7 +2403,9 @@ pub async fn policies_dummy_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DummyPolicy`",
@@ -1865,17 +2431,12 @@ pub async fn policies_dummy_retrieve(
 /// Dummy Viewset
 pub async fn policies_dummy_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    dummy_policy_request: models::DummyPolicyRequest,
+    params: PoliciesDummyUpdateParams,
 ) -> Result<models::DummyPolicy, Error<PoliciesDummyUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_dummy_policy_request = dummy_policy_request;
-
     let uri_str = format!(
         "{}/policies/dummy/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1885,7 +2446,7 @@ pub async fn policies_dummy_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_dummy_policy_request);
+    req_builder = req_builder.json(&params.dummy_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1901,7 +2462,9 @@ pub async fn policies_dummy_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DummyPolicy`",
@@ -1927,15 +2490,12 @@ pub async fn policies_dummy_update(
 /// Get a list of all objects that use this object
 pub async fn policies_dummy_used_by_list(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesDummyUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PoliciesDummyUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/dummy/{policy_uuid}/used_by/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1960,7 +2520,7 @@ pub async fn policies_dummy_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1978,11 +2538,8 @@ pub async fn policies_dummy_used_by_list(
 /// Event Matcher Policy Viewset
 pub async fn policies_event_matcher_create(
     configuration: &configuration::Configuration,
-    event_matcher_policy_request: models::EventMatcherPolicyRequest,
+    params: PoliciesEventMatcherCreateParams,
 ) -> Result<models::EventMatcherPolicy, Error<PoliciesEventMatcherCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_event_matcher_policy_request = event_matcher_policy_request;
-
     let uri_str = format!("{}/policies/event_matcher/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1992,7 +2549,7 @@ pub async fn policies_event_matcher_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_event_matcher_policy_request);
+    req_builder = req_builder.json(&params.event_matcher_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2008,7 +2565,7 @@ pub async fn policies_event_matcher_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::EventMatcherPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::EventMatcherPolicy`")))),
         }
@@ -2026,15 +2583,12 @@ pub async fn policies_event_matcher_create(
 /// Event Matcher Policy Viewset
 pub async fn policies_event_matcher_destroy(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesEventMatcherDestroyParams,
 ) -> Result<(), Error<PoliciesEventMatcherDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/event_matcher/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2066,80 +2620,51 @@ pub async fn policies_event_matcher_destroy(
 /// Event Matcher Policy Viewset
 pub async fn policies_event_matcher_list(
     configuration: &configuration::Configuration,
-    action: Option<&str>,
-    app: Option<&str>,
-    client_ip: Option<&str>,
-    created: Option<chrono::DateTime<chrono::FixedOffset>>,
-    execution_logging: Option<bool>,
-    last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
-    model: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    policy_uuid: Option<&str>,
-    query: Option<&str>,
-    search: Option<&str>,
+    params: PoliciesEventMatcherListParams,
 ) -> Result<models::PaginatedEventMatcherPolicyList, Error<PoliciesEventMatcherListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_action = action;
-    let p_query_app = app;
-    let p_query_client_ip = client_ip;
-    let p_query_created = created;
-    let p_query_execution_logging = execution_logging;
-    let p_query_last_updated = last_updated;
-    let p_query_model = model;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_policy_uuid = policy_uuid;
-    let p_query_query = query;
-    let p_query_search = search;
-
     let uri_str = format!("{}/policies/event_matcher/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_action {
+    if let Some(ref param_value) = params.action {
         req_builder = req_builder.query(&[("action", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_app {
+    if let Some(ref param_value) = params.app {
         req_builder = req_builder.query(&[("app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_ip {
+    if let Some(ref param_value) = params.client_ip {
         req_builder = req_builder.query(&[("client_ip", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_created {
+    if let Some(ref param_value) = params.created {
         req_builder = req_builder.query(&[("created", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_execution_logging {
+    if let Some(ref param_value) = params.execution_logging {
         req_builder = req_builder.query(&[("execution_logging", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated {
+    if let Some(ref param_value) = params.last_updated {
         req_builder = req_builder.query(&[("last_updated", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_model {
+    if let Some(ref param_value) = params.model {
         req_builder = req_builder.query(&[("model", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy_uuid {
+    if let Some(ref param_value) = params.policy_uuid {
         req_builder = req_builder.query(&[("policy_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_query {
+    if let Some(ref param_value) = params.query {
         req_builder = req_builder.query(&[("query", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2163,7 +2688,7 @@ pub async fn policies_event_matcher_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedEventMatcherPolicyList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedEventMatcherPolicyList`")))),
         }
@@ -2181,17 +2706,12 @@ pub async fn policies_event_matcher_list(
 /// Event Matcher Policy Viewset
 pub async fn policies_event_matcher_partial_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    patched_event_matcher_policy_request: Option<models::PatchedEventMatcherPolicyRequest>,
+    params: PoliciesEventMatcherPartialUpdateParams,
 ) -> Result<models::EventMatcherPolicy, Error<PoliciesEventMatcherPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_patched_event_matcher_policy_request = patched_event_matcher_policy_request;
-
     let uri_str = format!(
         "{}/policies/event_matcher/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2201,7 +2721,7 @@ pub async fn policies_event_matcher_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_event_matcher_policy_request);
+    req_builder = req_builder.json(&params.patched_event_matcher_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2217,7 +2737,7 @@ pub async fn policies_event_matcher_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::EventMatcherPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::EventMatcherPolicy`")))),
         }
@@ -2235,15 +2755,12 @@ pub async fn policies_event_matcher_partial_update(
 /// Event Matcher Policy Viewset
 pub async fn policies_event_matcher_retrieve(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesEventMatcherRetrieveParams,
 ) -> Result<models::EventMatcherPolicy, Error<PoliciesEventMatcherRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/event_matcher/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2268,7 +2785,7 @@ pub async fn policies_event_matcher_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::EventMatcherPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::EventMatcherPolicy`")))),
         }
@@ -2286,17 +2803,12 @@ pub async fn policies_event_matcher_retrieve(
 /// Event Matcher Policy Viewset
 pub async fn policies_event_matcher_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    event_matcher_policy_request: models::EventMatcherPolicyRequest,
+    params: PoliciesEventMatcherUpdateParams,
 ) -> Result<models::EventMatcherPolicy, Error<PoliciesEventMatcherUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_event_matcher_policy_request = event_matcher_policy_request;
-
     let uri_str = format!(
         "{}/policies/event_matcher/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2306,7 +2818,7 @@ pub async fn policies_event_matcher_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_event_matcher_policy_request);
+    req_builder = req_builder.json(&params.event_matcher_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2322,7 +2834,7 @@ pub async fn policies_event_matcher_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::EventMatcherPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::EventMatcherPolicy`")))),
         }
@@ -2340,15 +2852,12 @@ pub async fn policies_event_matcher_update(
 /// Get a list of all objects that use this object
 pub async fn policies_event_matcher_used_by_list(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesEventMatcherUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PoliciesEventMatcherUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/event_matcher/{policy_uuid}/used_by/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2373,7 +2882,7 @@ pub async fn policies_event_matcher_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2391,11 +2900,8 @@ pub async fn policies_event_matcher_used_by_list(
 /// Source Viewset
 pub async fn policies_expression_create(
     configuration: &configuration::Configuration,
-    expression_policy_request: models::ExpressionPolicyRequest,
+    params: PoliciesExpressionCreateParams,
 ) -> Result<models::ExpressionPolicy, Error<PoliciesExpressionCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_expression_policy_request = expression_policy_request;
-
     let uri_str = format!("{}/policies/expression/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2405,7 +2911,7 @@ pub async fn policies_expression_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_expression_policy_request);
+    req_builder = req_builder.json(&params.expression_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2421,7 +2927,7 @@ pub async fn policies_expression_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ExpressionPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ExpressionPolicy`")))),
         }
@@ -2439,15 +2945,12 @@ pub async fn policies_expression_create(
 /// Source Viewset
 pub async fn policies_expression_destroy(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesExpressionDestroyParams,
 ) -> Result<(), Error<PoliciesExpressionDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/expression/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2479,60 +2982,39 @@ pub async fn policies_expression_destroy(
 /// Source Viewset
 pub async fn policies_expression_list(
     configuration: &configuration::Configuration,
-    created: Option<chrono::DateTime<chrono::FixedOffset>>,
-    execution_logging: Option<bool>,
-    expression: Option<&str>,
-    last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    policy_uuid: Option<&str>,
-    search: Option<&str>,
+    params: PoliciesExpressionListParams,
 ) -> Result<models::PaginatedExpressionPolicyList, Error<PoliciesExpressionListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_created = created;
-    let p_query_execution_logging = execution_logging;
-    let p_query_expression = expression;
-    let p_query_last_updated = last_updated;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_policy_uuid = policy_uuid;
-    let p_query_search = search;
-
     let uri_str = format!("{}/policies/expression/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_created {
+    if let Some(ref param_value) = params.created {
         req_builder = req_builder.query(&[("created", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_execution_logging {
+    if let Some(ref param_value) = params.execution_logging {
         req_builder = req_builder.query(&[("execution_logging", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_expression {
+    if let Some(ref param_value) = params.expression {
         req_builder = req_builder.query(&[("expression", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated {
+    if let Some(ref param_value) = params.last_updated {
         req_builder = req_builder.query(&[("last_updated", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy_uuid {
+    if let Some(ref param_value) = params.policy_uuid {
         req_builder = req_builder.query(&[("policy_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2556,7 +3038,7 @@ pub async fn policies_expression_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedExpressionPolicyList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedExpressionPolicyList`")))),
         }
@@ -2574,17 +3056,12 @@ pub async fn policies_expression_list(
 /// Source Viewset
 pub async fn policies_expression_partial_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    patched_expression_policy_request: Option<models::PatchedExpressionPolicyRequest>,
+    params: PoliciesExpressionPartialUpdateParams,
 ) -> Result<models::ExpressionPolicy, Error<PoliciesExpressionPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_patched_expression_policy_request = patched_expression_policy_request;
-
     let uri_str = format!(
         "{}/policies/expression/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2594,7 +3071,7 @@ pub async fn policies_expression_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_expression_policy_request);
+    req_builder = req_builder.json(&params.patched_expression_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2610,7 +3087,7 @@ pub async fn policies_expression_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ExpressionPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ExpressionPolicy`")))),
         }
@@ -2628,15 +3105,12 @@ pub async fn policies_expression_partial_update(
 /// Source Viewset
 pub async fn policies_expression_retrieve(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesExpressionRetrieveParams,
 ) -> Result<models::ExpressionPolicy, Error<PoliciesExpressionRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/expression/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2661,7 +3135,7 @@ pub async fn policies_expression_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ExpressionPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ExpressionPolicy`")))),
         }
@@ -2679,17 +3153,12 @@ pub async fn policies_expression_retrieve(
 /// Source Viewset
 pub async fn policies_expression_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    expression_policy_request: models::ExpressionPolicyRequest,
+    params: PoliciesExpressionUpdateParams,
 ) -> Result<models::ExpressionPolicy, Error<PoliciesExpressionUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_expression_policy_request = expression_policy_request;
-
     let uri_str = format!(
         "{}/policies/expression/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2699,7 +3168,7 @@ pub async fn policies_expression_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_expression_policy_request);
+    req_builder = req_builder.json(&params.expression_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2715,7 +3184,7 @@ pub async fn policies_expression_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ExpressionPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ExpressionPolicy`")))),
         }
@@ -2733,15 +3202,12 @@ pub async fn policies_expression_update(
 /// Get a list of all objects that use this object
 pub async fn policies_expression_used_by_list(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesExpressionUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PoliciesExpressionUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/expression/{policy_uuid}/used_by/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2766,7 +3232,7 @@ pub async fn policies_expression_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2784,11 +3250,8 @@ pub async fn policies_expression_used_by_list(
 /// GeoIP Viewset
 pub async fn policies_geoip_create(
     configuration: &configuration::Configuration,
-    geo_ip_policy_request: models::GeoIpPolicyRequest,
+    params: PoliciesGeoipCreateParams,
 ) -> Result<models::GeoIpPolicy, Error<PoliciesGeoipCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_geo_ip_policy_request = geo_ip_policy_request;
-
     let uri_str = format!("{}/policies/geoip/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2798,7 +3261,7 @@ pub async fn policies_geoip_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_geo_ip_policy_request);
+    req_builder = req_builder.json(&params.geo_ip_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2814,7 +3277,9 @@ pub async fn policies_geoip_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::GeoIpPolicy`",
@@ -2840,15 +3305,12 @@ pub async fn policies_geoip_create(
 /// GeoIP Viewset
 pub async fn policies_geoip_destroy(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesGeoipDestroyParams,
 ) -> Result<(), Error<PoliciesGeoipDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/geoip/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2905,7 +3367,7 @@ pub async fn policies_geoip_iso3166_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::DetailedCountry&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::DetailedCountry&gt;`")))),
         }
@@ -2923,35 +3385,24 @@ pub async fn policies_geoip_iso3166_list(
 /// GeoIP Viewset
 pub async fn policies_geoip_list(
     configuration: &configuration::Configuration,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: PoliciesGeoipListParams,
 ) -> Result<models::PaginatedGeoIpPolicyList, Error<PoliciesGeoipListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/policies/geoip/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2975,7 +3426,7 @@ pub async fn policies_geoip_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGeoIpPolicyList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGeoIpPolicyList`")))),
         }
@@ -2993,17 +3444,12 @@ pub async fn policies_geoip_list(
 /// GeoIP Viewset
 pub async fn policies_geoip_partial_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    patched_geo_ip_policy_request: Option<models::PatchedGeoIpPolicyRequest>,
+    params: PoliciesGeoipPartialUpdateParams,
 ) -> Result<models::GeoIpPolicy, Error<PoliciesGeoipPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_patched_geo_ip_policy_request = patched_geo_ip_policy_request;
-
     let uri_str = format!(
         "{}/policies/geoip/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3013,7 +3459,7 @@ pub async fn policies_geoip_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_geo_ip_policy_request);
+    req_builder = req_builder.json(&params.patched_geo_ip_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3029,7 +3475,9 @@ pub async fn policies_geoip_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::GeoIpPolicy`",
@@ -3055,15 +3503,12 @@ pub async fn policies_geoip_partial_update(
 /// GeoIP Viewset
 pub async fn policies_geoip_retrieve(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesGeoipRetrieveParams,
 ) -> Result<models::GeoIpPolicy, Error<PoliciesGeoipRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/geoip/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3088,7 +3533,9 @@ pub async fn policies_geoip_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::GeoIpPolicy`",
@@ -3114,17 +3561,12 @@ pub async fn policies_geoip_retrieve(
 /// GeoIP Viewset
 pub async fn policies_geoip_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    geo_ip_policy_request: models::GeoIpPolicyRequest,
+    params: PoliciesGeoipUpdateParams,
 ) -> Result<models::GeoIpPolicy, Error<PoliciesGeoipUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_geo_ip_policy_request = geo_ip_policy_request;
-
     let uri_str = format!(
         "{}/policies/geoip/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3134,7 +3576,7 @@ pub async fn policies_geoip_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_geo_ip_policy_request);
+    req_builder = req_builder.json(&params.geo_ip_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3150,7 +3592,9 @@ pub async fn policies_geoip_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::GeoIpPolicy`",
@@ -3176,15 +3620,12 @@ pub async fn policies_geoip_update(
 /// Get a list of all objects that use this object
 pub async fn policies_geoip_used_by_list(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesGeoipUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PoliciesGeoipUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/geoip/{policy_uuid}/used_by/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3209,7 +3650,7 @@ pub async fn policies_geoip_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3227,11 +3668,8 @@ pub async fn policies_geoip_used_by_list(
 /// Password Policy Viewset
 pub async fn policies_password_create(
     configuration: &configuration::Configuration,
-    password_policy_request: models::PasswordPolicyRequest,
+    params: PoliciesPasswordCreateParams,
 ) -> Result<models::PasswordPolicy, Error<PoliciesPasswordCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_password_policy_request = password_policy_request;
-
     let uri_str = format!("{}/policies/password/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3241,7 +3679,7 @@ pub async fn policies_password_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_password_policy_request);
+    req_builder = req_builder.json(&params.password_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3257,7 +3695,9 @@ pub async fn policies_password_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PasswordPolicy`",
@@ -3281,15 +3721,12 @@ pub async fn policies_password_create(
 /// Password Policy Viewset
 pub async fn policies_password_destroy(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesPasswordDestroyParams,
 ) -> Result<(), Error<PoliciesPasswordDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/password/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3321,11 +3758,8 @@ pub async fn policies_password_destroy(
 /// Password Expiry Viewset
 pub async fn policies_password_expiry_create(
     configuration: &configuration::Configuration,
-    password_expiry_policy_request: models::PasswordExpiryPolicyRequest,
+    params: PoliciesPasswordExpiryCreateParams,
 ) -> Result<models::PasswordExpiryPolicy, Error<PoliciesPasswordExpiryCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_password_expiry_policy_request = password_expiry_policy_request;
-
     let uri_str = format!("{}/policies/password_expiry/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3335,7 +3769,7 @@ pub async fn policies_password_expiry_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_password_expiry_policy_request);
+    req_builder = req_builder.json(&params.password_expiry_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3351,7 +3785,7 @@ pub async fn policies_password_expiry_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PasswordExpiryPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PasswordExpiryPolicy`")))),
         }
@@ -3369,15 +3803,12 @@ pub async fn policies_password_expiry_create(
 /// Password Expiry Viewset
 pub async fn policies_password_expiry_destroy(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesPasswordExpiryDestroyParams,
 ) -> Result<(), Error<PoliciesPasswordExpiryDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/password_expiry/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3409,65 +3840,42 @@ pub async fn policies_password_expiry_destroy(
 /// Password Expiry Viewset
 pub async fn policies_password_expiry_list(
     configuration: &configuration::Configuration,
-    created: Option<chrono::DateTime<chrono::FixedOffset>>,
-    days: Option<i32>,
-    deny_only: Option<bool>,
-    execution_logging: Option<bool>,
-    last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    policy_uuid: Option<&str>,
-    search: Option<&str>,
+    params: PoliciesPasswordExpiryListParams,
 ) -> Result<models::PaginatedPasswordExpiryPolicyList, Error<PoliciesPasswordExpiryListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_created = created;
-    let p_query_days = days;
-    let p_query_deny_only = deny_only;
-    let p_query_execution_logging = execution_logging;
-    let p_query_last_updated = last_updated;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_policy_uuid = policy_uuid;
-    let p_query_search = search;
-
     let uri_str = format!("{}/policies/password_expiry/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_created {
+    if let Some(ref param_value) = params.created {
         req_builder = req_builder.query(&[("created", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_days {
+    if let Some(ref param_value) = params.days {
         req_builder = req_builder.query(&[("days", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_deny_only {
+    if let Some(ref param_value) = params.deny_only {
         req_builder = req_builder.query(&[("deny_only", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_execution_logging {
+    if let Some(ref param_value) = params.execution_logging {
         req_builder = req_builder.query(&[("execution_logging", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated {
+    if let Some(ref param_value) = params.last_updated {
         req_builder = req_builder.query(&[("last_updated", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy_uuid {
+    if let Some(ref param_value) = params.policy_uuid {
         req_builder = req_builder.query(&[("policy_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3491,7 +3899,7 @@ pub async fn policies_password_expiry_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedPasswordExpiryPolicyList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedPasswordExpiryPolicyList`")))),
         }
@@ -3509,17 +3917,12 @@ pub async fn policies_password_expiry_list(
 /// Password Expiry Viewset
 pub async fn policies_password_expiry_partial_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    patched_password_expiry_policy_request: Option<models::PatchedPasswordExpiryPolicyRequest>,
+    params: PoliciesPasswordExpiryPartialUpdateParams,
 ) -> Result<models::PasswordExpiryPolicy, Error<PoliciesPasswordExpiryPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_patched_password_expiry_policy_request = patched_password_expiry_policy_request;
-
     let uri_str = format!(
         "{}/policies/password_expiry/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3529,7 +3932,7 @@ pub async fn policies_password_expiry_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_password_expiry_policy_request);
+    req_builder = req_builder.json(&params.patched_password_expiry_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3545,7 +3948,7 @@ pub async fn policies_password_expiry_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PasswordExpiryPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PasswordExpiryPolicy`")))),
         }
@@ -3563,15 +3966,12 @@ pub async fn policies_password_expiry_partial_update(
 /// Password Expiry Viewset
 pub async fn policies_password_expiry_retrieve(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesPasswordExpiryRetrieveParams,
 ) -> Result<models::PasswordExpiryPolicy, Error<PoliciesPasswordExpiryRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/password_expiry/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3596,7 +3996,7 @@ pub async fn policies_password_expiry_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PasswordExpiryPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PasswordExpiryPolicy`")))),
         }
@@ -3614,17 +4014,12 @@ pub async fn policies_password_expiry_retrieve(
 /// Password Expiry Viewset
 pub async fn policies_password_expiry_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    password_expiry_policy_request: models::PasswordExpiryPolicyRequest,
+    params: PoliciesPasswordExpiryUpdateParams,
 ) -> Result<models::PasswordExpiryPolicy, Error<PoliciesPasswordExpiryUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_password_expiry_policy_request = password_expiry_policy_request;
-
     let uri_str = format!(
         "{}/policies/password_expiry/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3634,7 +4029,7 @@ pub async fn policies_password_expiry_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_password_expiry_policy_request);
+    req_builder = req_builder.json(&params.password_expiry_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3650,7 +4045,7 @@ pub async fn policies_password_expiry_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PasswordExpiryPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PasswordExpiryPolicy`")))),
         }
@@ -3668,15 +4063,12 @@ pub async fn policies_password_expiry_update(
 /// Get a list of all objects that use this object
 pub async fn policies_password_expiry_used_by_list(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesPasswordExpiryUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PoliciesPasswordExpiryUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/password_expiry/{policy_uuid}/used_by/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3701,7 +4093,7 @@ pub async fn policies_password_expiry_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3719,120 +4111,75 @@ pub async fn policies_password_expiry_used_by_list(
 /// Password Policy Viewset
 pub async fn policies_password_list(
     configuration: &configuration::Configuration,
-    amount_digits: Option<i32>,
-    amount_lowercase: Option<i32>,
-    amount_symbols: Option<i32>,
-    amount_uppercase: Option<i32>,
-    check_have_i_been_pwned: Option<bool>,
-    check_static_rules: Option<bool>,
-    check_zxcvbn: Option<bool>,
-    created: Option<chrono::DateTime<chrono::FixedOffset>>,
-    error_message: Option<&str>,
-    execution_logging: Option<bool>,
-    hibp_allowed_count: Option<i32>,
-    last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
-    length_min: Option<i32>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    password_field: Option<&str>,
-    policy_uuid: Option<&str>,
-    search: Option<&str>,
-    symbol_charset: Option<&str>,
-    zxcvbn_score_threshold: Option<i32>,
+    params: PoliciesPasswordListParams,
 ) -> Result<models::PaginatedPasswordPolicyList, Error<PoliciesPasswordListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_amount_digits = amount_digits;
-    let p_query_amount_lowercase = amount_lowercase;
-    let p_query_amount_symbols = amount_symbols;
-    let p_query_amount_uppercase = amount_uppercase;
-    let p_query_check_have_i_been_pwned = check_have_i_been_pwned;
-    let p_query_check_static_rules = check_static_rules;
-    let p_query_check_zxcvbn = check_zxcvbn;
-    let p_query_created = created;
-    let p_query_error_message = error_message;
-    let p_query_execution_logging = execution_logging;
-    let p_query_hibp_allowed_count = hibp_allowed_count;
-    let p_query_last_updated = last_updated;
-    let p_query_length_min = length_min;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_password_field = password_field;
-    let p_query_policy_uuid = policy_uuid;
-    let p_query_search = search;
-    let p_query_symbol_charset = symbol_charset;
-    let p_query_zxcvbn_score_threshold = zxcvbn_score_threshold;
-
     let uri_str = format!("{}/policies/password/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_amount_digits {
+    if let Some(ref param_value) = params.amount_digits {
         req_builder = req_builder.query(&[("amount_digits", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_amount_lowercase {
+    if let Some(ref param_value) = params.amount_lowercase {
         req_builder = req_builder.query(&[("amount_lowercase", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_amount_symbols {
+    if let Some(ref param_value) = params.amount_symbols {
         req_builder = req_builder.query(&[("amount_symbols", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_amount_uppercase {
+    if let Some(ref param_value) = params.amount_uppercase {
         req_builder = req_builder.query(&[("amount_uppercase", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_check_have_i_been_pwned {
+    if let Some(ref param_value) = params.check_have_i_been_pwned {
         req_builder = req_builder.query(&[("check_have_i_been_pwned", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_check_static_rules {
+    if let Some(ref param_value) = params.check_static_rules {
         req_builder = req_builder.query(&[("check_static_rules", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_check_zxcvbn {
+    if let Some(ref param_value) = params.check_zxcvbn {
         req_builder = req_builder.query(&[("check_zxcvbn", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_created {
+    if let Some(ref param_value) = params.created {
         req_builder = req_builder.query(&[("created", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_error_message {
+    if let Some(ref param_value) = params.error_message {
         req_builder = req_builder.query(&[("error_message", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_execution_logging {
+    if let Some(ref param_value) = params.execution_logging {
         req_builder = req_builder.query(&[("execution_logging", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_hibp_allowed_count {
+    if let Some(ref param_value) = params.hibp_allowed_count {
         req_builder = req_builder.query(&[("hibp_allowed_count", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated {
+    if let Some(ref param_value) = params.last_updated {
         req_builder = req_builder.query(&[("last_updated", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_length_min {
+    if let Some(ref param_value) = params.length_min {
         req_builder = req_builder.query(&[("length_min", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_password_field {
+    if let Some(ref param_value) = params.password_field {
         req_builder = req_builder.query(&[("password_field", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy_uuid {
+    if let Some(ref param_value) = params.policy_uuid {
         req_builder = req_builder.query(&[("policy_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_symbol_charset {
+    if let Some(ref param_value) = params.symbol_charset {
         req_builder = req_builder.query(&[("symbol_charset", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_zxcvbn_score_threshold {
+    if let Some(ref param_value) = params.zxcvbn_score_threshold {
         req_builder = req_builder.query(&[("zxcvbn_score_threshold", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3856,7 +4203,7 @@ pub async fn policies_password_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedPasswordPolicyList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedPasswordPolicyList`")))),
         }
@@ -3874,17 +4221,12 @@ pub async fn policies_password_list(
 /// Password Policy Viewset
 pub async fn policies_password_partial_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    patched_password_policy_request: Option<models::PatchedPasswordPolicyRequest>,
+    params: PoliciesPasswordPartialUpdateParams,
 ) -> Result<models::PasswordPolicy, Error<PoliciesPasswordPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_patched_password_policy_request = patched_password_policy_request;
-
     let uri_str = format!(
         "{}/policies/password/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3894,7 +4236,7 @@ pub async fn policies_password_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_password_policy_request);
+    req_builder = req_builder.json(&params.patched_password_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3910,7 +4252,9 @@ pub async fn policies_password_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PasswordPolicy`",
@@ -3934,15 +4278,12 @@ pub async fn policies_password_partial_update(
 /// Password Policy Viewset
 pub async fn policies_password_retrieve(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesPasswordRetrieveParams,
 ) -> Result<models::PasswordPolicy, Error<PoliciesPasswordRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/password/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3967,7 +4308,9 @@ pub async fn policies_password_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PasswordPolicy`",
@@ -3991,17 +4334,12 @@ pub async fn policies_password_retrieve(
 /// Password Policy Viewset
 pub async fn policies_password_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    password_policy_request: models::PasswordPolicyRequest,
+    params: PoliciesPasswordUpdateParams,
 ) -> Result<models::PasswordPolicy, Error<PoliciesPasswordUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_password_policy_request = password_policy_request;
-
     let uri_str = format!(
         "{}/policies/password/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4011,7 +4349,7 @@ pub async fn policies_password_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_password_policy_request);
+    req_builder = req_builder.json(&params.password_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4027,7 +4365,9 @@ pub async fn policies_password_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::PasswordPolicy`",
@@ -4051,15 +4391,12 @@ pub async fn policies_password_update(
 /// Get a list of all objects that use this object
 pub async fn policies_password_used_by_list(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesPasswordUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PoliciesPasswordUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/password/{policy_uuid}/used_by/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4084,7 +4421,7 @@ pub async fn policies_password_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4102,11 +4439,8 @@ pub async fn policies_password_used_by_list(
 /// Reputation Policy Viewset
 pub async fn policies_reputation_create(
     configuration: &configuration::Configuration,
-    reputation_policy_request: models::ReputationPolicyRequest,
+    params: PoliciesReputationCreateParams,
 ) -> Result<models::ReputationPolicy, Error<PoliciesReputationCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_reputation_policy_request = reputation_policy_request;
-
     let uri_str = format!("{}/policies/reputation/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4116,7 +4450,7 @@ pub async fn policies_reputation_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_reputation_policy_request);
+    req_builder = req_builder.json(&params.reputation_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4132,7 +4466,7 @@ pub async fn policies_reputation_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ReputationPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ReputationPolicy`")))),
         }
@@ -4150,15 +4484,12 @@ pub async fn policies_reputation_create(
 /// Reputation Policy Viewset
 pub async fn policies_reputation_destroy(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesReputationDestroyParams,
 ) -> Result<(), Error<PoliciesReputationDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/reputation/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4190,70 +4521,45 @@ pub async fn policies_reputation_destroy(
 /// Reputation Policy Viewset
 pub async fn policies_reputation_list(
     configuration: &configuration::Configuration,
-    check_ip: Option<bool>,
-    check_username: Option<bool>,
-    created: Option<chrono::DateTime<chrono::FixedOffset>>,
-    execution_logging: Option<bool>,
-    last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    policy_uuid: Option<&str>,
-    search: Option<&str>,
-    threshold: Option<i32>,
+    params: PoliciesReputationListParams,
 ) -> Result<models::PaginatedReputationPolicyList, Error<PoliciesReputationListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_check_ip = check_ip;
-    let p_query_check_username = check_username;
-    let p_query_created = created;
-    let p_query_execution_logging = execution_logging;
-    let p_query_last_updated = last_updated;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_policy_uuid = policy_uuid;
-    let p_query_search = search;
-    let p_query_threshold = threshold;
-
     let uri_str = format!("{}/policies/reputation/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_check_ip {
+    if let Some(ref param_value) = params.check_ip {
         req_builder = req_builder.query(&[("check_ip", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_check_username {
+    if let Some(ref param_value) = params.check_username {
         req_builder = req_builder.query(&[("check_username", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_created {
+    if let Some(ref param_value) = params.created {
         req_builder = req_builder.query(&[("created", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_execution_logging {
+    if let Some(ref param_value) = params.execution_logging {
         req_builder = req_builder.query(&[("execution_logging", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated {
+    if let Some(ref param_value) = params.last_updated {
         req_builder = req_builder.query(&[("last_updated", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy_uuid {
+    if let Some(ref param_value) = params.policy_uuid {
         req_builder = req_builder.query(&[("policy_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_threshold {
+    if let Some(ref param_value) = params.threshold {
         req_builder = req_builder.query(&[("threshold", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4277,7 +4583,7 @@ pub async fn policies_reputation_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedReputationPolicyList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedReputationPolicyList`")))),
         }
@@ -4295,17 +4601,12 @@ pub async fn policies_reputation_list(
 /// Reputation Policy Viewset
 pub async fn policies_reputation_partial_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    patched_reputation_policy_request: Option<models::PatchedReputationPolicyRequest>,
+    params: PoliciesReputationPartialUpdateParams,
 ) -> Result<models::ReputationPolicy, Error<PoliciesReputationPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_patched_reputation_policy_request = patched_reputation_policy_request;
-
     let uri_str = format!(
         "{}/policies/reputation/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -4315,7 +4616,7 @@ pub async fn policies_reputation_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_reputation_policy_request);
+    req_builder = req_builder.json(&params.patched_reputation_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4331,7 +4632,7 @@ pub async fn policies_reputation_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ReputationPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ReputationPolicy`")))),
         }
@@ -4349,15 +4650,12 @@ pub async fn policies_reputation_partial_update(
 /// Reputation Policy Viewset
 pub async fn policies_reputation_retrieve(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesReputationRetrieveParams,
 ) -> Result<models::ReputationPolicy, Error<PoliciesReputationRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/reputation/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4382,7 +4680,7 @@ pub async fn policies_reputation_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ReputationPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ReputationPolicy`")))),
         }
@@ -4400,15 +4698,12 @@ pub async fn policies_reputation_retrieve(
 /// Reputation Viewset
 pub async fn policies_reputation_scores_destroy(
     configuration: &configuration::Configuration,
-    reputation_uuid: &str,
+    params: PoliciesReputationScoresDestroyParams,
 ) -> Result<(), Error<PoliciesReputationScoresDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_reputation_uuid = reputation_uuid;
-
     let uri_str = format!(
         "{}/policies/reputation/scores/{reputation_uuid}/",
         configuration.base_path,
-        reputation_uuid = crate::apis::urlencode(p_path_reputation_uuid)
+        reputation_uuid = crate::apis::urlencode(params.reputation_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4440,32 +4735,15 @@ pub async fn policies_reputation_scores_destroy(
 /// Reputation Viewset
 pub async fn policies_reputation_scores_list(
     configuration: &configuration::Configuration,
-    identifier: Option<&str>,
-    identifier_in: Option<Vec<String>>,
-    ip: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    score: Option<i32>,
-    search: Option<&str>,
+    params: PoliciesReputationScoresListParams,
 ) -> Result<models::PaginatedReputationList, Error<PoliciesReputationScoresListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_identifier = identifier;
-    let p_query_identifier_in = identifier_in;
-    let p_query_ip = ip;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_score = score;
-    let p_query_search = search;
-
     let uri_str = format!("{}/policies/reputation/scores/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_identifier {
+    if let Some(ref param_value) = params.identifier {
         req_builder = req_builder.query(&[("identifier", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_identifier_in {
+    if let Some(ref param_value) = params.identifier_in {
         req_builder = match "csv" {
             "multi" => req_builder.query(
                 &param_value
@@ -4484,22 +4762,22 @@ pub async fn policies_reputation_scores_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_ip {
+    if let Some(ref param_value) = params.ip {
         req_builder = req_builder.query(&[("ip", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_score {
+    if let Some(ref param_value) = params.score {
         req_builder = req_builder.query(&[("score", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4523,7 +4801,7 @@ pub async fn policies_reputation_scores_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedReputationList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedReputationList`")))),
         }
@@ -4541,15 +4819,12 @@ pub async fn policies_reputation_scores_list(
 /// Reputation Viewset
 pub async fn policies_reputation_scores_retrieve(
     configuration: &configuration::Configuration,
-    reputation_uuid: &str,
+    params: PoliciesReputationScoresRetrieveParams,
 ) -> Result<models::Reputation, Error<PoliciesReputationScoresRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_reputation_uuid = reputation_uuid;
-
     let uri_str = format!(
         "{}/policies/reputation/scores/{reputation_uuid}/",
         configuration.base_path,
-        reputation_uuid = crate::apis::urlencode(p_path_reputation_uuid)
+        reputation_uuid = crate::apis::urlencode(params.reputation_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4574,7 +4849,9 @@ pub async fn policies_reputation_scores_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Reputation`",
@@ -4600,15 +4877,12 @@ pub async fn policies_reputation_scores_retrieve(
 /// Get a list of all objects that use this object
 pub async fn policies_reputation_scores_used_by_list(
     configuration: &configuration::Configuration,
-    reputation_uuid: &str,
+    params: PoliciesReputationScoresUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PoliciesReputationScoresUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_reputation_uuid = reputation_uuid;
-
     let uri_str = format!(
         "{}/policies/reputation/scores/{reputation_uuid}/used_by/",
         configuration.base_path,
-        reputation_uuid = crate::apis::urlencode(p_path_reputation_uuid)
+        reputation_uuid = crate::apis::urlencode(params.reputation_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4633,7 +4907,7 @@ pub async fn policies_reputation_scores_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4651,17 +4925,12 @@ pub async fn policies_reputation_scores_used_by_list(
 /// Reputation Policy Viewset
 pub async fn policies_reputation_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    reputation_policy_request: models::ReputationPolicyRequest,
+    params: PoliciesReputationUpdateParams,
 ) -> Result<models::ReputationPolicy, Error<PoliciesReputationUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_reputation_policy_request = reputation_policy_request;
-
     let uri_str = format!(
         "{}/policies/reputation/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4671,7 +4940,7 @@ pub async fn policies_reputation_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_reputation_policy_request);
+    req_builder = req_builder.json(&params.reputation_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4687,7 +4956,7 @@ pub async fn policies_reputation_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ReputationPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ReputationPolicy`")))),
         }
@@ -4705,15 +4974,12 @@ pub async fn policies_reputation_update(
 /// Get a list of all objects that use this object
 pub async fn policies_reputation_used_by_list(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesReputationUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PoliciesReputationUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/reputation/{policy_uuid}/used_by/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4738,7 +5004,7 @@ pub async fn policies_reputation_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4756,11 +5022,8 @@ pub async fn policies_reputation_used_by_list(
 /// Password Uniqueness Policy Viewset
 pub async fn policies_unique_password_create(
     configuration: &configuration::Configuration,
-    unique_password_policy_request: models::UniquePasswordPolicyRequest,
+    params: PoliciesUniquePasswordCreateParams,
 ) -> Result<models::UniquePasswordPolicy, Error<PoliciesUniquePasswordCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_unique_password_policy_request = unique_password_policy_request;
-
     let uri_str = format!("{}/policies/unique_password/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4770,7 +5033,7 @@ pub async fn policies_unique_password_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_unique_password_policy_request);
+    req_builder = req_builder.json(&params.unique_password_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4786,7 +5049,7 @@ pub async fn policies_unique_password_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UniquePasswordPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UniquePasswordPolicy`")))),
         }
@@ -4804,15 +5067,12 @@ pub async fn policies_unique_password_create(
 /// Password Uniqueness Policy Viewset
 pub async fn policies_unique_password_destroy(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesUniquePasswordDestroyParams,
 ) -> Result<(), Error<PoliciesUniquePasswordDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/unique_password/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -4844,65 +5104,42 @@ pub async fn policies_unique_password_destroy(
 /// Password Uniqueness Policy Viewset
 pub async fn policies_unique_password_list(
     configuration: &configuration::Configuration,
-    created: Option<chrono::DateTime<chrono::FixedOffset>>,
-    execution_logging: Option<bool>,
-    last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
-    name: Option<&str>,
-    num_historical_passwords: Option<i32>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    password_field: Option<&str>,
-    policy_uuid: Option<&str>,
-    search: Option<&str>,
+    params: PoliciesUniquePasswordListParams,
 ) -> Result<models::PaginatedUniquePasswordPolicyList, Error<PoliciesUniquePasswordListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_created = created;
-    let p_query_execution_logging = execution_logging;
-    let p_query_last_updated = last_updated;
-    let p_query_name = name;
-    let p_query_num_historical_passwords = num_historical_passwords;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_password_field = password_field;
-    let p_query_policy_uuid = policy_uuid;
-    let p_query_search = search;
-
     let uri_str = format!("{}/policies/unique_password/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_created {
+    if let Some(ref param_value) = params.created {
         req_builder = req_builder.query(&[("created", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_execution_logging {
+    if let Some(ref param_value) = params.execution_logging {
         req_builder = req_builder.query(&[("execution_logging", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated {
+    if let Some(ref param_value) = params.last_updated {
         req_builder = req_builder.query(&[("last_updated", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_num_historical_passwords {
+    if let Some(ref param_value) = params.num_historical_passwords {
         req_builder = req_builder.query(&[("num_historical_passwords", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_password_field {
+    if let Some(ref param_value) = params.password_field {
         req_builder = req_builder.query(&[("password_field", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policy_uuid {
+    if let Some(ref param_value) = params.policy_uuid {
         req_builder = req_builder.query(&[("policy_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4926,7 +5163,7 @@ pub async fn policies_unique_password_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUniquePasswordPolicyList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUniquePasswordPolicyList`")))),
         }
@@ -4944,17 +5181,12 @@ pub async fn policies_unique_password_list(
 /// Password Uniqueness Policy Viewset
 pub async fn policies_unique_password_partial_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    patched_unique_password_policy_request: Option<models::PatchedUniquePasswordPolicyRequest>,
+    params: PoliciesUniquePasswordPartialUpdateParams,
 ) -> Result<models::UniquePasswordPolicy, Error<PoliciesUniquePasswordPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_patched_unique_password_policy_request = patched_unique_password_policy_request;
-
     let uri_str = format!(
         "{}/policies/unique_password/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -4964,7 +5196,7 @@ pub async fn policies_unique_password_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_unique_password_policy_request);
+    req_builder = req_builder.json(&params.patched_unique_password_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4980,7 +5212,7 @@ pub async fn policies_unique_password_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UniquePasswordPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UniquePasswordPolicy`")))),
         }
@@ -4998,15 +5230,12 @@ pub async fn policies_unique_password_partial_update(
 /// Password Uniqueness Policy Viewset
 pub async fn policies_unique_password_retrieve(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesUniquePasswordRetrieveParams,
 ) -> Result<models::UniquePasswordPolicy, Error<PoliciesUniquePasswordRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/unique_password/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5031,7 +5260,7 @@ pub async fn policies_unique_password_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UniquePasswordPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UniquePasswordPolicy`")))),
         }
@@ -5049,17 +5278,12 @@ pub async fn policies_unique_password_retrieve(
 /// Password Uniqueness Policy Viewset
 pub async fn policies_unique_password_update(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
-    unique_password_policy_request: models::UniquePasswordPolicyRequest,
+    params: PoliciesUniquePasswordUpdateParams,
 ) -> Result<models::UniquePasswordPolicy, Error<PoliciesUniquePasswordUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-    let p_body_unique_password_policy_request = unique_password_policy_request;
-
     let uri_str = format!(
         "{}/policies/unique_password/{policy_uuid}/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -5069,7 +5293,7 @@ pub async fn policies_unique_password_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_unique_password_policy_request);
+    req_builder = req_builder.json(&params.unique_password_policy_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5085,7 +5309,7 @@ pub async fn policies_unique_password_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UniquePasswordPolicy`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UniquePasswordPolicy`")))),
         }
@@ -5103,15 +5327,12 @@ pub async fn policies_unique_password_update(
 /// Get a list of all objects that use this object
 pub async fn policies_unique_password_used_by_list(
     configuration: &configuration::Configuration,
-    policy_uuid: &str,
+    params: PoliciesUniquePasswordUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<PoliciesUniquePasswordUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_policy_uuid = policy_uuid;
-
     let uri_str = format!(
         "{}/policies/unique_password/{policy_uuid}/used_by/",
         configuration.base_path,
-        policy_uuid = crate::apis::urlencode(p_path_policy_uuid)
+        policy_uuid = crate::apis::urlencode(params.policy_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -5136,7 +5357,7 @@ pub async fn policies_unique_password_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

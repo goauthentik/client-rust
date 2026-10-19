@@ -13,6 +13,12 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`debug_log_create`]
+#[derive(Clone, Debug)]
+pub struct DebugLogCreateParams {
+    pub server_log_request: models::ServerLogRequest,
+}
+
 /// struct for typed errors of method [`debug_log_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -25,11 +31,8 @@ pub enum DebugLogCreateError {
 /// Debug-only endpoint to allow frontend to log messages, usable when browser develooper-tools aren't available.  Never available in production.
 pub async fn debug_log_create(
     configuration: &configuration::Configuration,
-    server_log_request: models::ServerLogRequest,
+    params: DebugLogCreateParams,
 ) -> Result<(), Error<DebugLogCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_server_log_request = server_log_request;
-
     let uri_str = format!("{}/debug/log/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -39,7 +42,7 @@ pub async fn debug_log_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_server_log_request);
+    req_builder = req_builder.json(&params.server_log_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

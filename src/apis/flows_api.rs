@@ -13,6 +13,169 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`flows_bindings_create`]
+#[derive(Clone, Debug)]
+pub struct FlowsBindingsCreateParams {
+    pub flow_stage_binding_request: models::FlowStageBindingRequest,
+}
+
+/// struct for passing parameters to the method [`flows_bindings_destroy`]
+#[derive(Clone, Debug)]
+pub struct FlowsBindingsDestroyParams {
+    /// A UUID string identifying this Flow Stage Binding.
+    pub fsb_uuid: String,
+}
+
+/// struct for passing parameters to the method [`flows_bindings_list`]
+#[derive(Clone, Debug)]
+pub struct FlowsBindingsListParams {
+    pub evaluate_on_plan: Option<bool>,
+    pub fsb_uuid: Option<String>,
+    pub invalid_response_action: Option<String>,
+    pub order: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pbm_uuid: Option<String>,
+    pub policies: Option<Vec<uuid::Uuid>>,
+    pub policy_engine_mode: Option<models::PolicyEngineMode>,
+    pub re_evaluate_policies: Option<bool>,
+    /// A search term.
+    pub search: Option<String>,
+    pub stage: Option<String>,
+    pub target: Option<String>,
+}
+
+/// struct for passing parameters to the method [`flows_bindings_partial_update`]
+#[derive(Clone, Debug)]
+pub struct FlowsBindingsPartialUpdateParams {
+    /// A UUID string identifying this Flow Stage Binding.
+    pub fsb_uuid: String,
+    pub patched_flow_stage_binding_request: Option<models::PatchedFlowStageBindingRequest>,
+}
+
+/// struct for passing parameters to the method [`flows_bindings_retrieve`]
+#[derive(Clone, Debug)]
+pub struct FlowsBindingsRetrieveParams {
+    /// A UUID string identifying this Flow Stage Binding.
+    pub fsb_uuid: String,
+}
+
+/// struct for passing parameters to the method [`flows_bindings_update`]
+#[derive(Clone, Debug)]
+pub struct FlowsBindingsUpdateParams {
+    /// A UUID string identifying this Flow Stage Binding.
+    pub fsb_uuid: String,
+    pub flow_stage_binding_request: models::FlowStageBindingRequest,
+}
+
+/// struct for passing parameters to the method [`flows_bindings_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct FlowsBindingsUsedByListParams {
+    /// A UUID string identifying this Flow Stage Binding.
+    pub fsb_uuid: String,
+}
+
+/// struct for passing parameters to the method [`flows_executor_get`]
+#[derive(Clone, Debug)]
+pub struct FlowsExecutorGetParams {
+    pub flow_slug: String,
+    /// Querystring as received
+    pub query: String,
+}
+
+/// struct for passing parameters to the method [`flows_executor_solve`]
+#[derive(Clone, Debug)]
+pub struct FlowsExecutorSolveParams {
+    pub flow_slug: String,
+    /// Querystring as received
+    pub query: String,
+    pub flow_challenge_response_request: Option<models::FlowChallengeResponseRequest>,
+}
+
+/// struct for passing parameters to the method [`flows_inspector_get`]
+#[derive(Clone, Debug)]
+pub struct FlowsInspectorGetParams {
+    pub flow_slug: String,
+}
+
+/// struct for passing parameters to the method [`flows_instances_create`]
+#[derive(Clone, Debug)]
+pub struct FlowsInstancesCreateParams {
+    pub flow_request: models::FlowRequest,
+}
+
+/// struct for passing parameters to the method [`flows_instances_destroy`]
+#[derive(Clone, Debug)]
+pub struct FlowsInstancesDestroyParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`flows_instances_diagram_retrieve`]
+#[derive(Clone, Debug)]
+pub struct FlowsInstancesDiagramRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`flows_instances_execute_retrieve`]
+#[derive(Clone, Debug)]
+pub struct FlowsInstancesExecuteRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`flows_instances_export_retrieve`]
+#[derive(Clone, Debug)]
+pub struct FlowsInstancesExportRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`flows_instances_list`]
+#[derive(Clone, Debug)]
+pub struct FlowsInstancesListParams {
+    pub denied_action: Option<String>,
+    pub designation: Option<String>,
+    pub flow_uuid: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`flows_instances_partial_update`]
+#[derive(Clone, Debug)]
+pub struct FlowsInstancesPartialUpdateParams {
+    pub slug: String,
+    pub patched_flow_request: Option<models::PatchedFlowRequest>,
+}
+
+/// struct for passing parameters to the method [`flows_instances_retrieve`]
+#[derive(Clone, Debug)]
+pub struct FlowsInstancesRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`flows_instances_update`]
+#[derive(Clone, Debug)]
+pub struct FlowsInstancesUpdateParams {
+    pub slug: String,
+    pub flow_request: models::FlowRequest,
+}
+
+/// struct for passing parameters to the method [`flows_instances_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct FlowsInstancesUsedByListParams {
+    pub slug: String,
+}
+
 /// struct for typed errors of method [`flows_bindings_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -214,11 +377,8 @@ pub enum FlowsInstancesUsedByListError {
 /// FlowStageBinding Viewset
 pub async fn flows_bindings_create(
     configuration: &configuration::Configuration,
-    flow_stage_binding_request: models::FlowStageBindingRequest,
+    params: FlowsBindingsCreateParams,
 ) -> Result<models::FlowStageBinding, Error<FlowsBindingsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_flow_stage_binding_request = flow_stage_binding_request;
-
     let uri_str = format!("{}/flows/bindings/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -228,7 +388,7 @@ pub async fn flows_bindings_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_flow_stage_binding_request);
+    req_builder = req_builder.json(&params.flow_stage_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -244,7 +404,7 @@ pub async fn flows_bindings_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FlowStageBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FlowStageBinding`")))),
         }
@@ -262,15 +422,12 @@ pub async fn flows_bindings_create(
 /// FlowStageBinding Viewset
 pub async fn flows_bindings_destroy(
     configuration: &configuration::Configuration,
-    fsb_uuid: &str,
+    params: FlowsBindingsDestroyParams,
 ) -> Result<(), Error<FlowsBindingsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_fsb_uuid = fsb_uuid;
-
     let uri_str = format!(
         "{}/flows/bindings/{fsb_uuid}/",
         configuration.base_path,
-        fsb_uuid = crate::apis::urlencode(p_path_fsb_uuid)
+        fsb_uuid = crate::apis::urlencode(params.fsb_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -302,65 +459,36 @@ pub async fn flows_bindings_destroy(
 /// FlowStageBinding Viewset
 pub async fn flows_bindings_list(
     configuration: &configuration::Configuration,
-    evaluate_on_plan: Option<bool>,
-    fsb_uuid: Option<&str>,
-    invalid_response_action: Option<&str>,
-    order: Option<i32>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pbm_uuid: Option<&str>,
-    policies: Option<Vec<uuid::Uuid>>,
-    policy_engine_mode: Option<models::PolicyEngineMode>,
-    re_evaluate_policies: Option<bool>,
-    search: Option<&str>,
-    stage: Option<&str>,
-    target: Option<&str>,
+    params: FlowsBindingsListParams,
 ) -> Result<models::PaginatedFlowStageBindingList, Error<FlowsBindingsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_evaluate_on_plan = evaluate_on_plan;
-    let p_query_fsb_uuid = fsb_uuid;
-    let p_query_invalid_response_action = invalid_response_action;
-    let p_query_order = order;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_policies = policies;
-    let p_query_policy_engine_mode = policy_engine_mode;
-    let p_query_re_evaluate_policies = re_evaluate_policies;
-    let p_query_search = search;
-    let p_query_stage = stage;
-    let p_query_target = target;
-
     let uri_str = format!("{}/flows/bindings/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_evaluate_on_plan {
+    if let Some(ref param_value) = params.evaluate_on_plan {
         req_builder = req_builder.query(&[("evaluate_on_plan", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_fsb_uuid {
+    if let Some(ref param_value) = params.fsb_uuid {
         req_builder = req_builder.query(&[("fsb_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_invalid_response_action {
+    if let Some(ref param_value) = params.invalid_response_action {
         req_builder = req_builder.query(&[("invalid_response_action", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_order {
+    if let Some(ref param_value) = params.order {
         req_builder = req_builder.query(&[("order", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_policies {
+    if let Some(ref param_value) = params.policies {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -379,19 +507,19 @@ pub async fn flows_bindings_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_policy_engine_mode {
+    if let Some(ref param_value) = params.policy_engine_mode {
         req_builder = req_builder.query(&[("policy_engine_mode", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_re_evaluate_policies {
+    if let Some(ref param_value) = params.re_evaluate_policies {
         req_builder = req_builder.query(&[("re_evaluate_policies", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_stage {
+    if let Some(ref param_value) = params.stage {
         req_builder = req_builder.query(&[("stage", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_target {
+    if let Some(ref param_value) = params.target {
         req_builder = req_builder.query(&[("target", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -415,7 +543,7 @@ pub async fn flows_bindings_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedFlowStageBindingList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedFlowStageBindingList`")))),
         }
@@ -433,17 +561,12 @@ pub async fn flows_bindings_list(
 /// FlowStageBinding Viewset
 pub async fn flows_bindings_partial_update(
     configuration: &configuration::Configuration,
-    fsb_uuid: &str,
-    patched_flow_stage_binding_request: Option<models::PatchedFlowStageBindingRequest>,
+    params: FlowsBindingsPartialUpdateParams,
 ) -> Result<models::FlowStageBinding, Error<FlowsBindingsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_fsb_uuid = fsb_uuid;
-    let p_body_patched_flow_stage_binding_request = patched_flow_stage_binding_request;
-
     let uri_str = format!(
         "{}/flows/bindings/{fsb_uuid}/",
         configuration.base_path,
-        fsb_uuid = crate::apis::urlencode(p_path_fsb_uuid)
+        fsb_uuid = crate::apis::urlencode(params.fsb_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -453,7 +576,7 @@ pub async fn flows_bindings_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_flow_stage_binding_request);
+    req_builder = req_builder.json(&params.patched_flow_stage_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -469,7 +592,7 @@ pub async fn flows_bindings_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FlowStageBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FlowStageBinding`")))),
         }
@@ -487,15 +610,12 @@ pub async fn flows_bindings_partial_update(
 /// FlowStageBinding Viewset
 pub async fn flows_bindings_retrieve(
     configuration: &configuration::Configuration,
-    fsb_uuid: &str,
+    params: FlowsBindingsRetrieveParams,
 ) -> Result<models::FlowStageBinding, Error<FlowsBindingsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_fsb_uuid = fsb_uuid;
-
     let uri_str = format!(
         "{}/flows/bindings/{fsb_uuid}/",
         configuration.base_path,
-        fsb_uuid = crate::apis::urlencode(p_path_fsb_uuid)
+        fsb_uuid = crate::apis::urlencode(params.fsb_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -520,7 +640,7 @@ pub async fn flows_bindings_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FlowStageBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FlowStageBinding`")))),
         }
@@ -538,17 +658,12 @@ pub async fn flows_bindings_retrieve(
 /// FlowStageBinding Viewset
 pub async fn flows_bindings_update(
     configuration: &configuration::Configuration,
-    fsb_uuid: &str,
-    flow_stage_binding_request: models::FlowStageBindingRequest,
+    params: FlowsBindingsUpdateParams,
 ) -> Result<models::FlowStageBinding, Error<FlowsBindingsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_fsb_uuid = fsb_uuid;
-    let p_body_flow_stage_binding_request = flow_stage_binding_request;
-
     let uri_str = format!(
         "{}/flows/bindings/{fsb_uuid}/",
         configuration.base_path,
-        fsb_uuid = crate::apis::urlencode(p_path_fsb_uuid)
+        fsb_uuid = crate::apis::urlencode(params.fsb_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -558,7 +673,7 @@ pub async fn flows_bindings_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_flow_stage_binding_request);
+    req_builder = req_builder.json(&params.flow_stage_binding_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -574,7 +689,7 @@ pub async fn flows_bindings_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FlowStageBinding`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FlowStageBinding`")))),
         }
@@ -592,15 +707,12 @@ pub async fn flows_bindings_update(
 /// Get a list of all objects that use this object
 pub async fn flows_bindings_used_by_list(
     configuration: &configuration::Configuration,
-    fsb_uuid: &str,
+    params: FlowsBindingsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<FlowsBindingsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_fsb_uuid = fsb_uuid;
-
     let uri_str = format!(
         "{}/flows/bindings/{fsb_uuid}/used_by/",
         configuration.base_path,
-        fsb_uuid = crate::apis::urlencode(p_path_fsb_uuid)
+        fsb_uuid = crate::apis::urlencode(params.fsb_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -625,7 +737,7 @@ pub async fn flows_bindings_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -643,21 +755,16 @@ pub async fn flows_bindings_used_by_list(
 /// Get the next pending challenge from the currently active flow.
 pub async fn flows_executor_get(
     configuration: &configuration::Configuration,
-    flow_slug: &str,
-    query: &str,
+    params: FlowsExecutorGetParams,
 ) -> Result<models::ChallengeTypes, Error<FlowsExecutorGetError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_flow_slug = flow_slug;
-    let p_query_query = query;
-
     let uri_str = format!(
         "{}/flows/executor/{flow_slug}/",
         configuration.base_path,
-        flow_slug = crate::apis::urlencode(p_path_flow_slug)
+        flow_slug = crate::apis::urlencode(params.flow_slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    req_builder = req_builder.query(&[("query", &p_query_query.to_string())]);
+    req_builder = req_builder.query(&[("query", &params.query.to_string())]);
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
@@ -679,7 +786,9 @@ pub async fn flows_executor_get(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ChallengeTypes`",
@@ -703,30 +812,23 @@ pub async fn flows_executor_get(
 /// Solve the previously retrieved challenge and advanced to the next stage.
 pub async fn flows_executor_solve(
     configuration: &configuration::Configuration,
-    flow_slug: &str,
-    query: &str,
-    flow_challenge_response_request: Option<models::FlowChallengeResponseRequest>,
+    params: FlowsExecutorSolveParams,
 ) -> Result<models::ChallengeTypes, Error<FlowsExecutorSolveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_flow_slug = flow_slug;
-    let p_query_query = query;
-    let p_body_flow_challenge_response_request = flow_challenge_response_request;
-
     let uri_str = format!(
         "{}/flows/executor/{flow_slug}/",
         configuration.base_path,
-        flow_slug = crate::apis::urlencode(p_path_flow_slug)
+        flow_slug = crate::apis::urlencode(params.flow_slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    req_builder = req_builder.query(&[("query", &p_query_query.to_string())]);
+    req_builder = req_builder.query(&[("query", &params.query.to_string())]);
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_flow_challenge_response_request);
+    req_builder = req_builder.json(&params.flow_challenge_response_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -742,7 +844,9 @@ pub async fn flows_executor_solve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ChallengeTypes`",
@@ -766,15 +870,12 @@ pub async fn flows_executor_solve(
 /// Get current flow state and record it
 pub async fn flows_inspector_get(
     configuration: &configuration::Configuration,
-    flow_slug: &str,
+    params: FlowsInspectorGetParams,
 ) -> Result<models::FlowInspection, Error<FlowsInspectorGetError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_flow_slug = flow_slug;
-
     let uri_str = format!(
         "{}/flows/inspector/{flow_slug}/",
         configuration.base_path,
-        flow_slug = crate::apis::urlencode(p_path_flow_slug)
+        flow_slug = crate::apis::urlencode(params.flow_slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -799,7 +900,9 @@ pub async fn flows_inspector_get(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::FlowInspection`",
@@ -880,7 +983,9 @@ pub async fn flows_instances_cache_info_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Cache`",
@@ -906,11 +1011,8 @@ pub async fn flows_instances_cache_info_retrieve(
 /// Flow Viewset
 pub async fn flows_instances_create(
     configuration: &configuration::Configuration,
-    flow_request: models::FlowRequest,
+    params: FlowsInstancesCreateParams,
 ) -> Result<models::Flow, Error<FlowsInstancesCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_flow_request = flow_request;
-
     let uri_str = format!("{}/flows/instances/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -920,7 +1022,7 @@ pub async fn flows_instances_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_flow_request);
+    req_builder = req_builder.json(&params.flow_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -936,7 +1038,9 @@ pub async fn flows_instances_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Flow`",
@@ -962,15 +1066,12 @@ pub async fn flows_instances_create(
 /// Flow Viewset
 pub async fn flows_instances_destroy(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: FlowsInstancesDestroyParams,
 ) -> Result<(), Error<FlowsInstancesDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/flows/instances/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1002,15 +1103,12 @@ pub async fn flows_instances_destroy(
 /// Return the graph of flow with slug `slug`, for the client to render
 pub async fn flows_instances_diagram_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: FlowsInstancesDiagramRetrieveParams,
 ) -> Result<models::FlowDiagram, Error<FlowsInstancesDiagramRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/flows/instances/{slug}/diagram/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1035,7 +1133,9 @@ pub async fn flows_instances_diagram_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::FlowDiagram`",
@@ -1061,15 +1161,12 @@ pub async fn flows_instances_diagram_retrieve(
 /// Execute flow for current user
 pub async fn flows_instances_execute_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: FlowsInstancesExecuteRetrieveParams,
 ) -> Result<models::Link, Error<FlowsInstancesExecuteRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/flows/instances/{slug}/execute/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1094,7 +1191,9 @@ pub async fn flows_instances_execute_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Link`",
@@ -1120,15 +1219,12 @@ pub async fn flows_instances_execute_retrieve(
 /// Export flow to .yaml file
 pub async fn flows_instances_export_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: FlowsInstancesExportRetrieveParams,
 ) -> Result<reqwest::Response, Error<FlowsInstancesExportRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/flows/instances/{slug}/export/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1160,55 +1256,36 @@ pub async fn flows_instances_export_retrieve(
 /// Flow Viewset
 pub async fn flows_instances_list(
     configuration: &configuration::Configuration,
-    denied_action: Option<&str>,
-    designation: Option<&str>,
-    flow_uuid: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    slug: Option<&str>,
+    params: FlowsInstancesListParams,
 ) -> Result<models::PaginatedFlowList, Error<FlowsInstancesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_denied_action = denied_action;
-    let p_query_designation = designation;
-    let p_query_flow_uuid = flow_uuid;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_slug = slug;
-
     let uri_str = format!("{}/flows/instances/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_denied_action {
+    if let Some(ref param_value) = params.denied_action {
         req_builder = req_builder.query(&[("denied_action", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_designation {
+    if let Some(ref param_value) = params.designation {
         req_builder = req_builder.query(&[("designation", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_flow_uuid {
+    if let Some(ref param_value) = params.flow_uuid {
         req_builder = req_builder.query(&[("flow_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1232,7 +1309,7 @@ pub async fn flows_instances_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedFlowList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedFlowList`")))),
         }
@@ -1250,17 +1327,12 @@ pub async fn flows_instances_list(
 /// Flow Viewset
 pub async fn flows_instances_partial_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    patched_flow_request: Option<models::PatchedFlowRequest>,
+    params: FlowsInstancesPartialUpdateParams,
 ) -> Result<models::Flow, Error<FlowsInstancesPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_patched_flow_request = patched_flow_request;
-
     let uri_str = format!(
         "{}/flows/instances/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1270,7 +1342,7 @@ pub async fn flows_instances_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_flow_request);
+    req_builder = req_builder.json(&params.patched_flow_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1286,7 +1358,9 @@ pub async fn flows_instances_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Flow`",
@@ -1312,15 +1386,12 @@ pub async fn flows_instances_partial_update(
 /// Flow Viewset
 pub async fn flows_instances_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: FlowsInstancesRetrieveParams,
 ) -> Result<models::Flow, Error<FlowsInstancesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/flows/instances/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1345,7 +1416,9 @@ pub async fn flows_instances_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Flow`",
@@ -1371,17 +1444,12 @@ pub async fn flows_instances_retrieve(
 /// Flow Viewset
 pub async fn flows_instances_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    flow_request: models::FlowRequest,
+    params: FlowsInstancesUpdateParams,
 ) -> Result<models::Flow, Error<FlowsInstancesUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_flow_request = flow_request;
-
     let uri_str = format!(
         "{}/flows/instances/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1391,7 +1459,7 @@ pub async fn flows_instances_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_flow_request);
+    req_builder = req_builder.json(&params.flow_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1407,7 +1475,9 @@ pub async fn flows_instances_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Flow`",
@@ -1433,15 +1503,12 @@ pub async fn flows_instances_update(
 /// Get a list of all objects that use this object
 pub async fn flows_instances_used_by_list(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: FlowsInstancesUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<FlowsInstancesUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/flows/instances/{slug}/used_by/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1466,7 +1533,7 @@ pub async fn flows_instances_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }

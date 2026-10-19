@@ -13,6 +13,733 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`core_application_entitlements_create`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationEntitlementsCreateParams {
+    pub application_entitlement_request: models::ApplicationEntitlementRequest,
+}
+
+/// struct for passing parameters to the method [`core_application_entitlements_destroy`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationEntitlementsDestroyParams {
+    /// A UUID string identifying this Application Entitlement.
+    pub pbm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`core_application_entitlements_list`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationEntitlementsListParams {
+    pub app: Option<String>,
+    /// Entitlements assigned to this user, directly or through a group, regardless of the user's access to the application.
+    pub for_user: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pbm_uuid: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_application_entitlements_partial_update`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationEntitlementsPartialUpdateParams {
+    /// A UUID string identifying this Application Entitlement.
+    pub pbm_uuid: String,
+    pub patched_application_entitlement_request: Option<models::PatchedApplicationEntitlementRequest>,
+}
+
+/// struct for passing parameters to the method [`core_application_entitlements_requestable_list`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationEntitlementsRequestableListParams {
+    pub app: Option<String>,
+    /// Entitlements assigned to this user, directly or through a group, regardless of the user's access to the application.
+    pub for_user: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub pbm_uuid: Option<String>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_application_entitlements_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationEntitlementsRetrieveParams {
+    /// A UUID string identifying this Application Entitlement.
+    pub pbm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`core_application_entitlements_update`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationEntitlementsUpdateParams {
+    /// A UUID string identifying this Application Entitlement.
+    pub pbm_uuid: String,
+    pub application_entitlement_request: models::ApplicationEntitlementRequest,
+}
+
+/// struct for passing parameters to the method [`core_application_entitlements_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationEntitlementsUsedByListParams {
+    /// A UUID string identifying this Application Entitlement.
+    pub pbm_uuid: String,
+}
+
+/// struct for passing parameters to the method [`core_applications_accessible_list`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationsAccessibleListParams {
+    pub for_user: Option<i32>,
+    pub group: Option<String>,
+    pub meta_description: Option<String>,
+    pub meta_launch_url: Option<String>,
+    pub meta_publisher: Option<String>,
+    pub name: Option<String>,
+    pub only_with_launch_url: Option<bool>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_applications_check_access_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationsCheckAccessRetrieveParams {
+    pub slug: String,
+    pub for_user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`core_applications_create`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationsCreateParams {
+    pub application_request: models::ApplicationRequest,
+}
+
+/// struct for passing parameters to the method [`core_applications_destroy`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationsDestroyParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`core_applications_list`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationsListParams {
+    pub group: Option<String>,
+    pub meta_description: Option<String>,
+    pub meta_launch_url: Option<String>,
+    pub meta_publisher: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_applications_partial_update`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationsPartialUpdateParams {
+    pub slug: String,
+    pub patched_application_request: Option<models::PatchedApplicationRequest>,
+}
+
+/// struct for passing parameters to the method [`core_applications_requestable_list`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationsRequestableListParams {
+    pub group: Option<String>,
+    pub meta_description: Option<String>,
+    pub meta_launch_url: Option<String>,
+    pub meta_publisher: Option<String>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub slug: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_applications_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationsRetrieveParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`core_applications_update`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationsUpdateParams {
+    pub slug: String,
+    pub application_request: models::ApplicationRequest,
+}
+
+/// struct for passing parameters to the method [`core_applications_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct CoreApplicationsUsedByListParams {
+    pub slug: String,
+}
+
+/// struct for passing parameters to the method [`core_authenticated_sessions_bulk_delete_destroy`]
+#[derive(Clone, Debug)]
+pub struct CoreAuthenticatedSessionsBulkDeleteDestroyParams {
+    /// List of user IDs to revoke all sessions for
+    pub user_pks: Vec<i32>,
+}
+
+/// struct for passing parameters to the method [`core_authenticated_sessions_destroy`]
+#[derive(Clone, Debug)]
+pub struct CoreAuthenticatedSessionsDestroyParams {
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`core_authenticated_sessions_list`]
+#[derive(Clone, Debug)]
+pub struct CoreAuthenticatedSessionsListParams {
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub session__last_ip: Option<String>,
+    pub session__last_user_agent: Option<String>,
+    pub user__username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_authenticated_sessions_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CoreAuthenticatedSessionsRetrieveParams {
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`core_authenticated_sessions_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct CoreAuthenticatedSessionsUsedByListParams {
+    pub uuid: String,
+}
+
+/// struct for passing parameters to the method [`core_brands_create`]
+#[derive(Clone, Debug)]
+pub struct CoreBrandsCreateParams {
+    pub brand_request: models::BrandRequest,
+}
+
+/// struct for passing parameters to the method [`core_brands_destroy`]
+#[derive(Clone, Debug)]
+pub struct CoreBrandsDestroyParams {
+    /// A UUID string identifying this Brand.
+    pub brand_uuid: String,
+}
+
+/// struct for passing parameters to the method [`core_brands_list`]
+#[derive(Clone, Debug)]
+pub struct CoreBrandsListParams {
+    pub brand_uuid: Option<String>,
+    pub branding_default_flow_background: Option<String>,
+    pub branding_favicon: Option<String>,
+    pub branding_logo: Option<String>,
+    pub branding_title: Option<String>,
+    pub client_certificates: Option<Vec<uuid::Uuid>>,
+    pub default: Option<bool>,
+    pub domain: Option<String>,
+    pub flow_authentication: Option<String>,
+    pub flow_device_code: Option<String>,
+    pub flow_invalidation: Option<String>,
+    pub flow_lockdown: Option<String>,
+    pub flow_recovery: Option<String>,
+    pub flow_request: Option<String>,
+    pub flow_unenrollment: Option<String>,
+    pub flow_user_settings: Option<String>,
+    pub flow_user_switch: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub web_certificate: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_brands_partial_update`]
+#[derive(Clone, Debug)]
+pub struct CoreBrandsPartialUpdateParams {
+    /// A UUID string identifying this Brand.
+    pub brand_uuid: String,
+    pub patched_brand_request: Option<models::PatchedBrandRequest>,
+}
+
+/// struct for passing parameters to the method [`core_brands_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CoreBrandsRetrieveParams {
+    /// A UUID string identifying this Brand.
+    pub brand_uuid: String,
+}
+
+/// struct for passing parameters to the method [`core_brands_update`]
+#[derive(Clone, Debug)]
+pub struct CoreBrandsUpdateParams {
+    /// A UUID string identifying this Brand.
+    pub brand_uuid: String,
+    pub brand_request: models::BrandRequest,
+}
+
+/// struct for passing parameters to the method [`core_brands_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct CoreBrandsUsedByListParams {
+    /// A UUID string identifying this Brand.
+    pub brand_uuid: String,
+}
+
+/// struct for passing parameters to the method [`core_groups_add_user_create`]
+#[derive(Clone, Debug)]
+pub struct CoreGroupsAddUserCreateParams {
+    /// A UUID string identifying this Group.
+    pub group_uuid: String,
+    pub user_account_request: models::UserAccountRequest,
+}
+
+/// struct for passing parameters to the method [`core_groups_create`]
+#[derive(Clone, Debug)]
+pub struct CoreGroupsCreateParams {
+    pub group_request: models::GroupRequest,
+}
+
+/// struct for passing parameters to the method [`core_groups_destroy`]
+#[derive(Clone, Debug)]
+pub struct CoreGroupsDestroyParams {
+    /// A UUID string identifying this Group.
+    pub group_uuid: String,
+}
+
+/// struct for passing parameters to the method [`core_groups_list`]
+#[derive(Clone, Debug)]
+pub struct CoreGroupsListParams {
+    pub include_children: Option<bool>,
+    pub include_inherited_roles: Option<bool>,
+    pub include_parents: Option<bool>,
+    pub include_users: Option<bool>,
+    pub is_superuser: Option<bool>,
+    pub members_by_pk: Option<Vec<i32>>,
+    /// Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+    pub members_by_username: Option<Vec<String>>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_groups_partial_update`]
+#[derive(Clone, Debug)]
+pub struct CoreGroupsPartialUpdateParams {
+    /// A UUID string identifying this Group.
+    pub group_uuid: String,
+    pub patched_group_request: Option<models::PatchedGroupRequest>,
+}
+
+/// struct for passing parameters to the method [`core_groups_remove_user_create`]
+#[derive(Clone, Debug)]
+pub struct CoreGroupsRemoveUserCreateParams {
+    /// A UUID string identifying this Group.
+    pub group_uuid: String,
+    pub user_account_request: models::UserAccountRequest,
+}
+
+/// struct for passing parameters to the method [`core_groups_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CoreGroupsRetrieveParams {
+    /// A UUID string identifying this Group.
+    pub group_uuid: String,
+    pub include_children: Option<bool>,
+    pub include_inherited_roles: Option<bool>,
+    pub include_parents: Option<bool>,
+    pub include_users: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`core_groups_update`]
+#[derive(Clone, Debug)]
+pub struct CoreGroupsUpdateParams {
+    /// A UUID string identifying this Group.
+    pub group_uuid: String,
+    pub group_request: models::GroupRequest,
+}
+
+/// struct for passing parameters to the method [`core_groups_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct CoreGroupsUsedByListParams {
+    /// A UUID string identifying this Group.
+    pub group_uuid: String,
+}
+
+/// struct for passing parameters to the method [`core_object_attributes_create`]
+#[derive(Clone, Debug)]
+pub struct CoreObjectAttributesCreateParams {
+    pub object_attribute_request: models::ObjectAttributeRequest,
+}
+
+/// struct for passing parameters to the method [`core_object_attributes_destroy`]
+#[derive(Clone, Debug)]
+pub struct CoreObjectAttributesDestroyParams {
+    /// A UUID string identifying this Object Attribute.
+    pub attribute_id: String,
+}
+
+/// struct for passing parameters to the method [`core_object_attributes_list`]
+#[derive(Clone, Debug)]
+pub struct CoreObjectAttributesListParams {
+    pub enabled: Option<bool>,
+    pub object_type__app_label: Option<String>,
+    pub object_type__model: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_object_attributes_partial_update`]
+#[derive(Clone, Debug)]
+pub struct CoreObjectAttributesPartialUpdateParams {
+    /// A UUID string identifying this Object Attribute.
+    pub attribute_id: String,
+    pub patched_object_attribute_request: Option<models::PatchedObjectAttributeRequest>,
+}
+
+/// struct for passing parameters to the method [`core_object_attributes_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CoreObjectAttributesRetrieveParams {
+    /// A UUID string identifying this Object Attribute.
+    pub attribute_id: String,
+}
+
+/// struct for passing parameters to the method [`core_object_attributes_update`]
+#[derive(Clone, Debug)]
+pub struct CoreObjectAttributesUpdateParams {
+    /// A UUID string identifying this Object Attribute.
+    pub attribute_id: String,
+    pub object_attribute_request: models::ObjectAttributeRequest,
+}
+
+/// struct for passing parameters to the method [`core_tokens_create`]
+#[derive(Clone, Debug)]
+pub struct CoreTokensCreateParams {
+    pub token_request: models::TokenRequest,
+}
+
+/// struct for passing parameters to the method [`core_tokens_destroy`]
+#[derive(Clone, Debug)]
+pub struct CoreTokensDestroyParams {
+    pub identifier: String,
+}
+
+/// struct for passing parameters to the method [`core_tokens_list`]
+#[derive(Clone, Debug)]
+pub struct CoreTokensListParams {
+    pub description: Option<String>,
+    pub expires: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub expiring: Option<bool>,
+    pub identifier: Option<String>,
+    pub intent: Option<models::IntentEnum>,
+    pub managed: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub user__username: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_tokens_partial_update`]
+#[derive(Clone, Debug)]
+pub struct CoreTokensPartialUpdateParams {
+    pub identifier: String,
+    pub patched_token_request: Option<models::PatchedTokenRequest>,
+}
+
+/// struct for passing parameters to the method [`core_tokens_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CoreTokensRetrieveParams {
+    pub identifier: String,
+}
+
+/// struct for passing parameters to the method [`core_tokens_set_key_create`]
+#[derive(Clone, Debug)]
+pub struct CoreTokensSetKeyCreateParams {
+    pub identifier: String,
+    pub token_set_key_request: models::TokenSetKeyRequest,
+}
+
+/// struct for passing parameters to the method [`core_tokens_update`]
+#[derive(Clone, Debug)]
+pub struct CoreTokensUpdateParams {
+    pub identifier: String,
+    pub token_request: models::TokenRequest,
+}
+
+/// struct for passing parameters to the method [`core_tokens_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct CoreTokensUsedByListParams {
+    pub identifier: String,
+}
+
+/// struct for passing parameters to the method [`core_tokens_view_key_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CoreTokensViewKeyRetrieveParams {
+    pub identifier: String,
+}
+
+/// struct for passing parameters to the method [`core_transactional_applications_update`]
+#[derive(Clone, Debug)]
+pub struct CoreTransactionalApplicationsUpdateParams {
+    pub transaction_application_request: models::TransactionApplicationRequest,
+}
+
+/// struct for passing parameters to the method [`core_user_consent_destroy`]
+#[derive(Clone, Debug)]
+pub struct CoreUserConsentDestroyParams {
+    /// A unique integer value identifying this User Consent.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`core_user_consent_list`]
+#[derive(Clone, Debug)]
+pub struct CoreUserConsentListParams {
+    pub application: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    /// A search term.
+    pub search: Option<String>,
+    pub user: Option<i32>,
+}
+
+/// struct for passing parameters to the method [`core_user_consent_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CoreUserConsentRetrieveParams {
+    /// A unique integer value identifying this User Consent.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`core_user_consent_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct CoreUserConsentUsedByListParams {
+    /// A unique integer value identifying this User Consent.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`core_users_account_lockdown_create`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersAccountLockdownCreateParams {
+    pub user_account_lockdown_request: Option<models::UserAccountLockdownRequest>,
+}
+
+/// struct for passing parameters to the method [`core_users_create`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersCreateParams {
+    pub user_request: models::UserRequest,
+}
+
+/// struct for passing parameters to the method [`core_users_destroy`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersDestroyParams {
+    /// A unique integer value identifying this User.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`core_users_export_create`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersExportCreateParams {
+    pub date_joined: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub date_joined__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub date_joined__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub email: Option<String>,
+    pub groups_by_name: Option<Vec<String>>,
+    pub groups_by_pk: Option<Vec<uuid::Uuid>>,
+    pub is_active: Option<bool>,
+    pub is_superuser: Option<bool>,
+    pub last_login: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub last_login__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub last_login__isnull: Option<bool>,
+    pub last_login__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub last_updated__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub last_updated__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    pub path: Option<String>,
+    pub path_startswith: Option<String>,
+    pub roles_by_name: Option<Vec<String>>,
+    pub roles_by_pk: Option<Vec<uuid::Uuid>>,
+    /// A search term.
+    pub search: Option<String>,
+    pub r#type: Option<Vec<models::UserTypeEnum>>,
+    pub username: Option<String>,
+    pub uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_users_impersonate_create`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersImpersonateCreateParams {
+    /// A unique integer value identifying this User.
+    pub id: i32,
+    pub impersonation_request: models::ImpersonationRequest,
+}
+
+/// struct for passing parameters to the method [`core_users_list`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersListParams {
+    pub date_joined: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub date_joined__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub date_joined__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub email: Option<String>,
+    pub groups_by_name: Option<Vec<String>>,
+    pub groups_by_pk: Option<Vec<uuid::Uuid>>,
+    pub include_groups: Option<bool>,
+    pub include_roles: Option<bool>,
+    pub is_active: Option<bool>,
+    pub is_superuser: Option<bool>,
+    pub last_login: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub last_login__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub last_login__isnull: Option<bool>,
+    pub last_login__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub last_updated__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub last_updated__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
+    pub name: Option<String>,
+    /// Which field to use when ordering the results.
+    pub ordering: Option<String>,
+    /// A page number within the paginated result set.
+    pub page: Option<i32>,
+    /// Number of results to return per page.
+    pub page_size: Option<i32>,
+    pub path: Option<String>,
+    pub path_startswith: Option<String>,
+    pub roles_by_name: Option<Vec<String>>,
+    pub roles_by_pk: Option<Vec<uuid::Uuid>>,
+    /// A search term.
+    pub search: Option<String>,
+    pub r#type: Option<Vec<models::UserTypeEnum>>,
+    pub username: Option<String>,
+    pub uuid: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_users_partial_update`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersPartialUpdateParams {
+    /// A unique integer value identifying this User.
+    pub id: i32,
+    pub patched_user_request: Option<models::PatchedUserRequest>,
+}
+
+/// struct for passing parameters to the method [`core_users_paths_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersPathsRetrieveParams {
+    /// A search term.
+    pub search: Option<String>,
+}
+
+/// struct for passing parameters to the method [`core_users_recovery_create`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersRecoveryCreateParams {
+    /// A unique integer value identifying this User.
+    pub id: i32,
+    pub user_recovery_link_request: Option<models::UserRecoveryLinkRequest>,
+}
+
+/// struct for passing parameters to the method [`core_users_recovery_email_create`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersRecoveryEmailCreateParams {
+    /// A unique integer value identifying this User.
+    pub id: i32,
+    pub user_recovery_email_request: models::UserRecoveryEmailRequest,
+}
+
+/// struct for passing parameters to the method [`core_users_retrieve`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersRetrieveParams {
+    /// A unique integer value identifying this User.
+    pub id: i32,
+}
+
+/// struct for passing parameters to the method [`core_users_service_account_create`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersServiceAccountCreateParams {
+    pub user_service_account_request: models::UserServiceAccountRequest,
+}
+
+/// struct for passing parameters to the method [`core_users_set_password_create`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersSetPasswordCreateParams {
+    /// A unique integer value identifying this User.
+    pub id: i32,
+    pub user_password_set_request: models::UserPasswordSetRequest,
+}
+
+/// struct for passing parameters to the method [`core_users_set_password_hash_create`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersSetPasswordHashCreateParams {
+    /// A unique integer value identifying this User.
+    pub id: i32,
+    pub user_password_hash_set_request: models::UserPasswordHashSetRequest,
+}
+
+/// struct for passing parameters to the method [`core_users_switch_create`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersSwitchCreateParams {
+    pub next: Option<String>,
+    pub user_switch_request: Option<models::UserSwitchRequest>,
+}
+
+/// struct for passing parameters to the method [`core_users_update`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersUpdateParams {
+    /// A unique integer value identifying this User.
+    pub id: i32,
+    pub user_request: models::UserRequest,
+}
+
+/// struct for passing parameters to the method [`core_users_used_by_list`]
+#[derive(Clone, Debug)]
+pub struct CoreUsersUsedByListParams {
+    /// A unique integer value identifying this User.
+    pub id: i32,
+}
+
 /// struct for typed errors of method [`core_application_entitlements_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -731,11 +1458,8 @@ pub enum CoreUsersUsedByListError {
 /// ApplicationEntitlement Viewset
 pub async fn core_application_entitlements_create(
     configuration: &configuration::Configuration,
-    application_entitlement_request: models::ApplicationEntitlementRequest,
+    params: CoreApplicationEntitlementsCreateParams,
 ) -> Result<models::ApplicationEntitlement, Error<CoreApplicationEntitlementsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_application_entitlement_request = application_entitlement_request;
-
     let uri_str = format!("{}/core/application_entitlements/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -745,7 +1469,7 @@ pub async fn core_application_entitlements_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_application_entitlement_request);
+    req_builder = req_builder.json(&params.application_entitlement_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -761,7 +1485,7 @@ pub async fn core_application_entitlements_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApplicationEntitlement`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApplicationEntitlement`")))),
         }
@@ -779,15 +1503,12 @@ pub async fn core_application_entitlements_create(
 /// ApplicationEntitlement Viewset
 pub async fn core_application_entitlements_destroy(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
+    params: CoreApplicationEntitlementsDestroyParams,
 ) -> Result<(), Error<CoreApplicationEntitlementsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
     let uri_str = format!(
         "{}/core/application_entitlements/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -819,50 +1540,33 @@ pub async fn core_application_entitlements_destroy(
 /// ApplicationEntitlement Viewset
 pub async fn core_application_entitlements_list(
     configuration: &configuration::Configuration,
-    app: Option<&str>,
-    for_user: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pbm_uuid: Option<&str>,
-    search: Option<&str>,
+    params: CoreApplicationEntitlementsListParams,
 ) -> Result<models::PaginatedApplicationEntitlementList, Error<CoreApplicationEntitlementsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_app = app;
-    let p_query_for_user = for_user;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_search = search;
-
     let uri_str = format!("{}/core/application_entitlements/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_app {
+    if let Some(ref param_value) = params.app {
         req_builder = req_builder.query(&[("app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_for_user {
+    if let Some(ref param_value) = params.for_user {
         req_builder = req_builder.query(&[("for_user", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -886,7 +1590,7 @@ pub async fn core_application_entitlements_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedApplicationEntitlementList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedApplicationEntitlementList`")))),
         }
@@ -904,17 +1608,12 @@ pub async fn core_application_entitlements_list(
 /// ApplicationEntitlement Viewset
 pub async fn core_application_entitlements_partial_update(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-    patched_application_entitlement_request: Option<models::PatchedApplicationEntitlementRequest>,
+    params: CoreApplicationEntitlementsPartialUpdateParams,
 ) -> Result<models::ApplicationEntitlement, Error<CoreApplicationEntitlementsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-    let p_body_patched_application_entitlement_request = patched_application_entitlement_request;
-
     let uri_str = format!(
         "{}/core/application_entitlements/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -924,7 +1623,7 @@ pub async fn core_application_entitlements_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_application_entitlement_request);
+    req_builder = req_builder.json(&params.patched_application_entitlement_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -940,7 +1639,7 @@ pub async fn core_application_entitlements_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApplicationEntitlement`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApplicationEntitlement`")))),
         }
@@ -958,50 +1657,33 @@ pub async fn core_application_entitlements_partial_update(
 /// List application entitlements which the current user can request access to
 pub async fn core_application_entitlements_requestable_list(
     configuration: &configuration::Configuration,
-    app: Option<&str>,
-    for_user: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    pbm_uuid: Option<&str>,
-    search: Option<&str>,
+    params: CoreApplicationEntitlementsRequestableListParams,
 ) -> Result<models::PaginatedRequestableTargetList, Error<CoreApplicationEntitlementsRequestableListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_app = app;
-    let p_query_for_user = for_user;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_pbm_uuid = pbm_uuid;
-    let p_query_search = search;
-
     let uri_str = format!("{}/core/application_entitlements/requestable/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_app {
+    if let Some(ref param_value) = params.app {
         req_builder = req_builder.query(&[("app", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_for_user {
+    if let Some(ref param_value) = params.for_user {
         req_builder = req_builder.query(&[("for_user", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_pbm_uuid {
+    if let Some(ref param_value) = params.pbm_uuid {
         req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1025,7 +1707,7 @@ pub async fn core_application_entitlements_requestable_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedRequestableTargetList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedRequestableTargetList`")))),
         }
@@ -1043,15 +1725,12 @@ pub async fn core_application_entitlements_requestable_list(
 /// ApplicationEntitlement Viewset
 pub async fn core_application_entitlements_retrieve(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
+    params: CoreApplicationEntitlementsRetrieveParams,
 ) -> Result<models::ApplicationEntitlement, Error<CoreApplicationEntitlementsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
     let uri_str = format!(
         "{}/core/application_entitlements/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1076,7 +1755,7 @@ pub async fn core_application_entitlements_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApplicationEntitlement`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApplicationEntitlement`")))),
         }
@@ -1094,17 +1773,12 @@ pub async fn core_application_entitlements_retrieve(
 /// ApplicationEntitlement Viewset
 pub async fn core_application_entitlements_update(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
-    application_entitlement_request: models::ApplicationEntitlementRequest,
+    params: CoreApplicationEntitlementsUpdateParams,
 ) -> Result<models::ApplicationEntitlement, Error<CoreApplicationEntitlementsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-    let p_body_application_entitlement_request = application_entitlement_request;
-
     let uri_str = format!(
         "{}/core/application_entitlements/{pbm_uuid}/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1114,7 +1788,7 @@ pub async fn core_application_entitlements_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_application_entitlement_request);
+    req_builder = req_builder.json(&params.application_entitlement_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1130,7 +1804,7 @@ pub async fn core_application_entitlements_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApplicationEntitlement`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApplicationEntitlement`")))),
         }
@@ -1148,15 +1822,12 @@ pub async fn core_application_entitlements_update(
 /// Get a list of all objects that use this object
 pub async fn core_application_entitlements_used_by_list(
     configuration: &configuration::Configuration,
-    pbm_uuid: &str,
+    params: CoreApplicationEntitlementsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<CoreApplicationEntitlementsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_pbm_uuid = pbm_uuid;
-
     let uri_str = format!(
         "{}/core/application_entitlements/{pbm_uuid}/used_by/",
         configuration.base_path,
-        pbm_uuid = crate::apis::urlencode(p_path_pbm_uuid)
+        pbm_uuid = crate::apis::urlencode(params.pbm_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1181,7 +1852,7 @@ pub async fn core_application_entitlements_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1199,70 +1870,45 @@ pub async fn core_application_entitlements_used_by_list(
 /// List applications the user passes policies for, regardless of RBAC permissions
 pub async fn core_applications_accessible_list(
     configuration: &configuration::Configuration,
-    for_user: Option<i32>,
-    group: Option<&str>,
-    meta_description: Option<&str>,
-    meta_launch_url: Option<&str>,
-    meta_publisher: Option<&str>,
-    name: Option<&str>,
-    only_with_launch_url: Option<bool>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    slug: Option<&str>,
+    params: CoreApplicationsAccessibleListParams,
 ) -> Result<models::PaginatedApplicationList, Error<CoreApplicationsAccessibleListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_for_user = for_user;
-    let p_query_group = group;
-    let p_query_meta_description = meta_description;
-    let p_query_meta_launch_url = meta_launch_url;
-    let p_query_meta_publisher = meta_publisher;
-    let p_query_name = name;
-    let p_query_only_with_launch_url = only_with_launch_url;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_slug = slug;
-
     let uri_str = format!("{}/core/applications/@accessible/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_for_user {
+    if let Some(ref param_value) = params.for_user {
         req_builder = req_builder.query(&[("for_user", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_group {
+    if let Some(ref param_value) = params.group {
         req_builder = req_builder.query(&[("group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_meta_description {
+    if let Some(ref param_value) = params.meta_description {
         req_builder = req_builder.query(&[("meta_description", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_meta_launch_url {
+    if let Some(ref param_value) = params.meta_launch_url {
         req_builder = req_builder.query(&[("meta_launch_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_meta_publisher {
+    if let Some(ref param_value) = params.meta_publisher {
         req_builder = req_builder.query(&[("meta_publisher", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_only_with_launch_url {
+    if let Some(ref param_value) = params.only_with_launch_url {
         req_builder = req_builder.query(&[("only_with_launch_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1286,7 +1932,7 @@ pub async fn core_applications_accessible_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedApplicationList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedApplicationList`")))),
         }
@@ -1304,21 +1950,16 @@ pub async fn core_applications_accessible_list(
 /// Check access to a single application by slug
 pub async fn core_applications_check_access_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
-    for_user: Option<i32>,
+    params: CoreApplicationsCheckAccessRetrieveParams,
 ) -> Result<models::PolicyTestResult, Error<CoreApplicationsCheckAccessRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_query_for_user = for_user;
-
     let uri_str = format!(
         "{}/core/applications/{slug}/check_access/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_for_user {
+    if let Some(ref param_value) = params.for_user {
         req_builder = req_builder.query(&[("for_user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1342,7 +1983,7 @@ pub async fn core_applications_check_access_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PolicyTestResult`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PolicyTestResult`")))),
         }
@@ -1360,11 +2001,8 @@ pub async fn core_applications_check_access_retrieve(
 /// Application Viewset
 pub async fn core_applications_create(
     configuration: &configuration::Configuration,
-    application_request: models::ApplicationRequest,
+    params: CoreApplicationsCreateParams,
 ) -> Result<models::Application, Error<CoreApplicationsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_application_request = application_request;
-
     let uri_str = format!("{}/core/applications/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -1374,7 +2012,7 @@ pub async fn core_applications_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_application_request);
+    req_builder = req_builder.json(&params.application_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1390,7 +2028,9 @@ pub async fn core_applications_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Application`",
@@ -1416,15 +2056,12 @@ pub async fn core_applications_create(
 /// Application Viewset
 pub async fn core_applications_destroy(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: CoreApplicationsDestroyParams,
 ) -> Result<(), Error<CoreApplicationsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/core/applications/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1456,60 +2093,39 @@ pub async fn core_applications_destroy(
 /// Application Viewset
 pub async fn core_applications_list(
     configuration: &configuration::Configuration,
-    group: Option<&str>,
-    meta_description: Option<&str>,
-    meta_launch_url: Option<&str>,
-    meta_publisher: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    slug: Option<&str>,
+    params: CoreApplicationsListParams,
 ) -> Result<models::PaginatedApplicationList, Error<CoreApplicationsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group = group;
-    let p_query_meta_description = meta_description;
-    let p_query_meta_launch_url = meta_launch_url;
-    let p_query_meta_publisher = meta_publisher;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_slug = slug;
-
     let uri_str = format!("{}/core/applications/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group {
+    if let Some(ref param_value) = params.group {
         req_builder = req_builder.query(&[("group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_meta_description {
+    if let Some(ref param_value) = params.meta_description {
         req_builder = req_builder.query(&[("meta_description", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_meta_launch_url {
+    if let Some(ref param_value) = params.meta_launch_url {
         req_builder = req_builder.query(&[("meta_launch_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_meta_publisher {
+    if let Some(ref param_value) = params.meta_publisher {
         req_builder = req_builder.query(&[("meta_publisher", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1533,7 +2149,7 @@ pub async fn core_applications_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedApplicationList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedApplicationList`")))),
         }
@@ -1551,17 +2167,12 @@ pub async fn core_applications_list(
 /// Application Viewset
 pub async fn core_applications_partial_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    patched_application_request: Option<models::PatchedApplicationRequest>,
+    params: CoreApplicationsPartialUpdateParams,
 ) -> Result<models::Application, Error<CoreApplicationsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_patched_application_request = patched_application_request;
-
     let uri_str = format!(
         "{}/core/applications/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -1571,7 +2182,7 @@ pub async fn core_applications_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_application_request);
+    req_builder = req_builder.json(&params.patched_application_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1587,7 +2198,9 @@ pub async fn core_applications_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Application`",
@@ -1613,60 +2226,39 @@ pub async fn core_applications_partial_update(
 /// List applications which the current user can request access to
 pub async fn core_applications_requestable_list(
     configuration: &configuration::Configuration,
-    group: Option<&str>,
-    meta_description: Option<&str>,
-    meta_launch_url: Option<&str>,
-    meta_publisher: Option<&str>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    slug: Option<&str>,
+    params: CoreApplicationsRequestableListParams,
 ) -> Result<models::PaginatedApplicationList, Error<CoreApplicationsRequestableListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_group = group;
-    let p_query_meta_description = meta_description;
-    let p_query_meta_launch_url = meta_launch_url;
-    let p_query_meta_publisher = meta_publisher;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_slug = slug;
-
     let uri_str = format!("{}/core/applications/requestable/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_group {
+    if let Some(ref param_value) = params.group {
         req_builder = req_builder.query(&[("group", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_meta_description {
+    if let Some(ref param_value) = params.meta_description {
         req_builder = req_builder.query(&[("meta_description", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_meta_launch_url {
+    if let Some(ref param_value) = params.meta_launch_url {
         req_builder = req_builder.query(&[("meta_launch_url", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_meta_publisher {
+    if let Some(ref param_value) = params.meta_publisher {
         req_builder = req_builder.query(&[("meta_publisher", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_slug {
+    if let Some(ref param_value) = params.slug {
         req_builder = req_builder.query(&[("slug", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1690,7 +2282,7 @@ pub async fn core_applications_requestable_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedApplicationList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedApplicationList`")))),
         }
@@ -1708,15 +2300,12 @@ pub async fn core_applications_requestable_list(
 /// Application Viewset
 pub async fn core_applications_retrieve(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: CoreApplicationsRetrieveParams,
 ) -> Result<models::Application, Error<CoreApplicationsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/core/applications/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1741,7 +2330,9 @@ pub async fn core_applications_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Application`",
@@ -1767,17 +2358,12 @@ pub async fn core_applications_retrieve(
 /// Application Viewset
 pub async fn core_applications_update(
     configuration: &configuration::Configuration,
-    slug: &str,
-    application_request: models::ApplicationRequest,
+    params: CoreApplicationsUpdateParams,
 ) -> Result<models::Application, Error<CoreApplicationsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-    let p_body_application_request = application_request;
-
     let uri_str = format!(
         "{}/core/applications/{slug}/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1787,7 +2373,7 @@ pub async fn core_applications_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_application_request);
+    req_builder = req_builder.json(&params.application_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1803,7 +2389,9 @@ pub async fn core_applications_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Application`",
@@ -1829,15 +2417,12 @@ pub async fn core_applications_update(
 /// Get a list of all objects that use this object
 pub async fn core_applications_used_by_list(
     configuration: &configuration::Configuration,
-    slug: &str,
+    params: CoreApplicationsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<CoreApplicationsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_slug = slug;
-
     let uri_str = format!(
         "{}/core/applications/{slug}/used_by/",
         configuration.base_path,
-        slug = crate::apis::urlencode(p_path_slug)
+        slug = crate::apis::urlencode(params.slug)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1862,7 +2447,7 @@ pub async fn core_applications_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -1880,24 +2465,23 @@ pub async fn core_applications_used_by_list(
 /// Bulk revoke all sessions for multiple users
 pub async fn core_authenticated_sessions_bulk_delete_destroy(
     configuration: &configuration::Configuration,
-    user_pks: Vec<i32>,
+    params: CoreAuthenticatedSessionsBulkDeleteDestroyParams,
 ) -> Result<models::BulkDeleteSessionResponse, Error<CoreAuthenticatedSessionsBulkDeleteDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_user_pks = user_pks;
-
     let uri_str = format!("{}/core/authenticated_sessions/bulk_delete/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     req_builder = match "multi" {
         "multi" => req_builder.query(
-            &p_query_user_pks
+            &params
+                .user_pks
                 .into_iter()
                 .map(|p| ("user_pks".to_owned(), p.to_string()))
                 .collect::<Vec<(std::string::String, std::string::String)>>(),
         ),
         _ => req_builder.query(&[(
             "user_pks",
-            &p_query_user_pks
+            &params
+                .user_pks
                 .into_iter()
                 .map(|p| p.to_string())
                 .collect::<Vec<String>>()
@@ -1926,7 +2510,7 @@ pub async fn core_authenticated_sessions_bulk_delete_destroy(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::BulkDeleteSessionResponse`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::BulkDeleteSessionResponse`")))),
         }
@@ -1944,15 +2528,12 @@ pub async fn core_authenticated_sessions_bulk_delete_destroy(
 /// AuthenticatedSession Viewset
 pub async fn core_authenticated_sessions_destroy(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: CoreAuthenticatedSessionsDestroyParams,
 ) -> Result<(), Error<CoreAuthenticatedSessionsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/core/authenticated_sessions/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -1984,45 +2565,30 @@ pub async fn core_authenticated_sessions_destroy(
 /// AuthenticatedSession Viewset
 pub async fn core_authenticated_sessions_list(
     configuration: &configuration::Configuration,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    session__last_ip: Option<&str>,
-    session__last_user_agent: Option<&str>,
-    user__username: Option<&str>,
+    params: CoreAuthenticatedSessionsListParams,
 ) -> Result<models::PaginatedAuthenticatedSessionList, Error<CoreAuthenticatedSessionsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_session__last_ip = session__last_ip;
-    let p_query_session__last_user_agent = session__last_user_agent;
-    let p_query_user__username = user__username;
-
     let uri_str = format!("{}/core/authenticated_sessions/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_session__last_ip {
+    if let Some(ref param_value) = params.session__last_ip {
         req_builder = req_builder.query(&[("session__last_ip", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_session__last_user_agent {
+    if let Some(ref param_value) = params.session__last_user_agent {
         req_builder = req_builder.query(&[("session__last_user_agent", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user__username {
+    if let Some(ref param_value) = params.user__username {
         req_builder = req_builder.query(&[("user__username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2046,7 +2612,7 @@ pub async fn core_authenticated_sessions_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedAuthenticatedSessionList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedAuthenticatedSessionList`")))),
         }
@@ -2064,15 +2630,12 @@ pub async fn core_authenticated_sessions_list(
 /// AuthenticatedSession Viewset
 pub async fn core_authenticated_sessions_retrieve(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: CoreAuthenticatedSessionsRetrieveParams,
 ) -> Result<models::AuthenticatedSession, Error<CoreAuthenticatedSessionsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/core/authenticated_sessions/{uuid}/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2097,7 +2660,7 @@ pub async fn core_authenticated_sessions_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AuthenticatedSession`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AuthenticatedSession`")))),
         }
@@ -2115,15 +2678,12 @@ pub async fn core_authenticated_sessions_retrieve(
 /// Get a list of all objects that use this object
 pub async fn core_authenticated_sessions_used_by_list(
     configuration: &configuration::Configuration,
-    uuid: &str,
+    params: CoreAuthenticatedSessionsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<CoreAuthenticatedSessionsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_uuid = uuid;
-
     let uri_str = format!(
         "{}/core/authenticated_sessions/{uuid}/used_by/",
         configuration.base_path,
-        uuid = crate::apis::urlencode(p_path_uuid)
+        uuid = crate::apis::urlencode(params.uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2148,7 +2708,7 @@ pub async fn core_authenticated_sessions_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2166,11 +2726,8 @@ pub async fn core_authenticated_sessions_used_by_list(
 /// Brand Viewset
 pub async fn core_brands_create(
     configuration: &configuration::Configuration,
-    brand_request: models::BrandRequest,
+    params: CoreBrandsCreateParams,
 ) -> Result<models::Brand, Error<CoreBrandsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_brand_request = brand_request;
-
     let uri_str = format!("{}/core/brands/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2180,7 +2737,7 @@ pub async fn core_brands_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_brand_request);
+    req_builder = req_builder.json(&params.brand_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2196,7 +2753,9 @@ pub async fn core_brands_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Brand`",
@@ -2247,7 +2806,9 @@ pub async fn core_brands_current_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::CurrentBrand`",
@@ -2271,15 +2832,12 @@ pub async fn core_brands_current_retrieve(
 /// Brand Viewset
 pub async fn core_brands_destroy(
     configuration: &configuration::Configuration,
-    brand_uuid: &str,
+    params: CoreBrandsDestroyParams,
 ) -> Result<(), Error<CoreBrandsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_brand_uuid = brand_uuid;
-
     let uri_str = format!(
         "{}/core/brands/{brand_uuid}/",
         configuration.base_path,
-        brand_uuid = crate::apis::urlencode(p_path_brand_uuid)
+        brand_uuid = crate::apis::urlencode(params.brand_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2311,72 +2869,27 @@ pub async fn core_brands_destroy(
 /// Brand Viewset
 pub async fn core_brands_list(
     configuration: &configuration::Configuration,
-    brand_uuid: Option<&str>,
-    branding_default_flow_background: Option<&str>,
-    branding_favicon: Option<&str>,
-    branding_logo: Option<&str>,
-    branding_title: Option<&str>,
-    client_certificates: Option<Vec<uuid::Uuid>>,
-    default: Option<bool>,
-    domain: Option<&str>,
-    flow_authentication: Option<&str>,
-    flow_device_code: Option<&str>,
-    flow_invalidation: Option<&str>,
-    flow_lockdown: Option<&str>,
-    flow_recovery: Option<&str>,
-    flow_request: Option<&str>,
-    flow_unenrollment: Option<&str>,
-    flow_user_settings: Option<&str>,
-    flow_user_switch: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    web_certificate: Option<&str>,
+    params: CoreBrandsListParams,
 ) -> Result<models::PaginatedBrandList, Error<CoreBrandsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_brand_uuid = brand_uuid;
-    let p_query_branding_default_flow_background = branding_default_flow_background;
-    let p_query_branding_favicon = branding_favicon;
-    let p_query_branding_logo = branding_logo;
-    let p_query_branding_title = branding_title;
-    let p_query_client_certificates = client_certificates;
-    let p_query_default = default;
-    let p_query_domain = domain;
-    let p_query_flow_authentication = flow_authentication;
-    let p_query_flow_device_code = flow_device_code;
-    let p_query_flow_invalidation = flow_invalidation;
-    let p_query_flow_lockdown = flow_lockdown;
-    let p_query_flow_recovery = flow_recovery;
-    let p_query_flow_request = flow_request;
-    let p_query_flow_unenrollment = flow_unenrollment;
-    let p_query_flow_user_settings = flow_user_settings;
-    let p_query_flow_user_switch = flow_user_switch;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_web_certificate = web_certificate;
-
     let uri_str = format!("{}/core/brands/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_brand_uuid {
+    if let Some(ref param_value) = params.brand_uuid {
         req_builder = req_builder.query(&[("brand_uuid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_branding_default_flow_background {
+    if let Some(ref param_value) = params.branding_default_flow_background {
         req_builder = req_builder.query(&[("branding_default_flow_background", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_branding_favicon {
+    if let Some(ref param_value) = params.branding_favicon {
         req_builder = req_builder.query(&[("branding_favicon", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_branding_logo {
+    if let Some(ref param_value) = params.branding_logo {
         req_builder = req_builder.query(&[("branding_logo", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_branding_title {
+    if let Some(ref param_value) = params.branding_title {
         req_builder = req_builder.query(&[("branding_title", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_client_certificates {
+    if let Some(ref param_value) = params.client_certificates {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -2395,52 +2908,52 @@ pub async fn core_brands_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_default {
+    if let Some(ref param_value) = params.default {
         req_builder = req_builder.query(&[("default", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_domain {
+    if let Some(ref param_value) = params.domain {
         req_builder = req_builder.query(&[("domain", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_flow_authentication {
+    if let Some(ref param_value) = params.flow_authentication {
         req_builder = req_builder.query(&[("flow_authentication", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_flow_device_code {
+    if let Some(ref param_value) = params.flow_device_code {
         req_builder = req_builder.query(&[("flow_device_code", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_flow_invalidation {
+    if let Some(ref param_value) = params.flow_invalidation {
         req_builder = req_builder.query(&[("flow_invalidation", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_flow_lockdown {
+    if let Some(ref param_value) = params.flow_lockdown {
         req_builder = req_builder.query(&[("flow_lockdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_flow_recovery {
+    if let Some(ref param_value) = params.flow_recovery {
         req_builder = req_builder.query(&[("flow_recovery", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_flow_request {
+    if let Some(ref param_value) = params.flow_request {
         req_builder = req_builder.query(&[("flow_request", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_flow_unenrollment {
+    if let Some(ref param_value) = params.flow_unenrollment {
         req_builder = req_builder.query(&[("flow_unenrollment", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_flow_user_settings {
+    if let Some(ref param_value) = params.flow_user_settings {
         req_builder = req_builder.query(&[("flow_user_settings", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_flow_user_switch {
+    if let Some(ref param_value) = params.flow_user_switch {
         req_builder = req_builder.query(&[("flow_user_switch", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_web_certificate {
+    if let Some(ref param_value) = params.web_certificate {
         req_builder = req_builder.query(&[("web_certificate", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2464,7 +2977,7 @@ pub async fn core_brands_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedBrandList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedBrandList`")))),
         }
@@ -2482,17 +2995,12 @@ pub async fn core_brands_list(
 /// Brand Viewset
 pub async fn core_brands_partial_update(
     configuration: &configuration::Configuration,
-    brand_uuid: &str,
-    patched_brand_request: Option<models::PatchedBrandRequest>,
+    params: CoreBrandsPartialUpdateParams,
 ) -> Result<models::Brand, Error<CoreBrandsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_brand_uuid = brand_uuid;
-    let p_body_patched_brand_request = patched_brand_request;
-
     let uri_str = format!(
         "{}/core/brands/{brand_uuid}/",
         configuration.base_path,
-        brand_uuid = crate::apis::urlencode(p_path_brand_uuid)
+        brand_uuid = crate::apis::urlencode(params.brand_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -2502,7 +3010,7 @@ pub async fn core_brands_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_brand_request);
+    req_builder = req_builder.json(&params.patched_brand_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2518,7 +3026,9 @@ pub async fn core_brands_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Brand`",
@@ -2544,15 +3054,12 @@ pub async fn core_brands_partial_update(
 /// Brand Viewset
 pub async fn core_brands_retrieve(
     configuration: &configuration::Configuration,
-    brand_uuid: &str,
+    params: CoreBrandsRetrieveParams,
 ) -> Result<models::Brand, Error<CoreBrandsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_brand_uuid = brand_uuid;
-
     let uri_str = format!(
         "{}/core/brands/{brand_uuid}/",
         configuration.base_path,
-        brand_uuid = crate::apis::urlencode(p_path_brand_uuid)
+        brand_uuid = crate::apis::urlencode(params.brand_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2577,7 +3084,9 @@ pub async fn core_brands_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Brand`",
@@ -2603,17 +3112,12 @@ pub async fn core_brands_retrieve(
 /// Brand Viewset
 pub async fn core_brands_update(
     configuration: &configuration::Configuration,
-    brand_uuid: &str,
-    brand_request: models::BrandRequest,
+    params: CoreBrandsUpdateParams,
 ) -> Result<models::Brand, Error<CoreBrandsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_brand_uuid = brand_uuid;
-    let p_body_brand_request = brand_request;
-
     let uri_str = format!(
         "{}/core/brands/{brand_uuid}/",
         configuration.base_path,
-        brand_uuid = crate::apis::urlencode(p_path_brand_uuid)
+        brand_uuid = crate::apis::urlencode(params.brand_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -2623,7 +3127,7 @@ pub async fn core_brands_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_brand_request);
+    req_builder = req_builder.json(&params.brand_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2639,7 +3143,9 @@ pub async fn core_brands_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Brand`",
@@ -2665,15 +3171,12 @@ pub async fn core_brands_update(
 /// Get a list of all objects that use this object
 pub async fn core_brands_used_by_list(
     configuration: &configuration::Configuration,
-    brand_uuid: &str,
+    params: CoreBrandsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<CoreBrandsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_brand_uuid = brand_uuid;
-
     let uri_str = format!(
         "{}/core/brands/{brand_uuid}/used_by/",
         configuration.base_path,
-        brand_uuid = crate::apis::urlencode(p_path_brand_uuid)
+        brand_uuid = crate::apis::urlencode(params.brand_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2698,7 +3201,7 @@ pub async fn core_brands_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -2716,17 +3219,12 @@ pub async fn core_brands_used_by_list(
 /// Add user to group
 pub async fn core_groups_add_user_create(
     configuration: &configuration::Configuration,
-    group_uuid: &str,
-    user_account_request: models::UserAccountRequest,
+    params: CoreGroupsAddUserCreateParams,
 ) -> Result<(), Error<CoreGroupsAddUserCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_group_uuid = group_uuid;
-    let p_body_user_account_request = user_account_request;
-
     let uri_str = format!(
         "{}/core/groups/{group_uuid}/add_user/",
         configuration.base_path,
-        group_uuid = crate::apis::urlencode(p_path_group_uuid)
+        group_uuid = crate::apis::urlencode(params.group_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2736,7 +3234,7 @@ pub async fn core_groups_add_user_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_account_request);
+    req_builder = req_builder.json(&params.user_account_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2759,11 +3257,8 @@ pub async fn core_groups_add_user_create(
 /// Group Viewset
 pub async fn core_groups_create(
     configuration: &configuration::Configuration,
-    group_request: models::GroupRequest,
+    params: CoreGroupsCreateParams,
 ) -> Result<models::Group, Error<CoreGroupsCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_group_request = group_request;
-
     let uri_str = format!("{}/core/groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -2773,7 +3268,7 @@ pub async fn core_groups_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_request);
+    req_builder = req_builder.json(&params.group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2789,7 +3284,9 @@ pub async fn core_groups_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Group`",
@@ -2815,15 +3312,12 @@ pub async fn core_groups_create(
 /// Group Viewset
 pub async fn core_groups_destroy(
     configuration: &configuration::Configuration,
-    group_uuid: &str,
+    params: CoreGroupsDestroyParams,
 ) -> Result<(), Error<CoreGroupsDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_group_uuid = group_uuid;
-
     let uri_str = format!(
         "{}/core/groups/{group_uuid}/",
         configuration.base_path,
-        group_uuid = crate::apis::urlencode(p_path_group_uuid)
+        group_uuid = crate::apis::urlencode(params.group_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -2855,52 +3349,27 @@ pub async fn core_groups_destroy(
 /// Group Viewset
 pub async fn core_groups_list(
     configuration: &configuration::Configuration,
-    include_children: Option<bool>,
-    include_inherited_roles: Option<bool>,
-    include_parents: Option<bool>,
-    include_users: Option<bool>,
-    is_superuser: Option<bool>,
-    members_by_pk: Option<Vec<i32>>,
-    members_by_username: Option<Vec<String>>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: CoreGroupsListParams,
 ) -> Result<models::PaginatedGroupList, Error<CoreGroupsListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_include_children = include_children;
-    let p_query_include_inherited_roles = include_inherited_roles;
-    let p_query_include_parents = include_parents;
-    let p_query_include_users = include_users;
-    let p_query_is_superuser = is_superuser;
-    let p_query_members_by_pk = members_by_pk;
-    let p_query_members_by_username = members_by_username;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/core/groups/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_include_children {
+    if let Some(ref param_value) = params.include_children {
         req_builder = req_builder.query(&[("include_children", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_include_inherited_roles {
+    if let Some(ref param_value) = params.include_inherited_roles {
         req_builder = req_builder.query(&[("include_inherited_roles", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_include_parents {
+    if let Some(ref param_value) = params.include_parents {
         req_builder = req_builder.query(&[("include_parents", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_include_users {
+    if let Some(ref param_value) = params.include_users {
         req_builder = req_builder.query(&[("include_users", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_is_superuser {
+    if let Some(ref param_value) = params.is_superuser {
         req_builder = req_builder.query(&[("is_superuser", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_members_by_pk {
+    if let Some(ref param_value) = params.members_by_pk {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -2919,7 +3388,7 @@ pub async fn core_groups_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_members_by_username {
+    if let Some(ref param_value) = params.members_by_username {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -2938,19 +3407,19 @@ pub async fn core_groups_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2974,7 +3443,7 @@ pub async fn core_groups_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGroupList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGroupList`")))),
         }
@@ -2992,17 +3461,12 @@ pub async fn core_groups_list(
 /// Group Viewset
 pub async fn core_groups_partial_update(
     configuration: &configuration::Configuration,
-    group_uuid: &str,
-    patched_group_request: Option<models::PatchedGroupRequest>,
+    params: CoreGroupsPartialUpdateParams,
 ) -> Result<models::Group, Error<CoreGroupsPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_group_uuid = group_uuid;
-    let p_body_patched_group_request = patched_group_request;
-
     let uri_str = format!(
         "{}/core/groups/{group_uuid}/",
         configuration.base_path,
-        group_uuid = crate::apis::urlencode(p_path_group_uuid)
+        group_uuid = crate::apis::urlencode(params.group_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3012,7 +3476,7 @@ pub async fn core_groups_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_group_request);
+    req_builder = req_builder.json(&params.patched_group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3028,7 +3492,9 @@ pub async fn core_groups_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Group`",
@@ -3054,17 +3520,12 @@ pub async fn core_groups_partial_update(
 /// Remove user from group
 pub async fn core_groups_remove_user_create(
     configuration: &configuration::Configuration,
-    group_uuid: &str,
-    user_account_request: models::UserAccountRequest,
+    params: CoreGroupsRemoveUserCreateParams,
 ) -> Result<(), Error<CoreGroupsRemoveUserCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_group_uuid = group_uuid;
-    let p_body_user_account_request = user_account_request;
-
     let uri_str = format!(
         "{}/core/groups/{group_uuid}/remove_user/",
         configuration.base_path,
-        group_uuid = crate::apis::urlencode(p_path_group_uuid)
+        group_uuid = crate::apis::urlencode(params.group_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3074,7 +3535,7 @@ pub async fn core_groups_remove_user_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_account_request);
+    req_builder = req_builder.json(&params.user_account_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3097,36 +3558,25 @@ pub async fn core_groups_remove_user_create(
 /// Group Viewset
 pub async fn core_groups_retrieve(
     configuration: &configuration::Configuration,
-    group_uuid: &str,
-    include_children: Option<bool>,
-    include_inherited_roles: Option<bool>,
-    include_parents: Option<bool>,
-    include_users: Option<bool>,
+    params: CoreGroupsRetrieveParams,
 ) -> Result<models::Group, Error<CoreGroupsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_group_uuid = group_uuid;
-    let p_query_include_children = include_children;
-    let p_query_include_inherited_roles = include_inherited_roles;
-    let p_query_include_parents = include_parents;
-    let p_query_include_users = include_users;
-
     let uri_str = format!(
         "{}/core/groups/{group_uuid}/",
         configuration.base_path,
-        group_uuid = crate::apis::urlencode(p_path_group_uuid)
+        group_uuid = crate::apis::urlencode(params.group_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_include_children {
+    if let Some(ref param_value) = params.include_children {
         req_builder = req_builder.query(&[("include_children", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_include_inherited_roles {
+    if let Some(ref param_value) = params.include_inherited_roles {
         req_builder = req_builder.query(&[("include_inherited_roles", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_include_parents {
+    if let Some(ref param_value) = params.include_parents {
         req_builder = req_builder.query(&[("include_parents", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_include_users {
+    if let Some(ref param_value) = params.include_users {
         req_builder = req_builder.query(&[("include_users", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3150,7 +3600,9 @@ pub async fn core_groups_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Group`",
@@ -3176,17 +3628,12 @@ pub async fn core_groups_retrieve(
 /// Group Viewset
 pub async fn core_groups_update(
     configuration: &configuration::Configuration,
-    group_uuid: &str,
-    group_request: models::GroupRequest,
+    params: CoreGroupsUpdateParams,
 ) -> Result<models::Group, Error<CoreGroupsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_group_uuid = group_uuid;
-    let p_body_group_request = group_request;
-
     let uri_str = format!(
         "{}/core/groups/{group_uuid}/",
         configuration.base_path,
-        group_uuid = crate::apis::urlencode(p_path_group_uuid)
+        group_uuid = crate::apis::urlencode(params.group_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3196,7 +3643,7 @@ pub async fn core_groups_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_group_request);
+    req_builder = req_builder.json(&params.group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3212,7 +3659,9 @@ pub async fn core_groups_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Group`",
@@ -3238,15 +3687,12 @@ pub async fn core_groups_update(
 /// Get a list of all objects that use this object
 pub async fn core_groups_used_by_list(
     configuration: &configuration::Configuration,
-    group_uuid: &str,
+    params: CoreGroupsUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<CoreGroupsUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_group_uuid = group_uuid;
-
     let uri_str = format!(
         "{}/core/groups/{group_uuid}/used_by/",
         configuration.base_path,
-        group_uuid = crate::apis::urlencode(p_path_group_uuid)
+        group_uuid = crate::apis::urlencode(params.group_uuid)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3271,7 +3717,7 @@ pub async fn core_groups_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -3288,11 +3734,8 @@ pub async fn core_groups_used_by_list(
 
 pub async fn core_object_attributes_create(
     configuration: &configuration::Configuration,
-    object_attribute_request: models::ObjectAttributeRequest,
+    params: CoreObjectAttributesCreateParams,
 ) -> Result<models::ObjectAttribute, Error<CoreObjectAttributesCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_object_attribute_request = object_attribute_request;
-
     let uri_str = format!("{}/core/object_attributes/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3302,7 +3745,7 @@ pub async fn core_object_attributes_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_object_attribute_request);
+    req_builder = req_builder.json(&params.object_attribute_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3318,7 +3761,9 @@ pub async fn core_object_attributes_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ObjectAttribute`",
@@ -3341,15 +3786,12 @@ pub async fn core_object_attributes_create(
 
 pub async fn core_object_attributes_destroy(
     configuration: &configuration::Configuration,
-    attribute_id: &str,
+    params: CoreObjectAttributesDestroyParams,
 ) -> Result<(), Error<CoreObjectAttributesDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_attribute_id = attribute_id;
-
     let uri_str = format!(
         "{}/core/object_attributes/{attribute_id}/",
         configuration.base_path,
-        attribute_id = crate::apis::urlencode(p_path_attribute_id)
+        attribute_id = crate::apis::urlencode(params.attribute_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3380,45 +3822,30 @@ pub async fn core_object_attributes_destroy(
 
 pub async fn core_object_attributes_list(
     configuration: &configuration::Configuration,
-    enabled: Option<bool>,
-    object_type__app_label: Option<&str>,
-    object_type__model: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
+    params: CoreObjectAttributesListParams,
 ) -> Result<models::PaginatedObjectAttributeList, Error<CoreObjectAttributesListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_enabled = enabled;
-    let p_query_object_type__app_label = object_type__app_label;
-    let p_query_object_type__model = object_type__model;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-
     let uri_str = format!("{}/core/object_attributes/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_enabled {
+    if let Some(ref param_value) = params.enabled {
         req_builder = req_builder.query(&[("enabled", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_object_type__app_label {
+    if let Some(ref param_value) = params.object_type__app_label {
         req_builder = req_builder.query(&[("object_type__app_label", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_object_type__model {
+    if let Some(ref param_value) = params.object_type__model {
         req_builder = req_builder.query(&[("object_type__model", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3442,7 +3869,7 @@ pub async fn core_object_attributes_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedObjectAttributeList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedObjectAttributeList`")))),
         }
@@ -3459,17 +3886,12 @@ pub async fn core_object_attributes_list(
 
 pub async fn core_object_attributes_partial_update(
     configuration: &configuration::Configuration,
-    attribute_id: &str,
-    patched_object_attribute_request: Option<models::PatchedObjectAttributeRequest>,
+    params: CoreObjectAttributesPartialUpdateParams,
 ) -> Result<models::ObjectAttribute, Error<CoreObjectAttributesPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_attribute_id = attribute_id;
-    let p_body_patched_object_attribute_request = patched_object_attribute_request;
-
     let uri_str = format!(
         "{}/core/object_attributes/{attribute_id}/",
         configuration.base_path,
-        attribute_id = crate::apis::urlencode(p_path_attribute_id)
+        attribute_id = crate::apis::urlencode(params.attribute_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3479,7 +3901,7 @@ pub async fn core_object_attributes_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_object_attribute_request);
+    req_builder = req_builder.json(&params.patched_object_attribute_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3495,7 +3917,9 @@ pub async fn core_object_attributes_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ObjectAttribute`",
@@ -3518,15 +3942,12 @@ pub async fn core_object_attributes_partial_update(
 
 pub async fn core_object_attributes_retrieve(
     configuration: &configuration::Configuration,
-    attribute_id: &str,
+    params: CoreObjectAttributesRetrieveParams,
 ) -> Result<models::ObjectAttribute, Error<CoreObjectAttributesRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_attribute_id = attribute_id;
-
     let uri_str = format!(
         "{}/core/object_attributes/{attribute_id}/",
         configuration.base_path,
-        attribute_id = crate::apis::urlencode(p_path_attribute_id)
+        attribute_id = crate::apis::urlencode(params.attribute_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3551,7 +3972,9 @@ pub async fn core_object_attributes_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ObjectAttribute`",
@@ -3574,17 +3997,12 @@ pub async fn core_object_attributes_retrieve(
 
 pub async fn core_object_attributes_update(
     configuration: &configuration::Configuration,
-    attribute_id: &str,
-    object_attribute_request: models::ObjectAttributeRequest,
+    params: CoreObjectAttributesUpdateParams,
 ) -> Result<models::ObjectAttribute, Error<CoreObjectAttributesUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_attribute_id = attribute_id;
-    let p_body_object_attribute_request = object_attribute_request;
-
     let uri_str = format!(
         "{}/core/object_attributes/{attribute_id}/",
         configuration.base_path,
-        attribute_id = crate::apis::urlencode(p_path_attribute_id)
+        attribute_id = crate::apis::urlencode(params.attribute_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3594,7 +4012,7 @@ pub async fn core_object_attributes_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_object_attribute_request);
+    req_builder = req_builder.json(&params.object_attribute_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3610,7 +4028,9 @@ pub async fn core_object_attributes_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::ObjectAttribute`",
@@ -3634,11 +4054,8 @@ pub async fn core_object_attributes_update(
 /// Token Viewset
 pub async fn core_tokens_create(
     configuration: &configuration::Configuration,
-    token_request: models::TokenRequest,
+    params: CoreTokensCreateParams,
 ) -> Result<models::Token, Error<CoreTokensCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_token_request = token_request;
-
     let uri_str = format!("{}/core/tokens/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3648,7 +4065,7 @@ pub async fn core_tokens_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_token_request);
+    req_builder = req_builder.json(&params.token_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3664,7 +4081,9 @@ pub async fn core_tokens_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Token`",
@@ -3690,15 +4109,12 @@ pub async fn core_tokens_create(
 /// Token Viewset
 pub async fn core_tokens_destroy(
     configuration: &configuration::Configuration,
-    identifier: &str,
+    params: CoreTokensDestroyParams,
 ) -> Result<(), Error<CoreTokensDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_identifier = identifier;
-
     let uri_str = format!(
         "{}/core/tokens/{identifier}/",
         configuration.base_path,
-        identifier = crate::apis::urlencode(p_path_identifier)
+        identifier = crate::apis::urlencode(params.identifier)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
@@ -3730,65 +4146,42 @@ pub async fn core_tokens_destroy(
 /// Token Viewset
 pub async fn core_tokens_list(
     configuration: &configuration::Configuration,
-    description: Option<&str>,
-    expires: Option<chrono::DateTime<chrono::FixedOffset>>,
-    expiring: Option<bool>,
-    identifier: Option<&str>,
-    intent: Option<models::IntentEnum>,
-    managed: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    user__username: Option<&str>,
+    params: CoreTokensListParams,
 ) -> Result<models::PaginatedTokenList, Error<CoreTokensListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_description = description;
-    let p_query_expires = expires;
-    let p_query_expiring = expiring;
-    let p_query_identifier = identifier;
-    let p_query_intent = intent;
-    let p_query_managed = managed;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_user__username = user__username;
-
     let uri_str = format!("{}/core/tokens/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_description {
+    if let Some(ref param_value) = params.description {
         req_builder = req_builder.query(&[("description", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_expires {
+    if let Some(ref param_value) = params.expires {
         req_builder = req_builder.query(&[("expires", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_expiring {
+    if let Some(ref param_value) = params.expiring {
         req_builder = req_builder.query(&[("expiring", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_identifier {
+    if let Some(ref param_value) = params.identifier {
         req_builder = req_builder.query(&[("identifier", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_intent {
+    if let Some(ref param_value) = params.intent {
         req_builder = req_builder.query(&[("intent", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_managed {
+    if let Some(ref param_value) = params.managed {
         req_builder = req_builder.query(&[("managed", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user__username {
+    if let Some(ref param_value) = params.user__username {
         req_builder = req_builder.query(&[("user__username", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3812,7 +4205,7 @@ pub async fn core_tokens_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedTokenList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedTokenList`")))),
         }
@@ -3830,17 +4223,12 @@ pub async fn core_tokens_list(
 /// Token Viewset
 pub async fn core_tokens_partial_update(
     configuration: &configuration::Configuration,
-    identifier: &str,
-    patched_token_request: Option<models::PatchedTokenRequest>,
+    params: CoreTokensPartialUpdateParams,
 ) -> Result<models::Token, Error<CoreTokensPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_identifier = identifier;
-    let p_body_patched_token_request = patched_token_request;
-
     let uri_str = format!(
         "{}/core/tokens/{identifier}/",
         configuration.base_path,
-        identifier = crate::apis::urlencode(p_path_identifier)
+        identifier = crate::apis::urlencode(params.identifier)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
@@ -3850,7 +4238,7 @@ pub async fn core_tokens_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_token_request);
+    req_builder = req_builder.json(&params.patched_token_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3866,7 +4254,9 @@ pub async fn core_tokens_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Token`",
@@ -3892,15 +4282,12 @@ pub async fn core_tokens_partial_update(
 /// Token Viewset
 pub async fn core_tokens_retrieve(
     configuration: &configuration::Configuration,
-    identifier: &str,
+    params: CoreTokensRetrieveParams,
 ) -> Result<models::Token, Error<CoreTokensRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_identifier = identifier;
-
     let uri_str = format!(
         "{}/core/tokens/{identifier}/",
         configuration.base_path,
-        identifier = crate::apis::urlencode(p_path_identifier)
+        identifier = crate::apis::urlencode(params.identifier)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -3925,7 +4312,9 @@ pub async fn core_tokens_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Token`",
@@ -3951,17 +4340,12 @@ pub async fn core_tokens_retrieve(
 /// Set token key. Action is logged as event. `authentik_core.set_token_key` permission is required.
 pub async fn core_tokens_set_key_create(
     configuration: &configuration::Configuration,
-    identifier: &str,
-    token_set_key_request: models::TokenSetKeyRequest,
+    params: CoreTokensSetKeyCreateParams,
 ) -> Result<(), Error<CoreTokensSetKeyCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_identifier = identifier;
-    let p_body_token_set_key_request = token_set_key_request;
-
     let uri_str = format!(
         "{}/core/tokens/{identifier}/set_key/",
         configuration.base_path,
-        identifier = crate::apis::urlencode(p_path_identifier)
+        identifier = crate::apis::urlencode(params.identifier)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -3971,7 +4355,7 @@ pub async fn core_tokens_set_key_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_token_set_key_request);
+    req_builder = req_builder.json(&params.token_set_key_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3994,17 +4378,12 @@ pub async fn core_tokens_set_key_create(
 /// Token Viewset
 pub async fn core_tokens_update(
     configuration: &configuration::Configuration,
-    identifier: &str,
-    token_request: models::TokenRequest,
+    params: CoreTokensUpdateParams,
 ) -> Result<models::Token, Error<CoreTokensUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_identifier = identifier;
-    let p_body_token_request = token_request;
-
     let uri_str = format!(
         "{}/core/tokens/{identifier}/",
         configuration.base_path,
-        identifier = crate::apis::urlencode(p_path_identifier)
+        identifier = crate::apis::urlencode(params.identifier)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4014,7 +4393,7 @@ pub async fn core_tokens_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_token_request);
+    req_builder = req_builder.json(&params.token_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4030,7 +4409,9 @@ pub async fn core_tokens_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Token`",
@@ -4056,15 +4437,12 @@ pub async fn core_tokens_update(
 /// Get a list of all objects that use this object
 pub async fn core_tokens_used_by_list(
     configuration: &configuration::Configuration,
-    identifier: &str,
+    params: CoreTokensUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<CoreTokensUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_identifier = identifier;
-
     let uri_str = format!(
         "{}/core/tokens/{identifier}/used_by/",
         configuration.base_path,
-        identifier = crate::apis::urlencode(p_path_identifier)
+        identifier = crate::apis::urlencode(params.identifier)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4089,7 +4467,7 @@ pub async fn core_tokens_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4107,15 +4485,12 @@ pub async fn core_tokens_used_by_list(
 /// Return token key and log access
 pub async fn core_tokens_view_key_retrieve(
     configuration: &configuration::Configuration,
-    identifier: &str,
+    params: CoreTokensViewKeyRetrieveParams,
 ) -> Result<models::TokenView, Error<CoreTokensViewKeyRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_identifier = identifier;
-
     let uri_str = format!(
         "{}/core/tokens/{identifier}/view_key/",
         configuration.base_path,
-        identifier = crate::apis::urlencode(p_path_identifier)
+        identifier = crate::apis::urlencode(params.identifier)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4140,7 +4515,9 @@ pub async fn core_tokens_view_key_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::TokenView`",
@@ -4166,11 +4543,8 @@ pub async fn core_tokens_view_key_retrieve(
 /// Convert data into a blueprint, validate it and apply it
 pub async fn core_transactional_applications_update(
     configuration: &configuration::Configuration,
-    transaction_application_request: models::TransactionApplicationRequest,
+    params: CoreTransactionalApplicationsUpdateParams,
 ) -> Result<models::TransactionApplicationResponse, Error<CoreTransactionalApplicationsUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_transaction_application_request = transaction_application_request;
-
     let uri_str = format!("{}/core/transactional/applications/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4180,7 +4554,7 @@ pub async fn core_transactional_applications_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_transaction_application_request);
+    req_builder = req_builder.json(&params.transaction_application_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4196,7 +4570,7 @@ pub async fn core_transactional_applications_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::TransactionApplicationResponse`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::TransactionApplicationResponse`")))),
         }
@@ -4214,12 +4588,9 @@ pub async fn core_transactional_applications_update(
 /// UserConsent Viewset
 pub async fn core_user_consent_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: CoreUserConsentDestroyParams,
 ) -> Result<(), Error<CoreUserConsentDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/core/user_consent/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/core/user_consent/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4250,40 +4621,27 @@ pub async fn core_user_consent_destroy(
 /// UserConsent Viewset
 pub async fn core_user_consent_list(
     configuration: &configuration::Configuration,
-    application: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    search: Option<&str>,
-    user: Option<i32>,
+    params: CoreUserConsentListParams,
 ) -> Result<models::PaginatedUserConsentList, Error<CoreUserConsentListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_application = application;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_search = search;
-    let p_query_user = user;
-
     let uri_str = format!("{}/core/user_consent/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_application {
+    if let Some(ref param_value) = params.application {
         req_builder = req_builder.query(&[("application", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_user {
+    if let Some(ref param_value) = params.user {
         req_builder = req_builder.query(&[("user", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4307,7 +4665,7 @@ pub async fn core_user_consent_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserConsentList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserConsentList`")))),
         }
@@ -4325,12 +4683,9 @@ pub async fn core_user_consent_list(
 /// UserConsent Viewset
 pub async fn core_user_consent_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: CoreUserConsentRetrieveParams,
 ) -> Result<models::UserConsent, Error<CoreUserConsentRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/core/user_consent/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/core/user_consent/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4354,7 +4709,9 @@ pub async fn core_user_consent_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserConsent`",
@@ -4380,15 +4737,12 @@ pub async fn core_user_consent_retrieve(
 /// Get a list of all objects that use this object
 pub async fn core_user_consent_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: CoreUserConsentUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<CoreUserConsentUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
     let uri_str = format!(
         "{}/core/user_consent/{id}/used_by/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -4413,7 +4767,7 @@ pub async fn core_user_consent_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
@@ -4431,11 +4785,8 @@ pub async fn core_user_consent_used_by_list(
 /// Choose the target account, then return a flow link.
 pub async fn core_users_account_lockdown_create(
     configuration: &configuration::Configuration,
-    user_account_lockdown_request: Option<models::UserAccountLockdownRequest>,
+    params: CoreUsersAccountLockdownCreateParams,
 ) -> Result<models::Link, Error<CoreUsersAccountLockdownCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_account_lockdown_request = user_account_lockdown_request;
-
     let uri_str = format!("{}/core/users/account_lockdown/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4445,7 +4796,7 @@ pub async fn core_users_account_lockdown_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_account_lockdown_request);
+    req_builder = req_builder.json(&params.user_account_lockdown_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4461,7 +4812,9 @@ pub async fn core_users_account_lockdown_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Link`",
@@ -4487,11 +4840,8 @@ pub async fn core_users_account_lockdown_create(
 /// User Viewset
 pub async fn core_users_create(
     configuration: &configuration::Configuration,
-    user_request: models::UserRequest,
+    params: CoreUsersCreateParams,
 ) -> Result<models::User, Error<CoreUsersCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_request = user_request;
-
     let uri_str = format!("{}/core/users/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4501,7 +4851,7 @@ pub async fn core_users_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_request);
+    req_builder = req_builder.json(&params.user_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4517,7 +4867,9 @@ pub async fn core_users_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::User`",
@@ -4543,12 +4895,9 @@ pub async fn core_users_create(
 /// User Viewset
 pub async fn core_users_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: CoreUsersDestroyParams,
 ) -> Result<(), Error<CoreUsersDestroyError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/core/users/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/core/users/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4579,75 +4928,24 @@ pub async fn core_users_destroy(
 /// Create a data export for this data type. Note that the export is generated asynchronously: this method returns a `DataExport` object that will initially have `completed=false` as well as the permanent URL to that object in the `Location` header. You can poll that URL until `completed=true`, at which point the `file_url` property will contain a URL to download
 pub async fn core_users_export_create(
     configuration: &configuration::Configuration,
-    date_joined: Option<chrono::DateTime<chrono::FixedOffset>>,
-    date_joined__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
-    date_joined__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
-    email: Option<&str>,
-    groups_by_name: Option<Vec<String>>,
-    groups_by_pk: Option<Vec<uuid::Uuid>>,
-    is_active: Option<bool>,
-    is_superuser: Option<bool>,
-    last_login: Option<chrono::DateTime<chrono::FixedOffset>>,
-    last_login__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
-    last_login__isnull: Option<bool>,
-    last_login__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
-    last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
-    last_updated__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
-    last_updated__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    path: Option<&str>,
-    path_startswith: Option<&str>,
-    roles_by_name: Option<Vec<String>>,
-    roles_by_pk: Option<Vec<uuid::Uuid>>,
-    search: Option<&str>,
-    r#type: Option<Vec<models::UserTypeEnum>>,
-    username: Option<&str>,
-    uuid: Option<&str>,
+    params: CoreUsersExportCreateParams,
 ) -> Result<models::DataExport, Error<CoreUsersExportCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_date_joined = date_joined;
-    let p_query_date_joined__gt = date_joined__gt;
-    let p_query_date_joined__lt = date_joined__lt;
-    let p_query_email = email;
-    let p_query_groups_by_name = groups_by_name;
-    let p_query_groups_by_pk = groups_by_pk;
-    let p_query_is_active = is_active;
-    let p_query_is_superuser = is_superuser;
-    let p_query_last_login = last_login;
-    let p_query_last_login__gt = last_login__gt;
-    let p_query_last_login__isnull = last_login__isnull;
-    let p_query_last_login__lt = last_login__lt;
-    let p_query_last_updated = last_updated;
-    let p_query_last_updated__gt = last_updated__gt;
-    let p_query_last_updated__lt = last_updated__lt;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_path = path;
-    let p_query_path_startswith = path_startswith;
-    let p_query_roles_by_name = roles_by_name;
-    let p_query_roles_by_pk = roles_by_pk;
-    let p_query_search = search;
-    let p_query_type = r#type;
-    let p_query_username = username;
-    let p_query_uuid = uuid;
-
     let uri_str = format!("{}/core/users/export/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_query_date_joined {
+    if let Some(ref param_value) = params.date_joined {
         req_builder = req_builder.query(&[("date_joined", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_date_joined__gt {
+    if let Some(ref param_value) = params.date_joined__gt {
         req_builder = req_builder.query(&[("date_joined__gt", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_date_joined__lt {
+    if let Some(ref param_value) = params.date_joined__lt {
         req_builder = req_builder.query(&[("date_joined__lt", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_email {
+    if let Some(ref param_value) = params.email {
         req_builder = req_builder.query(&[("email", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_groups_by_name {
+    if let Some(ref param_value) = params.groups_by_name {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -4666,7 +4964,7 @@ pub async fn core_users_export_create(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_groups_by_pk {
+    if let Some(ref param_value) = params.groups_by_pk {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -4685,46 +4983,46 @@ pub async fn core_users_export_create(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_is_active {
+    if let Some(ref param_value) = params.is_active {
         req_builder = req_builder.query(&[("is_active", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_is_superuser {
+    if let Some(ref param_value) = params.is_superuser {
         req_builder = req_builder.query(&[("is_superuser", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_login {
+    if let Some(ref param_value) = params.last_login {
         req_builder = req_builder.query(&[("last_login", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_login__gt {
+    if let Some(ref param_value) = params.last_login__gt {
         req_builder = req_builder.query(&[("last_login__gt", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_login__isnull {
+    if let Some(ref param_value) = params.last_login__isnull {
         req_builder = req_builder.query(&[("last_login__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_login__lt {
+    if let Some(ref param_value) = params.last_login__lt {
         req_builder = req_builder.query(&[("last_login__lt", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated {
+    if let Some(ref param_value) = params.last_updated {
         req_builder = req_builder.query(&[("last_updated", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated__gt {
+    if let Some(ref param_value) = params.last_updated__gt {
         req_builder = req_builder.query(&[("last_updated__gt", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated__lt {
+    if let Some(ref param_value) = params.last_updated__lt {
         req_builder = req_builder.query(&[("last_updated__lt", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_path {
+    if let Some(ref param_value) = params.path {
         req_builder = req_builder.query(&[("path", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_path_startswith {
+    if let Some(ref param_value) = params.path_startswith {
         req_builder = req_builder.query(&[("path_startswith", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_roles_by_name {
+    if let Some(ref param_value) = params.roles_by_name {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -4743,7 +5041,7 @@ pub async fn core_users_export_create(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_roles_by_pk {
+    if let Some(ref param_value) = params.roles_by_pk {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -4762,10 +5060,10 @@ pub async fn core_users_export_create(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_type {
+    if let Some(ref param_value) = params.r#type {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -4784,10 +5082,10 @@ pub async fn core_users_export_create(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_username {
+    if let Some(ref param_value) = params.username {
         req_builder = req_builder.query(&[("username", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_uuid {
+    if let Some(ref param_value) = params.uuid {
         req_builder = req_builder.query(&[("uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4811,7 +5109,9 @@ pub async fn core_users_export_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::DataExport`",
@@ -4837,17 +5137,12 @@ pub async fn core_users_export_create(
 /// Impersonate a user
 pub async fn core_users_impersonate_create(
     configuration: &configuration::Configuration,
-    id: i32,
-    impersonation_request: models::ImpersonationRequest,
+    params: CoreUsersImpersonateCreateParams,
 ) -> Result<(), Error<CoreUsersImpersonateCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_impersonation_request = impersonation_request;
-
     let uri_str = format!(
         "{}/core/users/{id}/impersonate/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -4857,7 +5152,7 @@ pub async fn core_users_impersonate_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_impersonation_request);
+    req_builder = req_builder.json(&params.impersonation_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4912,83 +5207,24 @@ pub async fn core_users_impersonate_end_retrieve(
 /// User Viewset
 pub async fn core_users_list(
     configuration: &configuration::Configuration,
-    date_joined: Option<chrono::DateTime<chrono::FixedOffset>>,
-    date_joined__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
-    date_joined__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
-    email: Option<&str>,
-    groups_by_name: Option<Vec<String>>,
-    groups_by_pk: Option<Vec<uuid::Uuid>>,
-    include_groups: Option<bool>,
-    include_roles: Option<bool>,
-    is_active: Option<bool>,
-    is_superuser: Option<bool>,
-    last_login: Option<chrono::DateTime<chrono::FixedOffset>>,
-    last_login__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
-    last_login__isnull: Option<bool>,
-    last_login__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
-    last_updated: Option<chrono::DateTime<chrono::FixedOffset>>,
-    last_updated__gt: Option<chrono::DateTime<chrono::FixedOffset>>,
-    last_updated__lt: Option<chrono::DateTime<chrono::FixedOffset>>,
-    name: Option<&str>,
-    ordering: Option<&str>,
-    page: Option<i32>,
-    page_size: Option<i32>,
-    path: Option<&str>,
-    path_startswith: Option<&str>,
-    roles_by_name: Option<Vec<String>>,
-    roles_by_pk: Option<Vec<uuid::Uuid>>,
-    search: Option<&str>,
-    r#type: Option<Vec<models::UserTypeEnum>>,
-    username: Option<&str>,
-    uuid: Option<&str>,
+    params: CoreUsersListParams,
 ) -> Result<models::PaginatedUserList, Error<CoreUsersListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_date_joined = date_joined;
-    let p_query_date_joined__gt = date_joined__gt;
-    let p_query_date_joined__lt = date_joined__lt;
-    let p_query_email = email;
-    let p_query_groups_by_name = groups_by_name;
-    let p_query_groups_by_pk = groups_by_pk;
-    let p_query_include_groups = include_groups;
-    let p_query_include_roles = include_roles;
-    let p_query_is_active = is_active;
-    let p_query_is_superuser = is_superuser;
-    let p_query_last_login = last_login;
-    let p_query_last_login__gt = last_login__gt;
-    let p_query_last_login__isnull = last_login__isnull;
-    let p_query_last_login__lt = last_login__lt;
-    let p_query_last_updated = last_updated;
-    let p_query_last_updated__gt = last_updated__gt;
-    let p_query_last_updated__lt = last_updated__lt;
-    let p_query_name = name;
-    let p_query_ordering = ordering;
-    let p_query_page = page;
-    let p_query_page_size = page_size;
-    let p_query_path = path;
-    let p_query_path_startswith = path_startswith;
-    let p_query_roles_by_name = roles_by_name;
-    let p_query_roles_by_pk = roles_by_pk;
-    let p_query_search = search;
-    let p_query_type = r#type;
-    let p_query_username = username;
-    let p_query_uuid = uuid;
-
     let uri_str = format!("{}/core/users/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_date_joined {
+    if let Some(ref param_value) = params.date_joined {
         req_builder = req_builder.query(&[("date_joined", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_date_joined__gt {
+    if let Some(ref param_value) = params.date_joined__gt {
         req_builder = req_builder.query(&[("date_joined__gt", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_date_joined__lt {
+    if let Some(ref param_value) = params.date_joined__lt {
         req_builder = req_builder.query(&[("date_joined__lt", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_email {
+    if let Some(ref param_value) = params.email {
         req_builder = req_builder.query(&[("email", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_groups_by_name {
+    if let Some(ref param_value) = params.groups_by_name {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5007,7 +5243,7 @@ pub async fn core_users_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_groups_by_pk {
+    if let Some(ref param_value) = params.groups_by_pk {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5026,58 +5262,58 @@ pub async fn core_users_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_include_groups {
+    if let Some(ref param_value) = params.include_groups {
         req_builder = req_builder.query(&[("include_groups", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_include_roles {
+    if let Some(ref param_value) = params.include_roles {
         req_builder = req_builder.query(&[("include_roles", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_is_active {
+    if let Some(ref param_value) = params.is_active {
         req_builder = req_builder.query(&[("is_active", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_is_superuser {
+    if let Some(ref param_value) = params.is_superuser {
         req_builder = req_builder.query(&[("is_superuser", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_login {
+    if let Some(ref param_value) = params.last_login {
         req_builder = req_builder.query(&[("last_login", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_login__gt {
+    if let Some(ref param_value) = params.last_login__gt {
         req_builder = req_builder.query(&[("last_login__gt", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_login__isnull {
+    if let Some(ref param_value) = params.last_login__isnull {
         req_builder = req_builder.query(&[("last_login__isnull", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_login__lt {
+    if let Some(ref param_value) = params.last_login__lt {
         req_builder = req_builder.query(&[("last_login__lt", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated {
+    if let Some(ref param_value) = params.last_updated {
         req_builder = req_builder.query(&[("last_updated", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated__gt {
+    if let Some(ref param_value) = params.last_updated__gt {
         req_builder = req_builder.query(&[("last_updated__gt", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_last_updated__lt {
+    if let Some(ref param_value) = params.last_updated__lt {
         req_builder = req_builder.query(&[("last_updated__lt", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_name {
+    if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_ordering {
+    if let Some(ref param_value) = params.ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page {
+    if let Some(ref param_value) = params.page {
         req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_page_size {
+    if let Some(ref param_value) = params.page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_path {
+    if let Some(ref param_value) = params.path {
         req_builder = req_builder.query(&[("path", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_path_startswith {
+    if let Some(ref param_value) = params.path_startswith {
         req_builder = req_builder.query(&[("path_startswith", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_roles_by_name {
+    if let Some(ref param_value) = params.roles_by_name {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5096,7 +5332,7 @@ pub async fn core_users_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_roles_by_pk {
+    if let Some(ref param_value) = params.roles_by_pk {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5115,10 +5351,10 @@ pub async fn core_users_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_type {
+    if let Some(ref param_value) = params.r#type {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -5137,10 +5373,10 @@ pub async fn core_users_list(
             )]),
         };
     }
-    if let Some(ref param_value) = p_query_username {
+    if let Some(ref param_value) = params.username {
         req_builder = req_builder.query(&[("username", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_uuid {
+    if let Some(ref param_value) = params.uuid {
         req_builder = req_builder.query(&[("uuid", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5164,7 +5400,7 @@ pub async fn core_users_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserList`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserList`")))),
         }
@@ -5207,7 +5443,9 @@ pub async fn core_users_me_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::SessionUser`",
@@ -5233,14 +5471,9 @@ pub async fn core_users_me_retrieve(
 /// User Viewset
 pub async fn core_users_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    patched_user_request: Option<models::PatchedUserRequest>,
+    params: CoreUsersPartialUpdateParams,
 ) -> Result<models::User, Error<CoreUsersPartialUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_patched_user_request = patched_user_request;
-
-    let uri_str = format!("{}/core/users/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/core/users/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5249,7 +5482,7 @@ pub async fn core_users_partial_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_patched_user_request);
+    req_builder = req_builder.json(&params.patched_user_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5265,7 +5498,9 @@ pub async fn core_users_partial_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::User`",
@@ -5291,15 +5526,12 @@ pub async fn core_users_partial_update(
 /// Get all user paths
 pub async fn core_users_paths_retrieve(
     configuration: &configuration::Configuration,
-    search: Option<&str>,
+    params: CoreUsersPathsRetrieveParams,
 ) -> Result<models::UserPath, Error<CoreUsersPathsRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_search = search;
-
     let uri_str = format!("{}/core/users/paths/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_search {
+    if let Some(ref param_value) = params.search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5323,7 +5555,9 @@ pub async fn core_users_paths_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::UserPath`",
@@ -5349,14 +5583,9 @@ pub async fn core_users_paths_retrieve(
 /// Create a temporary link that a user can use to recover their account
 pub async fn core_users_recovery_create(
     configuration: &configuration::Configuration,
-    id: i32,
-    user_recovery_link_request: Option<models::UserRecoveryLinkRequest>,
+    params: CoreUsersRecoveryCreateParams,
 ) -> Result<models::Link, Error<CoreUsersRecoveryCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_user_recovery_link_request = user_recovery_link_request;
-
-    let uri_str = format!("{}/core/users/{id}/recovery/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/core/users/{id}/recovery/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5365,7 +5594,7 @@ pub async fn core_users_recovery_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_recovery_link_request);
+    req_builder = req_builder.json(&params.user_recovery_link_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5381,7 +5610,9 @@ pub async fn core_users_recovery_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::Link`",
@@ -5407,17 +5638,12 @@ pub async fn core_users_recovery_create(
 /// Send an email with a temporary link that a user can use to recover their account
 pub async fn core_users_recovery_email_create(
     configuration: &configuration::Configuration,
-    id: i32,
-    user_recovery_email_request: models::UserRecoveryEmailRequest,
+    params: CoreUsersRecoveryEmailCreateParams,
 ) -> Result<(), Error<CoreUsersRecoveryEmailCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_user_recovery_email_request = user_recovery_email_request;
-
     let uri_str = format!(
         "{}/core/users/{id}/recovery_email/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -5427,7 +5653,7 @@ pub async fn core_users_recovery_email_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_recovery_email_request);
+    req_builder = req_builder.json(&params.user_recovery_email_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5450,12 +5676,9 @@ pub async fn core_users_recovery_email_create(
 /// User Viewset
 pub async fn core_users_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: CoreUsersRetrieveParams,
 ) -> Result<models::User, Error<CoreUsersRetrieveError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/core/users/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/core/users/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5479,7 +5702,9 @@ pub async fn core_users_retrieve(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::User`",
@@ -5505,11 +5730,8 @@ pub async fn core_users_retrieve(
 /// Create a new user account that is marked as a service account
 pub async fn core_users_service_account_create(
     configuration: &configuration::Configuration,
-    user_service_account_request: models::UserServiceAccountRequest,
+    params: CoreUsersServiceAccountCreateParams,
 ) -> Result<models::UserServiceAccountResponse, Error<CoreUsersServiceAccountCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_user_service_account_request = user_service_account_request;
-
     let uri_str = format!("{}/core/users/service_account/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -5519,7 +5741,7 @@ pub async fn core_users_service_account_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_service_account_request);
+    req_builder = req_builder.json(&params.user_service_account_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5535,7 +5757,7 @@ pub async fn core_users_service_account_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserServiceAccountResponse`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserServiceAccountResponse`")))),
         }
@@ -5553,17 +5775,12 @@ pub async fn core_users_service_account_create(
 /// Set password for user
 pub async fn core_users_set_password_create(
     configuration: &configuration::Configuration,
-    id: i32,
-    user_password_set_request: models::UserPasswordSetRequest,
+    params: CoreUsersSetPasswordCreateParams,
 ) -> Result<(), Error<CoreUsersSetPasswordCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_user_password_set_request = user_password_set_request;
-
     let uri_str = format!(
         "{}/core/users/{id}/set_password/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -5573,7 +5790,7 @@ pub async fn core_users_set_password_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_password_set_request);
+    req_builder = req_builder.json(&params.user_password_set_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5596,17 +5813,12 @@ pub async fn core_users_set_password_create(
 /// Set a user's password from a pre-hashed Django password value.  Submit the Django password hash in the shared ``password`` request field.  This updates authentik's local password verifier only. It does not attempt to propagate the password change to LDAP or Kerberos because no raw password is available from the request payload.
 pub async fn core_users_set_password_hash_create(
     configuration: &configuration::Configuration,
-    id: i32,
-    user_password_hash_set_request: models::UserPasswordHashSetRequest,
+    params: CoreUsersSetPasswordHashCreateParams,
 ) -> Result<(), Error<CoreUsersSetPasswordHashCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_user_password_hash_set_request = user_password_hash_set_request;
-
     let uri_str = format!(
         "{}/core/users/{id}/set_password_hash/",
         configuration.base_path,
-        id = p_path_id
+        id = params.id
     );
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -5616,7 +5828,7 @@ pub async fn core_users_set_password_hash_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_password_hash_set_request);
+    req_builder = req_builder.json(&params.user_password_hash_set_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5639,17 +5851,12 @@ pub async fn core_users_set_password_hash_create(
 /// Start browser user switching.
 pub async fn core_users_switch_create(
     configuration: &configuration::Configuration,
-    next: Option<&str>,
-    user_switch_request: Option<models::UserSwitchRequest>,
+    params: CoreUsersSwitchCreateParams,
 ) -> Result<models::UserSwitchResponse, Error<CoreUsersSwitchCreateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_next = next;
-    let p_body_user_switch_request = user_switch_request;
-
     let uri_str = format!("{}/core/users/switch/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_query_next {
+    if let Some(ref param_value) = params.next {
         req_builder = req_builder.query(&[("next", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5658,7 +5865,7 @@ pub async fn core_users_switch_create(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_switch_request);
+    req_builder = req_builder.json(&params.user_switch_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5674,7 +5881,7 @@ pub async fn core_users_switch_create(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserSwitchResponse`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserSwitchResponse`")))),
         }
@@ -5692,14 +5899,9 @@ pub async fn core_users_switch_create(
 /// User Viewset
 pub async fn core_users_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    user_request: models::UserRequest,
+    params: CoreUsersUpdateParams,
 ) -> Result<models::User, Error<CoreUsersUpdateError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_user_request = user_request;
-
-    let uri_str = format!("{}/core/users/{id}/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/core/users/{id}/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5708,7 +5910,7 @@ pub async fn core_users_update(
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_user_request);
+    req_builder = req_builder.json(&params.user_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -5724,7 +5926,9 @@ pub async fn core_users_update(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => {
+                serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from)
+            }
             ContentType::Text => {
                 return Err(Error::from(serde_json::Error::custom(
                     "Received `text/plain` content type response that cannot be converted to `models::User`",
@@ -5750,12 +5954,9 @@ pub async fn core_users_update(
 /// Get a list of all objects that use this object
 pub async fn core_users_used_by_list(
     configuration: &configuration::Configuration,
-    id: i32,
+    params: CoreUsersUsedByListParams,
 ) -> Result<Vec<models::UsedBy>, Error<CoreUsersUsedByListError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/core/users/{id}/used_by/", configuration.base_path, id = p_path_id);
+    let uri_str = format!("{}/core/users/{id}/used_by/", configuration.base_path, id = params.id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -5779,7 +5980,7 @@ pub async fn core_users_used_by_list(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Json => serde_path_to_error::deserialize(&mut serde_json::Deserializer::from_str(&content)).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
             ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
         }
