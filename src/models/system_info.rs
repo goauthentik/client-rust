@@ -40,6 +40,8 @@ pub struct SystemInfo {
     /// Configured external base URL. Can be empty
     #[serde(rename = "base_url")]
     pub base_url: String,
+    #[serde(rename = "postgresql", deserialize_with = "Option::deserialize")]
+    pub postgresql: Option<models::SystemInfoPostgresql>,
 }
 
 impl SystemInfo {
@@ -54,6 +56,7 @@ impl SystemInfo {
         embedded_outpost_disabled: bool,
         embedded_outpost_host: String,
         base_url: String,
+        postgresql: Option<models::SystemInfoPostgresql>,
     ) -> SystemInfo {
         SystemInfo {
             http_headers,
@@ -65,6 +68,7 @@ impl SystemInfo {
             embedded_outpost_disabled,
             embedded_outpost_host,
             base_url,
+            postgresql,
         }
     }
 }

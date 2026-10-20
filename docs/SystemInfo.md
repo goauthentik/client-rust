@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **embedded_outpost_disabled** | **bool** | Whether the embedded outpost is disabled | [readonly]
 **embedded_outpost_host** | **String** | Get the FQDN configured on the embedded outpost | [readonly]
 **base_url** | **String** | Configured external base URL. Can be empty | [readonly]
+**postgresql** | Option<[**models::SystemInfoPostgresql**](SystemInfoPostgresql.md)> |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

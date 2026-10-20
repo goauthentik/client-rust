@@ -864,6 +864,7 @@ docs/SyncObjectResult.md
 docs/SyncOutgoingTriggerModeEnum.md
 docs/SyncStatus.md
 docs/SystemInfo.md
+docs/SystemInfoPostgresql.md
 docs/SystemInfoRuntime.md
 docs/Task.md
 docs/TaskAggregatedStatusEnum.md
@@ -1829,6 +1830,7 @@ src/models/sync_object_result.rs
 src/models/sync_outgoing_trigger_mode_enum.rs
 src/models/sync_status.rs
 src/models/system_info.rs
+src/models/system_info_postgresql.rs
 src/models/system_info_runtime.rs
 src/models/task.rs
 src/models/task_aggregated_status_enum.rs

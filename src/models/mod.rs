@@ -1670,6 +1670,8 @@ pub mod sync_status;
 pub use self::sync_status::SyncStatus;
 pub mod system_info;
 pub use self::system_info::SystemInfo;
+pub mod system_info_postgresql;
+pub use self::system_info_postgresql::SystemInfoPostgresql;
 pub mod system_info_runtime;
 pub use self::system_info_runtime::SystemInfoRuntime;
 pub mod task;
