@@ -6235,6 +6235,7 @@ pub async fn providers_saml_list(
     default_name_id_policy: Option<models::SamlNameIdPolicyEnum>,
     default_relay_state: Option<&str>,
     digest_algorithm: Option<models::DigestAlgorithmEnum>,
+    encryption_algorithm: Option<&str>,
     encryption_kp: Option<&str>,
     invalidation_flow: Option<&str>,
     is_backchannel: Option<bool>,
@@ -6271,6 +6272,7 @@ pub async fn providers_saml_list(
     let p_query_default_name_id_policy = default_name_id_policy;
     let p_query_default_relay_state = default_relay_state;
     let p_query_digest_algorithm = digest_algorithm;
+    let p_query_encryption_algorithm = encryption_algorithm;
     let p_query_encryption_kp = encryption_kp;
     let p_query_invalidation_flow = invalidation_flow;
     let p_query_is_backchannel = is_backchannel;
@@ -6330,6 +6332,9 @@ pub async fn providers_saml_list(
     }
     if let Some(ref param_value) = p_query_digest_algorithm {
         req_builder = req_builder.query(&[("digest_algorithm", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_encryption_algorithm {
+        req_builder = req_builder.query(&[("encryption_algorithm", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_encryption_kp {
         req_builder = req_builder.query(&[("encryption_kp", &param_value.to_string())]);
@@ -8338,6 +8343,7 @@ pub async fn providers_wsfed_list(
     default_name_id_policy: Option<models::SamlNameIdPolicyEnum>,
     default_relay_state: Option<&str>,
     digest_algorithm: Option<models::DigestAlgorithmEnum>,
+    encryption_algorithm: Option<&str>,
     encryption_kp: Option<&str>,
     invalidation_flow: Option<&str>,
     is_backchannel: Option<bool>,
@@ -8375,6 +8381,7 @@ pub async fn providers_wsfed_list(
     let p_query_default_name_id_policy = default_name_id_policy;
     let p_query_default_relay_state = default_relay_state;
     let p_query_digest_algorithm = digest_algorithm;
+    let p_query_encryption_algorithm = encryption_algorithm;
     let p_query_encryption_kp = encryption_kp;
     let p_query_invalidation_flow = invalidation_flow;
     let p_query_is_backchannel = is_backchannel;
@@ -8435,6 +8442,9 @@ pub async fn providers_wsfed_list(
     }
     if let Some(ref param_value) = p_query_digest_algorithm {
         req_builder = req_builder.query(&[("digest_algorithm", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_encryption_algorithm {
+        req_builder = req_builder.query(&[("encryption_algorithm", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_encryption_kp {
         req_builder = req_builder.query(&[("encryption_kp", &param_value.to_string())]);

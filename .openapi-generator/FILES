@@ -173,6 +173,7 @@ docs/EmailDevice.md
 docs/EmailDeviceRequest.md
 docs/EmailStage.md
 docs/EmailStageRequest.md
+docs/EncryptionAlgorithmEnum.md
 docs/EndpointAgentChallenge.md
 docs/EndpointAgentChallengeResponseRequest.md
 docs/EndpointDevice.md
@@ -1158,6 +1159,7 @@ src/models/email_device.rs
 src/models/email_device_request.rs
 src/models/email_stage.rs
 src/models/email_stage_request.rs
+src/models/encryption_algorithm_enum.rs
 src/models/endpoint_agent_challenge.rs
 src/models/endpoint_agent_challenge_response_request.rs
 src/models/endpoint_device.rs

@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **signature_algorithm** | Option<[**models::SignatureAlgorithmEnum**](SignatureAlgorithmEnum.md)> |  | [optional]
 **signing_kp** | Option<**uuid::Uuid**> | Keypair used to sign outgoing Responses going to the Service Provider. | [optional]
 **encryption_kp** | Option<**uuid::Uuid**> | When selected, incoming assertions are encrypted by the IdP using the public key of the encryption keypair. The assertion is decrypted by the SP using the the private key. | [optional]
+**encryption_algorithm** | Option<[**models::EncryptionAlgorithmEnum**](EncryptionAlgorithmEnum.md)> | Block cipher used to encrypt the assertion. | [optional]
 **sign_assertion** | Option<**bool**> |  | [optional]
 **sign_logout_request** | Option<**bool**> |  | [optional]
 **default_name_id_policy** | Option<[**models::SamlNameIdPolicyEnum**](SAMLNameIDPolicyEnum.md)> |  | [optional]

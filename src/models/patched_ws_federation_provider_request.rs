@@ -84,6 +84,9 @@ pub struct PatchedWsFederationProviderRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub encryption_kp: Option<Option<uuid::Uuid>>,
+    /// Block cipher used to encrypt the assertion.
+    #[serde(rename = "encryption_algorithm", skip_serializing_if = "Option::is_none")]
+    pub encryption_algorithm: Option<models::EncryptionAlgorithmEnum>,
     #[serde(rename = "sign_assertion", skip_serializing_if = "Option::is_none")]
     pub sign_assertion: Option<bool>,
     #[serde(rename = "sign_logout_request", skip_serializing_if = "Option::is_none")]
@@ -113,6 +116,7 @@ impl PatchedWsFederationProviderRequest {
             signature_algorithm: None,
             signing_kp: None,
             encryption_kp: None,
+            encryption_algorithm: None,
             sign_assertion: None,
             sign_logout_request: None,
             default_name_id_policy: None,

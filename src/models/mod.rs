@@ -328,6 +328,8 @@ pub mod email_stage;
 pub use self::email_stage::EmailStage;
 pub mod email_stage_request;
 pub use self::email_stage_request::EmailStageRequest;
+pub mod encryption_algorithm_enum;
+pub use self::encryption_algorithm_enum::EncryptionAlgorithmEnum;
 pub mod endpoint_agent_challenge;
 pub use self::endpoint_agent_challenge::EndpointAgentChallenge;
 pub mod endpoint_agent_challenge_response_request;

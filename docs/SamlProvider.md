@@ -32,6 +32,7 @@ Name | Type | Description | Notes
 **signing_kp** | Option<**uuid::Uuid**> | Keypair used to sign outgoing Responses going to the Service Provider. | [optional]
 **verification_kp** | Option<**uuid::Uuid**> | When selected, incoming assertion's Signatures will be validated against this certificate. To allow unsigned Requests, leave on default. | [optional]
 **encryption_kp** | Option<**uuid::Uuid**> | When selected, incoming assertions are encrypted by the IdP using the public key of the encryption keypair. The assertion is decrypted by the SP using the the private key. | [optional]
+**encryption_algorithm** | Option<[**models::EncryptionAlgorithmEnum**](EncryptionAlgorithmEnum.md)> | Block cipher used to encrypt the assertion. | [optional]
 **sign_assertion** | Option<**bool**> |  | [optional]
 **sign_response** | Option<**bool**> |  | [optional]
 **sign_logout_request** | Option<**bool**> |  | [optional]
