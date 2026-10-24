@@ -24,6 +24,10 @@ pub struct Config {
     pub cache_timeout_flows: i32,
     #[serde(rename = "cache_timeout_policies")]
     pub cache_timeout_policies: i32,
+    #[serde(rename = "cache_timeout_brands")]
+    pub cache_timeout_brands: i32,
+    #[serde(rename = "cache_timeout_system_settings")]
+    pub cache_timeout_system_settings: i32,
 }
 
 impl Config {
@@ -34,6 +38,8 @@ impl Config {
         cache_timeout: i32,
         cache_timeout_flows: i32,
         cache_timeout_policies: i32,
+        cache_timeout_brands: i32,
+        cache_timeout_system_settings: i32,
     ) -> Config {
         Config {
             error_reporting,
@@ -41,6 +47,8 @@ impl Config {
             cache_timeout,
             cache_timeout_flows,
             cache_timeout_policies,
+            cache_timeout_brands,
+            cache_timeout_system_settings,
         }
     }
 }
