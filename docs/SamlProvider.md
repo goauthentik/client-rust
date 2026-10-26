@@ -42,6 +42,7 @@ Name | Type | Description | Notes
 **logout_method** | Option<[**models::SamlLogoutMethods**](SAMLLogoutMethods.md)> | Method to use for logout. Front-channel iframe loads all logout URLs simultaneously in hidden iframes. Front-channel native uses your active browser tab to send post requests and redirect to providers. Back-channel sends logout requests directly from the server without user interaction (requires POST SLS binding). | [optional]
 **default_relay_state** | Option<**String**> | Default relay_state value for IDP-initiated logins | [optional]
 **default_name_id_policy** | Option<[**models::SamlNameIdPolicyEnum**](SAMLNameIDPolicyEnum.md)> |  | [optional]
+**jwt_federation_providers** | Option<**Vec<i32>**> | OAuth2 providers which can exchange their JWTs for a SAML Response of this provider via token exchange. | [optional]
 **url_download_metadata** | **String** | Get metadata download URL | [readonly]
 **url_issuer** | **String** | Get Issuer/EntityID URL | [readonly]
 **url_unified** | **String** | Get unified SAML endpoint URL (handles SSO and SLO) | [readonly]

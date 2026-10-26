@@ -6240,6 +6240,7 @@ pub async fn providers_saml_list(
     invalidation_flow: Option<&str>,
     is_backchannel: Option<bool>,
     issuer_override: Option<&str>,
+    jwt_federation_providers: Option<Vec<i32>>,
     logout_method: Option<&str>,
     name: Option<&str>,
     name_id_mapping: Option<&str>,
@@ -6277,6 +6278,7 @@ pub async fn providers_saml_list(
     let p_query_invalidation_flow = invalidation_flow;
     let p_query_is_backchannel = is_backchannel;
     let p_query_issuer_override = issuer_override;
+    let p_query_jwt_federation_providers = jwt_federation_providers;
     let p_query_logout_method = logout_method;
     let p_query_name = name;
     let p_query_name_id_mapping = name_id_mapping;
@@ -6347,6 +6349,25 @@ pub async fn providers_saml_list(
     }
     if let Some(ref param_value) = p_query_issuer_override {
         req_builder = req_builder.query(&[("issuer_override", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_jwt_federation_providers {
+        req_builder = match "multi" {
+            "multi" => req_builder.query(
+                &param_value
+                    .into_iter()
+                    .map(|p| ("jwt_federation_providers".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => req_builder.query(&[(
+                "jwt_federation_providers",
+                &param_value
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref param_value) = p_query_logout_method {
         req_builder = req_builder.query(&[("logout_method", &param_value.to_string())]);
@@ -8348,6 +8369,7 @@ pub async fn providers_wsfed_list(
     invalidation_flow: Option<&str>,
     is_backchannel: Option<bool>,
     issuer_override: Option<&str>,
+    jwt_federation_providers: Option<Vec<i32>>,
     logout_method: Option<&str>,
     name: Option<&str>,
     name_id_mapping: Option<&str>,
@@ -8386,6 +8408,7 @@ pub async fn providers_wsfed_list(
     let p_query_invalidation_flow = invalidation_flow;
     let p_query_is_backchannel = is_backchannel;
     let p_query_issuer_override = issuer_override;
+    let p_query_jwt_federation_providers = jwt_federation_providers;
     let p_query_logout_method = logout_method;
     let p_query_name = name;
     let p_query_name_id_mapping = name_id_mapping;
@@ -8457,6 +8480,25 @@ pub async fn providers_wsfed_list(
     }
     if let Some(ref param_value) = p_query_issuer_override {
         req_builder = req_builder.query(&[("issuer_override", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_jwt_federation_providers {
+        req_builder = match "multi" {
+            "multi" => req_builder.query(
+                &param_value
+                    .into_iter()
+                    .map(|p| ("jwt_federation_providers".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => req_builder.query(&[(
+                "jwt_federation_providers",
+                &param_value
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref param_value) = p_query_logout_method {
         req_builder = req_builder.query(&[("logout_method", &param_value.to_string())]);

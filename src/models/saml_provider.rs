@@ -153,6 +153,9 @@ pub struct SamlProvider {
     pub default_relay_state: Option<String>,
     #[serde(rename = "default_name_id_policy", skip_serializing_if = "Option::is_none")]
     pub default_name_id_policy: Option<models::SamlNameIdPolicyEnum>,
+    /// OAuth2 providers which can exchange their JWTs for a SAML Response of this provider via token exchange.
+    #[serde(rename = "jwt_federation_providers", skip_serializing_if = "Option::is_none")]
+    pub jwt_federation_providers: Option<Vec<i32>>,
     /// Get metadata download URL
     #[serde(rename = "url_download_metadata")]
     pub url_download_metadata: String,
@@ -247,6 +250,7 @@ impl SamlProvider {
             logout_method: None,
             default_relay_state: None,
             default_name_id_policy: None,
+            jwt_federation_providers: None,
             url_download_metadata,
             url_issuer,
             url_unified,
