@@ -16,11 +16,17 @@ use serde::{Deserialize, Serialize};
 pub struct UserPasswordHashSetRequest {
     #[serde(rename = "password")]
     pub password: String,
+    /// Import a valid password hash even when its parameters do not match authentik's current password hashing settings.
+    #[serde(rename = "override", skip_serializing_if = "Option::is_none")]
+    pub r#override: Option<bool>,
 }
 
 impl UserPasswordHashSetRequest {
     /// Payload to set a users' password hash directly
     pub fn new(password: String) -> UserPasswordHashSetRequest {
-        UserPasswordHashSetRequest { password }
+        UserPasswordHashSetRequest {
+            password,
+            r#override: None,
+        }
     }
 }
