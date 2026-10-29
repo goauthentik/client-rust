@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**outposts_instances_health_list**](OutpostsApi.md#outposts_instances_health_list) | **GET** /outposts/instances/{uuid}/health/ | 
 [**outposts_instances_list**](OutpostsApi.md#outposts_instances_list) | **GET** /outposts/instances/ | 
 [**outposts_instances_partial_update**](OutpostsApi.md#outposts_instances_partial_update) | **PATCH** /outposts/instances/{uuid}/ | 
+[**outposts_instances_rebuild_permissions_create**](OutpostsApi.md#outposts_instances_rebuild_permissions_create) | **POST** /outposts/instances/{uuid}/rebuild_permissions/ | 
 [**outposts_instances_retrieve**](OutpostsApi.md#outposts_instances_retrieve) | **GET** /outposts/instances/{uuid}/ | 
 [**outposts_instances_update**](OutpostsApi.md#outposts_instances_update) | **PUT** /outposts/instances/{uuid}/ | 
 [**outposts_instances_used_by_list**](OutpostsApi.md#outposts_instances_used_by_list) | **GET** /outposts/instances/{uuid}/used_by/ | 
@@ -235,6 +236,36 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## outposts_instances_rebuild_permissions_create
+
+> outposts_instances_rebuild_permissions_create(uuid)
+
+
+Delete and recreate all permissions of the outpost's service account
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**uuid** | **uuid::Uuid** | A UUID string identifying this Outpost. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

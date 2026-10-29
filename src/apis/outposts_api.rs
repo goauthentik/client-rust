@@ -67,6 +67,15 @@ pub enum OutpostsInstancesPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`outposts_instances_rebuild_permissions_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum OutpostsInstancesRebuildPermissionsCreateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`outposts_instances_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -750,6 +759,46 @@ pub async fn outposts_instances_partial_update(
     } else {
         let content = resp.text().await?;
         let entity: Option<OutpostsInstancesPartialUpdateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Delete and recreate all permissions of the outpost's service account
+pub async fn outposts_instances_rebuild_permissions_create(
+    configuration: &configuration::Configuration,
+    uuid: &str,
+) -> Result<(), Error<OutpostsInstancesRebuildPermissionsCreateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_uuid = uuid;
+
+    let uri_str = format!(
+        "{}/outposts/instances/{uuid}/rebuild_permissions/",
+        configuration.base_path,
+        uuid = crate::apis::urlencode(p_path_uuid)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<OutpostsInstancesRebuildPermissionsCreateError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
