@@ -11,6 +11,7 @@
 | UserOffboarded | user_offboarded |
 | SuspiciousRequest | suspicious_request |
 | PasswordSet | password_set |
+| RequiredActionCompleted | required_action_completed |
 | SecretView | secret_view |
 | SecretRotate | secret_rotate |
 | InvitationUsed | invitation_used |
