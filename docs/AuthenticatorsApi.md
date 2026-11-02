@@ -63,6 +63,8 @@ Method | HTTP request | Description
 [**authenticators_endpoint_list**](AuthenticatorsApi.md#authenticators_endpoint_list) | **GET** /authenticators/endpoint/ | 
 [**authenticators_endpoint_retrieve**](AuthenticatorsApi.md#authenticators_endpoint_retrieve) | **GET** /authenticators/endpoint/{uuid}/ | 
 [**authenticators_endpoint_used_by_list**](AuthenticatorsApi.md#authenticators_endpoint_used_by_list) | **GET** /authenticators/endpoint/{uuid}/used_by/ | 
+[**authenticators_password_lock_create**](AuthenticatorsApi.md#authenticators_password_lock_create) | **POST** /authenticators/password/{id}/lock/ | 
+[**authenticators_password_unlock_create**](AuthenticatorsApi.md#authenticators_password_unlock_create) | **POST** /authenticators/password/{id}/unlock/ | 
 [**authenticators_sms_destroy**](AuthenticatorsApi.md#authenticators_sms_destroy) | **DELETE** /authenticators/sms/{id}/ | 
 [**authenticators_sms_list**](AuthenticatorsApi.md#authenticators_sms_list) | **GET** /authenticators/sms/ | 
 [**authenticators_sms_partial_update**](AuthenticatorsApi.md#authenticators_sms_partial_update) | **PATCH** /authenticators/sms/{id}/ | 
@@ -1902,6 +1904,66 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<models::UsedBy>**](UsedBy.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## authenticators_password_lock_create
+
+> authenticators_password_lock_create(id)
+
+
+Prevent a password authenticator from authenticating.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this Password Device. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## authenticators_password_unlock_create
+
+> authenticators_password_unlock_create(id)
+
+
+Allow a locked password authenticator to authenticate again.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this Password Device. | [required] |
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 

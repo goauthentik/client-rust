@@ -10429,6 +10429,7 @@ pub async fn stages_password_list(
     allow_show_password: Option<bool>,
     configure_flow: Option<&str>,
     failed_attempts_before_cancel: Option<i32>,
+    failed_attempts_before_lockout: Option<i32>,
     name: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,
@@ -10439,6 +10440,7 @@ pub async fn stages_password_list(
     let p_query_allow_show_password = allow_show_password;
     let p_query_configure_flow = configure_flow;
     let p_query_failed_attempts_before_cancel = failed_attempts_before_cancel;
+    let p_query_failed_attempts_before_lockout = failed_attempts_before_lockout;
     let p_query_name = name;
     let p_query_ordering = ordering;
     let p_query_page = page;
@@ -10456,6 +10458,9 @@ pub async fn stages_password_list(
     }
     if let Some(ref param_value) = p_query_failed_attempts_before_cancel {
         req_builder = req_builder.query(&[("failed_attempts_before_cancel", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_failed_attempts_before_lockout {
+        req_builder = req_builder.query(&[("failed_attempts_before_lockout", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);

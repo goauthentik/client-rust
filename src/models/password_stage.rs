@@ -46,6 +46,15 @@ pub struct PasswordStage {
     /// How many attempts a user has before the flow is canceled. This only cancels the flow, it does not lock the user's password.
     #[serde(rename = "failed_attempts_before_cancel", skip_serializing_if = "Option::is_none")]
     pub failed_attempts_before_cancel: Option<i32>,
+    /// How many consecutive failed attempts lock the user's password until an administrator unlocks it. Set to 0 to never lock.
+    #[serde(rename = "failed_attempts_before_lockout", skip_serializing_if = "Option::is_none")]
+    pub failed_attempts_before_lockout: Option<u32>,
+    /// Warning shown when the user has one password attempt remaining. Leave blank to show no warning.
+    #[serde(rename = "last_attempt_warning_message", skip_serializing_if = "Option::is_none")]
+    pub last_attempt_warning_message: Option<String>,
+    /// Message shown when the user's password has been locked. Leave blank to show a generic authentication error.
+    #[serde(rename = "lockout_message", skip_serializing_if = "Option::is_none")]
+    pub lockout_message: Option<String>,
     /// When enabled, provides a 'show password' button with the password input field.
     #[serde(rename = "allow_show_password", skip_serializing_if = "Option::is_none")]
     pub allow_show_password: Option<bool>,
@@ -74,6 +83,9 @@ impl PasswordStage {
             backends,
             configure_flow: None,
             failed_attempts_before_cancel: None,
+            failed_attempts_before_lockout: None,
+            last_attempt_warning_message: None,
+            lockout_message: None,
             allow_show_password: None,
         }
     }

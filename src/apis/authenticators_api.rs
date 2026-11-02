@@ -544,6 +544,24 @@ pub enum AuthenticatorsEndpointUsedByListError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`authenticators_password_lock_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AuthenticatorsPasswordLockCreateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`authenticators_password_unlock_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AuthenticatorsPasswordUnlockCreateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`authenticators_sms_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -4068,6 +4086,86 @@ pub async fn authenticators_endpoint_used_by_list(
     } else {
         let content = resp.text().await?;
         let entity: Option<AuthenticatorsEndpointUsedByListError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Prevent a password authenticator from authenticating.
+pub async fn authenticators_password_lock_create(
+    configuration: &configuration::Configuration,
+    id: i32,
+) -> Result<(), Error<AuthenticatorsPasswordLockCreateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+
+    let uri_str = format!(
+        "{}/authenticators/password/{id}/lock/",
+        configuration.base_path,
+        id = p_path_id
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<AuthenticatorsPasswordLockCreateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Allow a locked password authenticator to authenticate again.
+pub async fn authenticators_password_unlock_create(
+    configuration: &configuration::Configuration,
+    id: i32,
+) -> Result<(), Error<AuthenticatorsPasswordUnlockCreateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+
+    let uri_str = format!(
+        "{}/authenticators/password/{id}/unlock/",
+        configuration.base_path,
+        id = p_path_id
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<AuthenticatorsPasswordUnlockCreateError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

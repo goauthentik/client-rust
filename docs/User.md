@@ -23,6 +23,8 @@ Name | Type | Description | Notes
 **r#type** | Option<[**models::UserTypeEnum**](UserTypeEnum.md)> |  | [optional]
 **uuid** | **uuid::Uuid** |  | [readonly]
 **password_change_date** | **chrono::DateTime<chrono::FixedOffset>** |  | [readonly]
+**password_locked** | **bool** | Whether the user's password currently refuses authentication. | [readonly]
+**password_device** | Option<**i32**> |  | [readonly]
 **last_updated** | **chrono::DateTime<chrono::FixedOffset>** |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

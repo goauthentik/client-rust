@@ -4869,7 +4869,7 @@ Name | Type | Description  | Required | Notes
 
 ## stages_password_list
 
-> models::PaginatedPasswordStageList stages_password_list(allow_show_password, configure_flow, failed_attempts_before_cancel, name, ordering, page, page_size, search)
+> models::PaginatedPasswordStageList stages_password_list(allow_show_password, configure_flow, failed_attempts_before_cancel, failed_attempts_before_lockout, name, ordering, page, page_size, search)
 
 
 PasswordStage Viewset
@@ -4882,6 +4882,7 @@ Name | Type | Description  | Required | Notes
 **allow_show_password** | Option<**bool**> |  |  |
 **configure_flow** | Option<**uuid::Uuid**> |  |  |
 **failed_attempts_before_cancel** | Option<**i32**> |  |  |
+**failed_attempts_before_lockout** | Option<**i32**> |  |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
