@@ -27,7 +27,7 @@ pub struct PasswordStageRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub configure_flow: Option<Option<uuid::Uuid>>,
-    /// How many attempts a user has before the flow is canceled. To lock the user out, use a reputation policy and a user_write stage.
+    /// How many attempts a user has before the flow is canceled. This only cancels the flow, it does not lock the user's password.
     #[serde(rename = "failed_attempts_before_cancel", skip_serializing_if = "Option::is_none")]
     pub failed_attempts_before_cancel: Option<i32>,
     /// When enabled, provides a 'show password' button with the password input field.
