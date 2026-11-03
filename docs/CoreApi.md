@@ -159,7 +159,7 @@ ApplicationEntitlement Viewset
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **app** | Option<**uuid::Uuid**> |  |  |
-**for_user** | Option<**String**> | Entitlements assigned to this user, directly or through a group, regardless of the user's access to the application. |  |
+**for_user** | Option<**i32**> | Entitlements assigned to this user, directly or through a group, regardless of the user's access to the application. |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
@@ -227,7 +227,7 @@ List application entitlements which the current user can request access to
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **app** | Option<**uuid::Uuid**> |  |  |
-**for_user** | Option<**String**> | Entitlements assigned to this user, directly or through a group, regardless of the user's access to the application. |  |
+**for_user** | Option<**i32**> | Entitlements assigned to this user, directly or through a group, regardless of the user's access to the application. |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |

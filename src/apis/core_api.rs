@@ -820,7 +820,7 @@ pub async fn core_application_entitlements_destroy(
 pub async fn core_application_entitlements_list(
     configuration: &configuration::Configuration,
     app: Option<&str>,
-    for_user: Option<&str>,
+    for_user: Option<i32>,
     name: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,
@@ -959,7 +959,7 @@ pub async fn core_application_entitlements_partial_update(
 pub async fn core_application_entitlements_requestable_list(
     configuration: &configuration::Configuration,
     app: Option<&str>,
-    for_user: Option<&str>,
+    for_user: Option<i32>,
     name: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,

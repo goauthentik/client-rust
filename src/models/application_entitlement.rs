@@ -20,17 +20,31 @@ pub struct ApplicationEntitlement {
     pub name: String,
     #[serde(rename = "app")]
     pub app: uuid::Uuid,
+    /// Application's display Name.
+    #[serde(rename = "app_name")]
+    pub app_name: String,
+    /// Internal application name, used in URLs.
+    #[serde(rename = "app_slug")]
+    pub app_slug: String,
     #[serde(rename = "attributes", skip_serializing_if = "Option::is_none")]
     pub attributes: Option<std::collections::HashMap<String, serde_json::Value>>,
 }
 
 impl ApplicationEntitlement {
     /// ApplicationEntitlement Serializer
-    pub fn new(pbm_uuid: uuid::Uuid, name: String, app: uuid::Uuid) -> ApplicationEntitlement {
+    pub fn new(
+        pbm_uuid: uuid::Uuid,
+        name: String,
+        app: uuid::Uuid,
+        app_name: String,
+        app_slug: String,
+    ) -> ApplicationEntitlement {
         ApplicationEntitlement {
             pbm_uuid,
             name,
             app,
+            app_name,
+            app_slug,
             attributes: None,
         }
     }
