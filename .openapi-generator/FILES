@@ -124,6 +124,8 @@ docs/CountryCodeEnum.md
 docs/CryptoApi.md
 docs/CurrentBrand.md
 docs/CurrentBrandFlags.md
+docs/CustomPermission.md
+docs/CustomPermissionRequest.md
 docs/DataExport.md
 docs/DebugApi.md
 docs/DeliveryMethodEnum.md
@@ -176,6 +178,7 @@ docs/EmailDeviceRequest.md
 docs/EmailStage.md
 docs/EmailStageRequest.md
 docs/EncryptionAlgorithmEnum.md
+docs/Endpoint.md
 docs/EndpointAgentChallenge.md
 docs/EndpointAgentChallengeResponseRequest.md
 docs/EndpointDevice.md
@@ -412,6 +415,7 @@ docs/PaginatedCertificateKeyPairList.md
 docs/PaginatedConnectionTokenList.md
 docs/PaginatedConnectorList.md
 docs/PaginatedConsentStageList.md
+docs/PaginatedCustomPermissionList.md
 docs/PaginatedDataExportList.md
 docs/PaginatedDenyStageList.md
 docs/PaginatedDeviceAccessGroupList.md
@@ -481,6 +485,7 @@ docs/PaginatedOutpostList.md
 docs/PaginatedPasswordExpiryPolicyList.md
 docs/PaginatedPasswordPolicyList.md
 docs/PaginatedPasswordStageList.md
+docs/PaginatedPermissionCheckList.md
 docs/PaginatedPermissionList.md
 docs/PaginatedPlexSourceList.md
 docs/PaginatedPlexSourcePropertyMappingList.md
@@ -584,6 +589,7 @@ docs/PatchedCaptchaStageRequest.md
 docs/PatchedCertificateKeyPairRequest.md
 docs/PatchedConnectionTokenRequest.md
 docs/PatchedConsentStageRequest.md
+docs/PatchedCustomPermissionRequest.md
 docs/PatchedDenyStageRequest.md
 docs/PatchedDeviceAccessGroupRequest.md
 docs/PatchedDeviceUserBindingRequest.md
@@ -645,6 +651,7 @@ docs/PatchedPasswordExpiryPolicyRequest.md
 docs/PatchedPasswordPolicyRequest.md
 docs/PatchedPasswordStageRequest.md
 docs/PatchedPermissionAssignRequest.md
+docs/PatchedPermissionCheckRequest.md
 docs/PatchedPlexSourcePropertyMappingRequest.md
 docs/PatchedPlexSourceRequest.md
 docs/PatchedPolicyBindingRequest.md
@@ -701,6 +708,8 @@ docs/PatchedWsFederationProviderRequest.md
 docs/Permission.md
 docs/PermissionAssignRequest.md
 docs/PermissionAssignResult.md
+docs/PermissionCheck.md
+docs/PermissionCheckRequest.md
 docs/PkceMethodEnum.md
 docs/PlexAuthenticationChallenge.md
 docs/PlexAuthenticationChallengeResponseRequest.md
@@ -1113,6 +1122,8 @@ src/models/contextual_flow_info_layout_enum.rs
 src/models/country_code_enum.rs
 src/models/current_brand.rs
 src/models/current_brand_flags.rs
+src/models/custom_permission.rs
+src/models/custom_permission_request.rs
 src/models/data_export.rs
 src/models/delivery_method_enum.rs
 src/models/denied_action_enum.rs
@@ -1164,6 +1175,7 @@ src/models/email_device_request.rs
 src/models/email_stage.rs
 src/models/email_stage_request.rs
 src/models/encryption_algorithm_enum.rs
+src/models/endpoint.rs
 src/models/endpoint_agent_challenge.rs
 src/models/endpoint_agent_challenge_response_request.rs
 src/models/endpoint_device.rs
@@ -1393,6 +1405,7 @@ src/models/paginated_certificate_key_pair_list.rs
 src/models/paginated_connection_token_list.rs
 src/models/paginated_connector_list.rs
 src/models/paginated_consent_stage_list.rs
+src/models/paginated_custom_permission_list.rs
 src/models/paginated_data_export_list.rs
 src/models/paginated_deny_stage_list.rs
 src/models/paginated_device_access_group_list.rs
@@ -1462,6 +1475,7 @@ src/models/paginated_outpost_list.rs
 src/models/paginated_password_expiry_policy_list.rs
 src/models/paginated_password_policy_list.rs
 src/models/paginated_password_stage_list.rs
+src/models/paginated_permission_check_list.rs
 src/models/paginated_permission_list.rs
 src/models/paginated_plex_source_list.rs
 src/models/paginated_plex_source_property_mapping_list.rs
@@ -1565,6 +1579,7 @@ src/models/patched_captcha_stage_request.rs
 src/models/patched_certificate_key_pair_request.rs
 src/models/patched_connection_token_request.rs
 src/models/patched_consent_stage_request.rs
+src/models/patched_custom_permission_request.rs
 src/models/patched_deny_stage_request.rs
 src/models/patched_device_access_group_request.rs
 src/models/patched_device_user_binding_request.rs
@@ -1626,6 +1641,7 @@ src/models/patched_password_expiry_policy_request.rs
 src/models/patched_password_policy_request.rs
 src/models/patched_password_stage_request.rs
 src/models/patched_permission_assign_request.rs
+src/models/patched_permission_check_request.rs
 src/models/patched_plex_source_property_mapping_request.rs
 src/models/patched_plex_source_request.rs
 src/models/patched_policy_binding_request.rs
@@ -1682,6 +1698,8 @@ src/models/patched_ws_federation_provider_request.rs
 src/models/permission.rs
 src/models/permission_assign_request.rs
 src/models/permission_assign_result.rs
+src/models/permission_check.rs
+src/models/permission_check_request.rs
 src/models/pkce_method_enum.rs
 src/models/plex_authentication_challenge.rs
 src/models/plex_authentication_challenge_response_request.rs

@@ -13,6 +13,69 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for typed errors of method [`rbac_custom_permissions_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacCustomPermissionsCreateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_custom_permissions_destroy`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacCustomPermissionsDestroyError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_custom_permissions_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacCustomPermissionsListError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_custom_permissions_partial_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacCustomPermissionsPartialUpdateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_custom_permissions_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacCustomPermissionsRetrieveError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_custom_permissions_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacCustomPermissionsUpdateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_endpoints_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacEndpointsListError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`rbac_initial_permissions_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -71,6 +134,69 @@ pub enum RbacInitialPermissionsUpdateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RbacInitialPermissionsUsedByListError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_permission_checks_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacPermissionChecksCreateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_permission_checks_destroy`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacPermissionChecksDestroyError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_permission_checks_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacPermissionChecksListError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_permission_checks_partial_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacPermissionChecksPartialUpdateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_permission_checks_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacPermissionChecksRetrieveError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_permission_checks_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacPermissionChecksUpdateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`rbac_permission_checks_used_by_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RbacPermissionChecksUsedByListError {
     Status400(models::ValidationError),
     Status403(models::GenericError),
     UnknownValue(serde_json::Value),
@@ -211,6 +337,365 @@ pub enum RbacRolesUsedByListError {
     Status400(models::ValidationError),
     Status403(models::GenericError),
     UnknownValue(serde_json::Value),
+}
+
+/// Custom permissions
+pub async fn rbac_custom_permissions_create(
+    configuration: &configuration::Configuration,
+    custom_permission_request: models::CustomPermissionRequest,
+) -> Result<models::CustomPermission, Error<RbacCustomPermissionsCreateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_custom_permission_request = custom_permission_request;
+
+    let uri_str = format!("{}/rbac/custom_permissions/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_custom_permission_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CustomPermission`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CustomPermission`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacCustomPermissionsCreateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Custom permissions
+pub async fn rbac_custom_permissions_destroy(
+    configuration: &configuration::Configuration,
+    id: i32,
+) -> Result<(), Error<RbacCustomPermissionsDestroyError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+
+    let uri_str = format!(
+        "{}/rbac/custom_permissions/{id}/",
+        configuration.base_path,
+        id = p_path_id
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacCustomPermissionsDestroyError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Custom permissions
+pub async fn rbac_custom_permissions_list(
+    configuration: &configuration::Configuration,
+    codename: Option<&str>,
+    ordering: Option<&str>,
+    page: Option<i32>,
+    page_size: Option<i32>,
+    search: Option<&str>,
+) -> Result<models::PaginatedCustomPermissionList, Error<RbacCustomPermissionsListError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_codename = codename;
+    let p_query_ordering = ordering;
+    let p_query_page = page;
+    let p_query_page_size = page_size;
+    let p_query_search = search;
+
+    let uri_str = format!("{}/rbac/custom_permissions/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_codename {
+        req_builder = req_builder.query(&[("codename", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_ordering {
+        req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_page_size {
+        req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_search {
+        req_builder = req_builder.query(&[("search", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedCustomPermissionList`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedCustomPermissionList`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacCustomPermissionsListError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Custom permissions
+pub async fn rbac_custom_permissions_partial_update(
+    configuration: &configuration::Configuration,
+    id: i32,
+    patched_custom_permission_request: Option<models::PatchedCustomPermissionRequest>,
+) -> Result<models::CustomPermission, Error<RbacCustomPermissionsPartialUpdateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+    let p_body_patched_custom_permission_request = patched_custom_permission_request;
+
+    let uri_str = format!(
+        "{}/rbac/custom_permissions/{id}/",
+        configuration.base_path,
+        id = p_path_id
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_patched_custom_permission_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CustomPermission`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CustomPermission`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacCustomPermissionsPartialUpdateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Custom permissions
+pub async fn rbac_custom_permissions_retrieve(
+    configuration: &configuration::Configuration,
+    id: i32,
+) -> Result<models::CustomPermission, Error<RbacCustomPermissionsRetrieveError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+
+    let uri_str = format!(
+        "{}/rbac/custom_permissions/{id}/",
+        configuration.base_path,
+        id = p_path_id
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CustomPermission`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CustomPermission`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacCustomPermissionsRetrieveError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Custom permissions
+pub async fn rbac_custom_permissions_update(
+    configuration: &configuration::Configuration,
+    id: i32,
+    custom_permission_request: models::CustomPermissionRequest,
+) -> Result<models::CustomPermission, Error<RbacCustomPermissionsUpdateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+    let p_body_custom_permission_request = custom_permission_request;
+
+    let uri_str = format!(
+        "{}/rbac/custom_permissions/{id}/",
+        configuration.base_path,
+        id = p_path_id
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_custom_permission_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CustomPermission`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CustomPermission`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacCustomPermissionsUpdateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+pub async fn rbac_endpoints_list(
+    configuration: &configuration::Configuration,
+) -> Result<Vec<models::Endpoint>, Error<RbacEndpointsListError>> {
+    let uri_str = format!("{}/rbac/endpoints/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Endpoint&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::Endpoint&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacEndpointsListError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
 }
 
 /// InitialPermissions viewset
@@ -573,6 +1058,398 @@ pub async fn rbac_initial_permissions_used_by_list(
     } else {
         let content = resp.text().await?;
         let entity: Option<RbacInitialPermissionsUsedByListError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Mixin to add a used_by endpoint to return a list of all objects using this object
+pub async fn rbac_permission_checks_create(
+    configuration: &configuration::Configuration,
+    permission_check_request: models::PermissionCheckRequest,
+) -> Result<models::PermissionCheck, Error<RbacPermissionChecksCreateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_permission_check_request = permission_check_request;
+
+    let uri_str = format!("{}/rbac/permission_checks/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_permission_check_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => {
+                return Err(Error::from(serde_json::Error::custom(
+                    "Received `text/plain` content type response that cannot be converted to `models::PermissionCheck`",
+                )))
+            }
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!(
+                "Received `{unknown_type}` content type response that cannot be converted to `models::PermissionCheck`"
+            )))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacPermissionChecksCreateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Mixin to add a used_by endpoint to return a list of all objects using this object
+pub async fn rbac_permission_checks_destroy(
+    configuration: &configuration::Configuration,
+    check_uuid: &str,
+) -> Result<(), Error<RbacPermissionChecksDestroyError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_check_uuid = check_uuid;
+
+    let uri_str = format!(
+        "{}/rbac/permission_checks/{check_uuid}/",
+        configuration.base_path,
+        check_uuid = crate::apis::urlencode(p_path_check_uuid)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacPermissionChecksDestroyError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Mixin to add a used_by endpoint to return a list of all objects using this object
+pub async fn rbac_permission_checks_list(
+    configuration: &configuration::Configuration,
+    name: Option<&str>,
+    ordering: Option<&str>,
+    page: Option<i32>,
+    page_size: Option<i32>,
+    search: Option<&str>,
+) -> Result<models::PaginatedPermissionCheckList, Error<RbacPermissionChecksListError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_name = name;
+    let p_query_ordering = ordering;
+    let p_query_page = page;
+    let p_query_page_size = page_size;
+    let p_query_search = search;
+
+    let uri_str = format!("{}/rbac/permission_checks/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_name {
+        req_builder = req_builder.query(&[("name", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_ordering {
+        req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_page_size {
+        req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_search {
+        req_builder = req_builder.query(&[("search", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedPermissionCheckList`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedPermissionCheckList`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacPermissionChecksListError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Mixin to add a used_by endpoint to return a list of all objects using this object
+pub async fn rbac_permission_checks_partial_update(
+    configuration: &configuration::Configuration,
+    check_uuid: &str,
+    patched_permission_check_request: Option<models::PatchedPermissionCheckRequest>,
+) -> Result<models::PermissionCheck, Error<RbacPermissionChecksPartialUpdateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_check_uuid = check_uuid;
+    let p_body_patched_permission_check_request = patched_permission_check_request;
+
+    let uri_str = format!(
+        "{}/rbac/permission_checks/{check_uuid}/",
+        configuration.base_path,
+        check_uuid = crate::apis::urlencode(p_path_check_uuid)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_patched_permission_check_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => {
+                return Err(Error::from(serde_json::Error::custom(
+                    "Received `text/plain` content type response that cannot be converted to `models::PermissionCheck`",
+                )))
+            }
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!(
+                "Received `{unknown_type}` content type response that cannot be converted to `models::PermissionCheck`"
+            )))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacPermissionChecksPartialUpdateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Mixin to add a used_by endpoint to return a list of all objects using this object
+pub async fn rbac_permission_checks_retrieve(
+    configuration: &configuration::Configuration,
+    check_uuid: &str,
+) -> Result<models::PermissionCheck, Error<RbacPermissionChecksRetrieveError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_check_uuid = check_uuid;
+
+    let uri_str = format!(
+        "{}/rbac/permission_checks/{check_uuid}/",
+        configuration.base_path,
+        check_uuid = crate::apis::urlencode(p_path_check_uuid)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => {
+                return Err(Error::from(serde_json::Error::custom(
+                    "Received `text/plain` content type response that cannot be converted to `models::PermissionCheck`",
+                )))
+            }
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!(
+                "Received `{unknown_type}` content type response that cannot be converted to `models::PermissionCheck`"
+            )))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacPermissionChecksRetrieveError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Mixin to add a used_by endpoint to return a list of all objects using this object
+pub async fn rbac_permission_checks_update(
+    configuration: &configuration::Configuration,
+    check_uuid: &str,
+    permission_check_request: models::PermissionCheckRequest,
+) -> Result<models::PermissionCheck, Error<RbacPermissionChecksUpdateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_check_uuid = check_uuid;
+    let p_body_permission_check_request = permission_check_request;
+
+    let uri_str = format!(
+        "{}/rbac/permission_checks/{check_uuid}/",
+        configuration.base_path,
+        check_uuid = crate::apis::urlencode(p_path_check_uuid)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_permission_check_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => {
+                return Err(Error::from(serde_json::Error::custom(
+                    "Received `text/plain` content type response that cannot be converted to `models::PermissionCheck`",
+                )))
+            }
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!(
+                "Received `{unknown_type}` content type response that cannot be converted to `models::PermissionCheck`"
+            )))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacPermissionChecksUpdateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get a list of all objects that use this object
+pub async fn rbac_permission_checks_used_by_list(
+    configuration: &configuration::Configuration,
+    check_uuid: &str,
+) -> Result<Vec<models::UsedBy>, Error<RbacPermissionChecksUsedByListError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_check_uuid = check_uuid;
+
+    let uri_str = format!(
+        "{}/rbac/permission_checks/{check_uuid}/used_by/",
+        configuration.base_path,
+        check_uuid = crate::apis::urlencode(p_path_check_uuid)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RbacPermissionChecksUsedByListError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

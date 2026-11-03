@@ -22,6 +22,9 @@ pub struct PatchedSettingsRequestFlags {
     /// Upon successful authentication, re-start authentication in other open tabs.
     #[serde(rename = "flows_continuous_login")]
     pub flows_continuous_login: bool,
+    /// Let permission checks decide API access. While enabled, every API request costs an additional database query.
+    #[serde(rename = "rbac_custom_permissions")]
+    pub rbac_custom_permissions: bool,
 }
 
 impl PatchedSettingsRequestFlags {
@@ -29,11 +32,13 @@ impl PatchedSettingsRequestFlags {
         core_default_app_access: bool,
         enterprise_audit_include_expanded_diff: bool,
         flows_continuous_login: bool,
+        rbac_custom_permissions: bool,
     ) -> PatchedSettingsRequestFlags {
         PatchedSettingsRequestFlags {
             core_default_app_access,
             enterprise_audit_include_expanded_diff,
             flows_continuous_login,
+            rbac_custom_permissions,
         }
     }
 }

@@ -4,6 +4,13 @@ All URIs are relative to */api/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**rbac_custom_permissions_create**](RbacApi.md#rbac_custom_permissions_create) | **POST** /rbac/custom_permissions/ | 
+[**rbac_custom_permissions_destroy**](RbacApi.md#rbac_custom_permissions_destroy) | **DELETE** /rbac/custom_permissions/{id}/ | 
+[**rbac_custom_permissions_list**](RbacApi.md#rbac_custom_permissions_list) | **GET** /rbac/custom_permissions/ | 
+[**rbac_custom_permissions_partial_update**](RbacApi.md#rbac_custom_permissions_partial_update) | **PATCH** /rbac/custom_permissions/{id}/ | 
+[**rbac_custom_permissions_retrieve**](RbacApi.md#rbac_custom_permissions_retrieve) | **GET** /rbac/custom_permissions/{id}/ | 
+[**rbac_custom_permissions_update**](RbacApi.md#rbac_custom_permissions_update) | **PUT** /rbac/custom_permissions/{id}/ | 
+[**rbac_endpoints_list**](RbacApi.md#rbac_endpoints_list) | **GET** /rbac/endpoints/ | 
 [**rbac_initial_permissions_create**](RbacApi.md#rbac_initial_permissions_create) | **POST** /rbac/initial_permissions/ | 
 [**rbac_initial_permissions_destroy**](RbacApi.md#rbac_initial_permissions_destroy) | **DELETE** /rbac/initial_permissions/{id}/ | 
 [**rbac_initial_permissions_list**](RbacApi.md#rbac_initial_permissions_list) | **GET** /rbac/initial_permissions/ | 
@@ -11,6 +18,13 @@ Method | HTTP request | Description
 [**rbac_initial_permissions_retrieve**](RbacApi.md#rbac_initial_permissions_retrieve) | **GET** /rbac/initial_permissions/{id}/ | 
 [**rbac_initial_permissions_update**](RbacApi.md#rbac_initial_permissions_update) | **PUT** /rbac/initial_permissions/{id}/ | 
 [**rbac_initial_permissions_used_by_list**](RbacApi.md#rbac_initial_permissions_used_by_list) | **GET** /rbac/initial_permissions/{id}/used_by/ | 
+[**rbac_permission_checks_create**](RbacApi.md#rbac_permission_checks_create) | **POST** /rbac/permission_checks/ | 
+[**rbac_permission_checks_destroy**](RbacApi.md#rbac_permission_checks_destroy) | **DELETE** /rbac/permission_checks/{check_uuid}/ | 
+[**rbac_permission_checks_list**](RbacApi.md#rbac_permission_checks_list) | **GET** /rbac/permission_checks/ | 
+[**rbac_permission_checks_partial_update**](RbacApi.md#rbac_permission_checks_partial_update) | **PATCH** /rbac/permission_checks/{check_uuid}/ | 
+[**rbac_permission_checks_retrieve**](RbacApi.md#rbac_permission_checks_retrieve) | **GET** /rbac/permission_checks/{check_uuid}/ | 
+[**rbac_permission_checks_update**](RbacApi.md#rbac_permission_checks_update) | **PUT** /rbac/permission_checks/{check_uuid}/ | 
+[**rbac_permission_checks_used_by_list**](RbacApi.md#rbac_permission_checks_used_by_list) | **GET** /rbac/permission_checks/{check_uuid}/used_by/ | 
 [**rbac_permissions_assigned_by_roles_assign**](RbacApi.md#rbac_permissions_assigned_by_roles_assign) | **POST** /rbac/permissions/assigned_by_roles/{uuid}/assign/ | 
 [**rbac_permissions_assigned_by_roles_list**](RbacApi.md#rbac_permissions_assigned_by_roles_list) | **GET** /rbac/permissions/assigned_by_roles/ | 
 [**rbac_permissions_assigned_by_roles_unassign_partial_update**](RbacApi.md#rbac_permissions_assigned_by_roles_unassign_partial_update) | **PATCH** /rbac/permissions/assigned_by_roles/{uuid}/unassign/ | 
@@ -27,6 +41,217 @@ Method | HTTP request | Description
 [**rbac_roles_update**](RbacApi.md#rbac_roles_update) | **PUT** /rbac/roles/{uuid}/ | 
 [**rbac_roles_used_by_list**](RbacApi.md#rbac_roles_used_by_list) | **GET** /rbac/roles/{uuid}/used_by/ | 
 
+
+
+## rbac_custom_permissions_create
+
+> models::CustomPermission rbac_custom_permissions_create(custom_permission_request)
+
+
+Custom permissions
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**custom_permission_request** | [**CustomPermissionRequest**](CustomPermissionRequest.md) |  | [required] |
+
+### Return type
+
+[**models::CustomPermission**](CustomPermission.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_custom_permissions_destroy
+
+> rbac_custom_permissions_destroy(id)
+
+
+Custom permissions
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this Custom permission. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_custom_permissions_list
+
+> models::PaginatedCustomPermissionList rbac_custom_permissions_list(codename, ordering, page, page_size, search)
+
+
+Custom permissions
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**codename** | Option<**String**> |  |  |
+**ordering** | Option<**String**> | Which field to use when ordering the results. |  |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+**page_size** | Option<**i32**> | Number of results to return per page. |  |
+**search** | Option<**String**> | A search term. |  |
+
+### Return type
+
+[**models::PaginatedCustomPermissionList**](PaginatedCustomPermissionList.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_custom_permissions_partial_update
+
+> models::CustomPermission rbac_custom_permissions_partial_update(id, patched_custom_permission_request)
+
+
+Custom permissions
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this Custom permission. | [required] |
+**patched_custom_permission_request** | Option<[**PatchedCustomPermissionRequest**](PatchedCustomPermissionRequest.md)> |  |  |
+
+### Return type
+
+[**models::CustomPermission**](CustomPermission.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_custom_permissions_retrieve
+
+> models::CustomPermission rbac_custom_permissions_retrieve(id)
+
+
+Custom permissions
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this Custom permission. | [required] |
+
+### Return type
+
+[**models::CustomPermission**](CustomPermission.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_custom_permissions_update
+
+> models::CustomPermission rbac_custom_permissions_update(id, custom_permission_request)
+
+
+Custom permissions
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this Custom permission. | [required] |
+**custom_permission_request** | [**CustomPermissionRequest**](CustomPermissionRequest.md) |  | [required] |
+
+### Return type
+
+[**models::CustomPermission**](CustomPermission.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_endpoints_list
+
+> Vec<models::Endpoint> rbac_endpoints_list()
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Vec<models::Endpoint>**](Endpoint.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## rbac_initial_permissions_create
@@ -228,6 +453,222 @@ Get a list of all objects that use this object
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | A unique integer value identifying this Initial Permissions. | [required] |
+
+### Return type
+
+[**Vec<models::UsedBy>**](UsedBy.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_permission_checks_create
+
+> models::PermissionCheck rbac_permission_checks_create(permission_check_request)
+
+
+Mixin to add a used_by endpoint to return a list of all objects using this object
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**permission_check_request** | [**PermissionCheckRequest**](PermissionCheckRequest.md) |  | [required] |
+
+### Return type
+
+[**models::PermissionCheck**](PermissionCheck.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_permission_checks_destroy
+
+> rbac_permission_checks_destroy(check_uuid)
+
+
+Mixin to add a used_by endpoint to return a list of all objects using this object
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**check_uuid** | **uuid::Uuid** | A UUID string identifying this Permission check. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_permission_checks_list
+
+> models::PaginatedPermissionCheckList rbac_permission_checks_list(name, ordering, page, page_size, search)
+
+
+Mixin to add a used_by endpoint to return a list of all objects using this object
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | Option<**String**> |  |  |
+**ordering** | Option<**String**> | Which field to use when ordering the results. |  |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+**page_size** | Option<**i32**> | Number of results to return per page. |  |
+**search** | Option<**String**> | A search term. |  |
+
+### Return type
+
+[**models::PaginatedPermissionCheckList**](PaginatedPermissionCheckList.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_permission_checks_partial_update
+
+> models::PermissionCheck rbac_permission_checks_partial_update(check_uuid, patched_permission_check_request)
+
+
+Mixin to add a used_by endpoint to return a list of all objects using this object
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**check_uuid** | **uuid::Uuid** | A UUID string identifying this Permission check. | [required] |
+**patched_permission_check_request** | Option<[**PatchedPermissionCheckRequest**](PatchedPermissionCheckRequest.md)> |  |  |
+
+### Return type
+
+[**models::PermissionCheck**](PermissionCheck.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_permission_checks_retrieve
+
+> models::PermissionCheck rbac_permission_checks_retrieve(check_uuid)
+
+
+Mixin to add a used_by endpoint to return a list of all objects using this object
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**check_uuid** | **uuid::Uuid** | A UUID string identifying this Permission check. | [required] |
+
+### Return type
+
+[**models::PermissionCheck**](PermissionCheck.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_permission_checks_update
+
+> models::PermissionCheck rbac_permission_checks_update(check_uuid, permission_check_request)
+
+
+Mixin to add a used_by endpoint to return a list of all objects using this object
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**check_uuid** | **uuid::Uuid** | A UUID string identifying this Permission check. | [required] |
+**permission_check_request** | [**PermissionCheckRequest**](PermissionCheckRequest.md) |  | [required] |
+
+### Return type
+
+[**models::PermissionCheck**](PermissionCheck.md)
+
+### Authorization
+
+[authentik](../README.md#authentik)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## rbac_permission_checks_used_by_list
+
+> Vec<models::UsedBy> rbac_permission_checks_used_by_list(check_uuid)
+
+
+Get a list of all objects that use this object
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**check_uuid** | **uuid::Uuid** | A UUID string identifying this Permission check. | [required] |
 
 ### Return type
 
