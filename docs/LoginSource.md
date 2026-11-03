@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  | 
 **icon_url** | Option<**String**> |  | [optional]
+**icon_themed_urls** | Option<[**models::ThemedUrls**](ThemedUrls.md)> |  | [optional]
 **promoted** | Option<**bool**> |  | [optional][default to false]
 **challenge** | [**models::LoginChallengeTypes**](LoginChallengeTypes.md) |  | 
 

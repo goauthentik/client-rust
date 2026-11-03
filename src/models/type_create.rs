@@ -24,6 +24,13 @@ pub struct TypeCreate {
     pub model_name: String,
     #[serde(rename = "icon_url", skip_serializing_if = "Option::is_none")]
     pub icon_url: Option<String>,
+    #[serde(
+        rename = "icon_themed_urls",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub icon_themed_urls: Option<Option<models::ThemedUrls>>,
     #[serde(rename = "requires_enterprise", skip_serializing_if = "Option::is_none")]
     pub requires_enterprise: Option<bool>,
     #[serde(rename = "deprecated", skip_serializing_if = "Option::is_none")]
@@ -39,6 +46,7 @@ impl TypeCreate {
             component,
             model_name,
             icon_url: None,
+            icon_themed_urls: None,
             requires_enterprise: None,
             deprecated: None,
         }

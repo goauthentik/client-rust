@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **component** | **String** |  | 
 **model_name** | **String** |  | 
 **icon_url** | Option<**String**> |  | [optional]
+**icon_themed_urls** | Option<[**models::ThemedUrls**](ThemedUrls.md)> |  | [optional]
 **requires_enterprise** | Option<**bool**> |  | [optional][default to false]
 **deprecated** | Option<**bool**> |  | [optional][default to false]
 

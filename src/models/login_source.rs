@@ -23,6 +23,13 @@ pub struct LoginSource {
         skip_serializing_if = "Option::is_none"
     )]
     pub icon_url: Option<Option<String>>,
+    #[serde(
+        rename = "icon_themed_urls",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub icon_themed_urls: Option<Option<models::ThemedUrls>>,
     #[serde(rename = "promoted", skip_serializing_if = "Option::is_none")]
     pub promoted: Option<bool>,
     #[serde(rename = "challenge")]
@@ -35,6 +42,7 @@ impl LoginSource {
         LoginSource {
             name,
             icon_url: None,
+            icon_themed_urls: None,
             promoted: None,
             challenge,
         }

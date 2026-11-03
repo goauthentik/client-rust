@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **title** | **String** |  | 
 **configure_url** | Option<**String**> |  | [optional]
 **icon_url** | Option<**String**> |  | [optional]
+**icon_themed_urls** | Option<[**models::ThemedUrls**](ThemedUrls.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
