@@ -104,7 +104,7 @@ pub struct SamlSource {
     /// When enabled, the IdP will re-authenticate the user even if a session exists.
     #[serde(rename = "force_authn", skip_serializing_if = "Option::is_none")]
     pub force_authn: Option<bool>,
-    /// NameID Policy sent to the IdP. Can be unset, in which case no Policy is sent.
+    /// Format of the NameID Policy sent to the IdP. Select Unspecified to let the IdP choose the format of the NameID it returns.
     #[serde(rename = "name_id_policy", skip_serializing_if = "Option::is_none")]
     pub name_id_policy: Option<models::SamlNameIdPolicyEnum>,
     #[serde(rename = "binding_type", skip_serializing_if = "Option::is_none")]
