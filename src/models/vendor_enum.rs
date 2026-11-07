@@ -22,6 +22,8 @@ pub enum VendorEnum {
     FleetdmCom,
     #[serde(rename = "chrome.google.com")]
     ChromeGoogleCom,
+    #[serde(rename = "intune.microsoft.com")]
+    IntuneMicrosoftCom,
 }
 
 impl std::fmt::Display for VendorEnum {
@@ -31,6 +33,7 @@ impl std::fmt::Display for VendorEnum {
             Self::GoauthentikIoSlashPlatform => write!(f, "goauthentik.io/platform"),
             Self::FleetdmCom => write!(f, "fleetdm.com"),
             Self::ChromeGoogleCom => write!(f, "chrome.google.com"),
+            Self::IntuneMicrosoftCom => write!(f, "intune.microsoft.com"),
         }
     }
 }

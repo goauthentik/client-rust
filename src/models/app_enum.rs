@@ -150,6 +150,8 @@ pub enum AppEnum {
     AuthentikEnterpriseEndpointsConnectorsFleet,
     #[serde(rename = "authentik.enterprise.endpoints.connectors.google_chrome")]
     AuthentikEnterpriseEndpointsConnectorsGoogleChrome,
+    #[serde(rename = "authentik.enterprise.endpoints.connectors.microsoft_intune")]
+    AuthentikEnterpriseEndpointsConnectorsMicrosoftIntune,
     #[serde(rename = "authentik.enterprise.lifecycle")]
     AuthentikEnterpriseLifecycle,
     #[serde(rename = "authentik.enterprise.policies.unique_password")]
@@ -256,6 +258,9 @@ impl std::fmt::Display for AppEnum {
             }
             Self::AuthentikEnterpriseEndpointsConnectorsGoogleChrome => {
                 write!(f, "authentik.enterprise.endpoints.connectors.google_chrome")
+            }
+            Self::AuthentikEnterpriseEndpointsConnectorsMicrosoftIntune => {
+                write!(f, "authentik.enterprise.endpoints.connectors.microsoft_intune")
             }
             Self::AuthentikEnterpriseLifecycle => write!(f, "authentik.enterprise.lifecycle"),
             Self::AuthentikEnterprisePoliciesUniquePassword => {
