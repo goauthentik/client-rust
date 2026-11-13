@@ -37,7 +37,7 @@ pub struct Application {
     pub backchannel_providers: Option<Vec<i32>>,
     #[serde(rename = "backchannel_providers_obj")]
     pub backchannel_providers_obj: Vec<models::Provider>,
-    /// Allow formatting of launch URL
+    /// Format the launch URL for the user given as `for_user` in the context, or else the requesting user
     #[serde(rename = "launch_url", deserialize_with = "Option::deserialize")]
     pub launch_url: Option<String>,
     /// Open launch URL in a new browser tab or window.

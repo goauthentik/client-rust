@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **provider_obj** | Option<[**models::Provider**](Provider.md)> |  | [readonly]
 **backchannel_providers** | Option<**Vec<i32>**> |  | [optional]
 **backchannel_providers_obj** | [**Vec<models::Provider>**](Provider.md) |  | [readonly]
-**launch_url** | Option<**String**> | Allow formatting of launch URL | [readonly]
+**launch_url** | Option<**String**> | Format the launch URL for the user given as `for_user` in the context, or else the requesting user | [readonly]
 **open_in_new_tab** | Option<**bool**> | Open launch URL in a new browser tab or window. | [optional]
 **meta_launch_url** | Option<**String**> |  | [optional]
 **meta_icon** | Option<**String**> |  | [optional]
