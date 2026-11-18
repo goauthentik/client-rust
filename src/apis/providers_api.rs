@@ -6237,6 +6237,7 @@ pub async fn providers_saml_list(
     digest_algorithm: Option<models::DigestAlgorithmEnum>,
     encryption_algorithm: Option<&str>,
     encryption_kp: Option<&str>,
+    ignore_force_authn: Option<bool>,
     invalidation_flow: Option<&str>,
     is_backchannel: Option<bool>,
     issuer_override: Option<&str>,
@@ -6275,6 +6276,7 @@ pub async fn providers_saml_list(
     let p_query_digest_algorithm = digest_algorithm;
     let p_query_encryption_algorithm = encryption_algorithm;
     let p_query_encryption_kp = encryption_kp;
+    let p_query_ignore_force_authn = ignore_force_authn;
     let p_query_invalidation_flow = invalidation_flow;
     let p_query_is_backchannel = is_backchannel;
     let p_query_issuer_override = issuer_override;
@@ -6340,6 +6342,9 @@ pub async fn providers_saml_list(
     }
     if let Some(ref param_value) = p_query_encryption_kp {
         req_builder = req_builder.query(&[("encryption_kp", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_ignore_force_authn {
+        req_builder = req_builder.query(&[("ignore_force_authn", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_invalidation_flow {
         req_builder = req_builder.query(&[("invalidation_flow", &param_value.to_string())]);
@@ -8366,6 +8371,7 @@ pub async fn providers_wsfed_list(
     digest_algorithm: Option<models::DigestAlgorithmEnum>,
     encryption_algorithm: Option<&str>,
     encryption_kp: Option<&str>,
+    ignore_force_authn: Option<bool>,
     invalidation_flow: Option<&str>,
     is_backchannel: Option<bool>,
     issuer_override: Option<&str>,
@@ -8405,6 +8411,7 @@ pub async fn providers_wsfed_list(
     let p_query_digest_algorithm = digest_algorithm;
     let p_query_encryption_algorithm = encryption_algorithm;
     let p_query_encryption_kp = encryption_kp;
+    let p_query_ignore_force_authn = ignore_force_authn;
     let p_query_invalidation_flow = invalidation_flow;
     let p_query_is_backchannel = is_backchannel;
     let p_query_issuer_override = issuer_override;
@@ -8471,6 +8478,9 @@ pub async fn providers_wsfed_list(
     }
     if let Some(ref param_value) = p_query_encryption_kp {
         req_builder = req_builder.query(&[("encryption_kp", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_ignore_force_authn {
+        req_builder = req_builder.query(&[("ignore_force_authn", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_invalidation_flow {
         req_builder = req_builder.query(&[("invalidation_flow", &param_value.to_string())]);

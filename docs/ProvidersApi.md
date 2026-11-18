@@ -2933,7 +2933,7 @@ Name | Type | Description  | Required | Notes
 
 ## providers_saml_list
 
-> models::PaginatedSamlProviderList providers_saml_list(acs_url, assertion_valid_not_before, assertion_valid_not_on_or_after, audience, authentication_flow, authn_context_class_ref_mapping, authorization_flow, backchannel_application, default_name_id_policy, default_relay_state, digest_algorithm, encryption_algorithm, encryption_kp, invalidation_flow, is_backchannel, issuer_override, jwt_federation_providers, logout_method, name, name_id_mapping, ordering, page, page_size, property_mappings, search, session_valid_not_on_or_after, sign_assertion, sign_logout_request, sign_logout_response, sign_response, signature_algorithm, signing_kp, sls_binding, sls_url, sp_binding, verification_kp)
+> models::PaginatedSamlProviderList providers_saml_list(acs_url, assertion_valid_not_before, assertion_valid_not_on_or_after, audience, authentication_flow, authn_context_class_ref_mapping, authorization_flow, backchannel_application, default_name_id_policy, default_relay_state, digest_algorithm, encryption_algorithm, encryption_kp, ignore_force_authn, invalidation_flow, is_backchannel, issuer_override, jwt_federation_providers, logout_method, name, name_id_mapping, ordering, page, page_size, property_mappings, search, session_valid_not_on_or_after, sign_assertion, sign_logout_request, sign_logout_response, sign_response, signature_algorithm, signing_kp, sls_binding, sls_url, sp_binding, verification_kp)
 
 
 SAMLProvider Viewset
@@ -2956,6 +2956,7 @@ Name | Type | Description  | Required | Notes
 **digest_algorithm** | Option<[**DigestAlgorithmEnum**](DigestAlgorithmEnum.md)> |  |  |
 **encryption_algorithm** | Option<**String**> |  |  |
 **encryption_kp** | Option<**uuid::Uuid**> |  |  |
+**ignore_force_authn** | Option<**bool**> |  |  |
 **invalidation_flow** | Option<**uuid::Uuid**> |  |  |
 **is_backchannel** | Option<**bool**> |  |  |
 **issuer_override** | Option<**String**> |  |  |
@@ -4052,7 +4053,7 @@ Name | Type | Description  | Required | Notes
 
 ## providers_wsfed_list
 
-> models::PaginatedWsFederationProviderList providers_wsfed_list(acs_url, assertion_valid_not_before, assertion_valid_not_on_or_after, audience, authentication_flow, authn_context_class_ref_mapping, authorization_flow, backchannel_application, default_name_id_policy, default_relay_state, digest_algorithm, encryption_algorithm, encryption_kp, invalidation_flow, is_backchannel, issuer_override, jwt_federation_providers, logout_method, name, name_id_mapping, ordering, page, page_size, property_mappings, saml_version, search, session_valid_not_on_or_after, sign_assertion, sign_logout_request, sign_logout_response, sign_response, signature_algorithm, signing_kp, sls_binding, sls_url, sp_binding, verification_kp)
+> models::PaginatedWsFederationProviderList providers_wsfed_list(acs_url, assertion_valid_not_before, assertion_valid_not_on_or_after, audience, authentication_flow, authn_context_class_ref_mapping, authorization_flow, backchannel_application, default_name_id_policy, default_relay_state, digest_algorithm, encryption_algorithm, encryption_kp, ignore_force_authn, invalidation_flow, is_backchannel, issuer_override, jwt_federation_providers, logout_method, name, name_id_mapping, ordering, page, page_size, property_mappings, saml_version, search, session_valid_not_on_or_after, sign_assertion, sign_logout_request, sign_logout_response, sign_response, signature_algorithm, signing_kp, sls_binding, sls_url, sp_binding, verification_kp)
 
 
 WSFederationProvider Viewset
@@ -4075,6 +4076,7 @@ Name | Type | Description  | Required | Notes
 **digest_algorithm** | Option<[**DigestAlgorithmEnum**](DigestAlgorithmEnum.md)> |  |  |
 **encryption_algorithm** | Option<**String**> |  |  |
 **encryption_kp** | Option<**uuid::Uuid**> |  |  |
+**ignore_force_authn** | Option<**bool**> |  |  |
 **invalidation_flow** | Option<**uuid::Uuid**> |  |  |
 **is_backchannel** | Option<**bool**> |  |  |
 **issuer_override** | Option<**String**> |  |  |
