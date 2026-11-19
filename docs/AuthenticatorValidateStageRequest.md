@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **last_auth_threshold** | Option<**String**> | If any of the user's device has been used within this threshold, this stage will be skipped | [optional]
 **webauthn_user_verification** | Option<[**models::UserVerificationEnum**](UserVerificationEnum.md)> | Enforce user verification for WebAuthn devices. | [optional]
 **webauthn_hints** | Option<[**Vec<models::WebAuthnHintEnum>**](WebAuthnHintEnum.md)> |  | [optional]
+**webauthn_additional_accepted_origins** | Option<**Vec<String>**> | Additional trusted origins for WebAuthn authentication. Matched exactly. | [optional]
 **webauthn_allowed_device_types** | Option<**Vec<uuid::Uuid>**> |  | [optional]
 **email_otp_throttling_factor** | Option<**f64**> |  | [optional]
 **sms_otp_throttling_factor** | Option<**f64**> |  | [optional]

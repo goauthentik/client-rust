@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **authenticator_attachment** | Option<[**models::AuthenticatorAttachmentEnum**](AuthenticatorAttachmentEnum.md)> |  | [optional]
 **resident_key_requirement** | Option<[**models::UserVerificationEnum**](UserVerificationEnum.md)> |  | [optional]
 **hints** | Option<[**Vec<models::WebAuthnHintEnum>**](WebAuthnHintEnum.md)> |  | [optional]
+**additional_accepted_origins** | Option<**Vec<String>**> | Additional trusted origins for WebAuthn registration. Matched exactly. | [optional]
 **device_type_restrictions** | Option<**Vec<uuid::Uuid>**> |  | [optional]
 **max_attempts** | Option<**u32**> |  | [optional]
 

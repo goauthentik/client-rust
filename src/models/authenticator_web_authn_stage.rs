@@ -55,6 +55,9 @@ pub struct AuthenticatorWebAuthnStage {
     pub resident_key_requirement: Option<models::UserVerificationEnum>,
     #[serde(rename = "hints", skip_serializing_if = "Option::is_none")]
     pub hints: Option<Vec<models::WebAuthnHintEnum>>,
+    /// Additional trusted origins for WebAuthn registration. Matched exactly.
+    #[serde(rename = "additional_accepted_origins", skip_serializing_if = "Option::is_none")]
+    pub additional_accepted_origins: Option<Vec<String>>,
     #[serde(rename = "device_type_restrictions", skip_serializing_if = "Option::is_none")]
     pub device_type_restrictions: Option<Vec<uuid::Uuid>>,
     #[serde(rename = "device_type_restrictions_obj")]
@@ -89,6 +92,7 @@ impl AuthenticatorWebAuthnStage {
             authenticator_attachment: None,
             resident_key_requirement: None,
             hints: None,
+            additional_accepted_origins: None,
             device_type_restrictions: None,
             device_type_restrictions_obj,
             max_attempts: None,

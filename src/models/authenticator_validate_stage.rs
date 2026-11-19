@@ -48,6 +48,12 @@ pub struct AuthenticatorValidateStage {
     pub webauthn_user_verification: Option<models::UserVerificationEnum>,
     #[serde(rename = "webauthn_hints", skip_serializing_if = "Option::is_none")]
     pub webauthn_hints: Option<Vec<models::WebAuthnHintEnum>>,
+    /// Additional trusted origins for WebAuthn authentication. Matched exactly.
+    #[serde(
+        rename = "webauthn_additional_accepted_origins",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub webauthn_additional_accepted_origins: Option<Vec<String>>,
     #[serde(rename = "webauthn_allowed_device_types", skip_serializing_if = "Option::is_none")]
     pub webauthn_allowed_device_types: Option<Vec<uuid::Uuid>>,
     #[serde(rename = "webauthn_allowed_device_types_obj")]
@@ -88,6 +94,7 @@ impl AuthenticatorValidateStage {
             last_auth_threshold: None,
             webauthn_user_verification: None,
             webauthn_hints: None,
+            webauthn_additional_accepted_origins: None,
             webauthn_allowed_device_types: None,
             webauthn_allowed_device_types_obj,
             email_otp_throttling_factor: None,
