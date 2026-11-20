@@ -103,6 +103,87 @@ pub enum LifecycleRulesUpdateError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`lifecycle_user_expiration_rules_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LifecycleUserExpirationRulesCreateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lifecycle_user_expiration_rules_destroy`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LifecycleUserExpirationRulesDestroyError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lifecycle_user_expiration_rules_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LifecycleUserExpirationRulesListError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lifecycle_user_expiration_rules_partial_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LifecycleUserExpirationRulesPartialUpdateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lifecycle_user_expiration_rules_preview_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LifecycleUserExpirationRulesPreviewCreateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lifecycle_user_expiration_rules_preview_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LifecycleUserExpirationRulesPreviewRetrieveError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lifecycle_user_expiration_rules_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LifecycleUserExpirationRulesRetrieveError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lifecycle_user_expiration_rules_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LifecycleUserExpirationRulesUpdateError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lifecycle_user_expiration_rules_used_by_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LifecycleUserExpirationRulesUsedByListError {
+    Status400(models::ValidationError),
+    Status403(models::GenericError),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`lifecycle_user_offboarding_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -717,6 +798,494 @@ pub async fn lifecycle_rules_update(
     }
 }
 
+/// Mixin to add a used_by endpoint to return a list of all objects using this object
+pub async fn lifecycle_user_expiration_rules_create(
+    configuration: &configuration::Configuration,
+    user_expiration_rule_request: models::UserExpirationRuleRequest,
+) -> Result<models::UserExpirationRule, Error<LifecycleUserExpirationRulesCreateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_user_expiration_rule_request = user_expiration_rule_request;
+
+    let uri_str = format!("{}/lifecycle/user_expiration_rules/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_user_expiration_rule_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserExpirationRule`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserExpirationRule`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<LifecycleUserExpirationRulesCreateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Mixin to add a used_by endpoint to return a list of all objects using this object
+pub async fn lifecycle_user_expiration_rules_destroy(
+    configuration: &configuration::Configuration,
+    id: &str,
+) -> Result<(), Error<LifecycleUserExpirationRulesDestroyError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+
+    let uri_str = format!(
+        "{}/lifecycle/user_expiration_rules/{id}/",
+        configuration.base_path,
+        id = crate::apis::urlencode(p_path_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<LifecycleUserExpirationRulesDestroyError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Mixin to add a used_by endpoint to return a list of all objects using this object
+pub async fn lifecycle_user_expiration_rules_list(
+    configuration: &configuration::Configuration,
+    action: Option<models::OffboardingActionEnum>,
+    enabled: Option<bool>,
+    group: Option<&str>,
+    ordering: Option<&str>,
+    page: Option<i32>,
+    page_size: Option<i32>,
+    pbm_uuid: Option<&str>,
+    search: Option<&str>,
+) -> Result<models::PaginatedUserExpirationRuleList, Error<LifecycleUserExpirationRulesListError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_action = action;
+    let p_query_enabled = enabled;
+    let p_query_group = group;
+    let p_query_ordering = ordering;
+    let p_query_page = page;
+    let p_query_page_size = page_size;
+    let p_query_pbm_uuid = pbm_uuid;
+    let p_query_search = search;
+
+    let uri_str = format!("{}/lifecycle/user_expiration_rules/", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_action {
+        req_builder = req_builder.query(&[("action", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_enabled {
+        req_builder = req_builder.query(&[("enabled", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_group {
+        req_builder = req_builder.query(&[("group", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_ordering {
+        req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_page_size {
+        req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_pbm_uuid {
+        req_builder = req_builder.query(&[("pbm_uuid", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_search {
+        req_builder = req_builder.query(&[("search", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedUserExpirationRuleList`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedUserExpirationRuleList`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<LifecycleUserExpirationRulesListError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Mixin to add a used_by endpoint to return a list of all objects using this object
+pub async fn lifecycle_user_expiration_rules_partial_update(
+    configuration: &configuration::Configuration,
+    id: &str,
+    patched_user_expiration_rule_request: Option<models::PatchedUserExpirationRuleRequest>,
+) -> Result<models::UserExpirationRule, Error<LifecycleUserExpirationRulesPartialUpdateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+    let p_body_patched_user_expiration_rule_request = patched_user_expiration_rule_request;
+
+    let uri_str = format!(
+        "{}/lifecycle/user_expiration_rules/{id}/",
+        configuration.base_path,
+        id = crate::apis::urlencode(p_path_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_patched_user_expiration_rule_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserExpirationRule`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserExpirationRule`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<LifecycleUserExpirationRulesPartialUpdateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Preview new offboardings and changes to pending rows if this rule is enabled.  POST accepts unsaved edits to the rule. Neither method saves the rule, changes offboardings, or sends warnings. Existing policy bindings still apply.
+pub async fn lifecycle_user_expiration_rules_preview_create(
+    configuration: &configuration::Configuration,
+    id: &str,
+    user_expiration_rule_request: models::UserExpirationRuleRequest,
+) -> Result<models::UserExpirationRulePreview, Error<LifecycleUserExpirationRulesPreviewCreateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+    let p_body_user_expiration_rule_request = user_expiration_rule_request;
+
+    let uri_str = format!(
+        "{}/lifecycle/user_expiration_rules/{id}/preview/",
+        configuration.base_path,
+        id = crate::apis::urlencode(p_path_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_user_expiration_rule_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserExpirationRulePreview`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserExpirationRulePreview`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<LifecycleUserExpirationRulesPreviewCreateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Preview new offboardings and changes to pending rows if this rule is enabled.  POST accepts unsaved edits to the rule. Neither method saves the rule, changes offboardings, or sends warnings. Existing policy bindings still apply.
+pub async fn lifecycle_user_expiration_rules_preview_retrieve(
+    configuration: &configuration::Configuration,
+    id: &str,
+) -> Result<models::UserExpirationRulePreview, Error<LifecycleUserExpirationRulesPreviewRetrieveError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+
+    let uri_str = format!(
+        "{}/lifecycle/user_expiration_rules/{id}/preview/",
+        configuration.base_path,
+        id = crate::apis::urlencode(p_path_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserExpirationRulePreview`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserExpirationRulePreview`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<LifecycleUserExpirationRulesPreviewRetrieveError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Mixin to add a used_by endpoint to return a list of all objects using this object
+pub async fn lifecycle_user_expiration_rules_retrieve(
+    configuration: &configuration::Configuration,
+    id: &str,
+) -> Result<models::UserExpirationRule, Error<LifecycleUserExpirationRulesRetrieveError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+
+    let uri_str = format!(
+        "{}/lifecycle/user_expiration_rules/{id}/",
+        configuration.base_path,
+        id = crate::apis::urlencode(p_path_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserExpirationRule`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserExpirationRule`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<LifecycleUserExpirationRulesRetrieveError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Mixin to add a used_by endpoint to return a list of all objects using this object
+pub async fn lifecycle_user_expiration_rules_update(
+    configuration: &configuration::Configuration,
+    id: &str,
+    user_expiration_rule_request: models::UserExpirationRuleRequest,
+) -> Result<models::UserExpirationRule, Error<LifecycleUserExpirationRulesUpdateError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+    let p_body_user_expiration_rule_request = user_expiration_rule_request;
+
+    let uri_str = format!(
+        "{}/lifecycle/user_expiration_rules/{id}/",
+        configuration.base_path,
+        id = crate::apis::urlencode(p_path_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_user_expiration_rule_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserExpirationRule`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserExpirationRule`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<LifecycleUserExpirationRulesUpdateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get a list of all objects that use this object
+pub async fn lifecycle_user_expiration_rules_used_by_list(
+    configuration: &configuration::Configuration,
+    id: &str,
+) -> Result<Vec<models::UsedBy>, Error<LifecycleUserExpirationRulesUsedByListError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+
+    let uri_str = format!(
+        "{}/lifecycle/user_expiration_rules/{id}/used_by/",
+        configuration.base_path,
+        id = crate::apis::urlencode(p_path_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UsedBy&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<LifecycleUserExpirationRulesUsedByListError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 pub async fn lifecycle_user_offboarding_create(
     configuration: &configuration::Configuration,
     user_offboarding_request: models::UserOffboardingRequest,
@@ -813,18 +1382,24 @@ pub async fn lifecycle_user_offboarding_destroy(
 pub async fn lifecycle_user_offboarding_list(
     configuration: &configuration::Configuration,
     action: Option<models::OffboardingActionEnum>,
+    generated: Option<bool>,
     ordering: Option<&str>,
     page: Option<i32>,
     page_size: Option<i32>,
+    rule: Option<&str>,
+    rule__isnull: Option<bool>,
     search: Option<&str>,
     status: Option<models::OffboardingStatusEnum>,
     user__uuid: Option<&str>,
 ) -> Result<models::PaginatedUserOffboardingList, Error<LifecycleUserOffboardingListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_action = action;
+    let p_query_generated = generated;
     let p_query_ordering = ordering;
     let p_query_page = page;
     let p_query_page_size = page_size;
+    let p_query_rule = rule;
+    let p_query_rule__isnull = rule__isnull;
     let p_query_search = search;
     let p_query_status = status;
     let p_query_user__uuid = user__uuid;
@@ -835,6 +1410,9 @@ pub async fn lifecycle_user_offboarding_list(
     if let Some(ref param_value) = p_query_action {
         req_builder = req_builder.query(&[("action", &param_value.to_string())]);
     }
+    if let Some(ref param_value) = p_query_generated {
+        req_builder = req_builder.query(&[("generated", &param_value.to_string())]);
+    }
     if let Some(ref param_value) = p_query_ordering {
         req_builder = req_builder.query(&[("ordering", &param_value.to_string())]);
     }
@@ -843,6 +1421,12 @@ pub async fn lifecycle_user_offboarding_list(
     }
     if let Some(ref param_value) = p_query_page_size {
         req_builder = req_builder.query(&[("page_size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_rule {
+        req_builder = req_builder.query(&[("rule", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_rule__isnull {
+        req_builder = req_builder.query(&[("rule__isnull", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_search {
         req_builder = req_builder.query(&[("search", &param_value.to_string())]);

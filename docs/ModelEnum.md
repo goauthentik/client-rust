@@ -120,6 +120,7 @@
 | AuthentikLifecycleLifecycleiteration | authentik_lifecycle.lifecycleiteration |
 | AuthentikLifecycleReview | authentik_lifecycle.review |
 | AuthentikLifecycleUseroffboarding | authentik_lifecycle.useroffboarding |
+| AuthentikLifecycleUserexpirationrule | authentik_lifecycle.userexpirationrule |
 | AuthentikPoliciesUniquePasswordUniquepasswordpolicy | authentik_policies_unique_password.uniquepasswordpolicy |
 | AuthentikProvidersGoogleWorkspaceGoogleworkspaceprovider | authentik_providers_google_workspace.googleworkspaceprovider |
 | AuthentikProvidersGoogleWorkspaceGoogleworkspaceprovidermapping | authentik_providers_google_workspace.googleworkspaceprovidermapping |

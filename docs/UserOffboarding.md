@@ -15,6 +15,9 @@ Name | Type | Description | Notes
 **created_by_obj** | [**models::PartialUser**](PartialUser.md) |  | [readonly]
 **created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | [readonly]
 **executed_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [readonly]
+**rule** | Option<**uuid::Uuid**> |  | [readonly]
+**rule_obj** | [**models::PartialUserExpirationRule**](PartialUserExpirationRule.md) |  | [readonly]
+**generated** | **bool** |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -9,6 +9,7 @@
 | Logout | logout |
 | UserWrite | user_write |
 | UserOffboarded | user_offboarded |
+| UserExpirationWarning | user_expiration_warning |
 | SuspiciousRequest | suspicious_request |
 | PasswordSet | password_set |
 | AuthenticatorLocked | authenticator_locked |

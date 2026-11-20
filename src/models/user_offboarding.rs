@@ -39,6 +39,12 @@ pub struct UserOffboarding {
     pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "executed_at", deserialize_with = "Option::deserialize")]
     pub executed_at: Option<chrono::DateTime<chrono::FixedOffset>>,
+    #[serde(rename = "rule", deserialize_with = "Option::deserialize")]
+    pub rule: Option<uuid::Uuid>,
+    #[serde(rename = "rule_obj")]
+    pub rule_obj: models::PartialUserExpirationRule,
+    #[serde(rename = "generated")]
+    pub generated: bool,
 }
 
 impl UserOffboarding {
@@ -52,6 +58,9 @@ impl UserOffboarding {
         created_by_obj: models::PartialUser,
         created_at: chrono::DateTime<chrono::FixedOffset>,
         executed_at: Option<chrono::DateTime<chrono::FixedOffset>>,
+        rule: Option<uuid::Uuid>,
+        rule_obj: models::PartialUserExpirationRule,
+        generated: bool,
     ) -> UserOffboarding {
         UserOffboarding {
             id,
@@ -65,6 +74,9 @@ impl UserOffboarding {
             created_by_obj,
             created_at,
             executed_at,
+            rule,
+            rule_obj,
+            generated,
         }
     }
 }
