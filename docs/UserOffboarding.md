@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **action** | Option<[**models::OffboardingActionEnum**](OffboardingActionEnum.md)> |  | [optional]
 **revoke_sessions** | Option<**bool**> | Revoke all of the user's sessions when offboarding. | [optional]
 **revoke_tokens** | Option<**bool**> | Revoke all of the user's tokens when offboarding. | [optional]
-**status** | [**models::OffboardingStatusEnum**](OffboardingStatusEnum.md) |  | [readonly]
+**status** | [**models::OffboardingStatusEnum**](OffboardingStatusEnum.md) |  | [readonly][default to Pending]
 **created_by_obj** | [**models::PartialUser**](PartialUser.md) |  | [readonly]
 **created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | [readonly]
 **executed_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [readonly]
