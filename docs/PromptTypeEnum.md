@@ -11,6 +11,7 @@
 | Username | username |
 | Email | email |
 | Password | password |
+| PasswordViewable | password_viewable |
 | Number | number |
 | Checkbox | checkbox |
 | RadioButtonGroup | radio-button-group |
