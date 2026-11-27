@@ -1820,7 +1820,7 @@ pub async fn providers_google_workspace_list(
     configuration: &configuration::Configuration,
     delegated_subject: Option<&str>,
     exclude_users_service_account: Option<bool>,
-    filter_group: Option<&str>,
+    group_filters: Option<Vec<uuid::Uuid>>,
     name: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,
@@ -1830,7 +1830,7 @@ pub async fn providers_google_workspace_list(
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_delegated_subject = delegated_subject;
     let p_query_exclude_users_service_account = exclude_users_service_account;
-    let p_query_filter_group = filter_group;
+    let p_query_group_filters = group_filters;
     let p_query_name = name;
     let p_query_ordering = ordering;
     let p_query_page = page;
@@ -1846,8 +1846,24 @@ pub async fn providers_google_workspace_list(
     if let Some(ref param_value) = p_query_exclude_users_service_account {
         req_builder = req_builder.query(&[("exclude_users_service_account", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_filter_group {
-        req_builder = req_builder.query(&[("filter_group", &param_value.to_string())]);
+    if let Some(ref param_value) = p_query_group_filters {
+        req_builder = match "multi" {
+            "multi" => req_builder.query(
+                &param_value
+                    .into_iter()
+                    .map(|p| ("group_filters".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => req_builder.query(&[(
+                "group_filters",
+                &param_value
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref param_value) = p_query_name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
@@ -3271,7 +3287,7 @@ pub async fn providers_microsoft_entra_groups_used_by_list(
 pub async fn providers_microsoft_entra_list(
     configuration: &configuration::Configuration,
     exclude_users_service_account: Option<bool>,
-    filter_group: Option<&str>,
+    group_filters: Option<Vec<uuid::Uuid>>,
     name: Option<&str>,
     ordering: Option<&str>,
     page: Option<i32>,
@@ -3280,7 +3296,7 @@ pub async fn providers_microsoft_entra_list(
 ) -> Result<models::PaginatedMicrosoftEntraProviderList, Error<ProvidersMicrosoftEntraListError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_exclude_users_service_account = exclude_users_service_account;
-    let p_query_filter_group = filter_group;
+    let p_query_group_filters = group_filters;
     let p_query_name = name;
     let p_query_ordering = ordering;
     let p_query_page = page;
@@ -3293,8 +3309,24 @@ pub async fn providers_microsoft_entra_list(
     if let Some(ref param_value) = p_query_exclude_users_service_account {
         req_builder = req_builder.query(&[("exclude_users_service_account", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_query_filter_group {
-        req_builder = req_builder.query(&[("filter_group", &param_value.to_string())]);
+    if let Some(ref param_value) = p_query_group_filters {
+        req_builder = match "multi" {
+            "multi" => req_builder.query(
+                &param_value
+                    .into_iter()
+                    .map(|p| ("group_filters".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => req_builder.query(&[(
+                "group_filters",
+                &param_value
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref param_value) = p_query_name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);

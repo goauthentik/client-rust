@@ -29,13 +29,9 @@ pub struct PatchedGoogleWorkspaceProviderRequest {
     pub scopes: Option<String>,
     #[serde(rename = "exclude_users_service_account", skip_serializing_if = "Option::is_none")]
     pub exclude_users_service_account: Option<bool>,
-    #[serde(
-        rename = "filter_group",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub filter_group: Option<Option<uuid::Uuid>>,
+    /// Group filters used to define sync-scope for groups.
+    #[serde(rename = "group_filters", skip_serializing_if = "Option::is_none")]
+    pub group_filters: Option<Vec<uuid::Uuid>>,
     #[serde(rename = "user_delete_action", skip_serializing_if = "Option::is_none")]
     pub user_delete_action: Option<models::OutgoingSyncDeleteAction>,
     #[serde(rename = "group_delete_action", skip_serializing_if = "Option::is_none")]
@@ -67,7 +63,7 @@ impl PatchedGoogleWorkspaceProviderRequest {
             credentials: None,
             scopes: None,
             exclude_users_service_account: None,
-            filter_group: None,
+            group_filters: None,
             user_delete_action: None,
             group_delete_action: None,
             default_group_email_domain: None,

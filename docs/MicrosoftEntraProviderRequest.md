@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **client_secret** | **String** |  | 
 **tenant_id** | **String** |  | 
 **exclude_users_service_account** | Option<**bool**> |  | [optional]
-**filter_group** | Option<**uuid::Uuid**> |  | [optional]
+**group_filters** | Option<**Vec<uuid::Uuid>**> | Group filters used to define sync-scope for groups. | [optional]
 **user_delete_action** | Option<[**models::OutgoingSyncDeleteAction**](OutgoingSyncDeleteAction.md)> |  | [optional]
 **group_delete_action** | Option<[**models::OutgoingSyncDeleteAction**](OutgoingSyncDeleteAction.md)> |  | [optional]
 **sync_page_size** | Option<**u32**> | Controls the number of objects synced in a single task | [optional]

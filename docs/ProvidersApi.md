@@ -508,7 +508,7 @@ Name | Type | Description  | Required | Notes
 
 ## providers_google_workspace_list
 
-> models::PaginatedGoogleWorkspaceProviderList providers_google_workspace_list(delegated_subject, exclude_users_service_account, filter_group, name, ordering, page, page_size, search)
+> models::PaginatedGoogleWorkspaceProviderList providers_google_workspace_list(delegated_subject, exclude_users_service_account, group_filters, name, ordering, page, page_size, search)
 
 
 GoogleWorkspaceProvider Viewset
@@ -520,7 +520,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **delegated_subject** | Option<**String**> |  |  |
 **exclude_users_service_account** | Option<**bool**> |  |  |
-**filter_group** | Option<**uuid::Uuid**> |  |  |
+**group_filters** | Option<[**Vec<uuid::Uuid>**](Uuid__Uuid.md)> |  |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
@@ -1324,7 +1324,7 @@ Name | Type | Description  | Required | Notes
 
 ## providers_microsoft_entra_list
 
-> models::PaginatedMicrosoftEntraProviderList providers_microsoft_entra_list(exclude_users_service_account, filter_group, name, ordering, page, page_size, search)
+> models::PaginatedMicrosoftEntraProviderList providers_microsoft_entra_list(exclude_users_service_account, group_filters, name, ordering, page, page_size, search)
 
 
 MicrosoftEntraProvider Viewset
@@ -1335,7 +1335,7 @@ MicrosoftEntraProvider Viewset
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **exclude_users_service_account** | Option<**bool**> |  |  |
-**filter_group** | Option<**uuid::Uuid**> |  |  |
+**group_filters** | Option<[**Vec<uuid::Uuid>**](Uuid__Uuid.md)> |  |  |
 **name** | Option<**String**> |  |  |
 **ordering** | Option<**String**> | Which field to use when ordering the results. |  |
 **page** | Option<**i32**> | A page number within the paginated result set. |  |

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **credentials** | **std::collections::HashMap<String, serde_json::Value>** |  | 
 **scopes** | Option<**String**> |  | [optional]
 **exclude_users_service_account** | Option<**bool**> |  | [optional]
-**filter_group** | Option<**uuid::Uuid**> |  | [optional]
+**group_filters** | Option<**Vec<uuid::Uuid>**> | Group filters used to define sync-scope for groups. | [optional]
 **user_delete_action** | Option<[**models::OutgoingSyncDeleteAction**](OutgoingSyncDeleteAction.md)> |  | [optional]
 **group_delete_action** | Option<[**models::OutgoingSyncDeleteAction**](OutgoingSyncDeleteAction.md)> |  | [optional]
 **default_group_email_domain** | **String** |  | 
